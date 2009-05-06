@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suppressions PUBLIC
+    "-//Puppy Crawl//DTD Suppressions 1.0//EN"
+    "http://www.puppycrawl.com/dtds/suppressions_1_0.dtd">
+
+<suppressions>
+  <!-- classloader problem with custom exception -->
+  <suppress checks=".*"
+            files=".*\.java"
+            lines="0"/>
+
+  <!-- nothing magic about test data -->
+  <suppress checks="MagicNumber"
+            files=".*Test\.java" />
+</suppressions>
