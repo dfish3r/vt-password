@@ -23,7 +23,7 @@ package edu.vt.middleware.password;
 
 public class PasswordException extends Exception
 {
-  /** PasswordException.java */
+  /** serial version uid. */
   private static final long serialVersionUID = -8254917606421076833L;
 
 
