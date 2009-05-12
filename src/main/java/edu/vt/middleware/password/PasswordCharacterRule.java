@@ -34,32 +34,17 @@ public final class PasswordCharacterRule extends AbstractPasswordRule
   /** number of rules to enforce. */
   private int numCharacteristics;
 
-  /** whether to require a password contain digits. */
-  private boolean requireDigits;
-
   /** number of digits to require. */
   private int numDigits;
-
-  /** whether to require a password contain alphabetical characters. */
-  private boolean requireAlphabetical;
 
   /** number of alphabetical to require. */
   private int numAlphabetical;
 
-  /** whether to require a password contain non-alphanumeric characters. */
-  private boolean requireNonAlphanumeric;
-
   /** number of non-alphanumerics to require. */
   private int numNonAlphanumeric;
 
-  /** whether to require a password contain uppercase characters. */
-  private boolean requireUppercase;
-
   /** number of uppercase to require. */
   private int numUppercase;
-
-  /** whether to require a password contain lowercase characters. */
-  private boolean requireLowercase;
 
   /** number of lowercase to require. */
   private int numLowercase;
