@@ -94,6 +94,10 @@ public class PasswordCheckerTest
     historyRule.addHistory("zurb9DyQ5nooY1la8h86Bh0n1iw=");
     historyRule.addHistory("bhqabXwE3S8E6xNJfX/d76MFOCs=");
 
+    final PasswordSourceRule sourceRule = new PasswordSourceRule();
+    sourceRule.useDigest("SHA-1", new Base64Converter());
+    sourceRule.addSource("System B", "CJGTDMQRP+rmHApkcijC80aDV0o=");
+
     this.checker.addPasswordRule(charRule);
     this.checker.addPasswordRule(whitespaceRule);
     this.checker.addPasswordRule(lengthRule);
@@ -101,6 +105,7 @@ public class PasswordCheckerTest
     this.checker.addPasswordRule(seqRule);
     this.checker.addPasswordRule(userIDRule);
     this.checker.addPasswordRule(historyRule);
+    this.checker.addPasswordRule(sourceRule);
   }
 
 
@@ -202,6 +207,9 @@ public class PasswordCheckerTest
         /** contains history password */
         {"t3stUs3r03", false},
 
+        /** contains source password */
+        {"t3stUs3r04", false},
+
         /** valid passwords. */
 
         /** digits, non-alphanumeric, lowercase, uppercase */
@@ -228,7 +236,6 @@ public class PasswordCheckerTest
    *
    * @throws  Exception  On test failure.
    */
-  @Parameters({ "dictionaryCount" })
   @Test(
     groups = {"passtest"},
     dataProvider = "passwords"
@@ -241,7 +248,8 @@ public class PasswordCheckerTest
     } else {
       try {
         checker.checkPassword(new Password(pass));
-        AssertJUnit.fail("Expected PasswordException to be thrown");
+        AssertJUnit.fail(
+          "Expected PasswordException to be thrown for password " + pass);
       } catch (PasswordException e) {
         AssertJUnit.assertEquals(e.getClass(), PasswordException.class);
       }
