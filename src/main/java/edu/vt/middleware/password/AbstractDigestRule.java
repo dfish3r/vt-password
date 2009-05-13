@@ -17,8 +17,8 @@ import edu.vt.middleware.crypt.digest.DigestAlgorithm;
 import edu.vt.middleware.crypt.util.Converter;
 
 /**
- * <code>AbstractDigestRule</code> provides core methods for password rules
- * that use a digest.
+ * <code>AbstractDigestRule</code> provides core methods for password rules that
+ * use a digest.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$

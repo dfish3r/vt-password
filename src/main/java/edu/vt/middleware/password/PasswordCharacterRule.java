@@ -203,6 +203,7 @@ public final class PasswordCharacterRule extends AbstractPasswordRule
       } else {
         final List<Object> filterParams = new ArrayList<Object>(5);
         filterParams.add(this.numCharacteristics);
+
         final StringBuilder msg = new StringBuilder(
           "Password did not meet %s of the following characteristics:\n");
         if (this.numDigits > 0) {

@@ -104,9 +104,9 @@ public class PasswordHistoryRule extends AbstractDigestRule
             if (p.equals(password.getText())) {
               success = false;
               this.setMessage(
-                  String.format(
-                    "Password matches one of %s previous passwords",
-                    this.history.size()));
+                String.format(
+                  "Password matches one of %s previous passwords",
+                  this.history.size()));
               break;
             } else {
               success = true;

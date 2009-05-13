@@ -77,7 +77,7 @@ public class PasswordLengthRule extends AbstractPasswordRule
         this.setMessage(
           String.format(
             "Password length must be greater than or equal to %s " +
-              "and less than or equal to %s characters",
+            "and less than or equal to %s characters",
             this.minimumLength,
             this.maximumLength));
       }

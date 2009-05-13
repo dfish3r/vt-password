@@ -18,8 +18,8 @@ import java.util.Map;
 
 /**
  * <code>PasswordSourceRule</code> contains methods for determining if a
- * password matches a password from a different source.
- * Useful for when separate systems cannot have matching passwords.
+ * password matches a password from a different source. Useful for when separate
+ * systems cannot have matching passwords.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
