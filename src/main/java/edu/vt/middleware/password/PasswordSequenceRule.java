@@ -101,7 +101,7 @@ public class PasswordSequenceRule extends AbstractPasswordRule
   static {
     REVERSE_SEQUENCES = new String[SEQUENCES.length];
     for (int i = 0; i < REVERSE_SEQUENCES.length; i++) {
-      REVERSE_SEQUENCES[i] = new StringBuffer(SEQUENCES[i]).reverse()
+      REVERSE_SEQUENCES[i] = new StringBuilder(SEQUENCES[i]).reverse()
           .toString();
     }
   }
@@ -145,10 +145,10 @@ public class PasswordSequenceRule extends AbstractPasswordRule
       for (int i = 0; i < SEQUENCES.length; i++) {
         if (text.indexOf(SEQUENCES[i]) != -1) {
           success = false;
-
-          final StringBuffer msg = new StringBuffer(
-            "Password contains the keyboard sequence ").append(SEQUENCES[i]);
-          this.setMessage(msg.toString());
+          this.setMessage(
+            String.format(
+              "Password contains the keyboard sequence '%s'",
+              SEQUENCES[i]));
           break;
         } else if (i == SEQUENCES.length - 1) {
           success = true;
@@ -158,11 +158,10 @@ public class PasswordSequenceRule extends AbstractPasswordRule
         for (int j = 0; j < REVERSE_SEQUENCES.length; j++) {
           if (text.indexOf(REVERSE_SEQUENCES[j]) != -1) {
             success = false;
-
-            final StringBuffer msg =
-              new StringBuffer("Password contains the keyboard sequence ")
-                .append(REVERSE_SEQUENCES[j]);
-            this.setMessage(msg.toString());
+            this.setMessage(
+              String.format(
+                "Password contains the keyboard sequence '%s'",
+                REVERSE_SEQUENCES[j]));
             break;
           } else if (j == REVERSE_SEQUENCES.length - 1) {
             success = true;

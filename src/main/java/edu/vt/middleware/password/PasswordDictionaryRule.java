@@ -136,16 +136,14 @@ public class PasswordDictionaryRule extends AbstractPasswordRule
           if (this.dictionary.search(s)) {
             success = false;
             this.match = s;
-
-            final StringBuffer msg = new StringBuffer(
-              "Password contains the dictionary word '").append(s).append("'");
-            this.setMessage(msg.toString());
+            this.setMessage(
+              String.format("Password contains the dictionary word '%s'", s));
           }
         }
         i++;
       }
       if (this.backwards && success) {
-        text = new StringBuffer(password.getText()).reverse().toString();
+        text = new StringBuilder(password.getText()).reverse().toString();
         i = this.length;
         while (i <= text.length() && success) {
           for (int j = 0; (j + i <= text.length()) && success; j++) {
@@ -153,11 +151,10 @@ public class PasswordDictionaryRule extends AbstractPasswordRule
             if (this.dictionary.search(s)) {
               success = false;
               this.match = s;
-
-              final StringBuffer msg = new StringBuffer(
-                "Password contains the backwards dictionary word '").append(s)
-                  .append("'");
-              this.setMessage(msg.toString());
+              this.setMessage(
+                String.format(
+                  "Password contains the backwards dictionary word '%s'",
+                  s));
             }
           }
           i++;

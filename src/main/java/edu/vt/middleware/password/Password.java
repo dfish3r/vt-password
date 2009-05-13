@@ -28,31 +28,31 @@ public class Password
   private String password;
 
   /** Digits in the password [0-9]. */
-  private StringBuffer digits;
+  private StringBuilder digits;
 
   /** Non-Digits in the password ![0-9]. */
-  private StringBuffer nonDigits;
+  private StringBuilder nonDigits;
 
   /** Alphabetical characters in the password [a-zA-Z]. */
-  private StringBuffer alphabetical;
+  private StringBuilder alphabetical;
 
   /** Non-Alphabetical characters in the password ![a-zA-Z]. */
-  private StringBuffer nonAlphabetical;
+  private StringBuilder nonAlphabetical;
 
   /** Alphanumeric characters in the password [a-zA-Z0-9]. */
-  private StringBuffer alphanumeric;
+  private StringBuilder alphanumeric;
 
   /** Non-Alphanumeric characters in the password ![a-zA-Z0-9]. */
-  private StringBuffer nonAlphanumeric;
+  private StringBuilder nonAlphanumeric;
 
   /** Uppercase characters in the password [A-Z]. */
-  private StringBuffer uppercase;
+  private StringBuilder uppercase;
 
   /** Lowercase characters in the password [a-z]. */
-  private StringBuffer lowercase;
+  private StringBuilder lowercase;
 
   /** Whitespace characters in the password [\s]. */
-  private StringBuffer whitespace;
+  private StringBuilder whitespace;
 
 
   /**
@@ -65,15 +65,15 @@ public class Password
   {
     this.password = text;
 
-    this.digits = new StringBuffer(this.password.length());
-    this.nonDigits = new StringBuffer(this.password.length());
-    this.alphabetical = new StringBuffer(this.password.length());
-    this.nonAlphabetical = new StringBuffer(this.password.length());
-    this.alphanumeric = new StringBuffer(this.password.length());
-    this.nonAlphanumeric = new StringBuffer(this.password.length());
-    this.uppercase = new StringBuffer(this.password.length());
-    this.lowercase = new StringBuffer(this.password.length());
-    this.whitespace = new StringBuffer(this.password.length());
+    this.digits = new StringBuilder(this.password.length());
+    this.nonDigits = new StringBuilder(this.password.length());
+    this.alphabetical = new StringBuilder(this.password.length());
+    this.nonAlphabetical = new StringBuilder(this.password.length());
+    this.alphanumeric = new StringBuilder(this.password.length());
+    this.nonAlphanumeric = new StringBuilder(this.password.length());
+    this.uppercase = new StringBuilder(this.password.length());
+    this.lowercase = new StringBuilder(this.password.length());
+    this.whitespace = new StringBuilder(this.password.length());
 
     for (int i = 0; i < this.password.length(); i++) {
       final char c = this.password.charAt(i);

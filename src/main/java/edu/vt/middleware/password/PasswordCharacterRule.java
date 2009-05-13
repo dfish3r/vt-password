@@ -13,6 +13,9 @@
 */
 package edu.vt.middleware.password;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * <code>PasswordCharacterRule</code> contains methods for determining if a
  * password contains the desired mix of character types. In order to meet the
@@ -198,30 +201,33 @@ public final class PasswordCharacterRule extends AbstractPasswordRule
       if (count >= this.numCharacteristics) {
         success = true;
       } else {
-        final StringBuffer msg = new StringBuffer("Password did not meet ")
-            .append(this.numCharacteristics).append(
-            " of the following characteristics:\n");
+        final List<Object> filterParams = new ArrayList<Object>(5);
+        filterParams.add(this.numCharacteristics);
+        final StringBuilder msg = new StringBuilder(
+          "Password did not meet %s of the following characteristics:\n");
         if (this.numDigits > 0) {
-          msg.append("    * must contain at least ").append(this.numDigits)
-            .append(" digits\n");
+          msg.append("    * must contain at least %s digits\n");
+          filterParams.add(this.numDigits);
         }
         if (this.numAlphabetical > 0) {
-          msg.append("    * must contain at least ").append(
-            this.numAlphabetical).append(" alphabetical characters\n");
+          msg.append(
+            "    * must contain at least %s alphabetical characters\n");
+          filterParams.add(this.numAlphabetical);
         }
         if (this.numNonAlphanumeric > 0) {
-          msg.append("    * must contain at least ").append(
-            this.numNonAlphanumeric).append(" non-alphanumeric characters\n");
+          msg.append(
+            "    * must contain at least %s non-alphanumeric characters\n");
+          filterParams.add(this.numNonAlphanumeric);
         }
         if (this.numUppercase > 0) {
-          msg.append("    * must contain at least ").append(this.numUppercase)
-            .append(" uppercase characters\n");
+          msg.append("    * must contain at least %s uppercase characters\n");
+          filterParams.add(this.numUppercase);
         }
         if (this.numLowercase > 0) {
-          msg.append("    * must contain at least ").append(this.numLowercase)
-            .append(" lowercase characters\n");
+          msg.append("    * must contain at least %s lowercase characters\n");
+          filterParams.add(this.numLowercase);
         }
-        this.setMessage(msg.toString());
+        this.setMessage(String.format(msg.toString(), filterParams.toArray()));
       }
     } else {
       this.setMessage("Password cannot be null");

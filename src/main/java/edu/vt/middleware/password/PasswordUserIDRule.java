@@ -47,7 +47,7 @@ public class PasswordUserIDRule extends AbstractPasswordRule
   public PasswordUserIDRule(final String id)
   {
     this.userID = id;
-    this.reverseUserID = new StringBuffer(id).reverse().toString();
+    this.reverseUserID = new StringBuilder(id).reverse().toString();
   }
 
 
@@ -81,14 +81,13 @@ public class PasswordUserIDRule extends AbstractPasswordRule
         text = text.toLowerCase();
       }
       if (text.indexOf(this.userID) != -1) {
-        final StringBuffer msg = new StringBuffer(
-          "Password contains the user id '").append(this.userID).append("'");
-        this.setMessage(msg.toString());
+        this.setMessage(
+          String.format("Password contains the user id '%s'", this.userID));
       } else if (this.backwards && text.indexOf(this.reverseUserID) != -1) {
-        final StringBuffer msg = new StringBuffer(
-          "Password contains the backwards user id '").append(
-            this.reverseUserID).append("'");
-        this.setMessage(msg.toString());
+        this.setMessage(
+          String.format(
+            "Password contains the backwards user id '%s'",
+            this.reverseUserID));
       } else {
         success = true;
       }

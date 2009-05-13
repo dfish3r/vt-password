@@ -69,16 +69,17 @@ public class PasswordLengthRule extends AbstractPasswordRule
           password.length() <= this.maximumLength) {
         success = true;
       } else if (this.minimumLength == this.maximumLength) {
-        final StringBuffer msg = new StringBuffer(
-          "Password length must be equal to ").append(this.minimumLength)
-            .append(" characters");
-        this.setMessage(msg.toString());
+        this.setMessage(
+          String.format(
+            "Password length must be %s characters",
+            this.minimumLength));
       } else {
-        final StringBuffer msg = new StringBuffer(
-          "Password length must be greater than or equal to ").append(
-            this.minimumLength).append(" characters and less than or equal to ")
-            .append(this.maximumLength).append(" characters");
-        this.setMessage(msg.toString());
+        this.setMessage(
+          String.format(
+            "Password length must be greater than or equal to %s " +
+              "and less than or equal to %s characters",
+            this.minimumLength,
+            this.maximumLength));
       }
     } else {
       this.setMessage("Password cannot be null");

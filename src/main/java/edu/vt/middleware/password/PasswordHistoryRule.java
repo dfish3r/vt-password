@@ -118,11 +118,10 @@ public class PasswordHistoryRule extends AbstractPasswordRule
               this.converter);
             if (p.equals(hash)) {
               success = false;
-
-              final StringBuffer msg = new StringBuffer(
-                "Password matches one of ").append(this.history.size()).append(
-                  " previous passwords");
-              this.setMessage(msg.toString());
+              this.setMessage(
+                String.format(
+                  "Password matches one of %s previous passwords",
+                  this.history.size()));
               break;
             } else {
               success = true;
@@ -130,11 +129,10 @@ public class PasswordHistoryRule extends AbstractPasswordRule
           } else {
             if (p.equals(password.getText())) {
               success = false;
-
-              final StringBuffer msg = new StringBuffer(
-                "Password matches one of ").append(this.history.size()).append(
-                  " previous passwords");
-              this.setMessage(msg.toString());
+              this.setMessage(
+                  String.format(
+                    "Password matches one of %s previous passwords",
+                    this.history.size()));
               break;
             } else {
               success = true;
