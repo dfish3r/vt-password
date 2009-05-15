@@ -36,7 +36,7 @@ public abstract class AbstractDigestRule extends AbstractPasswordRule
 
   /**
    * This will set the supplied digest algorithm to be used when password
-   * comparision are made. Useful if you need to compare password which are in a
+   * comparison are made. Useful if you need to compare password which are in a
    * hashed form. See {@link edu.vt.middleware.crypt.digest.DigestAlgorithm}.
    *
    * @param  algorithm  <code>String</code> to use for hashing

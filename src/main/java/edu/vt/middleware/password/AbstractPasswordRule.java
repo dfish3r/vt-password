@@ -14,7 +14,7 @@
 package edu.vt.middleware.password;
 
 /**
- * <code>AbstractPasswordRule</code> provides a simple implemenation of a
+ * <code>AbstractPasswordRule</code> provides a simple implementation of a
  * password rule.
  *
  * @author  Middleware Services
