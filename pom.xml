@@ -55,6 +55,61 @@
   <build>
     <plugins>
       <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-info</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${basedir}/target/package-info</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${basedir}</directory>
+                  <filtering>true</filtering>
+                  <includes>
+                    <include>README*</include>
+                  </includes>
+                </resource>
+                <resource>
+                  <directory>${basedir}</directory>
+                  <filtering>false</filtering>
+                  <includes>
+                    <include>LICENSE*</include>
+                    <include>NOTICE*</include>
+                    <include>CHANGELOG*</include>
+                    <include>pom.xml</include>
+                  </includes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-scripts</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${basedir}/target/bin</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>bin</directory>
+                  <filtering>true</filtering>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
@@ -147,7 +202,6 @@
           <descriptors>
             <descriptor>${assembly.dir}/vt-middleware.xml</descriptor>
           </descriptors>
-          <tarLongFileMode>omit</tarLongFileMode>
         </configuration>
         <executions>
           <execution>
