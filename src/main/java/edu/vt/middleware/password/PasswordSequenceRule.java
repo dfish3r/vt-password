@@ -133,7 +133,7 @@ public class PasswordSequenceRule extends AbstractPasswordRule
   }
 
 
-  /** {@inheritDoc}. */
+  /** {@inheritDoc} */
   public boolean verifyPassword(final Password password)
   {
     boolean success = false;

@@ -76,7 +76,7 @@ public class PasswordHistoryRule extends AbstractDigestRule
   }
 
 
-  /** {@inheritDoc}. */
+  /** {@inheritDoc} */
   public boolean verifyPassword(final Password password)
   {
     boolean success = false;
