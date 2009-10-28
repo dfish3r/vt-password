@@ -6,10 +6,14 @@
   <groupId>edu.vt.middleware</groupId>
   <artifactId>vt-password</artifactId>
   <packaging>jar</packaging>
-  <version>2.0</version>
+  <version>2.0.1</version>
   <name>VT Password Libraries</name>
   <url>http://code.google.com/p/vt-middleware/wiki/vtpassword</url>
   <licenses>
+    <license>
+      <name>Apache 2</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
     <license>
       <name>GNU Lesser General Public License</name>
       <url>http://www.gnu.org/licenses/lgpl-3.0.txt</url>
@@ -30,12 +34,12 @@
     <dependency>
       <groupId>edu.vt.middleware</groupId>
       <artifactId>vt-dictionary</artifactId>
-      <version>2.0</version>
+      <version>2.0.1</version>
     </dependency>
     <dependency>
       <groupId>edu.vt.middleware</groupId>
       <artifactId>vt-crypt</artifactId>
-      <version>2.0</version>
+      <version>2.0.1</version>
       <exclusions>
         <exclusion>
           <groupId>org.apache.ant</groupId>
@@ -54,6 +58,61 @@
 
   <build>
     <plugins>
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-info</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${basedir}/target/package-info</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${basedir}</directory>
+                  <filtering>true</filtering>
+                  <includes>
+                    <include>README*</include>
+                  </includes>
+                </resource>
+                <resource>
+                  <directory>${basedir}</directory>
+                  <filtering>false</filtering>
+                  <includes>
+                    <include>LICENSE*</include>
+                    <include>NOTICE*</include>
+                    <include>CHANGELOG*</include>
+                    <include>pom.xml</include>
+                  </includes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-scripts</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${basedir}/target/bin</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>bin</directory>
+                  <filtering>true</filtering>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -91,6 +150,8 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
+          <forkMode>pertest</forkMode>
+          <argLine>-Xms256m -Xmx512m</argLine>
           <skipTests>false</skipTests>
           <suiteXmlFiles>
             <suiteXmlFile>${testng.dir}/testng.xml</suiteXmlFile>
@@ -101,7 +162,7 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
         <configuration>
-          <bottom><![CDATA[<i>Copyright &#169; 2008 Virginia Tech. All Rights Reserved.</i>]]></bottom>
+          <bottom><![CDATA[<i>Copyright &#169; 2003-2009 Virginia Tech. All Rights Reserved.</i>]]></bottom>
         </configuration>
         <executions>
           <execution>
@@ -147,7 +208,6 @@
           <descriptors>
             <descriptor>${assembly.dir}/vt-middleware.xml</descriptor>
           </descriptors>
-          <tarLongFileMode>omit</tarLongFileMode>
         </configuration>
         <executions>
           <execution>

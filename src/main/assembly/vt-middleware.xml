@@ -17,15 +17,10 @@
   </dependencySets>
   <fileSets>
     <fileSet>
-      <excludes>
-        <exclude>**/.*/**</exclude>
-      </excludes>
+      <directory>target/package-info</directory>
+      <outputDirectory>/</outputDirectory>
       <includes>
-        <include>README*</include>
-        <include>LICENSE*</include>
-        <include>NOTICE*</include>
-        <include>CHANGELOG*</include>
-        <include>pom.xml</include>
+        <include>**</include>
       </includes>
       <useDefaultExcludes>true</useDefaultExcludes>
     </fileSet>
@@ -42,7 +37,12 @@
       <useDefaultExcludes>true</useDefaultExcludes>
     </fileSet>
     <fileSet>
-      <directory>bin</directory>
+      <directory>dict</directory>
+      <useDefaultExcludes>true</useDefaultExcludes>
+    </fileSet>
+    <fileSet>
+      <directory>target/bin</directory>
+      <outputDirectory>bin</outputDirectory>
       <fileMode>0755</fileMode>
       <useDefaultExcludes>true</useDefaultExcludes>
       <excludes>
@@ -50,7 +50,8 @@
       </excludes>
     </fileSet>
     <fileSet>
-      <directory>bin</directory>
+      <directory>target/bin</directory>
+      <outputDirectory>bin</outputDirectory>
       <useDefaultExcludes>true</useDefaultExcludes>
       <includes>
         <include>*.bat</include>

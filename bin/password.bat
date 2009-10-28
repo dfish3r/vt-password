@@ -6,9 +6,9 @@ if not defined VTPASS_HOME goto no_vtpass_home
 
 set JAVA=%JAVA_HOME%\bin\java
 
-set PASS_JAR=%VTPASS_HOME%\jars\vt-password-2.0.jar
+set PASS_JAR=%VTPASS_HOME%\jars\vt-password-${project.version}.jar
 
-set CLASSPATH=%LIBDIR%\vt-dictionary-2.0.jar;%LIBDIR%\vt-crypt-2.0.jar;%LIBDIR%\commons-logging-1.1.1.jar;%PASS_JAR%
+set CLASSPATH=%LIBDIR%\vt-dictionary-2.0.1.jar;%LIBDIR%\vt-crypt-2.0.1.jar;%LIBDIR%\commons-logging-1.1.1.jar;%PASS_JAR%
 
 call "%JAVA%" -cp "%CLASSPATH%" edu.vt.middleware.password.PasswordChecker %*
 goto end

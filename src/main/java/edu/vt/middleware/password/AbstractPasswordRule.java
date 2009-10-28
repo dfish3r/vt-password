@@ -27,18 +27,18 @@ public abstract class AbstractPasswordRule implements PasswordRule
   private String message;
 
 
-  /** {@inheritDoc}. */
+  /** {@inheritDoc} */
   public abstract boolean verifyPassword(final Password password);
 
 
-  /** {@inheritDoc}. */
+  /** {@inheritDoc} */
   public String getMessage()
   {
     return this.message;
   }
 
 
-  /** {@inheritDoc}. */
+  /** {@inheritDoc} */
   public void setMessage(final String msg)
   {
     this.message = msg;
