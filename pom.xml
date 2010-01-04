@@ -9,6 +9,25 @@
   <version>2.0.2-SNAPSHOT</version>
   <name>VT Password Libraries</name>
   <url>http://code.google.com/p/vt-middleware/wiki/vtpassword</url>
+  <issueManagement>
+    <system>Google Code</system>
+    <url>http://code.google.com/p/vt-middleware/issues/list</url>
+  </issueManagement>
+  <mailingLists>
+    <mailingList>
+      <name>vt-middleware-users</name>
+      <subscribe>vt-middleware-users+subscribe@googlegroups.com</subscribe>
+      <unsubscribe>vt-middleware-users+unsubscribe@googlegroups.com</unsubscribe>
+      <post>vt-middleware-users@googlegroups.com</post>
+      <archive>http://groups.google.com/group/vt-middleware-users</archive>
+    </mailingList>
+    <mailingList>
+      <name>vt-middleware-dev</name>
+      <subscribe>vt-middleware-dev+subscribe@googlegroups.com</subscribe>
+      <unsubscribe>vt-middleware-dev+unsubscribe@googlegroups.com</unsubscribe>      <post>vt-middleware-dev@googlegroups.com</post>
+      <archive>http://groups.google.com/group/vt-middleware-dev</archive>
+    </mailingList>
+  </mailingLists>
   <licenses>
     <license>
       <name>Apache 2</name>
