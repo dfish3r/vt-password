@@ -482,4 +482,16 @@ public class Password
     }
     return array;
   }
+
+
+  /**
+   * This returns a string representation of this object.
+   *
+   * @return  <code>String</code>
+   */
+  @Override
+  public String toString()
+  {
+    return this.password;
+  }
 }
