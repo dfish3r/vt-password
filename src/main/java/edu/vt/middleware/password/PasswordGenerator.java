@@ -15,10 +15,9 @@
 */
 package edu.vt.middleware.password;
 
+import java.io.IOException;
+import java.nio.CharBuffer;
 import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -29,22 +28,22 @@ import java.util.Random;
  * @author  Middleware Services
  * @version  $Revision$
  */
-public final class PasswordGenerator
+public class PasswordGenerator
 {
   /** All digits. */
-  private StringBuilder digits = new StringBuilder("0123456789");
+  protected StringBuilder digits = new StringBuilder("0123456789");
 
   /** All lowercase characters. */
-  private StringBuilder lowercase =
+  protected StringBuilder lowercase =
     new StringBuilder("abcdefghijklmnopqrstuvwxyz");
 
   /** All uppercase characters. */
-  private StringBuilder uppercase =
+  protected StringBuilder uppercase =
     new StringBuilder("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 
   /** All non-alphanumeric characters.
       does not include backslash, pipe, single quote, or double quote */
-  private StringBuilder nonAlphanumeric =
+  protected StringBuilder nonAlphanumeric =
     new StringBuilder("`~!@#$%^&*()-_=+[{]};:<,>./?");
 
   /** All uppercase and lowercase characters. */
@@ -68,7 +67,7 @@ public final class PasswordGenerator
    */
   public PasswordGenerator()
   {
-    this(new SecureRandom(), null);
+    this(new SecureRandom());
   }
 
 
@@ -79,24 +78,7 @@ public final class PasswordGenerator
    */
   public PasswordGenerator(final Random r)
   {
-    this(r, null);
-  }
-
-
-  /**
-   * Creates a new <code>PasswordGenerator</code> with the supplied random and
-   * non-alphanumeric characters. nonAlphaChars can be defined if the default
-   * value of {@link #nonAlphanumeric} is not acceptable.
-   *
-   * @param  r  <code>Random</code>
-   * @param  nonAlphaChars  <code>String</code>
-   */
-  public PasswordGenerator(final Random r, final String nonAlphaChars)
-  {
     this.random = r;
-    if (nonAlphaChars != null) {
-      this.nonAlphanumeric = new StringBuilder(nonAlphaChars);
-    }
     this.all = new StringBuilder(
       this.alphanumeric).append(this.nonAlphanumeric);
   }
@@ -119,45 +101,58 @@ public final class PasswordGenerator
       throw new IllegalArgumentException("length must be greater than 0");
     }
 
-    final List<Character> temp = new ArrayList<Character>(length);
-
+    final CharBuffer buffer = CharBuffer.allocate(length);
     if (rule != null) {
-      for (int i = 0; i < rule.getNumberOfLowercase(); i++) {
-        temp.add(
-          this.lowercase.charAt(random.nextInt(this.lowercase.length())));
-      }
+      fillRandomCharacters(this.lowercase, rule.getNumberOfLowercase(), buffer);
+      fillRandomCharacters(this.uppercase, rule.getNumberOfUppercase(), buffer);
+      fillRandomCharacters(
+        this.alphabetical, rule.getNumberOfAlphabetical(), buffer);
+      fillRandomCharacters(this.digits, rule.getNumberOfDigits(), buffer);
+      fillRandomCharacters(
+        this.nonAlphanumeric, rule.getNumberOfNonAlphanumeric(), buffer);
+    }
+    fillRandomCharacters(this.all, length - buffer.position(), buffer);
+    buffer.flip();
+    randomize(buffer);
+    return buffer.toString();
+  }
 
-      for (int i = 0; i < rule.getNumberOfUppercase(); i++) {
-        temp.add(
-          this.uppercase.charAt(random.nextInt(this.uppercase.length())));
-      }
 
-      for (int i = 0; i < rule.getNumberOfAlphabetical(); i++) {
-        temp.add(
-          this.alphabetical.charAt(random.nextInt(this.alphabetical.length())));
-      }
-
-      for (int i = 0; i < rule.getNumberOfDigits(); i++) {
-        temp.add(this.digits.charAt(random.nextInt(this.digits.length())));
-      }
-
-      for (int i = 0; i < rule.getNumberOfNonAlphanumeric(); i++) {
-        temp.add(
-          this.nonAlphanumeric.charAt(
-            random.nextInt(this.nonAlphanumeric.length())));
+  /**
+   * Fills the supplied target with count random characters from source.
+   *
+   * @param  source  <code>CharSequence</code> of random characters.
+   * @param  count  <code>int</code> number of random characters.
+   * @param  target <code>Appendable</code> character sequence that will hold
+   * characters.
+   */
+  protected void fillRandomCharacters(
+    final CharSequence source, final int count, final Appendable target)
+  {
+    for (int i = 0; i < count; i++) {
+      try {
+        target.append(source.charAt(this.random.nextInt(source.length())));
+      } catch (IOException e) {
+        throw new RuntimeException("Error appending characters.", e);
       }
     }
+  }
 
-    while (temp.size() < length) {
-      temp.add(this.all.charAt(random.nextInt(this.all.length())));
+
+  /**
+   * Randomizes the contents of the given buffer.
+   *
+   * @param  buffer  Character buffer whose contents will be randomized.
+   */
+  protected void randomize(final CharBuffer buffer)
+  {
+    char c;
+    int n;
+    for (int i = buffer.position(); i < buffer.limit(); i++) {
+      n = this.random.nextInt(buffer.length());
+      c = buffer.get(n);
+      buffer.put(n, buffer.get(i));
+      buffer.put(i, c);
     }
-
-    Collections.shuffle(temp, random);
-
-    final StringBuilder sb = new StringBuilder();
-    for (Character c : temp) {
-      sb.append(c.charValue());
-    }
-    return sb.toString();
   }
 }
