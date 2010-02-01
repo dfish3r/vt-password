@@ -96,6 +96,18 @@ public final class PasswordCharacterRule extends AbstractPasswordRule
 
 
   /**
+   * This returns the number of digits which must exist
+   * in order for a password to meet the requirements of this rule.
+   *
+   * @return  <code>int</code> number of digits to require
+   */
+  public int getNumberOfDigits()
+  {
+    return this.numDigits;
+  }
+
+
+  /**
    * This sets the number of alphabetical characters to require in a password.
    * The default is zero.
    *
@@ -107,6 +119,18 @@ public final class PasswordCharacterRule extends AbstractPasswordRule
     if (n >= 0) {
       this.numAlphabetical = n;
     }
+  }
+
+
+  /**
+   * This returns the number of alphabetical characters which must exist
+   * in order for a password to meet the requirements of this rule.
+   *
+   * @return  <code>int</code> number of alphabetical characters to require
+   */
+  public int getNumberOfAlphabetical()
+  {
+    return this.numAlphabetical;
   }
 
 
@@ -126,6 +150,18 @@ public final class PasswordCharacterRule extends AbstractPasswordRule
 
 
   /**
+   * This returns the number of non-alphanumeric characters which must exist
+   * in order for a password to meet the requirements of this rule.
+   *
+   * @return  <code>int</code> number of non-alphanumeric characters to require
+   */
+  public int getNumberOfNonAlphanumeric()
+  {
+    return this.numNonAlphanumeric;
+  }
+
+
+  /**
    * This sets the number of uppercase characters to require in a password. The
    * default is zero.
    *
@@ -141,6 +177,18 @@ public final class PasswordCharacterRule extends AbstractPasswordRule
 
 
   /**
+   * This returns the number of uppercase characters which must exist
+   * in order for a password to meet the requirements of this rule.
+   *
+   * @return  <code>int</code> number of uppercase characters to require
+   */
+  public int getNumberOfUppercase()
+  {
+    return this.numUppercase;
+  }
+
+
+  /**
    * This sets the number of lowercase characters to require in a password. The
    * default is zero.
    *
@@ -152,6 +200,18 @@ public final class PasswordCharacterRule extends AbstractPasswordRule
     if (n >= 0) {
       this.numLowercase = n;
     }
+  }
+
+
+  /**
+   * This returns the number of lowercase characters which must exist
+   * in order for a password to meet the requirements of this rule.
+   *
+   * @return  <code>int</code> number of lowercase characters to require
+   */
+  public int getNumberOfLowercase()
+  {
+    return this.numLowercase;
   }
 
 
