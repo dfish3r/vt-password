@@ -44,6 +44,7 @@
   </scm>
 
   <properties>
+    <project.build.sourceEncoding>iso-8859-1</project.build.sourceEncoding>
     <checkstyle.dir>src/main/checkstyle</checkstyle.dir>
     <testng.dir>src/test/testng</testng.dir>
     <assembly.dir>src/main/assembly</assembly.dir>
