@@ -40,11 +40,11 @@ public abstract class AbstractDigestRule extends AbstractPasswordRule
    * hashed form. See {@link edu.vt.middleware.crypt.digest.DigestAlgorithm}.
    *
    * @param  algorithm  <code>String</code> to use for hashing
-   * @param  converter  <code>Converter</code> to convert bytes to string
+   * @param  conv  <code>Converter</code> to convert bytes to string
    */
-  public void useDigest(final String algorithm, final Converter converter)
+  public void useDigest(final String algorithm, final Converter conv)
   {
     this.digest = DigestAlgorithm.newInstance(algorithm);
-    this.converter = converter;
+    this.converter = conv;
   }
 }

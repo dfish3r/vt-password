@@ -109,12 +109,12 @@ public final class PasswordChecker
         throw new ArrayIndexOutOfBoundsException();
       }
       for (int i = 0; i < args.length; i++) {
-        if (args[i].equals("-l")) {
+        if ("-l".equals(args[i])) {
           final int min = Integer.parseInt(args[++i]);
           final int max = Integer.parseInt(args[++i]);
           final PasswordLengthRule rule = new PasswordLengthRule(min, max);
           checker.addPasswordRule(rule);
-        } else if (args[i].equals("-c")) {
+        } else if ("-c".equals(args[i])) {
           final PasswordCharacterRule rule = new PasswordCharacterRule();
           rule.setNumberOfDigits(Integer.parseInt(args[++i]));
           rule.setNumberOfAlphabetical(Integer.parseInt(args[++i]));
@@ -123,7 +123,7 @@ public final class PasswordChecker
           rule.setNumberOfLowercase(Integer.parseInt(args[++i]));
           rule.setNumberOfCharacteristics(Integer.parseInt(args[++i]));
           checker.addPasswordRule(rule);
-        } else if (args[i].equals("-d")) {
+        } else if ("-d".equals(args[i])) {
           final Dictionary dict = new Dictionary();
           dict.useMedian();
           dict.ignoreCase();
@@ -134,17 +134,17 @@ public final class PasswordChecker
           rule.matchBackwards();
           rule.setNumberOfCharacters(Integer.parseInt(args[++i]));
           checker.addPasswordRule(rule);
-        } else if (args[i].equals("-u")) {
+        } else if ("-u".equals(args[i])) {
           final PasswordUserIDRule rule = new PasswordUserIDRule(args[++i]);
           rule.ignoreCase();
           rule.matchBackwards();
           checker.addPasswordRule(rule);
-        } else if (args[i].equals("-k")) {
+        } else if ("-k".equals(args[i])) {
           final PasswordSequenceRule rule = new PasswordSequenceRule();
           rule.ignoreCase();
           rule.matchBackwards();
           checker.addPasswordRule(rule);
-        } else if (args[i].equals("-h")) {
+        } else if ("-h".equals(args[i])) {
           throw new ArrayIndexOutOfBoundsException();
         } else {
           password = args[i];

@@ -4,6 +4,15 @@
     "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
 
 <module name="Checker">
+
+  <!-- limit source file size -->
+  <module name="FileLength">
+    <property name="max" value="2000" />
+  </module>
+
+  <!-- forbid tab characters in source files -->
+  <module name="FileTabCharacter"/>
+
   <module name="NewlineAtEndOfFile"/>
   <module name="TreeWalker">
     <property name="tabWidth" value="2"/>
@@ -24,11 +33,13 @@
 
     <!-- naming -->
     <module name="AbstractClassName"/>
+    <module name="ClassTypeParameterName"/>
     <module name="ConstantName"/>
     <module name="LocalFinalVariableName"/>
     <module name="LocalVariableName"/>
     <module name="MemberName"/>
     <module name="MethodName"/>
+    <module name="MethodTypeParameterName"/>
     <module name="PackageName"/>
     <module name="ParameterName"/>
     <module name="StaticVariableName"/>
@@ -36,6 +47,7 @@
 
     <!-- imports -->
     <module name="AvoidStarImport"/>
+    <module name="AvoidStaticImport"/>
     <module name="IllegalImport"/>
     <module name="RedundantImport"/>
     <module name="UnusedImports"/>
@@ -45,9 +57,6 @@
     </module>
 
     <!-- sizes -->
-    <module name="FileLength">
-      <property name="max" value="2000"/>
-    </module>
     <module name="LineLength">
       <property name="ignorePattern" value="(^.*\$.*\$.*$)|(^import .*)"/>
       <property name="max" value="80"/>
@@ -59,6 +68,7 @@
     <module name="ParameterNumber"/>
 
     <!-- whitespace -->
+    <module name="GenericWhitespace"/>
     <module name="EmptyForInitializerPad"/>
     <module name="EmptyForIteratorPad"/>
     <module name="MethodParamPad"/>
@@ -77,7 +87,6 @@
     </module>
     <module name="ParenPad"/>
     <module name="TypecastParenPad"/>
-    <module name="TabCharacter"/>
     <module name="WhitespaceAfter"/>
     <module name="WhitespaceAround">
       <property name="tokens"
@@ -111,11 +120,10 @@
     <module name="CovariantEquals"/>
     <module name="DoubleCheckedLocking"/>
     <module name="EmptyStatement"/>
+    <module name="EqualsAvoidNull"/>
     <module name="EqualsHashCode"/>
     <module name="FinalLocalVariable"/>
-    <!--
     <module name="HiddenField"/>
-    -->
     <module name="IllegalInstantiation">
       <property name="classes" value="java.lang.Boolean"/>
     </module>
@@ -168,10 +176,14 @@
       <property name="max" value="2"/>
     </module>
 
-    <!-- misc -->
-    <module name="GenericIllegalRegexp">
-      <property name="format" value="\s$"/>
+    <!-- prevent trailing whitespace -->
+    <module name="Regexp">
+      <property name="format" value="[ \t]+$"/>
+      <property name="illegalPattern" value="true"/>
+      <property name="message" value="Trailing whitespace"/>
     </module>
+
+    <!-- misc -->
     <module name="UpperEll"/>
     <module name="ArrayTypeStyle"/>
     <module name="FinalParameters"/>
