@@ -1,7 +1,7 @@
 /*
   $Id$
 
-  Copyright (C) 2003-2008 Virginia Tech.
+  Copyright (C) 2003-2010 Virginia Tech.
   All rights reserved.
 
   SEE LICENSE FOR MORE INFORMATION
@@ -96,8 +96,8 @@ public final class PasswordCharacterRule extends AbstractPasswordRule
 
 
   /**
-   * This returns the number of digits which must exist
-   * in order for a password to meet the requirements of this rule.
+   * This returns the number of digits which must exist in order for a password
+   * to meet the requirements of this rule.
    *
    * @return  <code>int</code> number of digits to require
    */
@@ -123,8 +123,8 @@ public final class PasswordCharacterRule extends AbstractPasswordRule
 
 
   /**
-   * This returns the number of alphabetical characters which must exist
-   * in order for a password to meet the requirements of this rule.
+   * This returns the number of alphabetical characters which must exist in
+   * order for a password to meet the requirements of this rule.
    *
    * @return  <code>int</code> number of alphabetical characters to require
    */
@@ -150,8 +150,8 @@ public final class PasswordCharacterRule extends AbstractPasswordRule
 
 
   /**
-   * This returns the number of non-alphanumeric characters which must exist
-   * in order for a password to meet the requirements of this rule.
+   * This returns the number of non-alphanumeric characters which must exist in
+   * order for a password to meet the requirements of this rule.
    *
    * @return  <code>int</code> number of non-alphanumeric characters to require
    */
@@ -177,8 +177,8 @@ public final class PasswordCharacterRule extends AbstractPasswordRule
 
 
   /**
-   * This returns the number of uppercase characters which must exist
-   * in order for a password to meet the requirements of this rule.
+   * This returns the number of uppercase characters which must exist in order
+   * for a password to meet the requirements of this rule.
    *
    * @return  <code>int</code> number of uppercase characters to require
    */
@@ -204,8 +204,8 @@ public final class PasswordCharacterRule extends AbstractPasswordRule
 
 
   /**
-   * This returns the number of lowercase characters which must exist
-   * in order for a password to meet the requirements of this rule.
+   * This returns the number of lowercase characters which must exist in order
+   * for a password to meet the requirements of this rule.
    *
    * @return  <code>int</code> number of lowercase characters to require
    */

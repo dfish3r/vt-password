@@ -1,7 +1,7 @@
 /*
   $Id$
 
-  Copyright (C) 2003-2008 Virginia Tech.
+  Copyright (C) 2003-2010 Virginia Tech.
   All rights reserved.
 
   SEE LICENSE FOR MORE INFORMATION
@@ -30,25 +30,28 @@ import java.util.Random;
  */
 public class PasswordGenerator
 {
+
   /** All digits. */
   protected StringBuilder digits = new StringBuilder("0123456789");
 
   /** All lowercase characters. */
-  protected StringBuilder lowercase =
-    new StringBuilder("abcdefghijklmnopqrstuvwxyz");
+  protected StringBuilder lowercase = new StringBuilder(
+    "abcdefghijklmnopqrstuvwxyz");
 
   /** All uppercase characters. */
-  protected StringBuilder uppercase =
-    new StringBuilder("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+  protected StringBuilder uppercase = new StringBuilder(
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 
-  /** All non-alphanumeric characters.
-      does not include backslash, pipe, single quote, or double quote */
-  protected StringBuilder nonAlphanumeric =
-    new StringBuilder("`~!@#$%^&*()-_=+[{]};:<,>./?");
+  /**
+   * All non-alphanumeric characters. does not include backslash, pipe, single
+   * quote, or double quote
+   */
+  protected StringBuilder nonAlphanumeric = new StringBuilder(
+    "`~!@#$%^&*()-_=+[{]};:<,>./?");
 
   /** All uppercase and lowercase characters. */
-  private StringBuilder alphabetical =
-    new StringBuilder(this.lowercase).append(this.uppercase);
+  private StringBuilder alphabetical = new StringBuilder(this.lowercase).append(
+    this.uppercase);
 
   /** All alphabetical and digit characters. */
   private StringBuilder alphanumeric =
@@ -62,8 +65,8 @@ public class PasswordGenerator
 
 
   /**
-   * Default constructor.
-   * Instantiates a <code>SecureRandom</code> for password generation.
+   * Default constructor. Instantiates a <code>SecureRandom</code> for password
+   * generation.
    */
   public PasswordGenerator()
   {
@@ -79,23 +82,24 @@ public class PasswordGenerator
   public PasswordGenerator(final Random r)
   {
     this.random = r;
-    this.all = new StringBuilder(
-      this.alphanumeric).append(this.nonAlphanumeric);
+    this.all = new StringBuilder(this.alphanumeric).append(
+      this.nonAlphanumeric);
   }
 
 
   /**
-   * Generates a password of the supplied length which meets the
-   * requirements of the supplied password rule.
-   * For length to be evaluated it must be greater than the number of characters
-   * defined in the character rule.
+   * Generates a password of the supplied length which meets the requirements of
+   * the supplied password rule. For length to be evaluated it must be greater
+   * than the number of characters defined in the character rule.
    *
    * @param  length  <code>int</code>
    * @param  rule  <code>PasswordCharacterRule</code>
+   *
    * @return  <code>String</code> - generated password
    */
   public String generatePassword(
-    final int length, final PasswordCharacterRule rule)
+    final int length,
+    final PasswordCharacterRule rule)
   {
     if (length <= 0) {
       throw new IllegalArgumentException("length must be greater than 0");
@@ -106,10 +110,14 @@ public class PasswordGenerator
       fillRandomCharacters(this.lowercase, rule.getNumberOfLowercase(), buffer);
       fillRandomCharacters(this.uppercase, rule.getNumberOfUppercase(), buffer);
       fillRandomCharacters(
-        this.alphabetical, rule.getNumberOfAlphabetical(), buffer);
+        this.alphabetical,
+        rule.getNumberOfAlphabetical(),
+        buffer);
       fillRandomCharacters(this.digits, rule.getNumberOfDigits(), buffer);
       fillRandomCharacters(
-        this.nonAlphanumeric, rule.getNumberOfNonAlphanumeric(), buffer);
+        this.nonAlphanumeric,
+        rule.getNumberOfNonAlphanumeric(),
+        buffer);
     }
     fillRandomCharacters(this.all, length - buffer.position(), buffer);
     buffer.flip();
@@ -123,11 +131,13 @@ public class PasswordGenerator
    *
    * @param  source  <code>CharSequence</code> of random characters.
    * @param  count  <code>int</code> number of random characters.
-   * @param  target <code>Appendable</code> character sequence that will hold
+   * @param  target  <code>Appendable</code> character sequence that will hold
    * characters.
    */
   protected void fillRandomCharacters(
-    final CharSequence source, final int count, final Appendable target)
+    final CharSequence source,
+    final int count,
+    final Appendable target)
   {
     for (int i = 0; i < count; i++) {
       try {
