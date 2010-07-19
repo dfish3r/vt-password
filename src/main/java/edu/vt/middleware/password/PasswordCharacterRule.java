@@ -31,7 +31,7 @@ import java.util.List;
  * @version  $Revision$ $Date$
  */
 
-public final class PasswordCharacterRule extends AbstractPasswordRule
+public class PasswordCharacterRule extends AbstractPasswordRule
 {
 
   /** number of rules to enforce. */
@@ -65,6 +65,8 @@ public final class PasswordCharacterRule extends AbstractPasswordRule
   {
     if (n >= 0) {
       this.numCharacteristics = n;
+    } else {
+      throw new IllegalArgumentException("argument cannot be negative");
     }
   }
 
@@ -91,6 +93,8 @@ public final class PasswordCharacterRule extends AbstractPasswordRule
   {
     if (n >= 0) {
       this.numDigits = n;
+    } else {
+      throw new IllegalArgumentException("argument cannot be negative");
     }
   }
 
@@ -118,6 +122,8 @@ public final class PasswordCharacterRule extends AbstractPasswordRule
   {
     if (n >= 0) {
       this.numAlphabetical = n;
+    } else {
+      throw new IllegalArgumentException("argument cannot be negative");
     }
   }
 
@@ -145,6 +151,8 @@ public final class PasswordCharacterRule extends AbstractPasswordRule
   {
     if (n >= 0) {
       this.numNonAlphanumeric = n;
+    } else {
+      throw new IllegalArgumentException("argument cannot be negative");
     }
   }
 
@@ -172,6 +180,8 @@ public final class PasswordCharacterRule extends AbstractPasswordRule
   {
     if (n >= 0) {
       this.numUppercase = n;
+    } else {
+      throw new IllegalArgumentException("argument cannot be negative");
     }
   }
 
@@ -199,6 +209,8 @@ public final class PasswordCharacterRule extends AbstractPasswordRule
   {
     if (n >= 0) {
       this.numLowercase = n;
+    } else {
+      throw new IllegalArgumentException("argument cannot be negative");
     }
   }
 
@@ -219,79 +231,74 @@ public final class PasswordCharacterRule extends AbstractPasswordRule
   public boolean verifyPassword(final Password password)
   {
     boolean success = false;
-    if (password != null) {
+    int count = 0;
 
-      int count = 0;
-
-      // check for digits
-      if (this.numDigits > 0) {
-        if (password.numberOfDigits() >= this.numDigits) {
-          count++;
-        }
+    // check for digits
+    if (this.numDigits > 0) {
+      if (password.numberOfDigits() >= this.numDigits) {
+        count++;
       }
+    }
 
-      // check for alphabetical
-      if (this.numAlphabetical > 0) {
-        if (password.numberOfAlphabetical() >= this.numAlphabetical) {
-          count++;
-        }
+    // check for alphabetical
+    if (this.numAlphabetical > 0) {
+      if (password.numberOfAlphabetical() >= this.numAlphabetical) {
+        count++;
       }
+    }
 
-      // check for non-alphanumeric
-      if (this.numNonAlphanumeric > 0) {
-        if (password.numberOfNonAlphanumeric() >= this.numNonAlphanumeric) {
-          count++;
-        }
+    // check for non-alphanumeric
+    if (this.numNonAlphanumeric > 0) {
+      if (password.numberOfNonAlphanumeric() >= this.numNonAlphanumeric) {
+        count++;
       }
+    }
 
-      // check for uppercase
-      if (this.numUppercase > 0) {
-        if (password.numberOfUppercase() >= this.numUppercase) {
-          count++;
-        }
+    // check for uppercase
+    if (this.numUppercase > 0) {
+      if (password.numberOfUppercase() >= this.numUppercase) {
+        count++;
       }
+    }
 
-      // check for lowercase
-      if (this.numLowercase > 0) {
-        if (password.numberOfLowercase() >= this.numLowercase) {
-          count++;
-        }
+    // check for lowercase
+    if (this.numLowercase > 0) {
+      if (password.numberOfLowercase() >= this.numLowercase) {
+        count++;
       }
+    }
 
-      if (count >= this.numCharacteristics) {
-        success = true;
-      } else {
-        final List<Object> filterParams = new ArrayList<Object>(5);
-        filterParams.add(this.numCharacteristics);
-
-        final StringBuilder msg = new StringBuilder(
-          "Password did not meet %s of the following characteristics:\n");
-        if (this.numDigits > 0) {
-          msg.append("    * must contain at least %s digits\n");
-          filterParams.add(this.numDigits);
-        }
-        if (this.numAlphabetical > 0) {
-          msg.append(
-            "    * must contain at least %s alphabetical characters\n");
-          filterParams.add(this.numAlphabetical);
-        }
-        if (this.numNonAlphanumeric > 0) {
-          msg.append(
-            "    * must contain at least %s non-alphanumeric characters\n");
-          filterParams.add(this.numNonAlphanumeric);
-        }
-        if (this.numUppercase > 0) {
-          msg.append("    * must contain at least %s uppercase characters\n");
-          filterParams.add(this.numUppercase);
-        }
-        if (this.numLowercase > 0) {
-          msg.append("    * must contain at least %s lowercase characters\n");
-          filterParams.add(this.numLowercase);
-        }
-        this.setMessage(String.format(msg.toString(), filterParams.toArray()));
-      }
+    if (count >= this.numCharacteristics) {
+      success = true;
     } else {
-      this.setMessage("Password cannot be null");
+      final List<Object> filterParams = new ArrayList<Object>(5);
+      filterParams.add(this.numCharacteristics);
+
+      final StringBuilder msg = new StringBuilder(
+        "Password did not meet %s of the following characteristics:\n");
+      if (this.numDigits > 0) {
+        msg.append("    * must contain at least %s digits\n");
+        filterParams.add(this.numDigits);
+      }
+      if (this.numAlphabetical > 0) {
+        msg.append(
+          "    * must contain at least %s alphabetical characters\n");
+        filterParams.add(this.numAlphabetical);
+      }
+      if (this.numNonAlphanumeric > 0) {
+        msg.append(
+          "    * must contain at least %s non-alphanumeric characters\n");
+        filterParams.add(this.numNonAlphanumeric);
+      }
+      if (this.numUppercase > 0) {
+        msg.append("    * must contain at least %s uppercase characters\n");
+        filterParams.add(this.numUppercase);
+      }
+      if (this.numLowercase > 0) {
+        msg.append("    * must contain at least %s lowercase characters\n");
+        filterParams.add(this.numLowercase);
+      }
+      this.setMessage(String.format(msg.toString(), filterParams.toArray()));
     }
     return success;
   }

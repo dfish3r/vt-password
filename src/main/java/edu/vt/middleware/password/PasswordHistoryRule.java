@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  * <code>PasswordHistoryRule</code> contains methods for determining if a
- * password matches one of any previous password a user has choosen. If no
+ * password matches one of any previous password a user has chosen. If no
  * password history has been set or an empty history has been set, then
  * passwords will meet this rule.
  *
@@ -81,41 +81,37 @@ public class PasswordHistoryRule extends AbstractDigestRule
   {
     boolean success = false;
 
-    if (password != null) {
-      if (this.history.size() == 0) {
-        success = true;
-      } else {
-        for (String p : this.history) {
-          if (this.digest != null) {
-            final String hash = this.digest.digest(
-              password.getText().getBytes(),
-              this.converter);
-            if (p.equals(hash)) {
-              success = false;
-              this.setMessage(
-                String.format(
-                  "Password matches one of %s previous passwords",
-                  this.history.size()));
-              break;
-            } else {
-              success = true;
-            }
+    if (this.history.size() == 0) {
+      success = true;
+    } else {
+      for (String p : this.history) {
+        if (this.digest != null) {
+          final String hash = this.digest.digest(
+            password.getText().getBytes(),
+            this.converter);
+          if (p.equals(hash)) {
+            success = false;
+            this.setMessage(
+              String.format(
+                "Password matches one of %s previous passwords",
+                this.history.size()));
+            break;
           } else {
-            if (p.equals(password.getText())) {
-              success = false;
-              this.setMessage(
-                String.format(
-                  "Password matches one of %s previous passwords",
-                  this.history.size()));
-              break;
-            } else {
-              success = true;
-            }
+            success = true;
+          }
+        } else {
+          if (p.equals(password.getText())) {
+            success = false;
+            this.setMessage(
+              String.format(
+                "Password matches one of %s previous passwords",
+                this.history.size()));
+            break;
+          } else {
+            success = true;
           }
         }
       }
-    } else {
-      this.setMessage("Password cannot be null");
     }
     return success;
   }

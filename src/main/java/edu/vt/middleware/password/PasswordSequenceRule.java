@@ -124,6 +124,28 @@ public class PasswordSequenceRule extends AbstractPasswordRule
 
 
   /**
+   * Bean compatible version of the {@link #ignoreCase()} method.
+   *
+   * @param  b  <code>boolean</code>
+   */
+  public void setIgnoreCase(final boolean b)
+  {
+    this.ignoreCase = b;
+  }
+
+
+  /**
+   * Get the value of the ignoreCase property.
+   *
+   * @return  <code>boolean</code>
+   */
+  public boolean isIgnoreCase()
+  {
+    return ignoreCase;
+  }
+
+
+  /**
    * This causes the verify method to search the password for sequences spelled
    * backwards as well as forwards.
    */
@@ -133,43 +155,61 @@ public class PasswordSequenceRule extends AbstractPasswordRule
   }
 
 
+  /**
+   * Bean compatible version of the {@link #matchBackwards()} method.
+   *
+   * @param  b  <code>boolean</code>
+   */
+  public void setMatchBackwards(final boolean b)
+  {
+    this.backwards = b;
+  }
+
+
+  /**
+   * Get the value of the matchBackwards property.
+   *
+   * @return  <code>boolean</code>
+   */
+  public boolean isMatchBackwards()
+  {
+    return this.backwards;
+  }
+
+
   /** {@inheritDoc} */
   public boolean verifyPassword(final Password password)
   {
     boolean success = false;
-    if (password != null) {
-      String text = password.getText();
-      if (this.ignoreCase) {
-        text = text.toLowerCase();
+    String text = password.getText();
+    if (this.ignoreCase) {
+      text = text.toLowerCase();
+    }
+    for (int i = 0; i < SEQUENCES.length; i++) {
+      if (text.indexOf(SEQUENCES[i]) != -1) {
+        success = false;
+        this.setMessage(
+          String.format(
+            "Password contains the keyboard sequence '%s'",
+            SEQUENCES[i]));
+        break;
+      } else if (i == SEQUENCES.length - 1) {
+        success = true;
       }
-      for (int i = 0; i < SEQUENCES.length; i++) {
-        if (text.indexOf(SEQUENCES[i]) != -1) {
+    }
+    if (this.backwards && success) {
+      for (int j = 0; j < REVERSE_SEQUENCES.length; j++) {
+        if (text.indexOf(REVERSE_SEQUENCES[j]) != -1) {
           success = false;
           this.setMessage(
             String.format(
               "Password contains the keyboard sequence '%s'",
-              SEQUENCES[i]));
+              REVERSE_SEQUENCES[j]));
           break;
-        } else if (i == SEQUENCES.length - 1) {
+        } else if (j == REVERSE_SEQUENCES.length - 1) {
           success = true;
         }
       }
-      if (this.backwards && success) {
-        for (int j = 0; j < REVERSE_SEQUENCES.length; j++) {
-          if (text.indexOf(REVERSE_SEQUENCES[j]) != -1) {
-            success = false;
-            this.setMessage(
-              String.format(
-                "Password contains the keyboard sequence '%s'",
-                REVERSE_SEQUENCES[j]));
-            break;
-          } else if (j == REVERSE_SEQUENCES.length - 1) {
-            success = true;
-          }
-        }
-      }
-    } else {
-      this.setMessage("Password cannot be null");
     }
     return success;
   }

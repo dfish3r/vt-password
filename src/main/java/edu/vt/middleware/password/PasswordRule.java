@@ -28,9 +28,10 @@ public interface PasswordRule
    * This returns whether or not the supplied password meets the requirements of
    * this rule.
    *
-   * @param  password  <code>Password</code> to verify
+   * @param  password  <code>Password</code> to verify (not null).
    *
    * @return  <code>boolean</code> - whether password passes the rule
+   * @throws NullPointerException if the password is null.
    */
   boolean verifyPassword(Password password);
 
@@ -53,4 +54,15 @@ public interface PasswordRule
    * meet the requirements of this rule
    */
   void setMessage(String msg);
+
+
+  /**
+   * Make a shallow copy of this rule, with any state reporting previous
+   * errors nulled, and all other state identical to the original.  The purpose
+   * of this method is to allow copies of rules to be created in a
+   * multi-threaded application.
+   *
+   * @return  <code>PasswordRule</code>
+   */
+  PasswordRule createCleanCopy();
 }

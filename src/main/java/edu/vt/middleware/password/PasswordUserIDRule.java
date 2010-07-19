@@ -16,7 +16,7 @@ package edu.vt.middleware.password;
 /**
  * <code>PasswordUserIDRule</code> contains methods for determining if a
  * password contains the user id associated with that password. String
- * comparision for the user id are case insensitive.
+ * comparison for the user id are case insensitive.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
@@ -39,6 +39,14 @@ public class PasswordUserIDRule extends AbstractPasswordRule
 
 
   /**
+   * This creates a new <code>PasswordUserIDRule</code> without
+   * supplying a userID.  The userID should be set using the
+   * {@link #setUserID(String)} method.
+   */
+  public PasswordUserIDRule() {}
+
+
+  /**
    * This will create a new <code>PasswordUserIDRule</code> with the supplied
    * user id.
    *
@@ -48,6 +56,29 @@ public class PasswordUserIDRule extends AbstractPasswordRule
   {
     this.userID = id;
     this.reverseUserID = new StringBuilder(id).reverse().toString();
+  }
+
+
+  /**
+   * This sets the userID for this rule.
+   *
+   * @param  id  <code>String</code> to set
+   */
+  public void setUserID(final String id)
+  {
+    this.userID = id;
+    this.reverseUserID = new StringBuilder(id).reverse().toString();
+  }
+
+
+  /**
+   * This returns the userID for this rule.
+   *
+   * @return  <code>String</code>
+   */
+  public String getUserID()
+  {
+    return this.userID;
   }
 
 
@@ -62,6 +93,28 @@ public class PasswordUserIDRule extends AbstractPasswordRule
 
 
   /**
+   * Bean compatible version of the {@link #matchBackwards()} method.
+   *
+   * @param  b  <code>boolean</code>
+   */
+  public void setMatchBackwards(final boolean b)
+  {
+    this.backwards = b;
+  }
+
+
+  /**
+   * Get the value of the matchBackwards property.
+   *
+   * @return  <code>boolean</code>
+   */
+  public boolean isMatchBackwards()
+  {
+    return this.backwards;
+  }
+
+
+  /**
    * This causes the verify method to ignore case when searching the for a user
    * id.
    */
@@ -71,28 +124,46 @@ public class PasswordUserIDRule extends AbstractPasswordRule
   }
 
 
+  /**
+   * Bean compatible version of the {@link #ignoreCase()} method.
+   *
+   * @param  b  <code>boolean</code>
+   */
+  public void setIgnoreCase(final boolean b)
+  {
+    this.ignoreCase = b;
+  }
+
+
+  /**
+   * Get the value of the ignoreCase property.
+   *
+   * @return  <code>boolean</code>
+   */
+  public boolean isIgnoreCase()
+  {
+    return ignoreCase;
+  }
+
+
   /** {@inheritDoc} */
   public boolean verifyPassword(final Password password)
   {
     boolean success = false;
-    if (password != null) {
-      String text = password.getText();
-      if (this.ignoreCase) {
-        text = text.toLowerCase();
-      }
-      if (text.indexOf(this.userID) != -1) {
-        this.setMessage(
-          String.format("Password contains the user id '%s'", this.userID));
-      } else if (this.backwards && text.indexOf(this.reverseUserID) != -1) {
-        this.setMessage(
-          String.format(
-            "Password contains the backwards user id '%s'",
-            this.reverseUserID));
-      } else {
-        success = true;
-      }
+    String text = password.getText();
+    if (this.ignoreCase) {
+      text = text.toLowerCase();
+    }
+    if (text.indexOf(this.userID) != -1) {
+      this.setMessage(
+        String.format("Password contains the user id '%s'", this.userID));
+    } else if (this.backwards && text.indexOf(this.reverseUserID) != -1) {
+      this.setMessage(
+        String.format(
+          "Password contains the backwards user id '%s'",
+          this.reverseUserID));
     } else {
-      this.setMessage("Password cannot be null");
+      success = true;
     }
     return success;
   }

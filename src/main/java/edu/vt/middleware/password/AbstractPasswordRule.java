@@ -20,7 +20,7 @@ package edu.vt.middleware.password;
  * @author  Middleware Services
  * @version  $Revision$ $Date$
  */
-public abstract class AbstractPasswordRule implements PasswordRule
+public abstract class AbstractPasswordRule implements PasswordRule, Cloneable
 {
 
   /** reason the password failed this rule. */
@@ -42,5 +42,18 @@ public abstract class AbstractPasswordRule implements PasswordRule
   public void setMessage(final String msg)
   {
     this.message = msg;
+  }
+
+
+  /** {@inheritDoc} */
+  public PasswordRule createCleanCopy()
+  {
+    try {
+      final PasswordRule res = (PasswordRule) this.clone();
+      res.setMessage(null);
+      return res;
+    } catch (CloneNotSupportedException ex) {
+      throw new RuntimeException("clone failed", ex);
+    }
   }
 }

@@ -29,14 +29,10 @@ public class PasswordWhitespaceRule extends AbstractPasswordRule
   public boolean verifyPassword(final Password password)
   {
     boolean success = false;
-    if (password != null) {
-      if (!password.containsWhitespace()) {
-        success = true;
-      } else {
-        this.setMessage("Password cannot contain whitespace characters");
-      }
+    if (!password.containsWhitespace()) {
+      success = true;
     } else {
-      this.setMessage("Password cannot be null");
+      this.setMessage("Password cannot contain whitespace characters");
     }
     return success;
   }

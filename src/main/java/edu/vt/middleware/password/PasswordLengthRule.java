@@ -29,7 +29,14 @@ public class PasswordLengthRule extends AbstractPasswordRule
   private int minimumLength;
 
   /** Stores the maximum length of a password. */
-  private int maximumLength;
+  private int maximumLength = Integer.MAX_VALUE;
+
+
+  /**
+   * This will create a new <code>PasswordLengthRule</code> with lengths unset.
+   * The defaults are 0 and Integer.MAX_VALUE respectively.
+   */
+  public PasswordLengthRule() {}
 
 
   /**
@@ -59,30 +66,74 @@ public class PasswordLengthRule extends AbstractPasswordRule
   }
 
 
+  /**
+   * Set the minimum password length.
+   *
+   * @param  minLength  <code>int</code> minimum length of a password
+   */
+  public void setMinimumLength(final int minLength)
+  {
+    this.minimumLength = minLength;
+  }
+
+
+  /**
+   * Get the minimum password length.
+   *
+   * @return  <code>int</code>
+   */
+  public int getMinimumLength()
+  {
+    return minimumLength;
+  }
+
+
+  /**
+   * Set the maximum password length.
+   *
+   * @param  maxLength  <code>int</code> maximum length of a password
+   */
+  public void setMaximumLength(final int maxLength)
+  {
+    this.maximumLength = maxLength;
+  }
+
+
+  /**
+   * Get the maximum password length.
+   *
+   * @return  <code>int</code>
+   */
+  public int getMaximumLength()
+  {
+    return maximumLength;
+  }
+
+
   /** {@inheritDoc} */
   public boolean verifyPassword(final Password password)
   {
     boolean success = false;
-    if (password != null) {
-      if (
-        password.length() >= this.minimumLength &&
-          password.length() <= this.maximumLength) {
-        success = true;
-      } else if (this.minimumLength == this.maximumLength) {
-        this.setMessage(
-          String.format(
-            "Password length must be %s characters",
-            this.minimumLength));
-      } else {
-        this.setMessage(
-          String.format(
-            "Password length must be greater than or equal to %s " +
-            "and less than or equal to %s characters",
-            this.minimumLength,
-            this.maximumLength));
-      }
+    if (password.length() >= this.minimumLength &&
+        password.length() <= this.maximumLength) {
+      success = true;
+    } else if (this.minimumLength == this.maximumLength) {
+      this.setMessage(
+        String.format(
+          "Password length must be %s characters",
+          this.minimumLength));
+    } else if (this.maximumLength == Integer.MAX_VALUE) {
+      this.setMessage(
+        String.format(
+          "Password length must be greater than or equal to %s characters",
+          this.minimumLength));
     } else {
-      this.setMessage("Password cannot be null");
+      this.setMessage(
+        String.format(
+          "Password length must be greater than or equal to %s " +
+          "and less than or equal to %s characters",
+          this.minimumLength,
+          this.maximumLength));
     }
     return success;
   }
