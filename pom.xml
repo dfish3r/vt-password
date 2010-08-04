@@ -24,7 +24,8 @@
     <mailingList>
       <name>vt-middleware-dev</name>
       <subscribe>vt-middleware-dev+subscribe@googlegroups.com</subscribe>
-      <unsubscribe>vt-middleware-dev+unsubscribe@googlegroups.com</unsubscribe>      <post>vt-middleware-dev@googlegroups.com</post>
+      <unsubscribe>vt-middleware-dev+unsubscribe@googlegroups.com</unsubscribe>
+      <post>vt-middleware-dev@googlegroups.com</post>
       <archive>http://groups.google.com/group/vt-middleware-dev</archive>
     </mailingList>
   </mailingLists>
@@ -236,7 +237,7 @@
             <id>assembly</id>
             <phase>package</phase>
             <goals>
-              <goal>attached</goal>
+              <goal>single</goal>
             </goals>
           </execution>
         </executions>
