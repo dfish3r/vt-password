@@ -8,6 +8,7 @@
   <packaging>jar</packaging>
   <version>2.0.3-SNAPSHOT</version>
   <name>VT Password Libraries</name>
+  <description>Library for checking that a password complies with a custom set of rules</description>
   <url>http://code.google.com/p/vt-middleware/wiki/vtpassword</url>
   <issueManagement>
     <system>Google Code</system>
@@ -43,6 +44,28 @@
     <connection>scm:svn:https://vt-middleware.googlecode.com/svn/vt-password/trunk</connection>
     <url>http://vt-middleware.googlecode.com/svn/vt-password/trunk</url>
   </scm>
+  <developers>
+    <developer>
+      <id>dfisher</id>
+      <name>Daniel Fisher</name>
+      <email>dfisher@vt.edu</email>
+      <organization>Virginia Tech</organization>
+      <organizationUrl>http://www.vt.edu</organizationUrl>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>marvin.addison</id>
+      <name>Marvin Addison</name>
+      <email>serac@vt.edu</email>
+      <organization>Virginia Tech</organization>
+      <organizationUrl>http://www.vt.edu</organizationUrl>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
+  </developers>
 
   <properties>
     <project.build.sourceEncoding>iso-8859-1</project.build.sourceEncoding>
