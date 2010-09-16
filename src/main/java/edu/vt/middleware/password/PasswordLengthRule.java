@@ -114,7 +114,8 @@ public class PasswordLengthRule extends AbstractPasswordRule
   public boolean verifyPassword(final Password password)
   {
     boolean success = false;
-    if (password.length() >= this.minimumLength &&
+    if (
+      password.length() >= this.minimumLength &&
         password.length() <= this.maximumLength) {
       success = true;
     } else if (this.minimumLength == this.maximumLength) {

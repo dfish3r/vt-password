@@ -16,11 +16,11 @@ package edu.vt.middleware.password;
 import edu.vt.middleware.dictionary.Dictionary;
 
 /**
- * <code>PasswordDictionaryRule</code> determines if a
- * password matches a dictionary word, or if it contains a dictionary
- * word of a given minimum length or greater.  The checker will optionally
- * also check for reversed words.  If the dictionary was built with 'ignoreCase'
- * set, dictionary lookups will be case insensitive.
+ * <code>PasswordDictionaryRule</code> determines if a password matches a
+ * dictionary word, or if it contains a dictionary word of a given minimum
+ * length or greater. The checker will optionally also check for reversed words.
+ * If the dictionary was built with 'ignoreCase' set, dictionary lookups will be
+ * case insensitive.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
@@ -35,8 +35,10 @@ public class PasswordDictionaryRule extends AbstractPasswordRule
   /** dictionary of words. */
   private Dictionary dictionary;
 
-  /** the minimum substring size to consider as a possible word within the
-      password. */
+  /**
+   * the minimum substring size to consider as a possible word within the
+   * password.
+   */
   private int length = DEFAULT_WORD_LENGTH;
 
   /** whether to search for dictionary words backwards. */
@@ -48,8 +50,8 @@ public class PasswordDictionaryRule extends AbstractPasswordRule
 
   /**
    * This creates a new a new <code>PasswordDictionaryRule</code> without
-   * supplying a dictionary.  The dictionary should be set using the
-   * {@link #setDictionary(Dictionary)} method.
+   * supplying a dictionary. The dictionary should be set using the {@link
+   * #setDictionary(Dictionary)} method.
    */
   public PasswordDictionaryRule() {}
 
@@ -110,7 +112,7 @@ public class PasswordDictionaryRule extends AbstractPasswordRule
    * This will return the number of characters that constitute a word in a
    * password.
    *
-   * @return <code>int</code>
+   * @return  <code>int</code>
    */
   public int getNumberOfCharacters()
   {
@@ -120,8 +122,8 @@ public class PasswordDictionaryRule extends AbstractPasswordRule
 
   /**
    * This will set the <code>Dictionary</code> used to search for passwords.
-   * {@link edu.vt.middleware.dictionary.Dictionary#build()} should be called
-   * on the <code>Dictionary</code> prior to calling this method.
+   * {@link edu.vt.middleware.dictionary.Dictionary#build()} should be called on
+   * the <code>Dictionary</code> prior to calling this method.
    *
    * @param  dict  <code>Dictionary</code> to use for searching
    */
@@ -153,7 +155,7 @@ public class PasswordDictionaryRule extends AbstractPasswordRule
 
 
   /**
-   * This method is a bean-compatible version of {#matchBackwards()}
+   * This method is a bean-compatible version of {#matchBackwards()}.
    *
    * @param  b  <code>boolean</code>
    */
@@ -191,8 +193,8 @@ public class PasswordDictionaryRule extends AbstractPasswordRule
   @Override
   public PasswordRule createCleanCopy()
   {
-    final PasswordDictionaryRule res =
-      (PasswordDictionaryRule) super.createCleanCopy();
+    final PasswordDictionaryRule res = (PasswordDictionaryRule) super
+        .createCleanCopy();
     res.match = null;
     return res;
   }
@@ -217,7 +219,8 @@ public class PasswordDictionaryRule extends AbstractPasswordRule
    *
    * @param  text  to search dictionary with
    * @param  b  whether the supplied text is backwards
-   * @throws  PasswordDictionaryException if the supplied text contains a
+   *
+   * @throws  PasswordDictionaryException  if the supplied text contains a
    * dictionary word
    */
   private boolean doWordSearch(final String text, final boolean b)
@@ -232,7 +235,8 @@ public class PasswordDictionaryRule extends AbstractPasswordRule
           this.setMessage(
             String.format(
               "Password contains the %sdictionary word '%s'",
-              b ? "reversed " : "", s));
+              b ? "reversed " : "",
+              s));
         }
       }
     }

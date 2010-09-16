@@ -39,9 +39,9 @@ public class PasswordUserIDRule extends AbstractPasswordRule
 
 
   /**
-   * This creates a new <code>PasswordUserIDRule</code> without
-   * supplying a userID.  The userID should be set using the
-   * {@link #setUserID(String)} method.
+   * This creates a new <code>PasswordUserIDRule</code> without supplying a
+   * userID. The userID should be set using the {@link #setUserID(String)}
+   * method.
    */
   public PasswordUserIDRule() {}
 

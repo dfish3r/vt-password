@@ -14,9 +14,9 @@
 package edu.vt.middleware.password;
 
 /**
- * <code>PasswordException</code> used to indicate that a password did not
- * meet the requirements of a password rule.  The message attribute gives
- * the explanation for the failure.
+ * <code>PasswordException</code> used to indicate that a password did not meet
+ * the requirements of a password rule. The message attribute gives the
+ * explanation for the failure.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$

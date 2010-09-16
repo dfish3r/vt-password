@@ -1,7 +1,7 @@
 /*
   $Id$
 
-  Copyright (C) 2003-2008 Virginia Tech.
+  Copyright (C) 2003-2010 Virginia Tech.
   All rights reserved.
 
   SEE LICENSE FOR MORE INFORMATION
@@ -29,6 +29,7 @@ import org.testng.annotations.Test;
  */
 public class PasswordGeneratorTest
 {
+
   /** To generate passwords with. */
   private PasswordGenerator generator = new PasswordGenerator();
 
@@ -42,9 +43,7 @@ public class PasswordGeneratorTest
   private PasswordCharacterRule failCharRule = new PasswordCharacterRule();
 
 
-  /**
-   * @throws  Exception  On test failure.
-   */
+  /** @throws  Exception  On test failure. */
   @BeforeClass(groups = {"passgentest"})
   public void initializeRules()
     throws Exception
@@ -82,7 +81,8 @@ public class PasswordGeneratorTest
     final int length = 10;
     for (int i = 0; i < 100; i++) {
       final String password = this.generator.generatePassword(
-        length, genCharRule);
+        length,
+        genCharRule);
       AssertJUnit.assertNotNull(password);
       AssertJUnit.assertTrue(password.length() >= length);
       passwords[i] = new Object[] {new Password(password)};
@@ -93,13 +93,15 @@ public class PasswordGeneratorTest
 
   /**
    * @param  pass  <code>Password</code> to verify
+   *
    * @throws  Exception  On test failure.
    */
   @Test(
     groups = {"passgentest"},
     dataProvider = "randomPasswords"
   )
-  public void testGenerator(final Password pass) throws Exception
+  public void testGenerator(final Password pass)
+    throws Exception
   {
     AssertJUnit.assertFalse(this.failCharRule.verifyPassword(pass));
     AssertJUnit.assertTrue(this.verifyCharRule.verifyPassword(pass));

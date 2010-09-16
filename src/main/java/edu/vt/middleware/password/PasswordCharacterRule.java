@@ -281,8 +281,7 @@ public class PasswordCharacterRule extends AbstractPasswordRule
         filterParams.add(this.numDigits);
       }
       if (this.numAlphabetical > 0) {
-        msg.append(
-          "    * must contain at least %s alphabetical characters\n");
+        msg.append("    * must contain at least %s alphabetical characters\n");
         filterParams.add(this.numAlphabetical);
       }
       if (this.numNonAlphanumeric > 0) {
