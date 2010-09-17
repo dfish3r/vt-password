@@ -79,7 +79,16 @@ public abstract class AbstractDictionaryRule
   }
 
 
-  /** {@inheritDoc} */
+  /**
+   * See {@link Rule#verifyPassword(Password)}.
+   *
+   * @param  password  <code>Password</code> to verify (not null).
+   *
+   * @return  <code>DictionaryRuleResult</code> - details on password
+   * verification
+   *
+   * @throws  NullPointerException  if the password is null.
+   */
   public DictionaryRuleResult<String> verifyPassword(
     final Password password)
   {

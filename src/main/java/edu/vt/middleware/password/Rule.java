@@ -32,7 +32,7 @@ public interface Rule<T>
    *
    * @param  password  <code>Password</code> to verify (not null).
    *
-   * @return  <code>PasswordRuleResult</code> - details on password verification
+   * @return  <code>RuleResult</code> - details on password verification
    *
    * @throws  NullPointerException  if the password is null.
    */

@@ -33,28 +33,44 @@ public class RuleResult<T>
 
 
 
-  /** {@inheritDoc} */
+  /**
+   * Returns whether the result of the rule verification is a valid password.
+   *
+   * @return  valid password for this rule
+   */
   public boolean isValid()
   {
     return this.valid;
   }
 
 
-  /** {@inheritDoc} */
+  /**
+   * Sets whether the result of the rule verification is a valid password.
+   *
+   * @param  b  valid password for this rule
+   */
   public void setValid(final boolean b)
   {
     this.valid = b;
   }
 
 
-  /** {@inheritDoc} */
+  /**
+   * Returns any details associated with the rule verification. May be null.
+   *
+   * @return  T  rule result details
+   */
   public T getDetails()
   {
     return this.details;
   }
 
 
-  /** {@inheritDoc} */
+  /**
+   * Sets any details associated with the rule verification.
+   *
+   * @param  t  rule result details
+   */
   public void setDetails(final T t)
   {
     this.details = t;
