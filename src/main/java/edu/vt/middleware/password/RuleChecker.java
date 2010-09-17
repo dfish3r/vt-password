@@ -107,7 +107,7 @@ public final class RuleChecker
           final DictionarySubstringRule rule = new DictionarySubstringRule(
             dict);
           rule.setMatchBackwards(true);
-          rule.setNumberOfCharacters(Integer.parseInt(args[++i]));
+          rule.setWordLength(Integer.parseInt(args[++i]));
           checker.getPasswordRules().add(rule);
         } else if ("-u".equals(args[i])) {
           final UserIDRule rule = new UserIDRule(args[++i]);

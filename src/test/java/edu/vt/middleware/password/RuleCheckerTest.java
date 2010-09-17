@@ -81,7 +81,7 @@ public class RuleCheckerTest
 
     final DictionarySubstringRule dictRule = new DictionarySubstringRule(
       this.dict);
-    dictRule.setNumberOfCharacters(4);
+    dictRule.setWordLength(4);
     dictRule.setMatchBackwards(true);
 
     final SequenceRule seqRule = new SequenceRule();

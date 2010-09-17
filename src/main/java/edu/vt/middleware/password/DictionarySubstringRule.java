@@ -35,7 +35,7 @@ public class DictionarySubstringRule extends AbstractDictionaryRule
    * the minimum substring size to consider as a possible word within the
    * password.
    */
-  private int length = DEFAULT_WORD_LENGTH;
+  private int wordLength = DEFAULT_WORD_LENGTH;
 
 
   /**
@@ -63,7 +63,7 @@ public class DictionarySubstringRule extends AbstractDictionaryRule
    * This will create a new <code>DictionarySubstringRule</code> with the
    * supplied dictionary and number of characters. The dictionary should be
    * ready to use when passed to this constructor. See {@link
-   * #setNumberOfCharacters(int)}.
+   * #setWordLength(int)}.
    *
    * @param  dict  <code>Dictionary</code> to use for searching
    * @param  n  <code>int</code> number of characters to check in each
@@ -72,7 +72,7 @@ public class DictionarySubstringRule extends AbstractDictionaryRule
   public DictionarySubstringRule(final Dictionary dict, final int n)
   {
     this.setDictionary(dict);
-    this.setNumberOfCharacters(n);
+    this.setWordLength(n);
   }
 
 
@@ -85,12 +85,12 @@ public class DictionarySubstringRule extends AbstractDictionaryRule
    * @param  n  <code>int</code> minimum number of characters to check in each
    * dictionary word
    */
-  public void setNumberOfCharacters(final int n)
+  public void setWordLength(final int n)
   {
     if (n >= 1) {
-      this.length = n;
+      this.wordLength = n;
     } else {
-      throw new IllegalArgumentException("numberOfCharacters must be >= 1");
+      throw new IllegalArgumentException("wordLength must be >= 1");
     }
   }
 
@@ -101,16 +101,16 @@ public class DictionarySubstringRule extends AbstractDictionaryRule
    *
    * @return  <code>int</code>
    */
-  public int getNumberOfCharacters()
+  public int getWordLength()
   {
-    return this.length;
+    return this.wordLength;
   }
 
 
   /** {@inheritDoc} */
   protected String doWordSearch(final String text)
   {
-    for (int i = this.length; i <= text.length(); i++) {
+    for (int i = this.wordLength; i <= text.length(); i++) {
       for (int j = 0; j + i <= text.length(); j++) {
         final String s = text.substring(j, j + i);
         if (this.dictionary.search(s)) {
