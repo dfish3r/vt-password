@@ -35,14 +35,24 @@ public final class RuleChecker
 
 
   /**
-   * This will return all the rules currently being used by this <code>
-   * PasswordChecker</code>.
+   * This will return the rules being used by this <code>PasswordChecker</code>.
    *
    * @return  <code>List</code> of rules
    */
   public List<Rule<?>> getPasswordRules()
   {
     return this.rules;
+  }
+
+
+  /**
+   * This will set the rules to be used by this <code>PasswordChecker</code>.
+   *
+   * @param  l  <code>List</code> of rules
+   */
+  public void setPasswordRules(final List<Rule<?>> l)
+  {
+    this.rules = l;
   }
 
 

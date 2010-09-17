@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:p="http://www.springframework.org/schema/p"
+  xmlns:util="http://www.springframework.org/schema/util"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+  <bean id="dictionary" class="edu.vt.middleware.dictionary.WordListDictionary">
+    <constructor-arg>
+      <bean class="edu.vt.middleware.dictionary.FileWordList">
+        <constructor-arg>
+          <bean class="java.io.RandomAccessFile">
+            <constructor-arg><value>src/test/resources/web2.sort</value></constructor-arg>
+            <constructor-arg><value>r</value></constructor-arg>
+          </bean>
+        </constructor-arg>
+      </bean>
+    </constructor-arg>
+  </bean>
+
+  <bean id="charRule" class="edu.vt.middleware.password.CharacterRule"
+    p:numberOfCharacteristics="2"
+    p:numberOfAlphabetical="3"
+    p:numberOfDigits="1"/>
+
+  <bean id="dictRule" class="edu.vt.middleware.password.DictionarySubstringRule"
+    p:dictionary-ref="dictionary"
+    p:wordLength="4"/>
+
+  <bean id="lenRule" class="edu.vt.middleware.password.LengthRule"
+    p:minimumLength="5"/>
+
+  <bean id="seqRule" class="edu.vt.middleware.password.SequenceRule"
+    p:ignoreCase="true"
+    p:matchBackwards="true"/>
+
+  <bean id="idRule" class="edu.vt.middleware.password.UserIDRule"
+    p:ignoreCase="true"
+    p:matchBackwards="true"/>
+
+  <bean id="wsRule" class="edu.vt.middleware.password.WhitespaceRule"/>
+
+  <bean id="checker" class="edu.vt.middleware.password.RuleChecker">
+    <property name="passwordRules">
+      <list>
+        <ref bean="charRule"/>
+        <ref bean="dictRule"/>
+        <ref bean="lenRule"/>
+        <ref bean="seqRule"/>
+        <ref bean="idRule"/>
+        <ref bean="wsRule"/>
+      </list>
+    </property>
+  </bean>  
+</beans>
