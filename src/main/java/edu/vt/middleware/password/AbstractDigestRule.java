@@ -24,7 +24,7 @@ import edu.vt.middleware.crypt.util.Converter;
  * @version  $Revision$ $Date$
  */
 
-public abstract class AbstractDigestRule extends AbstractPasswordRule
+public abstract class AbstractDigestRule
 {
 
   /** digest object to use if comparing hashed passwords. */

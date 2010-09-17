@@ -14,15 +14,15 @@
 package edu.vt.middleware.password;
 
 /**
- * <code>PasswordLengthRule</code> contains methods for determining if a
- * password is within a desired length. The minimum and maximum lengths are used
+ * <code>LengthRule</code> contains methods for determining if a password is
+ * within a desired length. The minimum and maximum lengths are used
  * inclusively to determine if a password meets this rule.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
  */
 
-public class PasswordLengthRule extends AbstractPasswordRule
+public class LengthRule implements Rule<String>
 {
 
   /** Stores the minimum length of a password. */
@@ -33,19 +33,19 @@ public class PasswordLengthRule extends AbstractPasswordRule
 
 
   /**
-   * This will create a new <code>PasswordLengthRule</code> with lengths unset.
+   * This will create a new <code>LengthRule</code> with lengths unset.
    * The defaults are 0 and Integer.MAX_VALUE respectively.
    */
-  public PasswordLengthRule() {}
+  public LengthRule() {}
 
 
   /**
-   * This will create a new <code>PasswordLengthRule</code> with the supplied
+   * This will create a new <code>LengthRule</code> with the supplied
    * length. Both the minimum and the maximum length will be set to this value.
    *
    * @param  length  <code>int</code> length of password
    */
-  public PasswordLengthRule(final int length)
+  public LengthRule(final int length)
   {
     this.minimumLength = length;
     this.maximumLength = length;
@@ -53,13 +53,13 @@ public class PasswordLengthRule extends AbstractPasswordRule
 
 
   /**
-   * This will create a new <code>PasswordLengthRule</code> with the supplied
+   * This will create a new <code>LengthRule</code> with the supplied
    * lengths.
    *
    * @param  minLength  <code>int</code> minimum length of a password
    * @param  maxLength  <code>int</code> maximum length of a password
    */
-  public PasswordLengthRule(final int minLength, final int maxLength)
+  public LengthRule(final int minLength, final int maxLength)
   {
     this.minimumLength = minLength;
     this.maximumLength = maxLength;
@@ -111,31 +111,52 @@ public class PasswordLengthRule extends AbstractPasswordRule
 
 
   /** {@inheritDoc} */
-  public boolean verifyPassword(final Password password)
+  public RuleResult<String> verifyPassword(final Password password)
   {
-    boolean success = false;
+    final RuleResult<String> result = new RuleResult<String>();
     if (
       password.length() >= this.minimumLength &&
         password.length() <= this.maximumLength) {
-      success = true;
+      result.setValid(true);
     } else if (this.minimumLength == this.maximumLength) {
-      this.setMessage(
+      result.setValid(false);
+      result.setDetails(
         String.format(
           "Password length must be %s characters",
           this.minimumLength));
     } else if (this.maximumLength == Integer.MAX_VALUE) {
-      this.setMessage(
+      result.setValid(false);
+      result.setDetails(
         String.format(
           "Password length must be greater than or equal to %s characters",
           this.minimumLength));
     } else {
-      this.setMessage(
+      result.setValid(false);
+      result.setDetails(
         String.format(
           "Password length must be greater than or equal to %s " +
           "and less than or equal to %s characters",
           this.minimumLength,
           this.maximumLength));
     }
-    return success;
+    return result;
+  }
+
+
+  /**
+   * This returns a string representation of this object.
+   *
+   * @return  <code>String</code>
+   */
+  @Override
+  public String toString()
+  {
+    return
+    String.format(
+      "%s@%d::minimumLength=%s,maximumLength=%s",
+      this.getClass().getName(),
+      this.hashCode(),
+      this.minimumLength,
+      this.maximumLength);
   }
 }

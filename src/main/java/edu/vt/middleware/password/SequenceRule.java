@@ -14,14 +14,14 @@
 package edu.vt.middleware.password;
 
 /**
- * <code>PasswordSequenceRule</code> contains methods for determining if a
- * password contains common keyboard sequences.
+ * <code>SequenceRule</code> contains methods for determining if a password
+ * contains common keyboard sequences.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
  */
 
-public class PasswordSequenceRule extends AbstractPasswordRule
+public class SequenceRule implements Rule<String>
 {
 
   /** default keyboard sequences. */
@@ -110,21 +110,12 @@ public class PasswordSequenceRule extends AbstractPasswordRule
   private boolean ignoreCase;
 
   /** whether to search for sequences backwards. */
-  private boolean backwards;
+  private boolean matchBackwards;
 
 
   /**
    * This causes the verify method to ignore case when searching the for a
    * sequence.
-   */
-  public void ignoreCase()
-  {
-    this.ignoreCase = true;
-  }
-
-
-  /**
-   * Bean compatible version of the {@link #ignoreCase()} method.
    *
    * @param  b  <code>boolean</code>
    */
@@ -148,21 +139,12 @@ public class PasswordSequenceRule extends AbstractPasswordRule
   /**
    * This causes the verify method to search the password for sequences spelled
    * backwards as well as forwards.
-   */
-  public void matchBackwards()
-  {
-    this.backwards = true;
-  }
-
-
-  /**
-   * Bean compatible version of the {@link #matchBackwards()} method.
    *
    * @param  b  <code>boolean</code>
    */
   public void setMatchBackwards(final boolean b)
   {
-    this.backwards = b;
+    this.matchBackwards = b;
   }
 
 
@@ -173,44 +155,62 @@ public class PasswordSequenceRule extends AbstractPasswordRule
    */
   public boolean isMatchBackwards()
   {
-    return this.backwards;
+    return this.matchBackwards;
   }
 
 
   /** {@inheritDoc} */
-  public boolean verifyPassword(final Password password)
+  public RuleResult<String> verifyPassword(final Password password)
   {
-    boolean success = false;
+    final RuleResult<String> result = new RuleResult<String>();
     String text = password.getText();
     if (this.ignoreCase) {
       text = text.toLowerCase();
     }
     for (int i = 0; i < SEQUENCES.length; i++) {
       if (text.indexOf(SEQUENCES[i]) != -1) {
-        success = false;
-        this.setMessage(
+        result.setValid(false);
+        result.setDetails(
           String.format(
             "Password contains the keyboard sequence '%s'",
             SEQUENCES[i]));
         break;
       } else if (i == SEQUENCES.length - 1) {
-        success = true;
+        result.setValid(true);
       }
     }
-    if (this.backwards && success) {
+    if (this.matchBackwards && result.isValid()) {
       for (int j = 0; j < REVERSE_SEQUENCES.length; j++) {
         if (text.indexOf(REVERSE_SEQUENCES[j]) != -1) {
-          success = false;
-          this.setMessage(
+          result.setValid(false);
+          result.setDetails(
             String.format(
               "Password contains the keyboard sequence '%s'",
               REVERSE_SEQUENCES[j]));
           break;
         } else if (j == REVERSE_SEQUENCES.length - 1) {
-          success = true;
+          result.setValid(true);
         }
       }
     }
-    return success;
+    return result;
+  }
+
+
+  /**
+   * This returns a string representation of this object.
+   *
+   * @return  <code>String</code>
+   */
+  @Override
+  public String toString()
+  {
+    return
+    String.format(
+      "%s@%d::ignoreCase=%s,matchBackwards=%s",
+      this.getClass().getName(),
+      this.hashCode(),
+      this.ignoreCase,
+      this.matchBackwards);
   }
 }

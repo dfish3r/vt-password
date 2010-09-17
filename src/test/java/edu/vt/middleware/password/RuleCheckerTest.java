@@ -13,9 +13,13 @@
 */
 package edu.vt.middleware.password;
 
-import java.io.File;
+import java.io.FileReader;
 import edu.vt.middleware.crypt.util.Base64Converter;
+import edu.vt.middleware.dictionary.ArrayWordList;
 import edu.vt.middleware.dictionary.Dictionary;
+import edu.vt.middleware.dictionary.WordListDictionary;
+import edu.vt.middleware.dictionary.WordLists;
+import edu.vt.middleware.dictionary.sort.ArraysSort;
 import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -23,16 +27,16 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 /**
- * Unit test for {@link PasswordChecker}.
+ * Unit test for {@link RuleChecker}.
  *
  * @author  Middleware Services
  * @version  $Revision$
  */
-public class PasswordCheckerTest
+public class RuleCheckerTest
 {
 
   /** Test checker. */
-  private PasswordChecker checker = new PasswordChecker();
+  private RuleChecker checker = new RuleChecker();
 
   /** Word list. */
   private Dictionary dict;
@@ -48,11 +52,11 @@ public class PasswordCheckerTest
   public void createDictionary(final String dictFile)
     throws Exception
   {
-    this.dict = new Dictionary();
-    this.dict.useMedian();
-    this.dict.ignoreCase();
-    this.dict.insert(new File(dictFile));
-    this.dict.build();
+    final ArrayWordList awl = WordLists.createFromReader(
+      new FileReader[] {new FileReader(dictFile)},
+      false,
+      new ArraysSort());
+    this.dict = new WordListDictionary(awl);
   }
 
 
@@ -64,48 +68,48 @@ public class PasswordCheckerTest
   public void createChecker()
     throws Exception
   {
-    final PasswordCharacterRule charRule = new PasswordCharacterRule();
+    final CharacterRule charRule = new CharacterRule();
     charRule.setNumberOfDigits(1);
     charRule.setNumberOfNonAlphanumeric(1);
     charRule.setNumberOfUppercase(1);
     charRule.setNumberOfLowercase(1);
     charRule.setNumberOfCharacteristics(3);
 
-    final PasswordWhitespaceRule whitespaceRule = new PasswordWhitespaceRule();
+    final WhitespaceRule whitespaceRule = new WhitespaceRule();
 
-    final PasswordLengthRule lengthRule = new PasswordLengthRule(8, 16);
+    final LengthRule lengthRule = new LengthRule(8, 16);
 
-    final PasswordDictionaryRule dictRule = new PasswordDictionaryRule(
+    final DictionarySubstringRule dictRule = new DictionarySubstringRule(
       this.dict);
     dictRule.setNumberOfCharacters(4);
-    dictRule.matchBackwards();
+    dictRule.setMatchBackwards(true);
 
-    final PasswordSequenceRule seqRule = new PasswordSequenceRule();
-    seqRule.ignoreCase();
-    seqRule.matchBackwards();
+    final SequenceRule seqRule = new SequenceRule();
+    seqRule.setIgnoreCase(true);
+    seqRule.setMatchBackwards(true);
 
-    final PasswordUserIDRule userIDRule = new PasswordUserIDRule("testuser");
-    userIDRule.ignoreCase();
-    userIDRule.matchBackwards();
+    final UserIDRule userIDRule = new UserIDRule("testuser");
+    userIDRule.setIgnoreCase(true);
+    userIDRule.setMatchBackwards(true);
 
-    final PasswordHistoryRule historyRule = new PasswordHistoryRule();
+    final HistoryRule historyRule = new HistoryRule();
     historyRule.useDigest("SHA-1", new Base64Converter());
     historyRule.addHistory("safx/LW8+SsSy/o3PmCNy4VEm5s=");
     historyRule.addHistory("zurb9DyQ5nooY1la8h86Bh0n1iw=");
     historyRule.addHistory("bhqabXwE3S8E6xNJfX/d76MFOCs=");
 
-    final PasswordSourceRule sourceRule = new PasswordSourceRule();
+    final SourceRule sourceRule = new SourceRule();
     sourceRule.useDigest("SHA-1", new Base64Converter());
     sourceRule.addSource("System B", "CJGTDMQRP+rmHApkcijC80aDV0o=");
 
-    this.checker.addPasswordRule(charRule);
-    this.checker.addPasswordRule(whitespaceRule);
-    this.checker.addPasswordRule(lengthRule);
-    this.checker.addPasswordRule(dictRule);
-    this.checker.addPasswordRule(seqRule);
-    this.checker.addPasswordRule(userIDRule);
-    this.checker.addPasswordRule(historyRule);
-    this.checker.addPasswordRule(sourceRule);
+    this.checker.getPasswordRules().add(charRule);
+    this.checker.getPasswordRules().add(whitespaceRule);
+    this.checker.getPasswordRules().add(lengthRule);
+    this.checker.getPasswordRules().add(dictRule);
+    this.checker.getPasswordRules().add(seqRule);
+    this.checker.getPasswordRules().add(userIDRule);
+    this.checker.getPasswordRules().add(historyRule);
+    this.checker.getPasswordRules().add(sourceRule);
   }
 
 
@@ -244,15 +248,11 @@ public class PasswordCheckerTest
     throws Exception
   {
     if (valid) {
-      AssertJUnit.assertTrue(checker.checkPassword(new Password(pass)));
+      AssertJUnit.assertTrue(
+        this.checker.checkPassword(new Password(pass)).isValid());
     } else {
-      try {
-        checker.checkPassword(new Password(pass));
-        AssertJUnit.fail(
-          "Expected PasswordException to be thrown for password " + pass);
-      } catch (PasswordException e) {
-        AssertJUnit.assertEquals(e.getClass(), PasswordException.class);
-      }
+      AssertJUnit.assertFalse(
+        this.checker.checkPassword(new Password(pass)).isValid());
     }
   }
 }

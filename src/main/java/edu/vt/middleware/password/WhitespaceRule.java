@@ -14,26 +14,26 @@
 package edu.vt.middleware.password;
 
 /**
- * <code>PasswordWhitespaceRule</code> contains methods for determining if a
- * password contains whitespace characters.
+ * <code>WhitespaceRule</code> contains methods for determining if a password
+ * contains whitespace characters.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
  */
 
-public class PasswordWhitespaceRule extends AbstractPasswordRule
+public class WhitespaceRule implements Rule<String>
 {
 
 
   /** {@inheritDoc} */
-  public boolean verifyPassword(final Password password)
+  public RuleResult<String> verifyPassword(final Password password)
   {
-    boolean success = false;
+    final RuleResult<String> result = new RuleResult<String>();
     if (!password.containsWhitespace()) {
-      success = true;
+      result.setValid(true);
     } else {
-      this.setMessage("Password cannot contain whitespace characters");
+      result.setDetails("Password cannot contain whitespace characters");
     }
-    return success;
+    return result;
   }
 }

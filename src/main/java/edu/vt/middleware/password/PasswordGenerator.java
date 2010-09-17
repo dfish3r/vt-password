@@ -21,7 +21,7 @@ import java.security.SecureRandom;
 import java.util.Random;
 
 /**
- * <code>PasswordGenerator</code> creates password that meet password rule
+ * <code>PasswordGenerator</code> creates passwords that meet password rule
  * criteria.
  *
  * @author  Sean C. Sullivan
@@ -99,7 +99,7 @@ public class PasswordGenerator
    */
   public String generatePassword(
     final int length,
-    final PasswordCharacterRule rule)
+    final CharacterRule rule)
   {
     if (length <= 0) {
       throw new IllegalArgumentException("length must be greater than 0");

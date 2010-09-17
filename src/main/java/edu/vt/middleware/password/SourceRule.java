@@ -17,15 +17,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * <code>PasswordSourceRule</code> contains methods for determining if a
- * password matches a password from a different source. Useful for when separate
+ * <code>SourceRule</code> contains methods for determining if a password
+ * matches a password from a different source. Useful for when separate
  * systems cannot have matching passwords.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
  */
 
-public class PasswordSourceRule extends AbstractDigestRule
+public class SourceRule extends AbstractDigestRule
+  implements Rule<String>
 {
 
   /** password sources. */
@@ -40,19 +41,23 @@ public class PasswordSourceRule extends AbstractDigestRule
    */
   public void addSource(final String source, final String password)
   {
-    if (source != null && password != null) {
-      this.sources.put(source, password);
+    if (source == null) {
+      throw new NullPointerException("Source cannot be null");
     }
+    if (password == null) {
+      throw new NullPointerException("Password cannot be null");
+    }
+    this.sources.put(source, password);
   }
 
 
   /** {@inheritDoc} */
-  public boolean verifyPassword(final Password password)
+  public RuleResult<String> verifyPassword(final Password password)
   {
-    boolean success = false;
+    final RuleResult<String> result = new RuleResult<String>();
 
     if (this.sources.size() == 0) {
-      success = true;
+      result.setValid(true);
     } else {
       for (Map.Entry<String, String> entry : this.sources.entrySet()) {
         final String p = entry.getValue();
@@ -61,29 +66,47 @@ public class PasswordSourceRule extends AbstractDigestRule
             password.getText().getBytes(),
             this.converter);
           if (p.equals(hash)) {
-            success = false;
-            this.setMessage(
+            result.setValid(false);
+            result.setDetails(
               String.format(
                 "Password can not be the same as your %s password",
                 entry.getKey()));
             break;
           } else {
-            success = true;
+            result.setValid(true);
           }
         } else {
           if (p.equals(password.getText())) {
-            success = false;
-            this.setMessage(
+            result.setDetails(
               String.format(
                 "Password can not be the same as your %s password",
                 entry.getKey()));
             break;
           } else {
-            success = true;
+            result.setValid(true);
           }
         }
       }
     }
-    return success;
+    return result;
+  }
+
+
+
+
+  /**
+   * This returns a string representation of this object.
+   *
+   * @return  <code>String</code>
+   */
+  @Override
+  public String toString()
+  {
+    return
+    String.format(
+      "%s@%d::sourcess=%s",
+      this.getClass().getName(),
+      this.hashCode(),
+      this.sources);
   }
 }

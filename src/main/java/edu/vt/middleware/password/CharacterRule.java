@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <code>PasswordCharacterRule</code> contains methods for determining if a
+ * <code>CharacterRule</code> contains methods for determining if a
  * password contains the desired mix of character types. In order to meet the
  * criteria of this rule, passwords must have any number of the following five
  * characteristics: (The default is to enforce none of the characteristics, so
@@ -31,7 +31,7 @@ import java.util.List;
  * @version  $Revision$ $Date$
  */
 
-public class PasswordCharacterRule extends AbstractPasswordRule
+public class CharacterRule implements Rule<String>
 {
 
   /** number of rules to enforce. */
@@ -228,9 +228,9 @@ public class PasswordCharacterRule extends AbstractPasswordRule
 
 
   /** {@inheritDoc} */
-  public boolean verifyPassword(final Password password)
+  public RuleResult<String> verifyPassword(final Password password)
   {
-    boolean success = false;
+    final RuleResult<String> result = new RuleResult<String>();
     int count = 0;
 
     // check for digits
@@ -269,7 +269,7 @@ public class PasswordCharacterRule extends AbstractPasswordRule
     }
 
     if (count >= this.numCharacteristics) {
-      success = true;
+      result.setValid(true);
     } else {
       final List<Object> filterParams = new ArrayList<Object>(5);
       filterParams.add(this.numCharacteristics);
@@ -297,8 +297,32 @@ public class PasswordCharacterRule extends AbstractPasswordRule
         msg.append("    * must contain at least %s lowercase characters\n");
         filterParams.add(this.numLowercase);
       }
-      this.setMessage(String.format(msg.toString(), filterParams.toArray()));
+      result.setDetails(String.format(msg.toString(), filterParams.toArray()));
     }
-    return success;
+    return result;
+  }
+
+
+  /**
+   * This returns a string representation of this object.
+   *
+   * @return  <code>String</code>
+   */
+  @Override
+  public String toString()
+  {
+    return
+    String.format(
+      "%s@%d::numberOfCharacteristics=%s," +
+      "numberOfDigits=%s,numberOfAlphabetical=%s,numberOfNonAlphanumeric=%s," +
+      "numberOfUppercase=%s,numberOfLowercase=%s",
+      this.getClass().getName(),
+      this.hashCode(),
+      this.numCharacteristics,
+      this.numDigits,
+      this.numAlphabetical,
+      this.numNonAlphanumeric,
+      this.numUppercase,
+      this.numLowercase);
   }
 }

@@ -13,47 +13,25 @@
 */
 package edu.vt.middleware.password;
 
-import java.io.File;
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.List;
-import edu.vt.middleware.dictionary.Dictionary;
+import edu.vt.middleware.dictionary.FileWordList;
+import edu.vt.middleware.dictionary.TernaryTreeDictionary;
 
 /**
- * <code>PasswordChecker</code> contains methods for setting pasword rules and
+ * <code>RuleChecker</code> contains methods for setting password rules and
  * then determining if a password meets the requirements of all the rules.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
  */
 
-public final class PasswordChecker
+public final class RuleChecker
 {
 
   /** rules to apply when checking a password. */
-  private List<PasswordRule> rules = new ArrayList<PasswordRule>();
-
-
-  /**
-   * This will add a new rule to the <code>PasswordChecker</code>.
-   *
-   * @param  rule  <code>PasswordRule</code> to add
-   */
-  public void addPasswordRule(final PasswordRule rule)
-  {
-    this.rules.add(rule);
-  }
-
-
-  /**
-   * This will remove a rule from the <code>PasswordChecker</code>. This method
-   * does nothing if the supplied rule does not exist.
-   *
-   * @param  rule  <code>PasswordRule</code> to remove
-   */
-  public void removePasswordRule(final PasswordRule rule)
-  {
-    this.rules.remove(rule);
-  }
+  private List<Rule<?>> rules = new ArrayList<Rule<?>>();
 
 
   /**
@@ -62,7 +40,7 @@ public final class PasswordChecker
    *
    * @return  <code>List</code> of rules
    */
-  public List<PasswordRule> getPasswordRules()
+  public List<Rule<?>> getPasswordRules()
   {
     return this.rules;
   }
@@ -70,30 +48,30 @@ public final class PasswordChecker
 
   /**
    * This will check the supplied password against the rules that have been
-   * added to this <code>PasswordChecker</code>.
+   * added to this <code>RuleChecker</code>.
    *
    * @param  password  <code>Password</code> to check
    *
    * @return  <code>boolean</code> - whether the supplied password met the
    * requirements of all rules
-   *
-   * @throws  PasswordException  if the supplied password does not meet all
-   * requirements of all rules
    */
-  public boolean checkPassword(final Password password)
-    throws PasswordException
+  public RuleCheckerResult checkPassword(final Password password)
   {
-    for (PasswordRule rule : this.rules) {
-      if (!rule.verifyPassword(password)) {
-        throw new PasswordException(rule);
+    final RuleCheckerResult result = new RuleCheckerResult();
+    result.setValid(true);
+    for (Rule<?> rule : this.rules) {
+      final RuleResult<?> prr = rule.verifyPassword(password);
+      if (!prr.isValid()) {
+        result.setValid(false);
+        result.getDetails().add(prr);
       }
     }
-    return true;
+    return result;
   }
 
 
   /**
-   * This provides command line access to a <code>PasswordChecker</code>.
+   * This provides command line access to a <code>RuleChecker</code>.
    *
    * @param  args  <code>String[]</code>
    *
@@ -102,7 +80,7 @@ public final class PasswordChecker
   public static void main(final String[] args)
     throws Exception
   {
-    final PasswordChecker checker = new PasswordChecker();
+    final RuleChecker checker = new RuleChecker();
     String password = null;
     try {
       if (args.length < 2) {
@@ -112,38 +90,35 @@ public final class PasswordChecker
         if ("-l".equals(args[i])) {
           final int min = Integer.parseInt(args[++i]);
           final int max = Integer.parseInt(args[++i]);
-          final PasswordLengthRule rule = new PasswordLengthRule(min, max);
-          checker.addPasswordRule(rule);
+          final LengthRule rule = new LengthRule(min, max);
+          checker.getPasswordRules().add(rule);
         } else if ("-c".equals(args[i])) {
-          final PasswordCharacterRule rule = new PasswordCharacterRule();
+          final CharacterRule rule = new CharacterRule();
           rule.setNumberOfDigits(Integer.parseInt(args[++i]));
           rule.setNumberOfAlphabetical(Integer.parseInt(args[++i]));
           rule.setNumberOfNonAlphanumeric(Integer.parseInt(args[++i]));
           rule.setNumberOfUppercase(Integer.parseInt(args[++i]));
           rule.setNumberOfLowercase(Integer.parseInt(args[++i]));
           rule.setNumberOfCharacteristics(Integer.parseInt(args[++i]));
-          checker.addPasswordRule(rule);
+          checker.getPasswordRules().add(rule);
         } else if ("-d".equals(args[i])) {
-          final Dictionary dict = new Dictionary();
-          dict.useMedian();
-          dict.ignoreCase();
-          dict.insert(new File(args[++i]));
-          dict.build();
-
-          final PasswordDictionaryRule rule = new PasswordDictionaryRule(dict);
-          rule.matchBackwards();
+          final TernaryTreeDictionary dict = new TernaryTreeDictionary(
+            new FileWordList(new RandomAccessFile(args[++i], "r"), false));
+          final DictionarySubstringRule rule = new DictionarySubstringRule(
+            dict);
+          rule.setMatchBackwards(true);
           rule.setNumberOfCharacters(Integer.parseInt(args[++i]));
-          checker.addPasswordRule(rule);
+          checker.getPasswordRules().add(rule);
         } else if ("-u".equals(args[i])) {
-          final PasswordUserIDRule rule = new PasswordUserIDRule(args[++i]);
-          rule.ignoreCase();
-          rule.matchBackwards();
-          checker.addPasswordRule(rule);
+          final UserIDRule rule = new UserIDRule(args[++i]);
+          rule.setIgnoreCase(true);
+          rule.setMatchBackwards(true);
+          checker.getPasswordRules().add(rule);
         } else if ("-k".equals(args[i])) {
-          final PasswordSequenceRule rule = new PasswordSequenceRule();
-          rule.ignoreCase();
-          rule.matchBackwards();
-          checker.addPasswordRule(rule);
+          final SequenceRule rule = new SequenceRule();
+          rule.setIgnoreCase(true);
+          rule.setMatchBackwards(true);
+          checker.getPasswordRules().add(rule);
         } else if ("-h".equals(args[i])) {
           throw new ArrayIndexOutOfBoundsException();
         } else {
@@ -153,8 +128,16 @@ public final class PasswordChecker
 
       if (password == null) {
         throw new ArrayIndexOutOfBoundsException();
-      } else if (checker.checkPassword(new Password(password))) {
-        System.out.println("Valid password");
+      } else {
+        final RuleCheckerResult result =
+          checker.checkPassword(new Password(password));
+        if (result.isValid()) {
+          System.out.println("Valid password");
+        } else {
+          for (RuleResult<?> prr : result.getDetails()) {
+            System.out.println(prr.getDetails());
+          }
+        }
       }
 
     } catch (ArrayIndexOutOfBoundsException e) {

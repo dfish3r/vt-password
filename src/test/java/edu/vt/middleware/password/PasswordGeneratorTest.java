@@ -34,13 +34,13 @@ public class PasswordGeneratorTest
   private PasswordGenerator generator = new PasswordGenerator();
 
   /** Rule to generate passwords with. */
-  private PasswordCharacterRule genCharRule = new PasswordCharacterRule();
+  private CharacterRule genCharRule = new CharacterRule();
 
   /** Rule to verify passwords with. */
-  private PasswordCharacterRule verifyCharRule = new PasswordCharacterRule();
+  private CharacterRule verifyCharRule = new CharacterRule();
 
   /** Rule to verify passwords with that should fail. */
-  private PasswordCharacterRule failCharRule = new PasswordCharacterRule();
+  private CharacterRule failCharRule = new CharacterRule();
 
 
   /** @throws  Exception  On test failure. */
@@ -103,7 +103,7 @@ public class PasswordGeneratorTest
   public void testGenerator(final Password pass)
     throws Exception
   {
-    AssertJUnit.assertFalse(this.failCharRule.verifyPassword(pass));
-    AssertJUnit.assertTrue(this.verifyCharRule.verifyPassword(pass));
+    AssertJUnit.assertFalse(this.failCharRule.verifyPassword(pass).isValid());
+    AssertJUnit.assertTrue(this.verifyCharRule.verifyPassword(pass).isValid());
   }
 }
