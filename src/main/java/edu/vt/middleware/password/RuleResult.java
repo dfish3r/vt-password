@@ -33,6 +33,24 @@ public class RuleResult<T>
 
 
 
+  /** Default constructor. */
+  public RuleResult() {}
+
+
+  /**
+   * Creates a new <code>RuleResult</code> with the supplied validity and
+   * details.
+   *
+   * @param  b  result validity
+   * @param  t  details associated with this result
+   */
+  public RuleResult(final boolean b, final T t)
+  {
+    this.valid = b;
+    this.details = t;
+  }
+
+
   /**
    * Returns whether the result of the rule verification is a valid password.
    *
