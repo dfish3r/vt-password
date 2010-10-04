@@ -26,8 +26,7 @@ import java.util.List;
  * @version  $Revision$ $Date$
  */
 
-public class HistoryRule extends AbstractDigestRule
-  implements Rule<String>
+public class HistoryRule extends AbstractDigestRule implements Rule
 {
 
   /** password history. */
@@ -128,7 +127,7 @@ public class HistoryRule extends AbstractDigestRule
   {
     return
     String.format(
-      "%s@%d::history=%s",
+      "%s@%h::history=%s",
       this.getClass().getName(),
       this.hashCode(),
       this.history);

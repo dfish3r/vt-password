@@ -21,7 +21,7 @@ package edu.vt.middleware.password;
  * @version  $Revision$ $Date$
  */
 
-public class UserIDRule implements Rule<String>
+public class UserIDRule implements Rule
 {
 
   /** user id to verify. */
@@ -160,7 +160,7 @@ public class UserIDRule implements Rule<String>
   {
     return
     String.format(
-      "%s@%d::ignoreCase=%s,matchBackwards=%s",
+      "%s@%h::ignoreCase=%s,matchBackwards=%s",
       this.getClass().getName(),
       this.hashCode(),
       this.ignoreCase,

@@ -21,7 +21,7 @@ package edu.vt.middleware.password;
  * @version  $Revision$ $Date$
  */
 
-public class SequenceRule implements Rule<String>
+public class SequenceRule implements Rule
 {
 
   /** default keyboard sequences. */
@@ -207,7 +207,7 @@ public class SequenceRule implements Rule<String>
   {
     return
     String.format(
-      "%s@%d::ignoreCase=%s,matchBackwards=%s",
+      "%s@%h::ignoreCase=%s,matchBackwards=%s",
       this.getClass().getName(),
       this.hashCode(),
       this.ignoreCase,

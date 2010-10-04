@@ -140,7 +140,7 @@ public abstract class AbstractDictionaryRule
   {
     return
     String.format(
-      "%s@%d::dictionary=%s,matchBackwards=%s",
+      "%s@%h::dictionary=%s,matchBackwards=%s",
       this.getClass().getName(),
       this.hashCode(),
       this.dictionary,

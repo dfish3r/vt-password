@@ -25,7 +25,7 @@ import edu.vt.middleware.dictionary.Dictionary;
  */
 
 public class DictionarySubstringRule extends AbstractDictionaryRule
-  implements Rule<String>
+  implements Rule
 {
 
   /** default word length. */

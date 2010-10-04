@@ -38,7 +38,7 @@ public abstract class AbstractRuleTest
     dataProvider = "passwords"
   )
   public void checkPassword(
-    final Rule<?> rule, final String pass, final boolean valid)
+    final Rule rule, final String pass, final boolean valid)
     throws Exception
   {
     if (valid) {

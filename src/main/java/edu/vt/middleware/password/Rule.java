@@ -22,7 +22,7 @@ package edu.vt.middleware.password;
  * @author  Middleware Services
  * @version  $Revision$ $Date$
  */
-public interface Rule<T>
+public interface Rule
 {
 
 
@@ -36,5 +36,5 @@ public interface Rule<T>
    *
    * @throws  NullPointerException  if the password is null.
    */
-  RuleResult<T> verifyPassword(Password password);
+  RuleResult<?> verifyPassword(Password password);
 }

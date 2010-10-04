@@ -25,8 +25,7 @@ import java.util.Map;
  * @version  $Revision$ $Date$
  */
 
-public class SourceRule extends AbstractDigestRule
-  implements Rule<String>
+public class SourceRule extends AbstractDigestRule implements Rule
 {
 
   /** password sources. */
@@ -104,7 +103,7 @@ public class SourceRule extends AbstractDigestRule
   {
     return
     String.format(
-      "%s@%d::sourcess=%s",
+      "%s@%h::sourcess=%s",
       this.getClass().getName(),
       this.hashCode(),
       this.sources);

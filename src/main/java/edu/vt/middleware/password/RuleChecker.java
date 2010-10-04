@@ -31,7 +31,7 @@ public final class RuleChecker
 {
 
   /** rules to apply when checking a password. */
-  private List<Rule<?>> rules = new ArrayList<Rule<?>>();
+  private List<Rule> rules = new ArrayList<Rule>();
 
 
   /**
@@ -39,7 +39,7 @@ public final class RuleChecker
    *
    * @return  <code>List</code> of rules
    */
-  public List<Rule<?>> getPasswordRules()
+  public List<Rule> getPasswordRules()
   {
     return this.rules;
   }
@@ -50,7 +50,7 @@ public final class RuleChecker
    *
    * @param  l  <code>List</code> of rules
    */
-  public void setPasswordRules(final List<Rule<?>> l)
+  public void setPasswordRules(final List<Rule> l)
   {
     this.rules = l;
   }
@@ -69,7 +69,7 @@ public final class RuleChecker
   {
     final RuleCheckerResult result = new RuleCheckerResult();
     result.setValid(true);
-    for (Rule<?> rule : this.rules) {
+    for (Rule rule : this.rules) {
       final RuleResult<?> prr = rule.verifyPassword(password);
       if (!prr.isValid()) {
         result.setValid(false);

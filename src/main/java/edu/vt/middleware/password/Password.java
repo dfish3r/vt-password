@@ -140,7 +140,7 @@ public class Password
    *
    * @return  <code>int</code> - number of digits in the password
    */
-  public int numberOfDigits()
+  public int getNumberOfDigits()
   {
     return this.digits.length();
   }
@@ -151,7 +151,7 @@ public class Password
    *
    * @return  <code>char[]</code> - digits in this password
    */
-  public char[] digits()
+  public char[] getDigits()
   {
     char[] array = null;
     if (this.digits != null && this.digits.length() > 0) {
@@ -178,7 +178,7 @@ public class Password
    *
    * @return  <code>int</code> - number of non-digits in this password
    */
-  public int numberOfNonDigits()
+  public int getNumberOfNonDigits()
   {
     return this.nonDigits.length();
   }
@@ -189,7 +189,7 @@ public class Password
    *
    * @return  <code>char[]</code> - non-digits in this password
    */
-  public char[] nonDigits()
+  public char[] getNonDigits()
   {
     char[] array = null;
     if (this.nonDigits != null && this.nonDigits.length() > 0) {
@@ -219,7 +219,7 @@ public class Password
    * @return  <code>int</code> - number of alphabetical characters in this
    * password
    */
-  public int numberOfAlphabetical()
+  public int getNumberOfAlphabetical()
   {
     return this.alphabetical.length();
   }
@@ -230,7 +230,7 @@ public class Password
    *
    * @return  <code>char[]</code> - alphabetical characters in this password
    */
-  public char[] alphabetical()
+  public char[] getAlphabetical()
   {
     char[] array = null;
     if (this.alphabetical != null && this.alphabetical.length() > 0) {
@@ -260,7 +260,7 @@ public class Password
    * @return  <code>int</code> - number of non-alphabetical characters in this
    * password
    */
-  public int numberOfNonAlphabetical()
+  public int getNumberOfNonAlphabetical()
   {
     return this.nonAlphabetical.length();
   }
@@ -271,7 +271,7 @@ public class Password
    *
    * @return  <code>char[]</code> - non-alphabetical characters in this password
    */
-  public char[] nonAlphabetical()
+  public char[] getNonAlphabetical()
   {
     char[] array = null;
     if (this.nonAlphabetical != null && this.nonAlphabetical.length() > 0) {
@@ -301,7 +301,7 @@ public class Password
    * @return  <code>int</code> - number of alphanumeric characters in this
    * password
    */
-  public int numberOfAlphanumeric()
+  public int getNumberOfAlphanumeric()
   {
     return this.alphanumeric.length();
   }
@@ -312,7 +312,7 @@ public class Password
    *
    * @return  <code>char[]</code> - alphanumeric characters in this password
    */
-  public char[] alphanumeric()
+  public char[] getAlphanumeric()
   {
     char[] array = null;
     if (this.alphanumeric != null && this.alphanumeric.length() > 0) {
@@ -342,7 +342,7 @@ public class Password
    * @return  <code>int</code> - number of non-alphanumeric characters in this
    * password
    */
-  public int numberOfNonAlphanumeric()
+  public int getNumberOfNonAlphanumeric()
   {
     return this.nonAlphanumeric.length();
   }
@@ -353,7 +353,7 @@ public class Password
    *
    * @return  <code>char[]</code> - non-alphanumeric characters in this password
    */
-  public char[] nonAlphanumeric()
+  public char[] getNonAlphanumeric()
   {
     char[] array = null;
     if (this.nonAlphanumeric != null && this.nonAlphanumeric.length() > 0) {
@@ -382,7 +382,7 @@ public class Password
    *
    * @return  <code>int</code> - number of uppercase characters in this password
    */
-  public int numberOfUppercase()
+  public int getNumberOfUppercase()
   {
     return this.uppercase.length();
   }
@@ -393,7 +393,7 @@ public class Password
    *
    * @return  <code>char[]</code> - uppercase characters in this password
    */
-  public char[] uppercase()
+  public char[] getUppercase()
   {
     char[] array = null;
     if (this.uppercase != null && this.uppercase.length() > 0) {
@@ -422,7 +422,7 @@ public class Password
    *
    * @return  <code>int</code> - number of lowercase characters in this password
    */
-  public int numberOfLowercase()
+  public int getNumberOfLowercase()
   {
     return this.lowercase.length();
   }
@@ -433,7 +433,7 @@ public class Password
    *
    * @return  <code>char[]</code> - lowercase characters in this password
    */
-  public char[] lowercase()
+  public char[] getLowercase()
   {
     char[] array = null;
     if (this.lowercase != null && this.lowercase.length() > 0) {
@@ -463,7 +463,7 @@ public class Password
    * @return  <code>int</code> - number of whitespace characters in this
    * password
    */
-  public int numberOfWhitespace()
+  public int getNumberOfWhitespace()
   {
     return this.whitespace.length();
   }
@@ -474,7 +474,7 @@ public class Password
    *
    * @return  <code>char[]</code> - whitespace characters in this password
    */
-  public char[] whitespace()
+  public char[] getWhitespace()
   {
     char[] array = null;
     if (this.whitespace != null && this.whitespace.length() > 0) {

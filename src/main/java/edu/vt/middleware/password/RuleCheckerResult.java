@@ -17,14 +17,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * <code>PasswordDictionaryRuleResult</code> provides common implementation for
+ * <code>RuleCheckerResult</code> provides common implementation for
  * password dictionary rule result implementations.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
  */
-public class RuleCheckerResult
-  extends RuleResult<Set<RuleResult<?>>>
+public class RuleCheckerResult extends RuleResult<Set<RuleResult<?>>>
 {
 
 

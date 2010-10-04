@@ -21,7 +21,7 @@ package edu.vt.middleware.password;
  * @version  $Revision$ $Date$
  */
 
-public class WhitespaceRule implements Rule<String>
+public class WhitespaceRule implements Rule
 {
 
 

@@ -31,7 +31,7 @@ import java.util.List;
  * @version  $Revision$ $Date$
  */
 
-public class CharacterRule implements Rule<String>
+public class CharacterRule implements Rule
 {
 
   /** number of rules to enforce. */
@@ -235,35 +235,35 @@ public class CharacterRule implements Rule<String>
 
     // check for digits
     if (this.numDigits > 0) {
-      if (password.numberOfDigits() >= this.numDigits) {
+      if (password.getNumberOfDigits() >= this.numDigits) {
         count++;
       }
     }
 
     // check for alphabetical
     if (this.numAlphabetical > 0) {
-      if (password.numberOfAlphabetical() >= this.numAlphabetical) {
+      if (password.getNumberOfAlphabetical() >= this.numAlphabetical) {
         count++;
       }
     }
 
     // check for non-alphanumeric
     if (this.numNonAlphanumeric > 0) {
-      if (password.numberOfNonAlphanumeric() >= this.numNonAlphanumeric) {
+      if (password.getNumberOfNonAlphanumeric() >= this.numNonAlphanumeric) {
         count++;
       }
     }
 
     // check for uppercase
     if (this.numUppercase > 0) {
-      if (password.numberOfUppercase() >= this.numUppercase) {
+      if (password.getNumberOfUppercase() >= this.numUppercase) {
         count++;
       }
     }
 
     // check for lowercase
     if (this.numLowercase > 0) {
-      if (password.numberOfLowercase() >= this.numLowercase) {
+      if (password.getNumberOfLowercase() >= this.numLowercase) {
         count++;
       }
     }
@@ -313,7 +313,7 @@ public class CharacterRule implements Rule<String>
   {
     return
     String.format(
-      "%s@%d::numberOfCharacteristics=%s," +
+      "%s@%h::numberOfCharacteristics=%s," +
       "numberOfDigits=%s,numberOfAlphabetical=%s,numberOfNonAlphanumeric=%s," +
       "numberOfUppercase=%s,numberOfLowercase=%s",
       this.getClass().getName(),

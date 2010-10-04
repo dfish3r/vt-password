@@ -22,7 +22,7 @@ package edu.vt.middleware.password;
  * @version  $Revision$ $Date$
  */
 
-public class LengthRule implements Rule<String>
+public class LengthRule implements Rule
 {
 
   /** Stores the minimum length of a password. */
@@ -153,7 +153,7 @@ public class LengthRule implements Rule<String>
   {
     return
     String.format(
-      "%s@%d::minimumLength=%s,maximumLength=%s",
+      "%s@%h::minimumLength=%s,maximumLength=%s",
       this.getClass().getName(),
       this.hashCode(),
       this.minimumLength,
