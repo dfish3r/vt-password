@@ -33,6 +33,46 @@ public class SourceRule extends AbstractDigestRule implements Rule
 
 
   /**
+   * This will create a new <code>SourceRule</code> with no sources.
+   */
+  public SourceRule() {}
+
+
+  /**
+   * This will create a new <code>SourceRule</code> with the supplied
+   * sources.
+   *
+   * @param  m  <code>Map</code> of source to password
+   */
+  public SourceRule(final Map<String, String> m)
+  {
+    this.setSources(m);
+  }
+
+
+  /**
+   * This will return the password sources.
+   *
+   * @return  <code>Map</code> of password sources
+   */
+  public Map<String, String> getSources()
+  {
+    return this.sources;
+  }
+
+
+  /**
+   * This will set the password sources.
+   *
+   * @param  m  <code>Map</code> of password sources
+   */
+  public void setSources(final Map<String, String> m)
+  {
+    this.sources = m;
+  }
+
+
+  /**
    * This will add the supplied password as a password source.
    *
    * @param  source  <code>String</code> label

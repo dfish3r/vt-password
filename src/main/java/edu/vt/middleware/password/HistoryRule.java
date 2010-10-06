@@ -34,45 +34,42 @@ public class HistoryRule extends AbstractDigestRule implements Rule
 
 
   /**
-   * This will add the supplied password to the list of history passwords.
-   *
-   * @param  password  <code>String</code> to add to history
+   * This will create a new <code>HistoryRule</code> with no history.
    */
-  public void addHistory(final String password)
+  public HistoryRule() {}
+
+
+  /**
+   * This will create a new <code>HistoryRule</code> with the supplied
+   * history.
+   *
+   * @param  l  <code>List</code> of password history
+   */
+  public HistoryRule(final List<String> l)
   {
-    if (password != null) {
-      this.history.add(password);
-    }
+    this.setHistory(l);
   }
 
 
   /**
-   * This will add the supplied passwords to the list of history passwords.
+   * This will return the password history.
    *
-   * @param  passwords  <code>String[]</code> to add to history
+   * @return  <code>List</code> of password history
    */
-  public void addHistory(final String[] passwords)
+  public List<String> getHistory()
   {
-    if (passwords != null) {
-      for (String s : passwords) {
-        this.addHistory(s);
-      }
-    }
+    return this.history;
   }
 
 
   /**
-   * This will add the supplied passwords to the list of history passwords.
+   * This will set the password history.
    *
-   * @param  passwords  <code>List</code> to add to history
+   * @param  l  <code>List</code> of password history
    */
-  public void addHistory(final List<String> passwords)
+  public void setHistory(final List<String> l)
   {
-    if (passwords != null) {
-      for (String s : passwords) {
-        this.addHistory(s);
-      }
-    }
+    this.history = l;
   }
 
 

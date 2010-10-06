@@ -95,9 +95,9 @@ public class AggregateRuleTest
 
     final HistoryRule historyRule = new HistoryRule();
     historyRule.useDigest("SHA-1", new Base64Converter());
-    historyRule.addHistory("safx/LW8+SsSy/o3PmCNy4VEm5s=");
-    historyRule.addHistory("zurb9DyQ5nooY1la8h86Bh0n1iw=");
-    historyRule.addHistory("bhqabXwE3S8E6xNJfX/d76MFOCs=");
+    historyRule.getHistory().add("safx/LW8+SsSy/o3PmCNy4VEm5s=");
+    historyRule.getHistory().add("zurb9DyQ5nooY1la8h86Bh0n1iw=");
+    historyRule.getHistory().add("bhqabXwE3S8E6xNJfX/d76MFOCs=");
 
     final SourceRule sourceRule = new SourceRule();
     sourceRule.useDigest("SHA-1", new Base64Converter());

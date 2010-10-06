@@ -58,6 +58,22 @@ public class UsernameRule implements Rule
 
 
   /**
+   * This will create a new <code>UsernameRule</code> with the supplied
+   * username, matchBackwards, and ignoreCase settings.
+   *
+   * @param  name  <code>String</code> username
+   * @param  mb  <code>boolean</code> whether to match backwards
+   * @param  ic  <code>boolean</code> whether to ignore case
+   */
+  public UsernameRule(final String name, final boolean mb, final boolean ic)
+  {
+    this.setUsername(name);
+    this.setMatchBackwards(mb);
+    this.setIgnoreCase(ic);
+  }
+
+
+  /**
    * This sets the username for this rule.
    *
    * @param  name  <code>String</code> to set
@@ -153,8 +169,6 @@ public class UsernameRule implements Rule
     }
     return result;
   }
-
-
 
 
   /**

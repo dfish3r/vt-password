@@ -52,14 +52,14 @@ public class HistoryRuleTest extends AbstractRuleTest
   @BeforeClass(groups = {"passtest"})
   public void createRules()
   {
-    rule.addHistory(HISTORY_PASS1);
-    rule.addHistory(HISTORY_PASS2);
-    rule.addHistory(HISTORY_PASS3);
+    rule.getHistory().add(HISTORY_PASS1);
+    rule.getHistory().add(HISTORY_PASS2);
+    rule.getHistory().add(HISTORY_PASS3);
 
     digestRule.useDigest("SHA-1", new Base64Converter());
-    digestRule.addHistory("safx/LW8+SsSy/o3PmCNy4VEm5s=");
-    digestRule.addHistory("zurb9DyQ5nooY1la8h86Bh0n1iw=");
-    digestRule.addHistory("bhqabXwE3S8E6xNJfX/d76MFOCs=");
+    digestRule.getHistory().add("safx/LW8+SsSy/o3PmCNy4VEm5s=");
+    digestRule.getHistory().add("zurb9DyQ5nooY1la8h86Bh0n1iw=");
+    digestRule.getHistory().add("bhqabXwE3S8E6xNJfX/d76MFOCs=");
   }
 
 
