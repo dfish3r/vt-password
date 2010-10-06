@@ -44,8 +44,9 @@ public class SpringTest
       });
     AssertJUnit.assertTrue(context.getBeanDefinitionCount() > 0);
 
-    final UserIDRule userIDRule = (UserIDRule) context.getBean("idRule");
-    userIDRule.setUserID("springuser");
+    final UsernameRule usernameRule =
+      (UsernameRule) context.getBean("usernameRule");
+    usernameRule.setUserID("springuser");
 
     final AggregateRule<Rule> aggregateRule =
       (AggregateRule<Rule>) context.getBean("aggregateRule");

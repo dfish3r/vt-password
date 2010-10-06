@@ -17,12 +17,12 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 
 /**
- * Unit test for {@link UserIDRule}.
+ * Unit test for {@link UsernameRule}.
  *
  * @author  Middleware Services
  * @version  $Revision$
  */
-public class UserIDRuleTest extends AbstractRuleTest
+public class UsernameRuleTest extends AbstractRuleTest
 {
 
   /** Test password. */
@@ -42,16 +42,16 @@ public class UserIDRuleTest extends AbstractRuleTest
     "p4RESUTsET#n65";
 
   /** For testing. */
-  private UserIDRule rule = new UserIDRule("testuser");
+  private UsernameRule rule = new UsernameRule("testuser");
 
   /** For testing. */
-  private UserIDRule backwardsRule = new UserIDRule("testuser");
+  private UsernameRule backwardsRule = new UsernameRule("testuser");
 
   /** For testing. */
-  private UserIDRule ignoreCaseRule = new UserIDRule("testuser");
+  private UsernameRule ignoreCaseRule = new UsernameRule("testuser");
 
   /** For testing. */
-  private UserIDRule allRule = new UserIDRule("testuser");
+  private UsernameRule allRule = new UsernameRule("testuser");
 
 
   /** Initialize rules for this test. */

@@ -21,7 +21,7 @@ package edu.vt.middleware.password;
  * @version  $Revision$ $Date$
  */
 
-public class UserIDRule implements Rule
+public class UsernameRule implements Rule
 {
 
   /** user id to verify. */
@@ -42,7 +42,7 @@ public class UserIDRule implements Rule
    * userID. The userID should be set using the {@link #setUserID(String)}
    * method.
    */
-  public UserIDRule() {}
+  public UsernameRule() {}
 
 
   /**
@@ -50,7 +50,7 @@ public class UserIDRule implements Rule
    *
    * @param  id  <code>String</code>
    */
-  public UserIDRule(final String id)
+  public UsernameRule(final String id)
   {
     this.setUserID(id);
   }
@@ -130,16 +130,20 @@ public class UserIDRule implements Rule
   {
     final RuleResult result = new RuleResult(true);
     String text = password.getText();
+    String user = this.userID;
+    String reverseUser = this.reverseUserID;
     if (this.ignoreCase) {
       text = text.toLowerCase();
+      user = user.toLowerCase();
+      reverseUser = reverseUser.toLowerCase();
     }
-    if (text.indexOf(this.userID) != -1) {
+    if (text.indexOf(user) != -1) {
       result.setValid(false);
       result.getDetails().add(
         new RuleResultDetail(
           String.format("Password contains the user id '%s'", this.userID)));
     }
-    if (this.matchBackwards && text.indexOf(this.reverseUserID) != -1) {
+    if (this.matchBackwards && text.indexOf(reverseUser) != -1) {
       result.setValid(false);
       result.getDetails().add(
         new RuleResultDetail(String.format(

@@ -43,7 +43,7 @@
     p:ignoreCase="true"
     p:matchBackwards="true"/>
 
-  <bean id="idRule" class="edu.vt.middleware.password.UserIDRule"
+  <bean id="usernameRule" class="edu.vt.middleware.password.UsernameRule"
     p:ignoreCase="true"
     p:matchBackwards="true"/>
 
@@ -56,7 +56,7 @@
         <ref bean="dictRule"/>
         <ref bean="lenRule"/>
         <ref bean="seqRule"/>
-        <ref bean="idRule"/>
+        <ref bean="usernameRule"/>
         <ref bean="wsRule"/>
       </list>
     </property>

@@ -89,7 +89,7 @@ public class AggregateRuleTest
     seqRule.setIgnoreCase(true);
     seqRule.setMatchBackwards(true);
 
-    final UserIDRule userIDRule = new UserIDRule("testuser");
+    final UsernameRule userIDRule = new UsernameRule("testuser");
     userIDRule.setIgnoreCase(true);
     userIDRule.setMatchBackwards(true);
 

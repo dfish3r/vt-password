@@ -119,7 +119,7 @@ public class AggregateRule<T extends Rule> implements Rule
           rule.setWordLength(Integer.parseInt(args[++i]));
           aggregateRule.getRules().add(rule);
         } else if ("-u".equals(args[i])) {
-          final UserIDRule rule = new UserIDRule(args[++i]);
+          final UsernameRule rule = new UsernameRule(args[++i]);
           rule.setIgnoreCase(true);
           rule.setMatchBackwards(true);
           aggregateRule.getRules().add(rule);
