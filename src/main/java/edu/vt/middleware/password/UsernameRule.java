@@ -14,8 +14,8 @@
 package edu.vt.middleware.password;
 
 /**
- * <code>UserIDRule</code> contains methods for determining if a
- * password contains the user id associated with that password.
+ * <code>UsernameRule</code> contains methods for determining if a
+ * password contains the username associated with that password.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
@@ -24,63 +24,64 @@ package edu.vt.middleware.password;
 public class UsernameRule implements Rule
 {
 
-  /** user id to verify. */
-  private String userID;
+  /** username to verify. */
+  private String username;
 
-  /** reverse user id to verify. */
-  private String reverseUserID;
+  /** reverse username to verify. */
+  private String reverseUsername;
 
-  /** whether to search for user id backwards. */
+  /** whether to search for username backwards. */
   private boolean matchBackwards;
 
-  /** Whether to ignore case when checking for user ids. */
+  /** Whether to ignore case when checking for usernames. */
   private boolean ignoreCase;
 
 
   /**
-   * This creates a new <code>UserIDRule</code> without supplying a
-   * userID. The userID should be set using the {@link #setUserID(String)}
+   * This creates a new <code>UsernameRule</code> without supplying a
+   * username. The username should be set using the {@link #setUsername(String)}
    * method.
    */
   public UsernameRule() {}
 
 
   /**
-   * This will create a new <code>UserIDRule</code> with the supplied user id.
+   * This will create a new <code>UsernameRule</code> with the supplied
+   * username.
    *
-   * @param  id  <code>String</code>
+   * @param  name  <code>String</code>
    */
-  public UsernameRule(final String id)
+  public UsernameRule(final String name)
   {
-    this.setUserID(id);
+    this.setUsername(name);
   }
 
 
   /**
-   * This sets the userID for this rule.
+   * This sets the username for this rule.
    *
-   * @param  id  <code>String</code> to set
+   * @param  name  <code>String</code> to set
    */
-  public void setUserID(final String id)
+  public void setUsername(final String name)
   {
-    this.userID = id;
-    this.reverseUserID = new StringBuilder(id).reverse().toString();
+    this.username = name;
+    this.reverseUsername = new StringBuilder(name).reverse().toString();
   }
 
 
   /**
-   * This returns the userID for this rule.
+   * This returns the username for this rule.
    *
    * @return  <code>String</code>
    */
-  public String getUserID()
+  public String getUsername()
   {
-    return this.userID;
+    return this.username;
   }
 
 
   /**
-   * This causes the verify method to search the password for the user id
+   * This causes the verify method to search the password for the username
    * spelled backwards as well as forwards.
    *
    * @param  b  <code>boolean</code>
@@ -103,8 +104,8 @@ public class UsernameRule implements Rule
 
 
   /**
-   * This causes the verify method to ignore case when searching the for a user
-   * id.
+   * This causes the verify method to ignore case when searching the for a
+   * username.
    *
    * @param  b  <code>boolean</code>
    */
@@ -130,8 +131,8 @@ public class UsernameRule implements Rule
   {
     final RuleResult result = new RuleResult(true);
     String text = password.getText();
-    String user = this.userID;
-    String reverseUser = this.reverseUserID;
+    String user = this.username;
+    String reverseUser = this.reverseUsername;
     if (this.ignoreCase) {
       text = text.toLowerCase();
       user = user.toLowerCase();
@@ -141,14 +142,14 @@ public class UsernameRule implements Rule
       result.setValid(false);
       result.getDetails().add(
         new RuleResultDetail(
-          String.format("Password contains the user id '%s'", this.userID)));
+          String.format("Password contains the user id '%s'", this.username)));
     }
     if (this.matchBackwards && text.indexOf(reverseUser) != -1) {
       result.setValid(false);
       result.getDetails().add(
         new RuleResultDetail(String.format(
           "Password contains the backwards user id '%s'",
-          this.reverseUserID)));
+          this.reverseUsername)));
     }
     return result;
   }

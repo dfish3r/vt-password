@@ -46,7 +46,7 @@ public class SpringTest
 
     final UsernameRule usernameRule =
       (UsernameRule) context.getBean("usernameRule");
-    usernameRule.setUserID("springuser");
+    usernameRule.setUsername("springuser");
 
     final AggregateRule<Rule> aggregateRule =
       (AggregateRule<Rule>) context.getBean("aggregateRule");
