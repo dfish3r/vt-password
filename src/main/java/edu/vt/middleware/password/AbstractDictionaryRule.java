@@ -80,7 +80,7 @@ public abstract class AbstractDictionaryRule
 
 
   /**
-   * See {@link Rule#verifyPassword(Password)}.
+   * See {@link Rule#validate(Password)}.
    *
    * @param  password  <code>Password</code> to verify (not null).
    *
@@ -89,31 +89,28 @@ public abstract class AbstractDictionaryRule
    *
    * @throws  NullPointerException  if the password is null.
    */
-  public DictionaryRuleResult<String> verifyPassword(
-    final Password password)
+  public DictionaryRuleResult validate(final Password password)
   {
-    final DictionaryRuleResult<String> result =
-      new DictionaryRuleResult<String>();
-    result.setValid(true);
+    final DictionaryRuleResult result = new DictionaryRuleResult(true);
     String text = password.getText();
     String matchingWord = doWordSearch(text);
     if (matchingWord != null) {
       result.setValid(false);
-      result.setDetails(
-          String.format(
-            "Password contains the dictionary word '%s'",
-            matchingWord));
+      result.getDetails().add(
+        new RuleResultDetail(String.format(
+          "Password contains the dictionary word '%s'",
+          matchingWord)));
       result.setMatchingWord(matchingWord);
     }
-    if (this.matchBackwards && result.isValid()) {
+    if (this.matchBackwards) {
       text = new StringBuilder(password.getText()).reverse().toString();
       matchingWord = doWordSearch(text);
       if (matchingWord != null) {
         result.setValid(false);
-        result.setDetails(
-            String.format(
-              "Password contains the reversed dictionary word '%s'",
-              matchingWord));
+        result.getDetails().add(
+          new RuleResultDetail(String.format(
+            "Password contains the reversed dictionary word '%s'",
+            matchingWord)));
         result.setMatchingWord(matchingWord);
       }
     }

@@ -10,7 +10,7 @@ set PASS_JAR=%VTPASS_HOME%\jars\vt-password-${project.version}.jar
 
 set CLASSPATH=%LIBDIR%\vt-dictionary-3.0-SNAPSHOT.jar;%LIBDIR%\vt-crypt-2.1.1.jar;%LIBDIR%\commons-logging-1.1.1.jar;%PASS_JAR%
 
-call "%JAVA%" -cp "%CLASSPATH%" edu.vt.middleware.password.RuleChecker %*
+call "%JAVA%" -cp "%CLASSPATH%" edu.vt.middleware.password.AggregateRule %*
 goto end
 
 :no_vtpass_home

@@ -18,6 +18,7 @@ package edu.vt.middleware.password;
 import java.io.IOException;
 import java.nio.CharBuffer;
 import java.security.SecureRandom;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -30,35 +31,6 @@ import java.util.Random;
  */
 public class PasswordGenerator
 {
-
-  /** All digits. */
-  protected StringBuilder digits = new StringBuilder("0123456789");
-
-  /** All lowercase characters. */
-  protected StringBuilder lowercase = new StringBuilder(
-    "abcdefghijklmnopqrstuvwxyz");
-
-  /** All uppercase characters. */
-  protected StringBuilder uppercase = new StringBuilder(
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-
-  /**
-   * All non-alphanumeric characters. does not include backslash, pipe, single
-   * quote, or double quote
-   */
-  protected StringBuilder nonAlphanumeric = new StringBuilder(
-    "`~!@#$%^&*()-_=+[{]};:<,>./?");
-
-  /** All uppercase and lowercase characters. */
-  private StringBuilder alphabetical = new StringBuilder(this.lowercase).append(
-    this.uppercase);
-
-  /** All alphabetical and digit characters. */
-  private StringBuilder alphanumeric =
-    new StringBuilder(this.digits).append(this.alphabetical);
-
-  /** All characters. */
-  private StringBuilder all;
 
   /** Source of random data. */
   private Random random;
@@ -82,44 +54,38 @@ public class PasswordGenerator
   public PasswordGenerator(final Random r)
   {
     this.random = r;
-    this.all = new StringBuilder(this.alphanumeric).append(
-      this.nonAlphanumeric);
   }
 
 
   /**
    * Generates a password of the supplied length which meets the requirements of
-   * the supplied password rule. For length to be evaluated it must be greater
+   * the supplied character rules. For length to be evaluated it must be greater
    * than the number of characters defined in the character rule.
    *
    * @param  length  <code>int</code>
-   * @param  rule  <code>PasswordCharacterRule</code>
+   * @param  rules  <code>List</code> of rules to generate password from
    *
    * @return  <code>String</code> - generated password
    */
   public String generatePassword(
     final int length,
-    final CharacterRule rule)
+    final List<CharacterRule> rules)
   {
     if (length <= 0) {
       throw new IllegalArgumentException("length must be greater than 0");
     }
 
+    final StringBuilder allChars = new StringBuilder();
+
     final CharBuffer buffer = CharBuffer.allocate(length);
-    if (rule != null) {
-      fillRandomCharacters(this.lowercase, rule.getNumberOfLowercase(), buffer);
-      fillRandomCharacters(this.uppercase, rule.getNumberOfUppercase(), buffer);
-      fillRandomCharacters(
-        this.alphabetical,
-        rule.getNumberOfAlphabetical(),
-        buffer);
-      fillRandomCharacters(this.digits, rule.getNumberOfDigits(), buffer);
-      fillRandomCharacters(
-        this.nonAlphanumeric,
-        rule.getNumberOfNonAlphanumeric(),
-        buffer);
+    if (rules != null) {
+      for (CharacterRule rule : rules) {
+        fillRandomCharacters(
+          rule.getValidCharacters(), rule.getNumberOfCharacters(), buffer);
+        allChars.append(rule.getValidCharacters());
+      }
     }
-    fillRandomCharacters(this.all, length - buffer.position(), buffer);
+    fillRandomCharacters(allChars, length - buffer.position(), buffer);
     buffer.flip();
     randomize(buffer);
     return buffer.toString();

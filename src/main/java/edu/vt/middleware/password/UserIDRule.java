@@ -126,23 +126,25 @@ public class UserIDRule implements Rule
 
 
   /** {@inheritDoc} */
-  public RuleResult<String> verifyPassword(final Password password)
+  public RuleResult validate(final Password password)
   {
-    final RuleResult<String> result = new RuleResult<String>();
+    final RuleResult result = new RuleResult(true);
     String text = password.getText();
     if (this.ignoreCase) {
       text = text.toLowerCase();
     }
     if (text.indexOf(this.userID) != -1) {
-      result.setDetails(
-        String.format("Password contains the user id '%s'", this.userID));
-    } else if (this.matchBackwards && text.indexOf(this.reverseUserID) != -1) {
-      result.setDetails(
-        String.format(
+      result.setValid(false);
+      result.getDetails().add(
+        new RuleResultDetail(
+          String.format("Password contains the user id '%s'", this.userID)));
+    }
+    if (this.matchBackwards && text.indexOf(this.reverseUserID) != -1) {
+      result.setValid(false);
+      result.getDetails().add(
+        new RuleResultDetail(String.format(
           "Password contains the backwards user id '%s'",
-          this.reverseUserID));
-    } else {
-      result.setValid(true);
+          this.reverseUserID)));
     }
     return result;
   }

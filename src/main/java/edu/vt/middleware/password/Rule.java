@@ -17,8 +17,6 @@ package edu.vt.middleware.password;
  * <code>Rule</code> allows custom password rules to be created for
  * determining whether or not a password is strong.
  *
- * @param <T> type of password rule result details
- *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
  */
@@ -36,5 +34,5 @@ public interface Rule
    *
    * @throws  NullPointerException  if the password is null.
    */
-  RuleResult<?> verifyPassword(Password password);
+  RuleResult validate(Password password);
 }

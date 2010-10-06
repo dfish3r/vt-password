@@ -13,316 +13,38 @@
 */
 package edu.vt.middleware.password;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
- * <code>CharacterRule</code> contains methods for determining if a
- * password contains the desired mix of character types. In order to meet the
- * criteria of this rule, passwords must have any number of the following five
- * characteristics: (The default is to enforce none of the characteristics, so
- * you must explicitly call the set methods you want to enforce.) 1) contain n
- * or more digits 2) contain n or more alphabetical characters 3) contain n or
- * more non-alphanumeric characters 4) contain n or more uppercase characters 5)
- * contain n or more lowercase characters Where n can be set, but the default is
- * 0.
+ * <code>CharacterRule</code> is a marker interface of rules implementing
+ * character enforcement.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
  */
-
-public class CharacterRule implements Rule
+public interface CharacterRule extends Rule
 {
 
-  /** number of rules to enforce. */
-  private int numCharacteristics;
-
-  /** number of digits to require. */
-  private int numDigits;
-
-  /** number of alphabetical to require. */
-  private int numAlphabetical;
-
-  /** number of non-alphanumerics to require. */
-  private int numNonAlphanumeric;
-
-  /** number of uppercase to require. */
-  private int numUppercase;
-
-  /** number of lowercase to require. */
-  private int numLowercase;
-
 
   /**
-   * This sets the number of characteristics which must be satisfied in order
-   * for a password to meet the requirements of this rule. The default is zero.
-   * i.e. you may wish to enforce any three of the five characteristics.
+   * This sets the number of characters to require in a password.
    *
-   * @param  n  <code>int</code> number of characteristics to enforce where n >=
-   * 0
+   * @param  n  <code>int</code> number of characters to require where n > 0
    */
-  public void setNumberOfCharacteristics(final int n)
-  {
-    if (n >= 0) {
-      this.numCharacteristics = n;
-    } else {
-      throw new IllegalArgumentException("argument cannot be negative");
-    }
-  }
+  void setNumberOfCharacters(int n);
 
 
   /**
-   * This returns the number of characteristics which currently must be
-   * satisfied in order for a password to meet the requirements of this rule.
-   *
-   * @return  <code>int</code> number of characteristics to enforce
-   */
-  public int getNumberOfCharacteristics()
-  {
-    return this.numCharacteristics;
-  }
-
-
-  /**
-   * This sets the number of digits to require in a password. The default is
-   * zero.
-   *
-   * @param  n  <code>int</code> number of digits to require where n >= 0
-   */
-  public void setNumberOfDigits(final int n)
-  {
-    if (n >= 0) {
-      this.numDigits = n;
-    } else {
-      throw new IllegalArgumentException("argument cannot be negative");
-    }
-  }
-
-
-  /**
-   * This returns the number of digits which must exist in order for a password
-   * to meet the requirements of this rule.
-   *
-   * @return  <code>int</code> number of digits to require
-   */
-  public int getNumberOfDigits()
-  {
-    return this.numDigits;
-  }
-
-
-  /**
-   * This sets the number of alphabetical characters to require in a password.
-   * The default is zero.
-   *
-   * @param  n  <code>int</code> number of alphabetical characters to require
-   * where n >= 0
-   */
-  public void setNumberOfAlphabetical(final int n)
-  {
-    if (n >= 0) {
-      this.numAlphabetical = n;
-    } else {
-      throw new IllegalArgumentException("argument cannot be negative");
-    }
-  }
-
-
-  /**
-   * This returns the number of alphabetical characters which must exist in
-   * order for a password to meet the requirements of this rule.
-   *
-   * @return  <code>int</code> number of alphabetical characters to require
-   */
-  public int getNumberOfAlphabetical()
-  {
-    return this.numAlphabetical;
-  }
-
-
-  /**
-   * This sets the number of non-alphanumeric characters to require in a
-   * password. The default is zero.
-   *
-   * @param  n  <code>int</code> number of non-alphanumeric characters to
-   * require where n >= 0
-   */
-  public void setNumberOfNonAlphanumeric(final int n)
-  {
-    if (n >= 0) {
-      this.numNonAlphanumeric = n;
-    } else {
-      throw new IllegalArgumentException("argument cannot be negative");
-    }
-  }
-
-
-  /**
-   * This returns the number of non-alphanumeric characters which must exist in
-   * order for a password to meet the requirements of this rule.
-   *
-   * @return  <code>int</code> number of non-alphanumeric characters to require
-   */
-  public int getNumberOfNonAlphanumeric()
-  {
-    return this.numNonAlphanumeric;
-  }
-
-
-  /**
-   * This sets the number of uppercase characters to require in a password. The
-   * default is zero.
-   *
-   * @param  n  <code>int</code> number of uppercase characters to require where
-   * n >= 0
-   */
-  public void setNumberOfUppercase(final int n)
-  {
-    if (n >= 0) {
-      this.numUppercase = n;
-    } else {
-      throw new IllegalArgumentException("argument cannot be negative");
-    }
-  }
-
-
-  /**
-   * This returns the number of uppercase characters which must exist in order
+   * This returns the number of characters which must exist in order
    * for a password to meet the requirements of this rule.
    *
-   * @return  <code>int</code> number of uppercase characters to require
+   * @return  <code>int</code> number of characters to require
    */
-  public int getNumberOfUppercase()
-  {
-    return this.numUppercase;
-  }
+  int getNumberOfCharacters();
 
 
   /**
-   * This sets the number of lowercase characters to require in a password. The
-   * default is zero.
+   * Returns the characters that are considered valid for this rule.
    *
-   * @param  n  <code>int</code> number of lowercase characters to require where
-   * n >= 0
+   * @return  <code>char[]</code>
    */
-  public void setNumberOfLowercase(final int n)
-  {
-    if (n >= 0) {
-      this.numLowercase = n;
-    } else {
-      throw new IllegalArgumentException("argument cannot be negative");
-    }
-  }
-
-
-  /**
-   * This returns the number of lowercase characters which must exist in order
-   * for a password to meet the requirements of this rule.
-   *
-   * @return  <code>int</code> number of lowercase characters to require
-   */
-  public int getNumberOfLowercase()
-  {
-    return this.numLowercase;
-  }
-
-
-  /** {@inheritDoc} */
-  public RuleResult<String> verifyPassword(final Password password)
-  {
-    final RuleResult<String> result = new RuleResult<String>();
-    int count = 0;
-
-    // check for digits
-    if (this.numDigits > 0) {
-      if (password.getNumberOfDigits() >= this.numDigits) {
-        count++;
-      }
-    }
-
-    // check for alphabetical
-    if (this.numAlphabetical > 0) {
-      if (password.getNumberOfAlphabetical() >= this.numAlphabetical) {
-        count++;
-      }
-    }
-
-    // check for non-alphanumeric
-    if (this.numNonAlphanumeric > 0) {
-      if (password.getNumberOfNonAlphanumeric() >= this.numNonAlphanumeric) {
-        count++;
-      }
-    }
-
-    // check for uppercase
-    if (this.numUppercase > 0) {
-      if (password.getNumberOfUppercase() >= this.numUppercase) {
-        count++;
-      }
-    }
-
-    // check for lowercase
-    if (this.numLowercase > 0) {
-      if (password.getNumberOfLowercase() >= this.numLowercase) {
-        count++;
-      }
-    }
-
-    if (count >= this.numCharacteristics) {
-      result.setValid(true);
-    } else {
-      final List<Object> filterParams = new ArrayList<Object>(5);
-      filterParams.add(this.numCharacteristics);
-
-      final StringBuilder msg = new StringBuilder(
-        "Password did not meet %s of the following characteristics:\n");
-      if (this.numDigits > 0) {
-        msg.append("    * must contain at least %s digits\n");
-        filterParams.add(this.numDigits);
-      }
-      if (this.numAlphabetical > 0) {
-        msg.append("    * must contain at least %s alphabetical characters\n");
-        filterParams.add(this.numAlphabetical);
-      }
-      if (this.numNonAlphanumeric > 0) {
-        msg.append(
-          "    * must contain at least %s non-alphanumeric characters\n");
-        filterParams.add(this.numNonAlphanumeric);
-      }
-      if (this.numUppercase > 0) {
-        msg.append("    * must contain at least %s uppercase characters\n");
-        filterParams.add(this.numUppercase);
-      }
-      if (this.numLowercase > 0) {
-        msg.append("    * must contain at least %s lowercase characters\n");
-        filterParams.add(this.numLowercase);
-      }
-      result.setDetails(String.format(msg.toString(), filterParams.toArray()));
-    }
-    return result;
-  }
-
-
-  /**
-   * This returns a string representation of this object.
-   *
-   * @return  <code>String</code>
-   */
-  @Override
-  public String toString()
-  {
-    return
-    String.format(
-      "%s@%h::numberOfCharacteristics=%s," +
-      "numberOfDigits=%s,numberOfAlphabetical=%s,numberOfNonAlphanumeric=%s," +
-      "numberOfUppercase=%s,numberOfLowercase=%s",
-      this.getClass().getName(),
-      this.hashCode(),
-      this.numCharacteristics,
-      this.numDigits,
-      this.numAlphabetical,
-      this.numNonAlphanumeric,
-      this.numUppercase,
-      this.numLowercase);
-  }
+  String getValidCharacters();
 }

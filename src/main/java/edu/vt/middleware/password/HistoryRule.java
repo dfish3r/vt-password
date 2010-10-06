@@ -77,13 +77,11 @@ public class HistoryRule extends AbstractDigestRule implements Rule
 
 
   /** {@inheritDoc} */
-  public RuleResult<String> verifyPassword(final Password password)
+  public RuleResult validate(final Password password)
   {
-    final RuleResult<String> result = new RuleResult<String>();
+    final RuleResult result = new RuleResult(true);
 
-    if (this.history.size() == 0) {
-      result.setValid(true);
-    } else {
+    if (!this.history.isEmpty()) {
       for (String p : this.history) {
         if (this.digest != null) {
           final String hash = this.digest.digest(
@@ -91,24 +89,18 @@ public class HistoryRule extends AbstractDigestRule implements Rule
             this.converter);
           if (p.equals(hash)) {
             result.setValid(false);
-            result.setDetails(
-              String.format(
+            result.getDetails().add(
+              new RuleResultDetail(String.format(
                 "Password matches one of %s previous passwords",
-                this.history.size()));
-            break;
-          } else {
-            result.setValid(true);
+                this.history.size())));
           }
         } else {
           if (p.equals(password.getText())) {
             result.setValid(false);
-            result.setDetails(
-              String.format(
+            result.getDetails().add(
+              new RuleResultDetail(String.format(
                 "Password matches one of %s previous passwords",
-                this.history.size()));
-            break;
-          } else {
-            result.setValid(true);
+                this.history.size())));
           }
         }
       }

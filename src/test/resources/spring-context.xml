@@ -18,10 +18,19 @@
     </constructor-arg>
   </bean>
 
-  <bean id="charRule" class="edu.vt.middleware.password.CharacterRule"
-    p:numberOfCharacteristics="2"
-    p:numberOfAlphabetical="3"
-    p:numberOfDigits="1"/>
+  <bean id="alphaRule" class="edu.vt.middleware.password.AlphabeticalCharacterRule"
+    p:numberOfCharacters="3"/>
+  <bean id="digitRule" class="edu.vt.middleware.password.DigitCharacterRule"
+    p:numberOfCharacters="1"/>
+  <bean id="charRule" class="edu.vt.middleware.password.CharacterCharacteristicsRule"
+    p:numberOfCharacteristics="2">
+    <property name="rules">
+      <list>
+        <ref bean="alphaRule"/>
+        <ref bean="digitRule"/>
+      </list>
+    </property>
+  </bean>
 
   <bean id="dictRule" class="edu.vt.middleware.password.DictionarySubstringRule"
     p:dictionary-ref="dictionary"
@@ -40,8 +49,8 @@
 
   <bean id="wsRule" class="edu.vt.middleware.password.WhitespaceRule"/>
 
-  <bean id="checker" class="edu.vt.middleware.password.RuleChecker">
-    <property name="passwordRules">
+  <bean id="aggregateRule" class="edu.vt.middleware.password.AggregateRule">
+    <property name="rules">
       <list>
         <ref bean="charRule"/>
         <ref bean="dictRule"/>

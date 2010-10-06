@@ -51,13 +51,11 @@ public class SourceRule extends AbstractDigestRule implements Rule
 
 
   /** {@inheritDoc} */
-  public RuleResult<String> verifyPassword(final Password password)
+  public RuleResult validate(final Password password)
   {
-    final RuleResult<String> result = new RuleResult<String>();
+    final RuleResult result = new RuleResult(true);
 
-    if (this.sources.size() == 0) {
-      result.setValid(true);
-    } else {
+    if (!this.sources.isEmpty()) {
       for (Map.Entry<String, String> entry : this.sources.entrySet()) {
         final String p = entry.getValue();
         if (this.digest != null) {
@@ -66,23 +64,18 @@ public class SourceRule extends AbstractDigestRule implements Rule
             this.converter);
           if (p.equals(hash)) {
             result.setValid(false);
-            result.setDetails(
-              String.format(
+            result.getDetails().add(
+              new RuleResultDetail(String.format(
                 "Password can not be the same as your %s password",
-                entry.getKey()));
-            break;
-          } else {
-            result.setValid(true);
+                entry.getKey())));
           }
         } else {
           if (p.equals(password.getText())) {
-            result.setDetails(
-              String.format(
+            result.setValid(false);
+            result.getDetails().add(
+              new RuleResultDetail(String.format(
                 "Password can not be the same as your %s password",
-                entry.getKey()));
-            break;
-          } else {
-            result.setValid(true);
+                entry.getKey())));
           }
         }
       }

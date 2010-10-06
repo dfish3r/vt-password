@@ -27,16 +27,16 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 /**
- * Unit test for {@link RuleChecker}.
+ * Unit test for {@link AggregateRule}.
  *
  * @author  Middleware Services
  * @version  $Revision$
  */
-public class RuleCheckerTest
+public class AggregateRuleTest
 {
 
   /** Test checker. */
-  private RuleChecker checker = new RuleChecker();
+  private AggregateRule<Rule> aggregateRule = new AggregateRule<Rule>();
 
   /** Word list. */
   private Dictionary dict;
@@ -68,11 +68,12 @@ public class RuleCheckerTest
   public void createChecker()
     throws Exception
   {
-    final CharacterRule charRule = new CharacterRule();
-    charRule.setNumberOfDigits(1);
-    charRule.setNumberOfNonAlphanumeric(1);
-    charRule.setNumberOfUppercase(1);
-    charRule.setNumberOfLowercase(1);
+    final CharacterCharacteristicsRule charRule =
+      new CharacterCharacteristicsRule();
+    charRule.getRules().add(new DigitCharacterRule(1));
+    charRule.getRules().add(new NonAlphanumericCharacterRule(1));
+    charRule.getRules().add(new UppercaseCharacterRule(1));
+    charRule.getRules().add(new LowercaseCharacterRule(1));
     charRule.setNumberOfCharacteristics(3);
 
     final WhitespaceRule whitespaceRule = new WhitespaceRule();
@@ -102,14 +103,14 @@ public class RuleCheckerTest
     sourceRule.useDigest("SHA-1", new Base64Converter());
     sourceRule.addSource("System B", "CJGTDMQRP+rmHApkcijC80aDV0o=");
 
-    this.checker.getPasswordRules().add(charRule);
-    this.checker.getPasswordRules().add(whitespaceRule);
-    this.checker.getPasswordRules().add(lengthRule);
-    this.checker.getPasswordRules().add(dictRule);
-    this.checker.getPasswordRules().add(seqRule);
-    this.checker.getPasswordRules().add(userIDRule);
-    this.checker.getPasswordRules().add(historyRule);
-    this.checker.getPasswordRules().add(sourceRule);
+    this.aggregateRule.getRules().add(charRule);
+    this.aggregateRule.getRules().add(whitespaceRule);
+    this.aggregateRule.getRules().add(lengthRule);
+    this.aggregateRule.getRules().add(dictRule);
+    this.aggregateRule.getRules().add(seqRule);
+    this.aggregateRule.getRules().add(userIDRule);
+    this.aggregateRule.getRules().add(historyRule);
+    this.aggregateRule.getRules().add(sourceRule);
   }
 
 
@@ -249,10 +250,10 @@ public class RuleCheckerTest
   {
     if (valid) {
       AssertJUnit.assertTrue(
-        this.checker.checkPassword(new Password(pass)).isValid());
+        this.aggregateRule.validate(new Password(pass)).isValid());
     } else {
       AssertJUnit.assertFalse(
-        this.checker.checkPassword(new Password(pass)).isValid());
+        this.aggregateRule.validate(new Password(pass)).isValid());
     }
   }
 }

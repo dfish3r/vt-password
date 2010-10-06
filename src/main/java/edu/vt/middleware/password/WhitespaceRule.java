@@ -26,14 +26,14 @@ public class WhitespaceRule implements Rule
 
 
   /** {@inheritDoc} */
-  public RuleResult<String> verifyPassword(final Password password)
+  public RuleResult validate(final Password password)
   {
-    final RuleResult<String> result = new RuleResult<String>();
     if (!password.containsWhitespace()) {
-      result.setValid(true);
+      return new RuleResult(true);
     } else {
-      result.setDetails("Password cannot contain whitespace characters");
+      return new RuleResult(
+        false,
+        new RuleResultDetail("Password cannot contain whitespace characters"));
     }
-    return result;
   }
 }

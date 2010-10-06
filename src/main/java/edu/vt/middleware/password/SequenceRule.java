@@ -160,9 +160,9 @@ public class SequenceRule implements Rule
 
 
   /** {@inheritDoc} */
-  public RuleResult<String> verifyPassword(final Password password)
+  public RuleResult validate(final Password password)
   {
-    final RuleResult<String> result = new RuleResult<String>();
+    final RuleResult result = new RuleResult(true);
     String text = password.getText();
     if (this.ignoreCase) {
       text = text.toLowerCase();
@@ -170,26 +170,20 @@ public class SequenceRule implements Rule
     for (int i = 0; i < SEQUENCES.length; i++) {
       if (text.indexOf(SEQUENCES[i]) != -1) {
         result.setValid(false);
-        result.setDetails(
-          String.format(
+        result.getDetails().add(
+          new RuleResultDetail(String.format(
             "Password contains the keyboard sequence '%s'",
-            SEQUENCES[i]));
-        break;
-      } else if (i == SEQUENCES.length - 1) {
-        result.setValid(true);
+            SEQUENCES[i])));
       }
     }
-    if (this.matchBackwards && result.isValid()) {
+    if (this.matchBackwards) {
       for (int j = 0; j < REVERSE_SEQUENCES.length; j++) {
         if (text.indexOf(REVERSE_SEQUENCES[j]) != -1) {
           result.setValid(false);
-          result.setDetails(
-            String.format(
+          result.getDetails().add(
+            new RuleResultDetail(String.format(
               "Password contains the keyboard sequence '%s'",
-              REVERSE_SEQUENCES[j]));
-          break;
-        } else if (j == REVERSE_SEQUENCES.length - 1) {
-          result.setValid(true);
+              REVERSE_SEQUENCES[j])));
         }
       }
     }

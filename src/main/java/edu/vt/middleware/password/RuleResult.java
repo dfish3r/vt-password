@@ -13,24 +13,24 @@
 */
 package edu.vt.middleware.password;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * <code>RuleResult</code> provides common implementation for password rule
  * result implementations.
  *
- * @param <T> type of password rule result details
- *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
  */
-public class RuleResult<T>
+public class RuleResult
 {
 
   /** whether password rule was successful. */
   protected boolean valid;
 
   /** details associated with a password rule result. */
-  protected T details;
-
+  protected List<RuleResultDetail> details = new ArrayList<RuleResultDetail>();
 
 
   /** Default constructor. */
@@ -38,16 +38,27 @@ public class RuleResult<T>
 
 
   /**
+   * Creates a new <code>RuleResult</code> with the supplied validity.
+   *
+   * @param  b  result validity
+   */
+  public RuleResult(final boolean b)
+  {
+    this.setValid(b);
+  }
+
+
+  /**
    * Creates a new <code>RuleResult</code> with the supplied validity and
    * details.
    *
    * @param  b  result validity
-   * @param  t  details associated with this result
+   * @param  rrd  details associated with this result
    */
-  public RuleResult(final boolean b, final T t)
+  public RuleResult(final boolean b, final RuleResultDetail rrd)
   {
-    this.valid = b;
-    this.details = t;
+    this.setValid(b);
+    this.details.add(rrd);
   }
 
 
@@ -76,9 +87,9 @@ public class RuleResult<T>
   /**
    * Returns any details associated with the rule verification. May be null.
    *
-   * @return  T  rule result details
+   * @return  rule result details
    */
-  public T getDetails()
+  public List<RuleResultDetail> getDetails()
   {
     return this.details;
   }
@@ -87,10 +98,10 @@ public class RuleResult<T>
   /**
    * Sets any details associated with the rule verification.
    *
-   * @param  t  rule result details
+   * @param  rrd  rule result details
    */
-  public void setDetails(final T t)
+  public void setDetails(final List<RuleResultDetail> rrd)
   {
-    this.details = t;
+    this.details = rrd;
   }
 }

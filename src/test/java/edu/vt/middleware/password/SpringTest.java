@@ -34,6 +34,7 @@ public class SpringTest
    * @throws  Exception  On test failure.
    */
   @Test(groups = {"passtest"})
+  @SuppressWarnings("unchecked")
   public void testSpringWiring()
     throws Exception
   {
@@ -46,7 +47,8 @@ public class SpringTest
     final UserIDRule userIDRule = (UserIDRule) context.getBean("idRule");
     userIDRule.setUserID("springuser");
 
-    final RuleChecker checker = (RuleChecker) context.getBean("checker");
-    checker.checkPassword(new Password("springtest"));
+    final AggregateRule<Rule> aggregateRule =
+      (AggregateRule<Rule>) context.getBean("aggregateRule");
+    aggregateRule.validate(new Password("springtest"));
   }
 }

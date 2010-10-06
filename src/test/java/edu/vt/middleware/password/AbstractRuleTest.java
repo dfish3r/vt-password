@@ -42,10 +42,10 @@ public abstract class AbstractRuleTest
     throws Exception
   {
     if (valid) {
-      AssertJUnit.assertTrue(rule.verifyPassword(new Password(pass)).isValid());
+      AssertJUnit.assertTrue(rule.validate(new Password(pass)).isValid());
     } else {
       AssertJUnit.assertFalse(
-        rule.verifyPassword(new Password(pass)).isValid());
+        rule.validate(new Password(pass)).isValid());
     }
   }
 }

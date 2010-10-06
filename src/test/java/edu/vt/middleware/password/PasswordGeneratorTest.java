@@ -15,6 +15,8 @@
 */
 package edu.vt.middleware.password;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -34,13 +36,22 @@ public class PasswordGeneratorTest
   private PasswordGenerator generator = new PasswordGenerator();
 
   /** Rule to generate passwords with. */
-  private CharacterRule genCharRule = new CharacterRule();
+  private CharacterCharacteristicsRule genCharRule =
+    new CharacterCharacteristicsRule();
 
   /** Rule to verify passwords with. */
-  private CharacterRule verifyCharRule = new CharacterRule();
+  private CharacterCharacteristicsRule verifyCharRule =
+    new CharacterCharacteristicsRule();
 
   /** Rule to verify passwords with that should fail. */
-  private CharacterRule failCharRule = new CharacterRule();
+  private CharacterCharacteristicsRule failCharRule =
+    new CharacterCharacteristicsRule();
+
+  /** Rules to test. */
+  private List<CharacterRule> rules = new ArrayList<CharacterRule>();
+
+  /** Rules to test. */
+  private List<CharacterRule> failRules = new ArrayList<CharacterRule>();
 
 
   /** @throws  Exception  On test failure. */
@@ -48,22 +59,23 @@ public class PasswordGeneratorTest
   public void initializeRules()
     throws Exception
   {
-    this.genCharRule.setNumberOfDigits(2);
-    this.genCharRule.setNumberOfNonAlphanumeric(2);
-    this.genCharRule.setNumberOfUppercase(1);
-    this.genCharRule.setNumberOfLowercase(1);
+    this.rules.add(new DigitCharacterRule(2));
+    this.rules.add(new NonAlphanumericCharacterRule(2));
+    this.rules.add(new UppercaseCharacterRule(1));
+    this.rules.add(new LowercaseCharacterRule(1));
+
+    this.genCharRule.getRules().addAll(this.rules);
     this.genCharRule.setNumberOfCharacteristics(3);
 
-    this.verifyCharRule.setNumberOfDigits(2);
-    this.verifyCharRule.setNumberOfNonAlphanumeric(2);
-    this.verifyCharRule.setNumberOfUppercase(1);
-    this.verifyCharRule.setNumberOfLowercase(1);
+    this.verifyCharRule.getRules().addAll(this.rules);
     this.verifyCharRule.setNumberOfCharacteristics(3);
 
-    this.failCharRule.setNumberOfDigits(3);
-    this.failCharRule.setNumberOfNonAlphanumeric(3);
-    this.failCharRule.setNumberOfUppercase(3);
-    this.failCharRule.setNumberOfLowercase(3);
+    this.failRules.add(new DigitCharacterRule(3));
+    this.failRules.add(new NonAlphanumericCharacterRule(3));
+    this.failRules.add(new UppercaseCharacterRule(3));
+    this.failRules.add(new LowercaseCharacterRule(3));
+
+    this.failCharRule.getRules().addAll(this.failRules);
     this.failCharRule.setNumberOfCharacteristics(4);
   }
 
@@ -82,7 +94,7 @@ public class PasswordGeneratorTest
     for (int i = 0; i < 100; i++) {
       final String password = this.generator.generatePassword(
         length,
-        genCharRule);
+        this.rules);
       AssertJUnit.assertNotNull(password);
       AssertJUnit.assertTrue(password.length() >= length);
       passwords[i] = new Object[] {new Password(password)};
@@ -103,7 +115,7 @@ public class PasswordGeneratorTest
   public void testGenerator(final Password pass)
     throws Exception
   {
-    AssertJUnit.assertFalse(this.failCharRule.verifyPassword(pass).isValid());
-    AssertJUnit.assertTrue(this.verifyCharRule.verifyPassword(pass).isValid());
+    AssertJUnit.assertFalse(this.failCharRule.validate(pass).isValid());
+    AssertJUnit.assertTrue(this.verifyCharRule.validate(pass).isValid());
   }
 }

@@ -17,17 +17,29 @@ package edu.vt.middleware.password;
  * <code>DictionaryRuleResult</code> provides common implementation for
  * password dictionary rule result implementations.
  *
- * @param <T> type of password rule result details
- *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
  */
-public class DictionaryRuleResult<T> extends RuleResult<T>
+public class DictionaryRuleResult extends RuleResult
 {
 
   /** word which caused this rule to fail. */
   protected String matchingWord;
 
+
+  /** Default constructor. */
+  public DictionaryRuleResult() {}
+
+
+  /**
+   * Creates a new <code>DictionaryRuleResult</code> with the supplied validity.
+   *
+   * @param  b  result validity
+   */
+  public DictionaryRuleResult(final boolean b)
+  {
+    this.setValid(b);
+  }
 
 
   /**

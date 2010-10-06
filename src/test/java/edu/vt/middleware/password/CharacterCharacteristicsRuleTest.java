@@ -17,12 +17,12 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 
 /**
- * Unit test for {@link CharacterRule}.
+ * Unit test for {@link CharacterCharacteristicsRule}.
  *
  * @author  Middleware Services
  * @version  $Revision$
  */
-public class CharacterRuleTest extends AbstractRuleTest
+public class CharacterCharacteristicsRuleTest extends AbstractRuleTest
 {
 
   /** Test password. */
@@ -44,18 +44,19 @@ public class CharacterRuleTest extends AbstractRuleTest
   private static final String NONALPHA_PASS = "r5scvEW2e9b";
 
   /** For testing. */
-  private CharacterRule rule = new CharacterRule();
+  private CharacterCharacteristicsRule rule =
+    new CharacterCharacteristicsRule();
 
 
   /** Initialize rules for this test. */
   @BeforeClass(groups = {"passtest"})
   public void createRules()
   {
-    this.rule.setNumberOfAlphabetical(4);
-    this.rule.setNumberOfDigits(3);
-    this.rule.setNumberOfUppercase(2);
-    this.rule.setNumberOfLowercase(2);
-    this.rule.setNumberOfNonAlphanumeric(1);
+    this.rule.getRules().add(new AlphabeticalCharacterRule(4));
+    this.rule.getRules().add(new DigitCharacterRule(3));
+    this.rule.getRules().add(new UppercaseCharacterRule(2));
+    this.rule.getRules().add(new LowercaseCharacterRule(2));
+    this.rule.getRules().add(new NonAlphanumericCharacterRule(1));
     this.rule.setNumberOfCharacteristics(5);
   }
 
