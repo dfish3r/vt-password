@@ -36,7 +36,7 @@ public class PasswordValidatorTest
   private static final Username USERNAME = new Username("testuser");
 
   /** For testing. */
-  private RuleList<Rule> ruleList = new RuleList<Rule>();
+  private RuleList ruleList = new RuleList();
 
   /** Initialize rules for this test. */
   @BeforeClass(groups = {"passtest"})
@@ -58,11 +58,6 @@ public class PasswordValidatorTest
 
 
   /**
-   * @param  rule  to check password with
-   * @param  user  to check
-   * @param  pass  to check
-   * @param  valid  whether the supplied password should pass the check
-   *
    * @throws  Exception  On test failure.
    */
   @Test(groups = {"passtest"})

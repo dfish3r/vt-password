@@ -13,6 +13,9 @@
 */
 package edu.vt.middleware.password;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * <code>CharacterCharacteristicsRule</code> contains methods for determining if
  * a password contains the desired mix of character types. In order to meet the
@@ -23,11 +26,38 @@ package edu.vt.middleware.password;
  * @version  $Revision$ $Date$
  */
 
-public class CharacterCharacteristicsRule extends RuleList<CharacterRule>
+public class CharacterCharacteristicsRule implements Rule
 {
 
+  /** rules to apply when checking a password. */
+  private List<CharacterRule> rules = new ArrayList<CharacterRule>();
+
   /** number of rules to enforce. Default value is 1. */
-  protected int numCharacteristics = 1;
+  private int numCharacteristics = 1;
+
+
+  /**
+   * This will return the rules being used by this
+   * <code>CharacterCharacteristicsRule</code>.
+   *
+   * @return  <code>List</code> of rules
+   */
+  public List<CharacterRule> getRules()
+  {
+    return this.rules;
+  }
+
+
+  /**
+   * This will set the rules to be used by this
+   * <code>CharacterCharacteristicsRule</code>.
+   *
+   * @param  l  <code>List</code> of rules
+   */
+  public void setRules(final List<CharacterRule> l)
+  {
+    this.rules = l;
+  }
 
 
   /**
@@ -103,9 +133,10 @@ public class CharacterCharacteristicsRule extends RuleList<CharacterRule>
   {
     return
     String.format(
-      "%s@%h::numberOfCharacteristics=%s",
+      "%s@%h::numberOfCharacteristics=%s,rules=%s",
       this.getClass().getName(),
       this.hashCode(),
-      this.numCharacteristics);
+      this.numCharacteristics,
+      this.rules);
   }
 }

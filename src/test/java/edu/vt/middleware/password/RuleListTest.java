@@ -37,7 +37,7 @@ public class RuleListTest extends AbstractRuleTest
   private Username user = new Username("testuser");
 
   /** Test checker. */
-  private RuleList<Rule> rule = new RuleList<Rule>();
+  private RuleList rule = new RuleList();
 
   /** Word list. */
   private Dictionary dict;

@@ -30,6 +30,12 @@ public final class PasswordValidator
 
 
   /**
+   * Default constructor.
+   */
+  private PasswordValidator() {}
+
+
+  /**
    * Validates the supplied password against the supplied rule.
    *
    * @param  rule  <code>Rule</code> to validate password with
@@ -67,7 +73,7 @@ public final class PasswordValidator
   public static void main(final String[] args)
     throws Exception
   {
-    final RuleList<Rule> ruleList = new RuleList<Rule>();
+    final RuleList ruleList = new RuleList();
     String username = null;
     String password = null;
     try {
@@ -120,7 +126,7 @@ public final class PasswordValidator
       } else {
         RuleResult result = null;
         if (username == null) {
-          result = 
+          result =
             PasswordValidator.validate(ruleList, new Password(password));
         } else {
           result = PasswordValidator.validate(

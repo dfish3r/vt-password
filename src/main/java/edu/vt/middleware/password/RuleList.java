@@ -20,17 +20,15 @@ import java.util.List;
  * <code>RuleList</code> contains methods for setting password rules and
  * then determining if a password meets the requirements of all the rules.
  *
- * @param  <T>  type of rules to validate
- *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
  */
 
-public class RuleList<T extends Rule> implements Rule
+public class RuleList implements Rule
 {
 
   /** rules to apply when checking a password. */
-  protected List<T> rules = new ArrayList<T>();
+  private List<Rule> rules = new ArrayList<Rule>();
 
 
   /**
@@ -38,7 +36,7 @@ public class RuleList<T extends Rule> implements Rule
    *
    * @return  <code>List</code> of rules
    */
-  public List<T> getRules()
+  public List<Rule> getRules()
   {
     return this.rules;
   }
@@ -49,7 +47,7 @@ public class RuleList<T extends Rule> implements Rule
    *
    * @param  l  <code>List</code> of rules
    */
-  public void setRules(final List<T> l)
+  public void setRules(final List<Rule> l)
   {
     this.rules = l;
   }
@@ -82,5 +80,22 @@ public class RuleList<T extends Rule> implements Rule
       }
     }
     return result;
+  }
+
+
+  /**
+   * This returns a string representation of this object.
+   *
+   * @return  <code>String</code>
+   */
+  @Override
+  public String toString()
+  {
+    return
+    String.format(
+      "%s@%h::rules=%s",
+      this.getClass().getName(),
+      this.hashCode(),
+      this.rules);
   }
 }
