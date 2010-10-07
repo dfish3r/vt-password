@@ -26,22 +26,22 @@ public class CharacterCharacteristicsRuleTest extends AbstractRuleTest
 {
 
   /** Test password. */
-  private static final String VALID_PASS = "r%scvEW2e93)";
+  private static final Password VALID_PASS = new Password("r%scvEW2e93)");
 
   /** Test password. */
-  private static final String ALPHA_PASS = "r%5#8EW2393)";
+  private static final Password ALPHA_PASS = new Password("r%5#8EW2393)");
 
   /** Test password. */
-  private static final String DIGIT_PASS = "r%scvEW2e9e)";
+  private static final Password DIGIT_PASS = new Password("r%scvEW2e9e)");
 
   /** Test password. */
-  private static final String UPPERCASE_PASS = "r%scv3W2e9)";
+  private static final Password UPPERCASE_PASS = new Password("r%scv3W2e9)");
 
   /** Test password. */
-  private static final String LOWERCASE_PASS = "R%s4VEW239)";
+  private static final Password LOWERCASE_PASS = new Password("R%s4VEW239)");
 
   /** Test password. */
-  private static final String NONALPHA_PASS = "r5scvEW2e9b";
+  private static final Password NONALPHA_PASS = new Password("r5scvEW2e9b");
 
   /** For testing. */
   private CharacterCharacteristicsRule rule =
@@ -73,12 +73,12 @@ public class CharacterCharacteristicsRuleTest extends AbstractRuleTest
     return
       new Object[][] {
 
-        {this.rule, VALID_PASS, true},
-        {this.rule, ALPHA_PASS, false},
-        {this.rule, DIGIT_PASS, false},
-        {this.rule, UPPERCASE_PASS, false},
-        {this.rule, LOWERCASE_PASS, false},
-        {this.rule, NONALPHA_PASS, false},
+        {this.rule, null, VALID_PASS, true},
+        {this.rule, null, ALPHA_PASS, false},
+        {this.rule, null, DIGIT_PASS, false},
+        {this.rule, null, UPPERCASE_PASS, false},
+        {this.rule, null, LOWERCASE_PASS, false},
+        {this.rule, null, NONALPHA_PASS, false},
       };
   }
 }

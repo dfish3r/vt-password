@@ -119,6 +119,24 @@ public abstract class AbstractDictionaryRule
 
 
   /**
+   * See {@link #validate(Password)}.
+   *
+   * @param  username  <code>Username</code> to verify (ignored).
+   * @param  password  <code>Password</code> to verify (not null).
+   *
+   * @return  <code>DictionaryRuleResult</code> - details on password
+   * verification
+   *
+   * @throws  NullPointerException  if the password is null.
+   */
+  public DictionaryRuleResult validate(
+    final Username username, final Password password)
+  {
+    return this.validate(password);
+  }
+
+
+  /**
    * Searches the dictionary with the supplied text.
    *
    * @param  text  to search dictionary with

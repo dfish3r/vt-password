@@ -114,6 +114,26 @@ public class SequenceRule implements Rule
 
 
   /**
+   * This creates a new <code>SequenceRule</code>.
+   */
+  public SequenceRule() {}
+
+
+  /**
+   * This will create a new <code>SequenceRule</code> with the supplied
+   * matchBackwards and ignoreCase settings.
+   *
+   * @param  mb  <code>boolean</code> whether to match backwards
+   * @param  ic  <code>boolean</code> whether to ignore case
+   */
+  public SequenceRule(final boolean mb, final boolean ic)
+  {
+    this.setMatchBackwards(mb);
+    this.setIgnoreCase(ic);
+  }
+
+
+  /**
    * This causes the verify method to ignore case when searching the for a
    * sequence.
    *
@@ -188,6 +208,13 @@ public class SequenceRule implements Rule
       }
     }
     return result;
+  }
+
+
+  /** {@inheritDoc} */
+  public RuleResult validate(final Username username, final Password password)
+  {
+    return this.validate(password);
   }
 
 

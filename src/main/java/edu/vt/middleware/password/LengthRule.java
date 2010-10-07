@@ -143,6 +143,13 @@ public class LengthRule implements Rule
   }
 
 
+  /** {@inheritDoc} */
+  public RuleResult validate(final Username username, final Password password)
+  {
+    return this.validate(password);
+  }
+
+
   /**
    * This returns a string representation of this object.
    *

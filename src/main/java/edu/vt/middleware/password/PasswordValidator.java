@@ -14,67 +14,51 @@
 package edu.vt.middleware.password;
 
 import java.io.RandomAccessFile;
-import java.util.ArrayList;
-import java.util.List;
 import edu.vt.middleware.dictionary.FileWordList;
 import edu.vt.middleware.dictionary.TernaryTreeDictionary;
 
 /**
- * <code>AggregateRule</code> contains methods for setting password rules and
- * then determining if a password meets the requirements of all the rules.
- *
- * @param  <T>  type of rules to validate
+ * <code>PasswordValidator</code> provides methods to running rule validation
+ * against usernames and passwords.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
  */
 
-public class AggregateRule<T extends Rule> implements Rule
+public final class PasswordValidator
 {
 
-  /** rules to apply when checking a password. */
-  protected List<T> rules = new ArrayList<T>();
-
 
   /**
-   * This will return the rules being used by this <code>AggregateRule</code>.
+   * Validates the supplied password against the supplied rule.
    *
-   * @return  <code>List</code> of rules
+   * @param  rule  <code>Rule</code> to validate password with
+   * @param  password  <code>Password</code> to validate
+   * @return  <code>RuleResult</code>
    */
-  public List<T> getRules()
+  public static RuleResult validate(final Rule rule, final Password password)
   {
-    return this.rules;
+    return rule.validate(password);
   }
 
 
   /**
-   * This will set the rules to be used by this <code>AggregateRule</code>.
+   * Validates the supplied username and password against the supplied rule.
    *
-   * @param  l  <code>List</code> of rules
+   * @param  rule  <code>Rule</code> to validate password with
+   * @param  username  <code>Username</code> to validate
+   * @param  password  <code>Password</code> to validate
+   * @return  <code>RuleResult</code>
    */
-  public void setRules(final List<T> l)
+  public static RuleResult validate(
+    final Rule rule, final Username username, final Password password)
   {
-    this.rules = l;
-  }
-
-
-  /** {@inheritDoc} */
-  public RuleResult validate(final Password password)
-  {
-    final RuleResult result = new RuleResult(true);
-    for (Rule rule : this.rules) {
-      final RuleResult rr = rule.validate(password);
-      if (!rr.isValid()) {
-        result.setValid(false);
-        result.getDetails().addAll(rr.getDetails());
-      }
-    }
-    return result;
+    return rule.validate(username, password);
   }
 
 
   /**
-   * This provides command line access to an <code>AggregateRule</code>.
+   * This provides command line access to an <code>PasswordValidator</code>.
    *
    * @param  args  <code>String[]</code>
    *
@@ -83,7 +67,8 @@ public class AggregateRule<T extends Rule> implements Rule
   public static void main(final String[] args)
     throws Exception
   {
-    final AggregateRule<Rule> aggregateRule = new AggregateRule<Rule>();
+    final RuleList<Rule> ruleList = new RuleList<Rule>();
+    String username = null;
     String password = null;
     try {
       if (args.length < 2) {
@@ -94,7 +79,7 @@ public class AggregateRule<T extends Rule> implements Rule
           final int min = Integer.parseInt(args[++i]);
           final int max = Integer.parseInt(args[++i]);
           final LengthRule rule = new LengthRule(min, max);
-          aggregateRule.getRules().add(rule);
+          ruleList.getRules().add(rule);
         } else if ("-c".equals(args[i])) {
           final CharacterCharacteristicsRule rule =
             new CharacterCharacteristicsRule();
@@ -109,7 +94,7 @@ public class AggregateRule<T extends Rule> implements Rule
           rule.getRules().add(
             new LowercaseCharacterRule(Integer.parseInt(args[++i])));
           rule.setNumberOfCharacteristics(Integer.parseInt(args[++i]));
-          aggregateRule.getRules().add(rule);
+          ruleList.getRules().add(rule);
         } else if ("-d".equals(args[i])) {
           final TernaryTreeDictionary dict = new TernaryTreeDictionary(
             new FileWordList(new RandomAccessFile(args[++i], "r"), false));
@@ -117,17 +102,12 @@ public class AggregateRule<T extends Rule> implements Rule
             dict);
           rule.setMatchBackwards(true);
           rule.setWordLength(Integer.parseInt(args[++i]));
-          aggregateRule.getRules().add(rule);
+          ruleList.getRules().add(rule);
         } else if ("-u".equals(args[i])) {
-          final UsernameRule rule = new UsernameRule(args[++i]);
-          rule.setIgnoreCase(true);
-          rule.setMatchBackwards(true);
-          aggregateRule.getRules().add(rule);
+          ruleList.getRules().add(new UsernameRule(true, true));
+          username = args[++i];
         } else if ("-k".equals(args[i])) {
-          final SequenceRule rule = new SequenceRule();
-          rule.setIgnoreCase(true);
-          rule.setMatchBackwards(true);
-          aggregateRule.getRules().add(rule);
+          ruleList.getRules().add(new SequenceRule(true, true));
         } else if ("-h".equals(args[i])) {
           throw new ArrayIndexOutOfBoundsException();
         } else {
@@ -138,8 +118,14 @@ public class AggregateRule<T extends Rule> implements Rule
       if (password == null) {
         throw new ArrayIndexOutOfBoundsException();
       } else {
-        final RuleResult result =
-          aggregateRule.validate(new Password(password));
+        RuleResult result = null;
+        if (username == null) {
+          result = 
+            PasswordValidator.validate(ruleList, new Password(password));
+        } else {
+          result = PasswordValidator.validate(
+            ruleList, new Username(username), new Password(password));
+        }
         if (result.isValid()) {
           System.out.println("Valid password");
         } else {
@@ -151,7 +137,7 @@ public class AggregateRule<T extends Rule> implements Rule
 
     } catch (ArrayIndexOutOfBoundsException e) {
       System.out.println(
-        "Usage: java " + aggregateRule.getClass().getName() + " <password> \\");
+        "Usage: java " + PasswordValidator.class.getName() + " <password> \\");
       System.out.println("       -l (Set the min & max password length) \\");
       System.out.println("          <min> \\");
       System.out.println("          <max> \\");

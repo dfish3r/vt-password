@@ -32,19 +32,22 @@ public class DictionaryRuleTest extends AbstractRuleTest
 {
 
   /** Test password. */
-  private static final String VALID_PASS = "Pullm@n1z3";
+  private static final Password VALID_PASS = new Password("Pullm@n1z3");
 
   /** Test password. */
-  private static final String DICT_PASS = "Pullmanize";
+  private static final Password DICT_PASS = new Password("Pullmanize");
 
   /** Test password. */
-  private static final String BACKWARDS_DICT_PASS = "ezinamlluP";
+  private static final Password BACKWARDS_DICT_PASS =
+    new Password("ezinamlluP");
 
   /** Test password. */
-  private static final String UPPERCASE_DICT_PASS = "PuLLmanIZE";
+  private static final Password UPPERCASE_DICT_PASS =
+    new Password("PuLLmanIZE");
 
   /** Test password. */
-  private static final String BACKWARDS_UPPERCASE_DICT_PASS = "EZInamLLuP";
+  private static final Password BACKWARDS_UPPERCASE_DICT_PASS =
+    new Password("EZInamLLuP");
 
   /** For testing. */
   private DictionaryRule rule = new DictionaryRule();
@@ -108,29 +111,29 @@ public class DictionaryRuleTest extends AbstractRuleTest
     return
       new Object[][] {
 
-        {this.rule, VALID_PASS, true},
-        {this.rule, DICT_PASS, false},
-        {this.rule, BACKWARDS_DICT_PASS, true},
-        {this.rule, UPPERCASE_DICT_PASS, true},
-        {this.rule, BACKWARDS_UPPERCASE_DICT_PASS, true},
+        {this.rule, null, VALID_PASS, true},
+        {this.rule, null, DICT_PASS, false},
+        {this.rule, null, BACKWARDS_DICT_PASS, true},
+        {this.rule, null, UPPERCASE_DICT_PASS, true},
+        {this.rule, null, BACKWARDS_UPPERCASE_DICT_PASS, true},
 
-        {this.backwardsRule, VALID_PASS, true},
-        {this.backwardsRule, DICT_PASS, false},
-        {this.backwardsRule, BACKWARDS_DICT_PASS, false},
-        {this.backwardsRule, UPPERCASE_DICT_PASS, true},
-        {this.backwardsRule, BACKWARDS_UPPERCASE_DICT_PASS, true},
+        {this.backwardsRule, null, VALID_PASS, true},
+        {this.backwardsRule, null, DICT_PASS, false},
+        {this.backwardsRule, null, BACKWARDS_DICT_PASS, false},
+        {this.backwardsRule, null, UPPERCASE_DICT_PASS, true},
+        {this.backwardsRule, null, BACKWARDS_UPPERCASE_DICT_PASS, true},
 
-        {this.ignoreCaseRule, VALID_PASS, true},
-        {this.ignoreCaseRule, DICT_PASS, false},
-        {this.ignoreCaseRule, BACKWARDS_DICT_PASS, true},
-        {this.ignoreCaseRule, UPPERCASE_DICT_PASS, false},
-        {this.ignoreCaseRule, BACKWARDS_UPPERCASE_DICT_PASS, true},
+        {this.ignoreCaseRule, null, VALID_PASS, true},
+        {this.ignoreCaseRule, null, DICT_PASS, false},
+        {this.ignoreCaseRule, null, BACKWARDS_DICT_PASS, true},
+        {this.ignoreCaseRule, null, UPPERCASE_DICT_PASS, false},
+        {this.ignoreCaseRule, null, BACKWARDS_UPPERCASE_DICT_PASS, true},
 
-        {this.allRule, VALID_PASS, true},
-        {this.allRule, DICT_PASS, false},
-        {this.allRule, BACKWARDS_DICT_PASS, false},
-        {this.allRule, UPPERCASE_DICT_PASS, false},
-        {this.allRule, BACKWARDS_UPPERCASE_DICT_PASS, false},
+        {this.allRule, null, VALID_PASS, true},
+        {this.allRule, null, DICT_PASS, false},
+        {this.allRule, null, BACKWARDS_DICT_PASS, false},
+        {this.allRule, null, UPPERCASE_DICT_PASS, false},
+        {this.allRule, null, BACKWARDS_UPPERCASE_DICT_PASS, false},
       };
   }
 }

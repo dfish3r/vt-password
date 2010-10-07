@@ -23,7 +23,7 @@ package edu.vt.middleware.password;
  * @version  $Revision$ $Date$
  */
 
-public class CharacterCharacteristicsRule extends AggregateRule<CharacterRule>
+public class CharacterCharacteristicsRule extends RuleList<CharacterRule>
 {
 
   /** number of rules to enforce. Default value is 1. */
@@ -83,6 +83,13 @@ public class CharacterCharacteristicsRule extends AggregateRule<CharacterRule>
             this.numCharacteristics)));
     }
     return result;
+  }
+
+
+  /** {@inheritDoc} */
+  public RuleResult validate(final Username username, final Password password)
+  {
+    return this.validate(password);
   }
 
 

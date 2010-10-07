@@ -28,6 +28,7 @@ public abstract class AbstractRuleTest
 
   /**
    * @param  rule  to check password with
+   * @param  user  to check
    * @param  pass  to check
    * @param  valid  whether the supplied password should pass the check
    *
@@ -38,14 +39,16 @@ public abstract class AbstractRuleTest
     dataProvider = "passwords"
   )
   public void checkPassword(
-    final Rule rule, final String pass, final boolean valid)
+    final Rule rule,
+    final Username user,
+    final Password pass,
+    final boolean valid)
     throws Exception
   {
     if (valid) {
-      AssertJUnit.assertTrue(rule.validate(new Password(pass)).isValid());
+      AssertJUnit.assertTrue(rule.validate(user, pass).isValid());
     } else {
-      AssertJUnit.assertFalse(
-        rule.validate(new Password(pass)).isValid());
+      AssertJUnit.assertFalse(rule.validate(user, pass).isValid());
     }
   }
 }

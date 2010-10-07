@@ -36,4 +36,11 @@ public class WhitespaceRule implements Rule
         new RuleResultDetail("Password cannot contain whitespace characters"));
     }
   }
+
+
+  /** {@inheritDoc} */
+  public RuleResult validate(final Username username, final Password password)
+  {
+    return this.validate(password);
+  }
 }

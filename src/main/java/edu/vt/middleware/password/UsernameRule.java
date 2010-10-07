@@ -24,12 +24,6 @@ package edu.vt.middleware.password;
 public class UsernameRule implements Rule
 {
 
-  /** username to verify. */
-  private String username;
-
-  /** reverse username to verify. */
-  private String reverseUsername;
-
   /** whether to search for username backwards. */
   private boolean matchBackwards;
 
@@ -38,61 +32,22 @@ public class UsernameRule implements Rule
 
 
   /**
-   * This creates a new <code>UsernameRule</code> without supplying a
-   * username. The username should be set using the {@link #setUsername(String)}
-   * method.
+   * This creates a new <code>UsernameRule</code>.
    */
   public UsernameRule() {}
 
 
   /**
    * This will create a new <code>UsernameRule</code> with the supplied
-   * username.
+   * matchBackwards and ignoreCase settings.
    *
-   * @param  name  <code>String</code>
-   */
-  public UsernameRule(final String name)
-  {
-    this.setUsername(name);
-  }
-
-
-  /**
-   * This will create a new <code>UsernameRule</code> with the supplied
-   * username, matchBackwards, and ignoreCase settings.
-   *
-   * @param  name  <code>String</code> username
    * @param  mb  <code>boolean</code> whether to match backwards
    * @param  ic  <code>boolean</code> whether to ignore case
    */
-  public UsernameRule(final String name, final boolean mb, final boolean ic)
+  public UsernameRule(final boolean mb, final boolean ic)
   {
-    this.setUsername(name);
     this.setMatchBackwards(mb);
     this.setIgnoreCase(ic);
-  }
-
-
-  /**
-   * This sets the username for this rule.
-   *
-   * @param  name  <code>String</code> to set
-   */
-  public void setUsername(final String name)
-  {
-    this.username = name;
-    this.reverseUsername = new StringBuilder(name).reverse().toString();
-  }
-
-
-  /**
-   * This returns the username for this rule.
-   *
-   * @return  <code>String</code>
-   */
-  public String getUsername()
-  {
-    return this.username;
   }
 
 
@@ -145,10 +100,20 @@ public class UsernameRule implements Rule
   /** {@inheritDoc} */
   public RuleResult validate(final Password password)
   {
+    throw new UnsupportedOperationException(
+      "UsernameRule requires a username to perform validation");
+  }
+
+
+
+
+  /** {@inheritDoc} */
+  public RuleResult validate(final Username username, final Password password)
+  {
     final RuleResult result = new RuleResult(true);
     String text = password.getText();
-    String user = this.username;
-    String reverseUser = this.reverseUsername;
+    String user = username.getText();
+    String reverseUser = new StringBuilder(user).reverse().toString();
     if (this.ignoreCase) {
       text = text.toLowerCase();
       user = user.toLowerCase();
@@ -158,14 +123,13 @@ public class UsernameRule implements Rule
       result.setValid(false);
       result.getDetails().add(
         new RuleResultDetail(
-          String.format("Password contains the user id '%s'", this.username)));
+          String.format("Password contains the user id '%s'", user)));
     }
     if (this.matchBackwards && text.indexOf(reverseUser) != -1) {
       result.setValid(false);
       result.getDetails().add(
         new RuleResultDetail(String.format(
-          "Password contains the backwards user id '%s'",
-          this.reverseUsername)));
+          "Password contains the backwards user id '%s'", reverseUser)));
     }
     return result;
   }

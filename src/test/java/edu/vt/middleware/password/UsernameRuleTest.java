@@ -26,32 +26,37 @@ public class UsernameRuleTest extends AbstractRuleTest
 {
 
   /** Test password. */
-  private static final String VALID_PASS = "p4t3stu$er#n65";
+  private static final Password VALID_PASS = new Password("p4t3stu$er#n65");
 
   /** Test password. */
-  private static final String USERID_PASS = "p4testuser#n65";
+  private static final Password USERID_PASS = new Password("p4testuser#n65");
 
   /** Test password. */
-  private static final String BACKWARDS_USERID_PASS = "p4resutset#n65";
+  private static final Password BACKWARDS_USERID_PASS =
+    new Password("p4resutset#n65");
 
   /** Test password. */
-  private static final String UPPERCASE_USERID_PASS = "p4TEStuSER#n65";
+  private static final Password UPPERCASE_USERID_PASS =
+    new Password("p4TEStuSER#n65");
 
   /** Test password. */
-  private static final String BACKWARDS_UPPERCASE_USERID_PASS =
-    "p4RESUTsET#n65";
+  private static final Password BACKWARDS_UPPERCASE_USERID_PASS =
+    new Password("p4RESUTsET#n65");
+
+  /** Test username */
+  private static final Username USERNAME = new Username("testuser");
 
   /** For testing. */
-  private UsernameRule rule = new UsernameRule("testuser");
+  private UsernameRule rule = new UsernameRule();
 
   /** For testing. */
-  private UsernameRule backwardsRule = new UsernameRule("testuser");
+  private UsernameRule backwardsRule = new UsernameRule();
 
   /** For testing. */
-  private UsernameRule ignoreCaseRule = new UsernameRule("testuser");
+  private UsernameRule ignoreCaseRule = new UsernameRule();
 
   /** For testing. */
-  private UsernameRule allRule = new UsernameRule("testuser");
+  private UsernameRule allRule = new UsernameRule();
 
 
   /** Initialize rules for this test. */
@@ -77,29 +82,29 @@ public class UsernameRuleTest extends AbstractRuleTest
     return
       new Object[][] {
 
-        {this.rule, VALID_PASS, true},
-        {this.rule, USERID_PASS, false},
-        {this.rule, BACKWARDS_USERID_PASS, true},
-        {this.rule, UPPERCASE_USERID_PASS, true},
-        {this.rule, BACKWARDS_UPPERCASE_USERID_PASS, true},
+        {this.rule, USERNAME, VALID_PASS, true},
+        {this.rule, USERNAME, USERID_PASS, false},
+        {this.rule, USERNAME, BACKWARDS_USERID_PASS, true},
+        {this.rule, USERNAME, UPPERCASE_USERID_PASS, true},
+        {this.rule, USERNAME, BACKWARDS_UPPERCASE_USERID_PASS, true},
 
-        {this.backwardsRule, VALID_PASS, true},
-        {this.backwardsRule, USERID_PASS, false},
-        {this.backwardsRule, BACKWARDS_USERID_PASS, false},
-        {this.backwardsRule, UPPERCASE_USERID_PASS, true},
-        {this.backwardsRule, BACKWARDS_UPPERCASE_USERID_PASS, true},
+        {this.backwardsRule, USERNAME, VALID_PASS, true},
+        {this.backwardsRule, USERNAME, USERID_PASS, false},
+        {this.backwardsRule, USERNAME, BACKWARDS_USERID_PASS, false},
+        {this.backwardsRule, USERNAME, UPPERCASE_USERID_PASS, true},
+        {this.backwardsRule, USERNAME, BACKWARDS_UPPERCASE_USERID_PASS, true},
 
-        {this.ignoreCaseRule, VALID_PASS, true},
-        {this.ignoreCaseRule, USERID_PASS, false},
-        {this.ignoreCaseRule, BACKWARDS_USERID_PASS, true},
-        {this.ignoreCaseRule, UPPERCASE_USERID_PASS, false},
-        {this.ignoreCaseRule, BACKWARDS_UPPERCASE_USERID_PASS, true},
+        {this.ignoreCaseRule, USERNAME, VALID_PASS, true},
+        {this.ignoreCaseRule, USERNAME, USERID_PASS, false},
+        {this.ignoreCaseRule, USERNAME, BACKWARDS_USERID_PASS, true},
+        {this.ignoreCaseRule, USERNAME, UPPERCASE_USERID_PASS, false},
+        {this.ignoreCaseRule, USERNAME, BACKWARDS_UPPERCASE_USERID_PASS, true},
 
-        {this.allRule, VALID_PASS, true},
-        {this.allRule, USERID_PASS, false},
-        {this.allRule, BACKWARDS_USERID_PASS, false},
-        {this.allRule, UPPERCASE_USERID_PASS, false},
-        {this.allRule, BACKWARDS_UPPERCASE_USERID_PASS, false},
+        {this.allRule, USERNAME, VALID_PASS, true},
+        {this.allRule, USERNAME, USERID_PASS, false},
+        {this.allRule, USERNAME, BACKWARDS_USERID_PASS, false},
+        {this.allRule, USERNAME, UPPERCASE_USERID_PASS, false},
+        {this.allRule, USERNAME, BACKWARDS_UPPERCASE_USERID_PASS, false},
       };
   }
 }

@@ -49,7 +49,7 @@
 
   <bean id="wsRule" class="edu.vt.middleware.password.WhitespaceRule"/>
 
-  <bean id="aggregateRule" class="edu.vt.middleware.password.AggregateRule">
+  <bean id="ruleList" class="edu.vt.middleware.password.RuleList">
     <property name="rules">
       <list>
         <ref bean="charRule"/>

@@ -44,12 +44,9 @@ public class SpringTest
       });
     AssertJUnit.assertTrue(context.getBeanDefinitionCount() > 0);
 
-    final UsernameRule usernameRule =
-      (UsernameRule) context.getBean("usernameRule");
-    usernameRule.setUsername("springuser");
-
-    final AggregateRule<Rule> aggregateRule =
-      (AggregateRule<Rule>) context.getBean("aggregateRule");
-    aggregateRule.validate(new Password("springtest"));
+    final RuleList<Rule> aggregateRule =
+      (RuleList<Rule>) context.getBean("ruleList");
+    aggregateRule.validate(
+      new Username("springuser"), new Password("springtest"));
   }
 }

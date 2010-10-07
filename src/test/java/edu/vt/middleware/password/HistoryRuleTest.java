@@ -27,16 +27,16 @@ public class HistoryRuleTest extends AbstractRuleTest
 {
 
   /** Test password. */
-  private static final String VALID_PASS = "t3stUs3r00";
+  private static final Password VALID_PASS = new Password("t3stUs3r00");
 
   /** Test password. */
-  private static final String HISTORY_PASS1 = "t3stUs3r01";
+  private static final Password HISTORY_PASS1 = new Password("t3stUs3r01");
 
   /** Test password. */
-  private static final String HISTORY_PASS2 = "t3stUs3r02";
+  private static final Password HISTORY_PASS2 = new Password("t3stUs3r02");
 
   /** Test password. */
-  private static final String HISTORY_PASS3 = "t3stUs3r03";
+  private static final Password HISTORY_PASS3 = new Password("t3stUs3r03");
 
   /** For testing. */
   private HistoryRule rule = new HistoryRule();
@@ -47,19 +47,28 @@ public class HistoryRuleTest extends AbstractRuleTest
   /** For testing. */
   private HistoryRule emptyRule = new HistoryRule();
 
+  /** For testing. */
+  private Username user = new Username("testuser");
+
+  /** For testing. */
+  private Username digestUser = new Username("testuser");
+
+  /** For testing. */
+  private Username emptyUser = new Username("testuser");
+
 
   /** Initialize rules for this test. */
   @BeforeClass(groups = {"passtest"})
   public void createRules()
   {
-    rule.getHistory().add(HISTORY_PASS1);
-    rule.getHistory().add(HISTORY_PASS2);
-    rule.getHistory().add(HISTORY_PASS3);
+    this.user.getPasswordHistory().add(HISTORY_PASS1.getText());
+    this.user.getPasswordHistory().add(HISTORY_PASS2.getText());
+    this.user.getPasswordHistory().add(HISTORY_PASS3.getText());
 
-    digestRule.setDigest("SHA-1", new Base64Converter());
-    digestRule.getHistory().add("safx/LW8+SsSy/o3PmCNy4VEm5s=");
-    digestRule.getHistory().add("zurb9DyQ5nooY1la8h86Bh0n1iw=");
-    digestRule.getHistory().add("bhqabXwE3S8E6xNJfX/d76MFOCs=");
+    this.digestRule.setDigest("SHA-1", new Base64Converter());
+    this.digestUser.getPasswordHistory().add("safx/LW8+SsSy/o3PmCNy4VEm5s=");
+    this.digestUser.getPasswordHistory().add("zurb9DyQ5nooY1la8h86Bh0n1iw=");
+    this.digestUser.getPasswordHistory().add("bhqabXwE3S8E6xNJfX/d76MFOCs=");
   }
 
 
@@ -75,20 +84,20 @@ public class HistoryRuleTest extends AbstractRuleTest
     return
       new Object[][] {
 
-        {this.rule, VALID_PASS, true},
-        {this.rule, HISTORY_PASS1, false},
-        {this.rule, HISTORY_PASS2, false},
-        {this.rule, HISTORY_PASS3, false},
+        {this.rule, this.user, VALID_PASS, true},
+        {this.rule, this.user, HISTORY_PASS1, false},
+        {this.rule, this.user, HISTORY_PASS2, false},
+        {this.rule, this.user, HISTORY_PASS3, false},
 
-        {this.digestRule, VALID_PASS, true},
-        {this.digestRule, HISTORY_PASS1, false},
-        {this.digestRule, HISTORY_PASS2, false},
-        {this.digestRule, HISTORY_PASS3, false},
+        {this.digestRule, this.digestUser, VALID_PASS, true},
+        {this.digestRule, this.digestUser, HISTORY_PASS1, false},
+        {this.digestRule, this.digestUser, HISTORY_PASS2, false},
+        {this.digestRule, this.digestUser, HISTORY_PASS3, false},
 
-        {this.emptyRule, VALID_PASS, true},
-        {this.emptyRule, HISTORY_PASS1, true},
-        {this.emptyRule, HISTORY_PASS2, true},
-        {this.emptyRule, HISTORY_PASS3, true},
+        {this.emptyRule, this.emptyUser, VALID_PASS, true},
+        {this.emptyRule, this.emptyUser, HISTORY_PASS1, true},
+        {this.emptyRule, this.emptyUser, HISTORY_PASS2, true},
+        {this.emptyRule, this.emptyUser, HISTORY_PASS3, true},
       };
   }
 }

@@ -27,10 +27,10 @@ public class SourceRuleTest extends AbstractRuleTest
 {
 
   /** Test password. */
-  private static final String VALID_PASS = "t3stUs3r01";
+  private static final Password VALID_PASS = new Password("t3stUs3r01");
 
   /** Test password. */
-  private static final String SOURCE_PASS = "t3stUs3r04";
+  private static final Password SOURCE_PASS = new Password("t3stUs3r04");
 
   /** For testing. */
   private SourceRule rule = new SourceRule();
@@ -41,15 +41,25 @@ public class SourceRuleTest extends AbstractRuleTest
   /** For testing. */
   private SourceRule emptyRule = new SourceRule();
 
+  /** For testing. */
+  private Username user = new Username("testuser");
+
+  /** For testing. */
+  private Username digestUser = new Username("testuser");
+
+  /** For testing. */
+  private Username emptyUser = new Username("testuser");
+
 
   /** Initialize rules for this test. */
   @BeforeClass(groups = {"passtest"})
   public void createRules()
   {
-    this.rule.addSource("System A", "t3stUs3r04");
+    this.user.addPasswordSource("System A", "t3stUs3r04");
 
     this.digestRule.setDigest("SHA-1", new Base64Converter());
-    this.digestRule.addSource("System B", "CJGTDMQRP+rmHApkcijC80aDV0o=");
+    this.digestUser.addPasswordSource(
+      "System B", "CJGTDMQRP+rmHApkcijC80aDV0o=");
   }
 
 
@@ -65,14 +75,14 @@ public class SourceRuleTest extends AbstractRuleTest
     return
       new Object[][] {
 
-        {this.rule, VALID_PASS, true},
-        {this.rule, SOURCE_PASS, false},
+        {this.rule, this.user, VALID_PASS, true},
+        {this.rule, this.user, SOURCE_PASS, false},
 
-        {this.digestRule, VALID_PASS, true},
-        {this.digestRule, SOURCE_PASS, false},
+        {this.digestRule, this.digestUser, VALID_PASS, true},
+        {this.digestRule, this.digestUser, SOURCE_PASS, false},
 
-        {this.emptyRule, VALID_PASS, true},
-        {this.emptyRule, SOURCE_PASS, true},
+        {this.emptyRule, this.emptyUser, VALID_PASS, true},
+        {this.emptyRule, this.emptyUser, SOURCE_PASS, true},
       };
   }
 }

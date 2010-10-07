@@ -53,10 +53,10 @@ public class WhitespaceRuleTest extends AbstractRuleTest
     return
       new Object[][] {
 
-        {this.rule, VALID_PASS, true},
-        {this.rule, SPACE_PASS, false},
-        {this.rule, TAB_PASS, false},
-        {this.rule, LINE_SEP_PASS, false},
+        {this.rule, null, new Password(VALID_PASS), true},
+        {this.rule, null, new Password(SPACE_PASS), false},
+        {this.rule, null, new Password(TAB_PASS), false},
+        {this.rule, null, new Password(LINE_SEP_PASS), false},
       };
   }
 }

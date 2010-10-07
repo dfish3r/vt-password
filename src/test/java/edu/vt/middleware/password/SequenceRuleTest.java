@@ -26,19 +26,22 @@ public class SequenceRuleTest extends AbstractRuleTest
 {
 
   /** Test password. */
-  private static final String VALID_PASS = "p4zRcv8#n65";
+  private static final Password VALID_PASS = new Password("p4zRcv8#n65");
 
   /** Test password. */
-  private static final String SEQ_PASS = "p4zxcvb#n65";
+  private static final Password SEQ_PASS = new Password("p4zxcvb#n65");
 
   /** Test password. */
-  private static final String BACKWARDS_SEQ_PASS = "p4ytrew#n65";
+  private static final Password BACKWARDS_SEQ_PASS =
+    new Password("p4ytrew#n65");
 
   /** Test password. */
-  private static final String UPPERCASE_SEQ_PASS = "p4RTyUI#n65";
+  private static final Password UPPERCASE_SEQ_PASS =
+    new Password("p4RTyUI#n65");
 
   /** Test password. */
-  private static final String BACKWARDS_UPPERCASE_SEQ_PASS = "p4][POi#n65";
+  private static final Password BACKWARDS_UPPERCASE_SEQ_PASS =
+    new Password("p4][POi#n65");
 
   /** For testing. */
   private SequenceRule rule = new SequenceRule();
@@ -76,29 +79,29 @@ public class SequenceRuleTest extends AbstractRuleTest
     return
       new Object[][] {
 
-        {this.rule, VALID_PASS, true},
-        {this.rule, SEQ_PASS, false},
-        {this.rule, BACKWARDS_SEQ_PASS, true},
-        {this.rule, UPPERCASE_SEQ_PASS, true},
-        {this.rule, BACKWARDS_UPPERCASE_SEQ_PASS, true},
+        {this.rule, null, VALID_PASS, true},
+        {this.rule, null, SEQ_PASS, false},
+        {this.rule, null, BACKWARDS_SEQ_PASS, true},
+        {this.rule, null, UPPERCASE_SEQ_PASS, true},
+        {this.rule, null, BACKWARDS_UPPERCASE_SEQ_PASS, true},
 
-        {this.backwardsRule, VALID_PASS, true},
-        {this.backwardsRule, SEQ_PASS, false},
-        {this.backwardsRule, BACKWARDS_SEQ_PASS, false},
-        {this.backwardsRule, UPPERCASE_SEQ_PASS, true},
-        {this.backwardsRule, BACKWARDS_UPPERCASE_SEQ_PASS, true},
+        {this.backwardsRule, null, VALID_PASS, true},
+        {this.backwardsRule, null, SEQ_PASS, false},
+        {this.backwardsRule, null, BACKWARDS_SEQ_PASS, false},
+        {this.backwardsRule, null, UPPERCASE_SEQ_PASS, true},
+        {this.backwardsRule, null, BACKWARDS_UPPERCASE_SEQ_PASS, true},
 
-        {this.ignoreCaseRule, VALID_PASS, true},
-        {this.ignoreCaseRule, SEQ_PASS, false},
-        {this.ignoreCaseRule, BACKWARDS_SEQ_PASS, true},
-        {this.ignoreCaseRule, UPPERCASE_SEQ_PASS, false},
-        {this.ignoreCaseRule, BACKWARDS_UPPERCASE_SEQ_PASS, true},
+        {this.ignoreCaseRule, null, VALID_PASS, true},
+        {this.ignoreCaseRule, null, SEQ_PASS, false},
+        {this.ignoreCaseRule, null, BACKWARDS_SEQ_PASS, true},
+        {this.ignoreCaseRule, null, UPPERCASE_SEQ_PASS, false},
+        {this.ignoreCaseRule, null, BACKWARDS_UPPERCASE_SEQ_PASS, true},
 
-        {this.allRule, VALID_PASS, true},
-        {this.allRule, SEQ_PASS, false},
-        {this.allRule, BACKWARDS_SEQ_PASS, false},
-        {this.allRule, UPPERCASE_SEQ_PASS, false},
-        {this.allRule, BACKWARDS_UPPERCASE_SEQ_PASS, false},
+        {this.allRule, null, VALID_PASS, true},
+        {this.allRule, null, SEQ_PASS, false},
+        {this.allRule, null, BACKWARDS_SEQ_PASS, false},
+        {this.allRule, null, UPPERCASE_SEQ_PASS, false},
+        {this.allRule, null, BACKWARDS_UPPERCASE_SEQ_PASS, false},
       };
   }
 }

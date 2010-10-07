@@ -25,19 +25,19 @@ public class LengthRuleTest extends AbstractRuleTest
 {
 
   /** Test password. */
-  private static final String MIN_VALID_PASS = "p4T3#6Tu";
+  private static final Password MIN_VALID_PASS = new Password("p4T3#6Tu");
 
   /** Test password. */
-  private static final String MID_VALID_PASS = "p4T3t#6Tu";
+  private static final Password MID_VALID_PASS = new Password("p4T3t#6Tu");
 
   /** Test password. */
-  private static final String MAX_VALID_PASS = "p4T3to#6Tu";
+  private static final Password MAX_VALID_PASS = new Password("p4T3to#6Tu");
 
   /** Test password. */
-  private static final String SHORT_PASS = "p4T36";
+  private static final Password SHORT_PASS = new Password("p4T36");
 
   /** Test password. */
-  private static final String LONG_PASS = "p4T3j76rE@#";
+  private static final Password LONG_PASS = new Password("p4T3j76rE@#");
 
   /** For testing. */
   private LengthRule rule = new LengthRule(8, 10);
@@ -58,17 +58,17 @@ public class LengthRuleTest extends AbstractRuleTest
     return
       new Object[][] {
 
-        {this.rule, MIN_VALID_PASS, true},
-        {this.rule, MID_VALID_PASS, true},
-        {this.rule, MAX_VALID_PASS, true},
-        {this.rule, SHORT_PASS, false},
-        {this.rule, LONG_PASS, false},
+        {this.rule, null, MIN_VALID_PASS, true},
+        {this.rule, null, MID_VALID_PASS, true},
+        {this.rule, null, MAX_VALID_PASS, true},
+        {this.rule, null, SHORT_PASS, false},
+        {this.rule, null, LONG_PASS, false},
 
-        {this.minRule, MIN_VALID_PASS, true},
-        {this.minRule, MID_VALID_PASS, false},
-        {this.minRule, MAX_VALID_PASS, false},
-        {this.minRule, SHORT_PASS, false},
-        {this.minRule, LONG_PASS, false},
+        {this.minRule, null, MIN_VALID_PASS, true},
+        {this.minRule, null, MID_VALID_PASS, false},
+        {this.minRule, null, MAX_VALID_PASS, false},
+        {this.minRule, null, SHORT_PASS, false},
+        {this.minRule, null, LONG_PASS, false},
       };
   }
 }
