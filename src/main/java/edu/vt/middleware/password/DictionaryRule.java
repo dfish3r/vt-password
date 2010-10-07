@@ -23,7 +23,7 @@ import edu.vt.middleware.dictionary.Dictionary;
  * @version  $Revision$ $Date$
  */
 
-public class DictionaryRule extends AbstractDictionaryRule implements Rule
+public class DictionaryRule extends AbstractDictionaryRule
 {
 
   /**

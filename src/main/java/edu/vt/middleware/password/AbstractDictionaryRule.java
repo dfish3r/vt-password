@@ -23,7 +23,7 @@ import edu.vt.middleware.dictionary.Dictionary;
  * @version  $Revision$ $Date$
  */
 
-public abstract class AbstractDictionaryRule
+public abstract class AbstractDictionaryRule implements Rule
 {
 
   /** dictionary of words. */
