@@ -26,7 +26,7 @@ import java.util.List;
  * @version  $Revision$ $Date$
  */
 
-public class HistoryRule extends AbstractDigestRule implements Rule
+public class HistoryRule extends AbstractDigester implements Rule
 {
 
   /** password history. */

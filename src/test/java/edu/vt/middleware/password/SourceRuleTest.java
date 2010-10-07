@@ -48,7 +48,7 @@ public class SourceRuleTest extends AbstractRuleTest
   {
     this.rule.addSource("System A", "t3stUs3r04");
 
-    this.digestRule.useDigest("SHA-1", new Base64Converter());
+    this.digestRule.setDigest("SHA-1", new Base64Converter());
     this.digestRule.addSource("System B", "CJGTDMQRP+rmHApkcijC80aDV0o=");
   }
 

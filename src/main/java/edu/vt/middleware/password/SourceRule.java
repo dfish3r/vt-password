@@ -25,7 +25,7 @@ import java.util.Map;
  * @version  $Revision$ $Date$
  */
 
-public class SourceRule extends AbstractDigestRule implements Rule
+public class SourceRule extends AbstractDigester implements Rule
 {
 
   /** password sources. */

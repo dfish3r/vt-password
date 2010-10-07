@@ -17,14 +17,14 @@ import edu.vt.middleware.crypt.digest.DigestAlgorithm;
 import edu.vt.middleware.crypt.util.Converter;
 
 /**
- * <code>AbstractDigestRule</code> provides core methods for password rules that
+ * <code>AbstractDigester</code> provides core methods for password rules that
  * use a digest.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
  */
 
-public abstract class AbstractDigestRule
+public abstract class AbstractDigester
 {
 
   /** digest object to use if comparing hashed passwords. */
@@ -42,7 +42,7 @@ public abstract class AbstractDigestRule
    * @param  algorithm  <code>String</code> to use for hashing
    * @param  conv  <code>Converter</code> to convert bytes to string
    */
-  public void useDigest(final String algorithm, final Converter conv)
+  public void setDigest(final String algorithm, final Converter conv)
   {
     this.digest = DigestAlgorithm.newInstance(algorithm);
     this.converter = conv;

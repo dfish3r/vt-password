@@ -56,7 +56,7 @@ public class HistoryRuleTest extends AbstractRuleTest
     rule.getHistory().add(HISTORY_PASS2);
     rule.getHistory().add(HISTORY_PASS3);
 
-    digestRule.useDigest("SHA-1", new Base64Converter());
+    digestRule.setDigest("SHA-1", new Base64Converter());
     digestRule.getHistory().add("safx/LW8+SsSy/o3PmCNy4VEm5s=");
     digestRule.getHistory().add("zurb9DyQ5nooY1la8h86Bh0n1iw=");
     digestRule.getHistory().add("bhqabXwE3S8E6xNJfX/d76MFOCs=");
