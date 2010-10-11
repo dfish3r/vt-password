@@ -45,6 +45,6 @@ public class SpringTest
 
     final RuleList aggregateRule = (RuleList) context.getBean("ruleList");
     aggregateRule.validate(
-      new Username("springuser"), new Password("springtest"));
+      new PasswordData(new Username("springuser"), new Password("springtest")));
   }
 }

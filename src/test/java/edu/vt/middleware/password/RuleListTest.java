@@ -130,108 +130,228 @@ public class RuleListTest extends AbstractRuleTest
         /** invalid character rule passwords. */
 
         /** all digits */
-        {this.rule, this.user, new Password("4326789032"), false},
+        {
+          this.rule,
+          new PasswordData(this.user, new Password("4326789032")),
+          false,
+        },
 
         /** all non-alphanumeric */
-        {this.rule, this.user, new Password("$&!$#@*{{>"), false},
+        {
+          this.rule,
+          new PasswordData(this.user, new Password("$&!$#@*{{>")),
+          false,
+        },
 
         /** all lowercase */
-        {this.rule, this.user, new Password("aycdopezss"), false},
+        {
+          this.rule,
+          new PasswordData(this.user, new Password("aycdopezss")),
+          false,
+        },
 
         /** all uppercase */
-        {this.rule, this.user, new Password("AYCDOPEZSS"), false},
+        {
+          this.rule,
+          new PasswordData(this.user, new Password("AYCDOPEZSS")),
+          false,
+        },
 
         /** digits and non-alphanumeric */
-        {this.rule, this.user, new Password("@&3*(%5{}^"), false},
+        {
+          this.rule,
+          new PasswordData(this.user, new Password("@&3*(%5{}^")),
+          false,
+        },
 
         /** digits and lowercase */
-        {this.rule, this.user, new Password("ay3dop5zss"), false},
+        {
+          this.rule,
+          new PasswordData(this.user, new Password("ay3dop5zss")),
+          false,
+        },
 
         /** digits and uppercase */
-        {this.rule, this.user, new Password("AY3DOP5ZSS"), false},
+        {
+          this.rule,
+          new PasswordData(this.user, new Password("AY3DOP5ZSS")),
+          false,
+        },
 
         /** non-alphanumeric and lowercase */
-        {this.rule, this.user, new Password("a&c*o%ea}s"), false},
+        {
+          this.rule,
+          new PasswordData(this.user, new Password("a&c*o%ea}s")),
+          false,
+        },
 
         /** non-alphanumeric and uppercase */
-        {this.rule, this.user, new Password("A&C*O%EA}S"), false},
+        {
+          this.rule,
+          new PasswordData(this.user, new Password("A&C*O%EA}S")),
+          false,
+        },
 
         /** uppercase and lowercase */
-        {this.rule, this.user, new Password("AycDOPdsyz"), false},
+        {
+          this.rule,
+          new PasswordData(this.user, new Password("AycDOPdsyz")),
+          false,
+        },
 
         /** invalid whitespace rule passwords. */
 
         /** contains a space */
-        {this.rule, this.user, new Password("AycD Pdsyz"), false},
+        {
+          this.rule,
+          new PasswordData(this.user, new Password("AycD Pdsyz")),
+          false,
+        },
 
         /** contains a tab */
-        {this.rule, this.user, new Password("AycD    Psyz"), false},
+        {
+          this.rule,
+          new PasswordData(this.user, new Password("AycD    Psyz")),
+          false,
+        },
 
         /** invalid length rule passwords. */
 
         /** too short */
-        {this.rule, this.user, new Password("p4T3t#"), false},
+        {
+          this.rule,
+          new PasswordData(this.user, new Password("p4T3t#")),
+          false,
+        },
 
         /** too long */
-        {this.rule, this.user, new Password("p4t3t#n6574632vbad#@!8"), false},
+        {
+          this.rule,
+          new PasswordData(this.user, new Password("p4t3t#n6574632vbad#@!8")),
+          false,
+        },
 
         /** invalid dictionary rule passwords. */
 
         /** matches dictionary word 'none' */
-        {this.rule, this.user, new Password("p4t3t#none"), false},
+        {
+          this.rule,
+          new PasswordData(this.user, new Password("p4t3t#none")),
+          false,
+        },
 
         /** matches dictionary word 'none' backwards */
-        {this.rule, this.user, new Password("p4t3t#enon"), false},
+        {
+          this.rule,
+          new PasswordData(this.user, new Password("p4t3t#enon")),
+          false,
+        },
 
         /** invalid sequence rule passwords. */
 
         /** matches sequence 'zxcvb' */
-        {this.rule, this.user, new Password("p4zxcvb#n65"), false},
+        {
+          this.rule,
+          new PasswordData(this.user, new Password("p4zxcvb#n65")),
+          false,
+        },
 
         /** matches sequence 'werty' backwards */
-        {this.rule, this.user, new Password("p4ytrew#n65"), false},
+        {
+          this.rule,
+          new PasswordData(this.user, new Password("p4ytrew#n65")),
+          false,
+        },
 
         /** matches sequence 'iop[]' ignore case */
-        {this.rule, this.user, new Password("p4iOP[]#n65"), false},
+        {
+          this.rule,
+          new PasswordData(this.user, new Password("p4iOP[]#n65")),
+          false,
+        },
 
         /** invalid userid rule passwords. */
 
         /** contains userid 'testuser' */
-        {this.rule, this.user, new Password("p4testuser#n65"), false},
+        {
+          this.rule,
+          new PasswordData(this.user, new Password("p4testuser#n65")),
+          false,
+        },
 
         /** contains userid 'testuser' backwards */
-        {this.rule, this.user, new Password("p4resutset#n65"), false},
+        {
+          this.rule,
+          new PasswordData(this.user, new Password("p4resutset#n65")),
+          false,
+        },
 
         /** contains userid 'testuser' ignore case */
-        {this.rule, this.user, new Password("p4TeStusEr#n65"), false},
+        {
+          this.rule,
+          new PasswordData(this.user, new Password("p4TeStusEr#n65")),
+          false,
+        },
 
         /** invalid history rule passwords. */
 
         /** contains history password */
-        {this.rule, this.user, new Password("t3stUs3r02"), false},
+        {
+          this.rule,
+          new PasswordData(this.user, new Password("t3stUs3r02")),
+          false,
+        },
 
         /** contains history password */
-        {this.rule, this.user, new Password("t3stUs3r03"), false},
+        {
+          this.rule,
+          new PasswordData(this.user, new Password("t3stUs3r03")),
+          false,
+        },
 
         /** contains source password */
-        {this.rule, this.user, new Password("t3stUs3r04"), false},
+        {
+          this.rule,
+          new PasswordData(this.user, new Password("t3stUs3r04")),
+          false,
+        },
 
         /** valid passwords. */
 
         /** digits, non-alphanumeric, lowercase, uppercase */
-        {this.rule, this.user, new Password("p4T3t#N65"), true},
+        {
+          this.rule,
+          new PasswordData(this.user, new Password("p4T3t#N65")),
+          true,
+        },
 
         /** digits, non-alphanumeric, lowercase */
-        {this.rule, this.user, new Password("p4t3t#n65"), true},
+        {
+          this.rule,
+          new PasswordData(this.user, new Password("p4t3t#n65")),
+          true,
+        },
 
         /** digits, non-alphanumeric, uppercase */
-        {this.rule, this.user, new Password("P4T3T#N65"), true},
+        {
+          this.rule,
+          new PasswordData(this.user, new Password("P4T3T#N65")),
+          true,
+        },
 
         /** digits, uppercase, lowercase */
-        {this.rule, this.user, new Password("p4t3tCn65"), true},
+        {
+          this.rule,
+          new PasswordData(this.user, new Password("p4t3tCn65")),
+          true,
+        },
 
         /** non-alphanumeric, lowercase, uppercase */
-        {this.rule, this.user, new Password("pxT%t#Nwq"), true},
+        {
+          this.rule,
+          new PasswordData(this.user, new Password("pxT%t#Nwq")),
+          true,
+        },
       };
   }
 }

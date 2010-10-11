@@ -20,7 +20,6 @@ package edu.vt.middleware.password;
  * @author  Middleware Services
  * @version  $Revision: 1636 $ $Date: 2010-10-04 11:12:15 -0400 (Mon, 04 Oct 2010) $
  */
-
 public abstract class AbstractCharacterRule implements CharacterRule
 {
 
@@ -66,22 +65,16 @@ public abstract class AbstractCharacterRule implements CharacterRule
 
 
   /** {@inheritDoc} */
-  public RuleResult validate(final Password password)
+  public RuleResult validate(final PasswordData passwordData)
   {
-    if (this.getNumberOfCharacterType(password) >= this.numCharacters) {
+    if (this.getNumberOfCharacterType(
+        passwordData.getPassword()) >= this.numCharacters) {
       return new RuleResult(true);
     } else {
       return new RuleResult(
         false,
         new RuleResultDetail(this.getRuleResultDetailMessage()));
     }
-  }
-
-
-  /** {@inheritDoc} */
-  public RuleResult validate(final Username username, final Password password)
-  {
-    return this.validate(password);
   }
 
 

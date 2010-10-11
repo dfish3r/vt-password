@@ -73,12 +73,12 @@ public class CharacterCharacteristicsRuleTest extends AbstractRuleTest
     return
       new Object[][] {
 
-        {this.rule, null, VALID_PASS, true},
-        {this.rule, null, ALPHA_PASS, false},
-        {this.rule, null, DIGIT_PASS, false},
-        {this.rule, null, UPPERCASE_PASS, false},
-        {this.rule, null, LOWERCASE_PASS, false},
-        {this.rule, null, NONALPHA_PASS, false},
+        {this.rule, new PasswordData(VALID_PASS), true, },
+        {this.rule, new PasswordData(ALPHA_PASS), false, },
+        {this.rule, new PasswordData(DIGIT_PASS), false, },
+        {this.rule, new PasswordData(UPPERCASE_PASS), false, },
+        {this.rule, new PasswordData(LOWERCASE_PASS), false, },
+        {this.rule, new PasswordData(NONALPHA_PASS), false, },
       };
   }
 }

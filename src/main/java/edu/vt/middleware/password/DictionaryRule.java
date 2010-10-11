@@ -22,7 +22,6 @@ import edu.vt.middleware.dictionary.Dictionary;
  * @author  Middleware Services
  * @version  $Revision$ $Date$
  */
-
 public class DictionaryRule extends AbstractDictionaryRule
 {
 

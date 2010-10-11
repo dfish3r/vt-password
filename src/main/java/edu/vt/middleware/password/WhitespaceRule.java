@@ -20,27 +20,19 @@ package edu.vt.middleware.password;
  * @author  Middleware Services
  * @version  $Revision$ $Date$
  */
-
 public class WhitespaceRule implements Rule
 {
 
 
   /** {@inheritDoc} */
-  public RuleResult validate(final Password password)
+  public RuleResult validate(final PasswordData passwordData)
   {
-    if (!password.containsWhitespace()) {
+    if (!passwordData.getPassword().containsWhitespace()) {
       return new RuleResult(true);
     } else {
       return new RuleResult(
         false,
         new RuleResultDetail("Password cannot contain whitespace characters"));
     }
-  }
-
-
-  /** {@inheritDoc} */
-  public RuleResult validate(final Username username, final Password password)
-  {
-    return this.validate(password);
   }
 }

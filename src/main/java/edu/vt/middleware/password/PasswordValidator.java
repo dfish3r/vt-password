@@ -19,7 +19,7 @@ import edu.vt.middleware.dictionary.TernaryTreeDictionary;
 
 /**
  * <code>PasswordValidator</code> provides methods to running rule validation
- * against usernames and passwords.
+ * against password data.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
@@ -36,30 +36,16 @@ public final class PasswordValidator
 
 
   /**
-   * Validates the supplied password against the supplied rule.
+   * Validates the supplied password data against the supplied rule.
    *
    * @param  rule  <code>Rule</code> to validate password with
-   * @param  password  <code>Password</code> to validate
-   * @return  <code>RuleResult</code>
-   */
-  public static RuleResult validate(final Rule rule, final Password password)
-  {
-    return rule.validate(password);
-  }
-
-
-  /**
-   * Validates the supplied username and password against the supplied rule.
-   *
-   * @param  rule  <code>Rule</code> to validate password with
-   * @param  username  <code>Username</code> to validate
-   * @param  password  <code>Password</code> to validate
+   * @param  passwordData  <code>PasswordData</code> to validate
    * @return  <code>RuleResult</code>
    */
   public static RuleResult validate(
-    final Rule rule, final Username username, final Password password)
+    final Rule rule, final PasswordData passwordData)
   {
-    return rule.validate(username, password);
+    return rule.validate(passwordData);
   }
 
 
@@ -127,10 +113,12 @@ public final class PasswordValidator
         RuleResult result = null;
         if (username == null) {
           result =
-            PasswordValidator.validate(ruleList, new Password(password));
+            PasswordValidator.validate(
+              ruleList, new PasswordData(new Password(password)));
         } else {
           result = PasswordValidator.validate(
-            ruleList, new Username(username), new Password(password));
+            ruleList,
+            new PasswordData(new Username(username), new Password(password)));
         }
         if (result.isValid()) {
           System.out.println("Valid password");

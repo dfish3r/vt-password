@@ -111,29 +111,41 @@ public class DictionaryRuleTest extends AbstractRuleTest
     return
       new Object[][] {
 
-        {this.rule, null, VALID_PASS, true},
-        {this.rule, null, DICT_PASS, false},
-        {this.rule, null, BACKWARDS_DICT_PASS, true},
-        {this.rule, null, UPPERCASE_DICT_PASS, true},
-        {this.rule, null, BACKWARDS_UPPERCASE_DICT_PASS, true},
+        {this.rule, new PasswordData(VALID_PASS), true, },
+        {this.rule, new PasswordData(DICT_PASS), false, },
+        {this.rule, new PasswordData(BACKWARDS_DICT_PASS), true, },
+        {this.rule, new PasswordData(UPPERCASE_DICT_PASS), true, },
+        {this.rule, new PasswordData(BACKWARDS_UPPERCASE_DICT_PASS), true, },
 
-        {this.backwardsRule, null, VALID_PASS, true},
-        {this.backwardsRule, null, DICT_PASS, false},
-        {this.backwardsRule, null, BACKWARDS_DICT_PASS, false},
-        {this.backwardsRule, null, UPPERCASE_DICT_PASS, true},
-        {this.backwardsRule, null, BACKWARDS_UPPERCASE_DICT_PASS, true},
+        {this.backwardsRule, new PasswordData(VALID_PASS), true, },
+        {this.backwardsRule, new PasswordData(DICT_PASS), false, },
+        {this.backwardsRule, new PasswordData(BACKWARDS_DICT_PASS), false, },
+        {this.backwardsRule, new PasswordData(UPPERCASE_DICT_PASS), true, },
+        {
+          this.backwardsRule,
+          new PasswordData(BACKWARDS_UPPERCASE_DICT_PASS),
+          true,
+        },
 
-        {this.ignoreCaseRule, null, VALID_PASS, true},
-        {this.ignoreCaseRule, null, DICT_PASS, false},
-        {this.ignoreCaseRule, null, BACKWARDS_DICT_PASS, true},
-        {this.ignoreCaseRule, null, UPPERCASE_DICT_PASS, false},
-        {this.ignoreCaseRule, null, BACKWARDS_UPPERCASE_DICT_PASS, true},
+        {this.ignoreCaseRule, new PasswordData(VALID_PASS), true, },
+        {this.ignoreCaseRule, new PasswordData(DICT_PASS), false, },
+        {this.ignoreCaseRule, new PasswordData(BACKWARDS_DICT_PASS), true, },
+        {this.ignoreCaseRule, new PasswordData(UPPERCASE_DICT_PASS), false, },
+        {
+          this.ignoreCaseRule,
+          new PasswordData(BACKWARDS_UPPERCASE_DICT_PASS),
+          true,
+        },
 
-        {this.allRule, null, VALID_PASS, true},
-        {this.allRule, null, DICT_PASS, false},
-        {this.allRule, null, BACKWARDS_DICT_PASS, false},
-        {this.allRule, null, UPPERCASE_DICT_PASS, false},
-        {this.allRule, null, BACKWARDS_UPPERCASE_DICT_PASS, false},
+        {this.allRule, new PasswordData(VALID_PASS), true, },
+        {this.allRule, new PasswordData(DICT_PASS), false, },
+        {this.allRule, new PasswordData(BACKWARDS_DICT_PASS), false, },
+        {this.allRule, new PasswordData(UPPERCASE_DICT_PASS), false, },
+        {
+          this.allRule,
+          new PasswordData(BACKWARDS_UPPERCASE_DICT_PASS),
+          false,
+        },
       };
   }
 }

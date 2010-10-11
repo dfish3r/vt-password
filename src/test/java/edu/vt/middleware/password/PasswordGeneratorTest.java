@@ -115,7 +115,9 @@ public class PasswordGeneratorTest
   public void testGenerator(final Password pass)
     throws Exception
   {
-    AssertJUnit.assertFalse(this.failCharRule.validate(pass).isValid());
-    AssertJUnit.assertTrue(this.verifyCharRule.validate(pass).isValid());
+    AssertJUnit.assertFalse(
+      this.failCharRule.validate(new PasswordData(pass)).isValid());
+    AssertJUnit.assertTrue(
+      this.verifyCharRule.validate(new PasswordData(pass)).isValid());
   }
 }

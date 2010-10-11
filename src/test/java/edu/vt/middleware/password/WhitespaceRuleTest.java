@@ -25,17 +25,19 @@ public class WhitespaceRuleTest extends AbstractRuleTest
 {
 
   /** Test password. */
-  private static final String VALID_PASS = "AycDPdsyz";
+  private static final Password VALID_PASS = new Password("AycDPdsyz");
 
   /** Test password. */
-  private static final String SPACE_PASS = "AycD" + " " + "Pdsyz";
+  private static final Password SPACE_PASS =
+    new Password("AycD" + " " + "Pdsyz");
 
   /** Test password. */
-  private static final String TAB_PASS = "Ayc" + "\t" + "DPdsyz";
+  private static final Password TAB_PASS =
+    new Password("Ayc" + "\t" + "DPdsyz");
 
   /** Test password. */
-  private static final String LINE_SEP_PASS =
-    "AycDPs" + System.getProperty("line.separator") + "yz";
+  private static final Password LINE_SEP_PASS =
+    new Password("AycDPs" + System.getProperty("line.separator") + "yz");
 
   /** For testing. */
   private WhitespaceRule rule = new WhitespaceRule();
@@ -53,10 +55,10 @@ public class WhitespaceRuleTest extends AbstractRuleTest
     return
       new Object[][] {
 
-        {this.rule, null, new Password(VALID_PASS), true},
-        {this.rule, null, new Password(SPACE_PASS), false},
-        {this.rule, null, new Password(TAB_PASS), false},
-        {this.rule, null, new Password(LINE_SEP_PASS), false},
+        {this.rule, new PasswordData(VALID_PASS), true, },
+        {this.rule, new PasswordData(SPACE_PASS), false, },
+        {this.rule, new PasswordData(TAB_PASS), false, },
+        {this.rule, new PasswordData(LINE_SEP_PASS), false, },
       };
   }
 }

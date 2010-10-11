@@ -20,7 +20,6 @@ package edu.vt.middleware.password;
  * @author  Middleware Services
  * @version  $Revision$ $Date$
  */
-
 public class UsernameRule implements Rule
 {
 
@@ -98,21 +97,11 @@ public class UsernameRule implements Rule
 
 
   /** {@inheritDoc} */
-  public RuleResult validate(final Password password)
-  {
-    throw new UnsupportedOperationException(
-      "UsernameRule requires a username to perform validation");
-  }
-
-
-
-
-  /** {@inheritDoc} */
-  public RuleResult validate(final Username username, final Password password)
+  public RuleResult validate(final PasswordData passwordData)
   {
     final RuleResult result = new RuleResult(true);
-    String text = password.getText();
-    String user = username.getText();
+    String text = passwordData.getPassword().getText();
+    String user = passwordData.getUsername().getText();
     String reverseUser = new StringBuilder(user).reverse().toString();
     if (this.ignoreCase) {
       text = text.toLowerCase();

@@ -65,29 +65,30 @@ public class PasswordValidatorTest
     throws Exception
   {
     AssertJUnit.assertTrue(
-      PasswordValidator.validate(this.ruleList, VALID_PASS).isValid());
+      PasswordValidator.validate(
+        this.ruleList, new PasswordData(VALID_PASS)).isValid());
     AssertJUnit.assertFalse(
-      PasswordValidator.validate(this.ruleList, INVALID_PASS).isValid());
+      PasswordValidator.validate(
+        this.ruleList, new PasswordData(INVALID_PASS)).isValid());
 
     this.ruleList.getRules().add(new UsernameRule(true, true));
 
     try {
-      PasswordValidator.validate(ruleList, VALID_PASS);
-      AssertJUnit.fail("Should have thrown UnsupportedOperationException");
-    } catch (UnsupportedOperationException e) {
+      PasswordValidator.validate(ruleList, new PasswordData(VALID_PASS));
+      AssertJUnit.fail("Should have thrown NullPointerException");
+    } catch (NullPointerException e) {
       AssertJUnit.assertEquals(
-        e.getClass(), UnsupportedOperationException.class);
+        e.getClass(), NullPointerException.class);
     } catch (Exception e) {
       AssertJUnit.fail(
-        "Should have thrown UnsupportedOperationException, threw " +
-        e.getMessage());
+        "Should have thrown NullPointerException, threw " + e.getMessage());
     }
 
     AssertJUnit.assertTrue(
       PasswordValidator.validate(
-        this.ruleList, USERNAME, VALID_PASS).isValid());
+        this.ruleList, new PasswordData(USERNAME, VALID_PASS)).isValid());
     AssertJUnit.assertFalse(
       PasswordValidator.validate(
-        this.ruleList, USERNAME, INVALID_PASS).isValid());
+        this.ruleList, new PasswordData(USERNAME, INVALID_PASS)).isValid());
   }
 }

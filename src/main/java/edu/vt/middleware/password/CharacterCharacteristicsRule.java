@@ -25,7 +25,6 @@ import java.util.List;
  * @author  Middleware Services
  * @version  $Revision$ $Date$
  */
-
 public class CharacterCharacteristicsRule implements Rule
 {
 
@@ -91,12 +90,12 @@ public class CharacterCharacteristicsRule implements Rule
 
 
   /** {@inheritDoc} */
-  public RuleResult validate(final Password password)
+  public RuleResult validate(final PasswordData passwordData)
   {
     int successCount = 0;
     final RuleResult result = new RuleResult(true);
     for (CharacterRule rule : this.rules) {
-      final RuleResult rr = rule.validate(password);
+      final RuleResult rr = rule.validate(passwordData);
       if (!rr.isValid()) {
         result.getDetails().addAll(rr.getDetails());
       } else {
@@ -113,13 +112,6 @@ public class CharacterCharacteristicsRule implements Rule
             this.numCharacteristics)));
     }
     return result;
-  }
-
-
-  /** {@inheritDoc} */
-  public RuleResult validate(final Username username, final Password password)
-  {
-    return this.validate(password);
   }
 
 

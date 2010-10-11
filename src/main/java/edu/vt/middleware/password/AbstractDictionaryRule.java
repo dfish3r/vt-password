@@ -22,7 +22,6 @@ import edu.vt.middleware.dictionary.Dictionary;
  * @author  Middleware Services
  * @version  $Revision$ $Date$
  */
-
 public abstract class AbstractDictionaryRule implements Rule
 {
 
@@ -80,19 +79,19 @@ public abstract class AbstractDictionaryRule implements Rule
 
 
   /**
-   * See {@link Rule#validate(Password)}.
+   * See {@link Rule#validate(PasswordData)}.
    *
-   * @param  password  <code>Password</code> to verify (not null).
+   * @param  passwordData  <code>PasswordData</code> to verify (not null).
    *
    * @return  <code>DictionaryRuleResult</code> - details on password
    * verification
    *
-   * @throws  NullPointerException  if the password is null.
+   * @throws  NullPointerException  if the password data is null.
    */
-  public DictionaryRuleResult validate(final Password password)
+  public DictionaryRuleResult validate(final PasswordData passwordData)
   {
     final DictionaryRuleResult result = new DictionaryRuleResult(true);
-    String text = password.getText();
+    String text = passwordData.getPassword().getText();
     String matchingWord = doWordSearch(text);
     if (matchingWord != null) {
       result.setValid(false);
@@ -103,7 +102,8 @@ public abstract class AbstractDictionaryRule implements Rule
       result.setMatchingWord(matchingWord);
     }
     if (this.matchBackwards) {
-      text = new StringBuilder(password.getText()).reverse().toString();
+      text = new StringBuilder(
+        passwordData.getPassword().getText()).reverse().toString();
       matchingWord = doWordSearch(text);
       if (matchingWord != null) {
         result.setValid(false);
@@ -115,24 +115,6 @@ public abstract class AbstractDictionaryRule implements Rule
       }
     }
     return result;
-  }
-
-
-  /**
-   * See {@link #validate(Password)}.
-   *
-   * @param  username  <code>Username</code> to verify (ignored).
-   * @param  password  <code>Password</code> to verify (not null).
-   *
-   * @return  <code>DictionaryRuleResult</code> - details on password
-   * verification
-   *
-   * @throws  NullPointerException  if the password is null.
-   */
-  public DictionaryRuleResult validate(
-    final Username username, final Password password)
-  {
-    return this.validate(password);
   }
 
 

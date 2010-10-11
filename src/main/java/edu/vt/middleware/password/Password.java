@@ -20,7 +20,6 @@ package edu.vt.middleware.password;
  * @author  Middleware Services
  * @version  $Revision$ $Date$
  */
-
 public class Password
 {
 

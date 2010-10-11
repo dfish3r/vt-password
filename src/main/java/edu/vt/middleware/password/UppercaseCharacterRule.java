@@ -20,7 +20,6 @@ package edu.vt.middleware.password;
  * @author  Middleware Services
  * @version  $Revision: 1636 $ $Date: 2010-10-04 11:12:15 -0400 (Mon, 04 Oct 2010) $
  */
-
 public class UppercaseCharacterRule extends AbstractCharacterRule
 {
 

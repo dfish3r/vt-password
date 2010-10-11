@@ -25,32 +25,14 @@ public interface Rule
 
 
   /**
-   * This returns whether or not the supplied password meets the requirements of
-   * this rule.
-   *
-   * @param  password  <code>Password</code> to verify (not null).
-   *
-   * @return  <code>RuleResult</code> - details on password verification
-   *
-   * @throws  NullPointerException  if the password is null.
-   * @throws  UnsupportedOperationException  if the rule does not support
-   * validation with these arguments
-   */
-  RuleResult validate(Password password);
-
-
-  /**
-   * This returns whether or not the supplied username and password meets the
+   * This returns whether or not the supplied password data meets the
    * requirements of this rule.
    *
-   * @param  password  <code>Password</code> to verify (not null).
-   * @param  username  <code>Username</code> to verify (not null).
+   * @param  passwordData  <code>PasswordData</code> to verify (not null).
    *
    * @return  <code>RuleResult</code> - details on password verification
    *
-   * @throws  NullPointerException  if the username or password is null.
-   * @throws  UnsupportedOperationException  if the rule does not support
-   * validation with these arguments
+   * @throws  NullPointerException  if the rule data is null.
    */
-  RuleResult validate(Username username, Password password);
+  RuleResult validate(PasswordData passwordData);
 }

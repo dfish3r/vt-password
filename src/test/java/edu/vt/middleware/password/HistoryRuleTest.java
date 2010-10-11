@@ -84,20 +84,48 @@ public class HistoryRuleTest extends AbstractRuleTest
     return
       new Object[][] {
 
-        {this.rule, this.user, VALID_PASS, true},
-        {this.rule, this.user, HISTORY_PASS1, false},
-        {this.rule, this.user, HISTORY_PASS2, false},
-        {this.rule, this.user, HISTORY_PASS3, false},
+        {this.rule, new PasswordData(this.user, VALID_PASS), true, },
+        {this.rule, new PasswordData(this.user, HISTORY_PASS1), false, },
+        {this.rule, new PasswordData(this.user, HISTORY_PASS2), false, },
+        {this.rule, new PasswordData(this.user, HISTORY_PASS3), false, },
 
-        {this.digestRule, this.digestUser, VALID_PASS, true},
-        {this.digestRule, this.digestUser, HISTORY_PASS1, false},
-        {this.digestRule, this.digestUser, HISTORY_PASS2, false},
-        {this.digestRule, this.digestUser, HISTORY_PASS3, false},
+        {
+          this.digestRule,
+          new PasswordData(this.digestUser, VALID_PASS),
+          true,
+        },
+        {
+          this.digestRule,
+          new PasswordData(this.digestUser, HISTORY_PASS1),
+          false,
+        },
+        {
+          this.digestRule,
+          new PasswordData(this.digestUser, HISTORY_PASS2),
+          false,
+        },
+        {
+          this.digestRule,
+          new PasswordData(this.digestUser, HISTORY_PASS3),
+          false,
+        },
 
-        {this.emptyRule, this.emptyUser, VALID_PASS, true},
-        {this.emptyRule, this.emptyUser, HISTORY_PASS1, true},
-        {this.emptyRule, this.emptyUser, HISTORY_PASS2, true},
-        {this.emptyRule, this.emptyUser, HISTORY_PASS3, true},
+        {this.emptyRule, new PasswordData(this.emptyUser, VALID_PASS), true, },
+        {
+          this.emptyRule,
+          new PasswordData(this.emptyUser, HISTORY_PASS1),
+          true,
+        },
+        {
+          this.emptyRule,
+          new PasswordData(this.emptyUser, HISTORY_PASS2),
+          true,
+        },
+        {
+          this.emptyRule,
+          new PasswordData(this.emptyUser, HISTORY_PASS3),
+          true,
+        },
       };
   }
 }

@@ -22,44 +22,35 @@ package edu.vt.middleware.password;
  * @author  Middleware Services
  * @version  $Revision$ $Date$
  */
-
 public class HistoryRule extends AbstractDigester implements Rule
 {
 
 
   /** {@inheritDoc} */
-  public RuleResult validate(final Password password)
-  {
-    throw new UnsupportedOperationException(
-      "HistoryRule requires a username to perform validation");
-  }
-
-
-  /** {@inheritDoc} */
-  public RuleResult validate(final Username username, final Password password)
+  public RuleResult validate(final PasswordData passwordData)
   {
     final RuleResult result = new RuleResult(true);
 
-    if (!username.getPasswordHistory().isEmpty()) {
-      for (String p : username.getPasswordHistory()) {
+    if (!passwordData.getUsername().getPasswordHistory().isEmpty()) {
+      for (String p : passwordData.getUsername().getPasswordHistory()) {
         if (this.digest != null) {
           final String hash = this.digest.digest(
-            password.getText().getBytes(),
+            passwordData.getPassword().getText().getBytes(),
             this.converter);
           if (p.equals(hash)) {
             result.setValid(false);
             result.getDetails().add(
               new RuleResultDetail(String.format(
                 "Password matches one of %s previous passwords",
-                username.getPasswordHistory().size())));
+                passwordData.getUsername().getPasswordHistory().size())));
           }
         } else {
-          if (p.equals(password.getText())) {
+          if (p.equals(passwordData.getPassword().getText())) {
             result.setValid(false);
             result.getDetails().add(
               new RuleResultDetail(String.format(
                 "Password matches one of %s previous passwords",
-                username.getPasswordHistory().size())));
+                passwordData.getUsername().getPasswordHistory().size())));
           }
         }
       }

@@ -75,14 +75,22 @@ public class SourceRuleTest extends AbstractRuleTest
     return
       new Object[][] {
 
-        {this.rule, this.user, VALID_PASS, true},
-        {this.rule, this.user, SOURCE_PASS, false},
+        {this.rule, new PasswordData(this.user, VALID_PASS), true, },
+        {this.rule, new PasswordData(this.user, SOURCE_PASS), false, },
 
-        {this.digestRule, this.digestUser, VALID_PASS, true},
-        {this.digestRule, this.digestUser, SOURCE_PASS, false},
+        {
+          this.digestRule,
+          new PasswordData(this.digestUser, VALID_PASS),
+          true,
+        },
+        {
+          this.digestRule,
+          new PasswordData(this.digestUser, SOURCE_PASS),
+          false,
+        },
 
-        {this.emptyRule, this.emptyUser, VALID_PASS, true},
-        {this.emptyRule, this.emptyUser, SOURCE_PASS, true},
+        {this.emptyRule, new PasswordData(this.emptyUser, VALID_PASS), true, },
+        {this.emptyRule, new PasswordData(this.emptyUser, SOURCE_PASS), true, },
       };
   }
 }

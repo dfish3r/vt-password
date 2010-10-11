@@ -54,26 +54,11 @@ public class RuleList implements Rule
 
 
   /** {@inheritDoc} */
-  public RuleResult validate(final Password password)
+  public RuleResult validate(final PasswordData passwordData)
   {
     final RuleResult result = new RuleResult(true);
     for (Rule rule : this.rules) {
-      final RuleResult rr = rule.validate(password);
-      if (!rr.isValid()) {
-        result.setValid(false);
-        result.getDetails().addAll(rr.getDetails());
-      }
-    }
-    return result;
-  }
-
-
-  /** {@inheritDoc} */
-  public RuleResult validate(final Username username, final Password password)
-  {
-    final RuleResult result = new RuleResult(true);
-    for (Rule rule : this.rules) {
-      final RuleResult rr = rule.validate(username, password);
+      final RuleResult rr = rule.validate(passwordData);
       if (!rr.isValid()) {
         result.setValid(false);
         result.getDetails().addAll(rr.getDetails());

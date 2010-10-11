@@ -58,17 +58,17 @@ public class LengthRuleTest extends AbstractRuleTest
     return
       new Object[][] {
 
-        {this.rule, null, MIN_VALID_PASS, true},
-        {this.rule, null, MID_VALID_PASS, true},
-        {this.rule, null, MAX_VALID_PASS, true},
-        {this.rule, null, SHORT_PASS, false},
-        {this.rule, null, LONG_PASS, false},
+        {this.rule, new PasswordData(MIN_VALID_PASS), true, },
+        {this.rule, new PasswordData(MID_VALID_PASS), true, },
+        {this.rule, new PasswordData(MAX_VALID_PASS), true, },
+        {this.rule, new PasswordData(SHORT_PASS), false, },
+        {this.rule, new PasswordData(LONG_PASS), false, },
 
-        {this.minRule, null, MIN_VALID_PASS, true},
-        {this.minRule, null, MID_VALID_PASS, false},
-        {this.minRule, null, MAX_VALID_PASS, false},
-        {this.minRule, null, SHORT_PASS, false},
-        {this.minRule, null, LONG_PASS, false},
+        {this.minRule, new PasswordData(MIN_VALID_PASS), true, },
+        {this.minRule, new PasswordData(MID_VALID_PASS), false, },
+        {this.minRule, new PasswordData(MAX_VALID_PASS), false, },
+        {this.minRule, new PasswordData(SHORT_PASS), false, },
+        {this.minRule, new PasswordData(LONG_PASS), false, },
       };
   }
 }

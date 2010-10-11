@@ -25,7 +25,6 @@ import java.util.Map;
  * @author  Middleware Services
  * @version  $Revision$ $Date$
  */
-
 public class Username
 {
 

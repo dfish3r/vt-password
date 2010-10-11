@@ -24,31 +24,22 @@ import java.util.Map;
  * @author  Middleware Services
  * @version  $Revision$ $Date$
  */
-
 public class SourceRule extends AbstractDigester implements Rule
 {
 
 
   /** {@inheritDoc} */
-  public RuleResult validate(final Password password)
-  {
-    throw new UnsupportedOperationException(
-      "SourceRule requires a username to perform validation");
-  }
-
-
-  /** {@inheritDoc} */
-  public RuleResult validate(final Username username, final Password password)
+  public RuleResult validate(final PasswordData passwordData)
   {
     final RuleResult result = new RuleResult(true);
 
-    if (!username.getPasswordSources().isEmpty()) {
+    if (!passwordData.getUsername().getPasswordSources().isEmpty()) {
       for (Map.Entry<String, String> entry :
-           username.getPasswordSources().entrySet()) {
+           passwordData.getUsername().getPasswordSources().entrySet()) {
         final String p = entry.getValue();
         if (this.digest != null) {
           final String hash = this.digest.digest(
-            password.getText().getBytes(),
+            passwordData.getPassword().getText().getBytes(),
             this.converter);
           if (p.equals(hash)) {
             result.setValid(false);
@@ -58,7 +49,7 @@ public class SourceRule extends AbstractDigester implements Rule
                 entry.getKey())));
           }
         } else {
-          if (p.equals(password.getText())) {
+          if (p.equals(passwordData.getPassword().getText())) {
             result.setValid(false);
             result.getDetails().add(
               new RuleResultDetail(String.format(

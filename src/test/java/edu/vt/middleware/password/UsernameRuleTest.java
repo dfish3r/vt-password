@@ -82,29 +82,69 @@ public class UsernameRuleTest extends AbstractRuleTest
     return
       new Object[][] {
 
-        {this.rule, USERNAME, VALID_PASS, true},
-        {this.rule, USERNAME, USERID_PASS, false},
-        {this.rule, USERNAME, BACKWARDS_USERID_PASS, true},
-        {this.rule, USERNAME, UPPERCASE_USERID_PASS, true},
-        {this.rule, USERNAME, BACKWARDS_UPPERCASE_USERID_PASS, true},
+        {this.rule, new PasswordData(USERNAME, VALID_PASS), true, },
+        {this.rule, new PasswordData(USERNAME, USERID_PASS), false, },
+        {this.rule, new PasswordData(USERNAME, BACKWARDS_USERID_PASS), true, },
+        {this.rule, new PasswordData(USERNAME, UPPERCASE_USERID_PASS), true, },
+        {
+          this.rule,
+          new PasswordData(USERNAME, BACKWARDS_UPPERCASE_USERID_PASS),
+          true,
+        },
 
-        {this.backwardsRule, USERNAME, VALID_PASS, true},
-        {this.backwardsRule, USERNAME, USERID_PASS, false},
-        {this.backwardsRule, USERNAME, BACKWARDS_USERID_PASS, false},
-        {this.backwardsRule, USERNAME, UPPERCASE_USERID_PASS, true},
-        {this.backwardsRule, USERNAME, BACKWARDS_UPPERCASE_USERID_PASS, true},
+        {this.backwardsRule, new PasswordData(USERNAME, VALID_PASS), true, },
+        {this.backwardsRule, new PasswordData(USERNAME, USERID_PASS), false, },
+        {
+          this.backwardsRule,
+          new PasswordData(USERNAME, BACKWARDS_USERID_PASS),
+          false,
+        },
+        {
+          this.backwardsRule,
+          new PasswordData(USERNAME, UPPERCASE_USERID_PASS),
+          true,
+        },
+        {
+          this.backwardsRule,
+          new PasswordData(USERNAME, BACKWARDS_UPPERCASE_USERID_PASS),
+          true,
+        },
 
-        {this.ignoreCaseRule, USERNAME, VALID_PASS, true},
-        {this.ignoreCaseRule, USERNAME, USERID_PASS, false},
-        {this.ignoreCaseRule, USERNAME, BACKWARDS_USERID_PASS, true},
-        {this.ignoreCaseRule, USERNAME, UPPERCASE_USERID_PASS, false},
-        {this.ignoreCaseRule, USERNAME, BACKWARDS_UPPERCASE_USERID_PASS, true},
+        {this.ignoreCaseRule, new PasswordData(USERNAME, VALID_PASS), true, },
+        {this.ignoreCaseRule, new PasswordData(USERNAME, USERID_PASS), false, },
+        {
+          this.ignoreCaseRule,
+          new PasswordData(USERNAME, BACKWARDS_USERID_PASS),
+          true,
+        },
+        {
+          this.ignoreCaseRule,
+          new PasswordData(USERNAME, UPPERCASE_USERID_PASS),
+          false,
+        },
+        {
+          this.ignoreCaseRule,
+          new PasswordData(USERNAME, BACKWARDS_UPPERCASE_USERID_PASS),
+          true,
+        },
 
-        {this.allRule, USERNAME, VALID_PASS, true},
-        {this.allRule, USERNAME, USERID_PASS, false},
-        {this.allRule, USERNAME, BACKWARDS_USERID_PASS, false},
-        {this.allRule, USERNAME, UPPERCASE_USERID_PASS, false},
-        {this.allRule, USERNAME, BACKWARDS_UPPERCASE_USERID_PASS, false},
+        {this.allRule, new PasswordData(USERNAME, VALID_PASS), true, },
+        {this.allRule, new PasswordData(USERNAME, USERID_PASS), false, },
+        {
+          this.allRule,
+          new PasswordData(USERNAME, BACKWARDS_USERID_PASS),
+          false,
+        },
+        {
+          this.allRule,
+          new PasswordData(USERNAME, UPPERCASE_USERID_PASS),
+          false,
+        },
+        {
+          this.allRule,
+          new PasswordData(USERNAME, BACKWARDS_UPPERCASE_USERID_PASS),
+          false,
+        },
       };
   }
 }

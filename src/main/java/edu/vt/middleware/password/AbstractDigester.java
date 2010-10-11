@@ -23,7 +23,6 @@ import edu.vt.middleware.crypt.util.Converter;
  * @author  Middleware Services
  * @version  $Revision$ $Date$
  */
-
 public abstract class AbstractDigester
 {
 

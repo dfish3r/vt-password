@@ -21,7 +21,6 @@ package edu.vt.middleware.password;
  * @author  Middleware Services
  * @version  $Revision$ $Date$
  */
-
 public class LengthRule implements Rule
 {
 
@@ -111,12 +110,12 @@ public class LengthRule implements Rule
 
 
   /** {@inheritDoc} */
-  public RuleResult validate(final Password password)
+  public RuleResult validate(final PasswordData passwordData)
   {
     final RuleResult result = new RuleResult();
     if (
-      password.length() >= this.minimumLength &&
-        password.length() <= this.maximumLength) {
+      passwordData.getPassword().length() >= this.minimumLength &&
+        passwordData.getPassword().length() <= this.maximumLength) {
       result.setValid(true);
     } else if (this.minimumLength == this.maximumLength) {
       result.setValid(false);
@@ -140,13 +139,6 @@ public class LengthRule implements Rule
           this.maximumLength)));
     }
     return result;
-  }
-
-
-  /** {@inheritDoc} */
-  public RuleResult validate(final Username username, final Password password)
-  {
-    return this.validate(password);
   }
 
 

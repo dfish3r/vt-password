@@ -20,7 +20,6 @@ package edu.vt.middleware.password;
  * @author  Middleware Services
  * @version  $Revision$ $Date$
  */
-
 public class SequenceRule implements Rule
 {
 
@@ -180,10 +179,10 @@ public class SequenceRule implements Rule
 
 
   /** {@inheritDoc} */
-  public RuleResult validate(final Password password)
+  public RuleResult validate(final PasswordData passwordData)
   {
     final RuleResult result = new RuleResult(true);
-    String text = password.getText();
+    String text = passwordData.getPassword().getText();
     if (this.ignoreCase) {
       text = text.toLowerCase();
     }
@@ -208,13 +207,6 @@ public class SequenceRule implements Rule
       }
     }
     return result;
-  }
-
-
-  /** {@inheritDoc} */
-  public RuleResult validate(final Username username, final Password password)
-  {
-    return this.validate(password);
   }
 
 
