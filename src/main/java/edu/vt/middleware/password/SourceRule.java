@@ -33,9 +33,9 @@ public class SourceRule extends AbstractDigester implements Rule
   {
     final RuleResult result = new RuleResult(true);
 
-    if (!passwordData.getUsername().getPasswordSources().isEmpty()) {
+    if (!passwordData.getPasswordSources().isEmpty()) {
       for (Map.Entry<String, String> entry :
-           passwordData.getUsername().getPasswordSources().entrySet()) {
+           passwordData.getPasswordSources().entrySet()) {
         final String p = entry.getValue();
         if (this.digest != null) {
           final String hash = this.digest.digest(

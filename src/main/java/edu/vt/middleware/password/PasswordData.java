@@ -13,6 +13,11 @@
 */
 package edu.vt.middleware.password;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * <code>PasswordData</code> contains the information used by rules to perform
  * password validation.
@@ -27,7 +32,13 @@ public class PasswordData
   private Password password;
 
   /** Stores the username. */
-  private Username username;
+  private String username;
+
+  /** password history. */
+  private List<String> passwordHistory = new ArrayList<String>();
+
+  /** password sources. */
+  private Map<String, String> passwordSources = new HashMap<String, String>();
 
 
   /**
@@ -49,26 +60,15 @@ public class PasswordData
 
 
   /**
-   * This will create a new <code>PasswordData</code> with the supplied uesrname
-   * and password.
-   *
-   * @param  u  <code>Username</code>
-   * @param  p  <code>Password</code>
-   */
-  public PasswordData(final Username u, final Password p)
-  {
-    this.setUsername(u);
-    this.setPassword(p);
-  }
-
-
-  /**
    * Set the password.
    *
    * @param  p  <code>Password</code>
    */
   public void setPassword(final Password p)
   {
+    if (p == null) {
+      throw new NullPointerException("Password cannot be null");
+    }
     this.password = p;
   }
 
@@ -87,22 +87,88 @@ public class PasswordData
   /**
    * Set the username.
    *
-   * @param  u  <code>Username</code>
+   * @param  s  <code>String</code>
    */
-  public void setUsername(final Username u)
+  public void setUsername(final String s)
   {
-    this.username = u;
+    if (s == null) {
+      throw new NullPointerException("Username cannot be null");
+    }
+    this.username = s;
   }
 
 
   /**
    * Get the username.
    *
-   * @return  <code>Username</code>
+   * @return  <code>String</code>
    */
-  public Username getUsername()
+  public String getUsername()
   {
     return this.username;
+  }
+
+
+  /**
+   * This will return the password history.
+   *
+   * @return  <code>List</code> of password history
+   */
+  public List<String> getPasswordHistory()
+  {
+    return this.passwordHistory;
+  }
+
+
+  /**
+   * This will set the password history.
+   *
+   * @param  l  <code>List</code> of password history
+   */
+  public void setPasswordHistory(final List<String> l)
+  {
+    this.passwordHistory = l;
+  }
+
+
+  /**
+   * This will return the password sources.
+   *
+   * @return  <code>Map</code> of password sources
+   */
+  public Map<String, String> getPasswordSources()
+  {
+    return this.passwordSources;
+  }
+
+
+  /**
+   * This will set the password sources.
+   *
+   * @param  m  <code>Map</code> of password sources
+   */
+  public void setPasswordSources(final Map<String, String> m)
+  {
+    this.passwordSources = m;
+  }
+
+
+  /**
+   * This will add the supplied password as a password source.
+   *
+   * @param  source  <code>String</code> label
+   * @param  pass  <code>String</code> to add
+   * @throws  NullPointerException if source or password is null
+   */
+  public void addPasswordSource(final String source, final String pass)
+  {
+    if (source == null) {
+      throw new NullPointerException("Source cannot be null");
+    }
+    if (pass == null) {
+      throw new NullPointerException("Password cannot be null");
+    }
+    this.passwordSources.put(source, pass);
   }
 
 
@@ -116,10 +182,12 @@ public class PasswordData
   {
     return
     String.format(
-      "%s@%h::username=%s,password=%s",
+      "%s@%h::username=%s,password=%s,passwordHistory=%s,passwordSources=%s",
       this.getClass().getName(),
       this.hashCode(),
       this.username,
-      this.password);
+      this.password,
+      this.passwordHistory,
+      this.passwordSources);
   }
 }

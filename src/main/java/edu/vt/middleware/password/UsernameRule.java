@@ -101,7 +101,7 @@ public class UsernameRule implements Rule
   {
     final RuleResult result = new RuleResult(true);
     String text = passwordData.getPassword().getText();
-    String user = passwordData.getUsername().getText();
+    String user = passwordData.getUsername();
     String reverseUser = new StringBuilder(user).reverse().toString();
     if (this.ignoreCase) {
       text = text.toLowerCase();

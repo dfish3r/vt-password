@@ -44,7 +44,7 @@ public class UsernameRuleTest extends AbstractRuleTest
     new Password("p4RESUTsET#n65");
 
   /** Test username */
-  private static final Username USERNAME = new Username("testuser");
+  private static final String USER = "testuser";
 
   /** For testing. */
   private UsernameRule rule = new UsernameRule();
@@ -82,67 +82,107 @@ public class UsernameRuleTest extends AbstractRuleTest
     return
       new Object[][] {
 
-        {this.rule, new PasswordData(USERNAME, VALID_PASS), true, },
-        {this.rule, new PasswordData(USERNAME, USERID_PASS), false, },
-        {this.rule, new PasswordData(USERNAME, BACKWARDS_USERID_PASS), true, },
-        {this.rule, new PasswordData(USERNAME, UPPERCASE_USERID_PASS), true, },
         {
           this.rule,
-          new PasswordData(USERNAME, BACKWARDS_UPPERCASE_USERID_PASS),
+          createPasswordData(VALID_PASS, USER, null, null),
+          true,
+        },
+        {
+          this.rule,
+          createPasswordData(USERID_PASS, USER, null, null),
+          false,
+        },
+        {
+          this.rule,
+          createPasswordData(BACKWARDS_USERID_PASS, USER, null, null),
+          true,
+        },
+        {
+          this.rule,
+          createPasswordData(UPPERCASE_USERID_PASS, USER, null, null),
+          true,
+        },
+        {
+          this.rule,
+          createPasswordData(BACKWARDS_UPPERCASE_USERID_PASS, USER, null, null),
           true,
         },
 
-        {this.backwardsRule, new PasswordData(USERNAME, VALID_PASS), true, },
-        {this.backwardsRule, new PasswordData(USERNAME, USERID_PASS), false, },
         {
           this.backwardsRule,
-          new PasswordData(USERNAME, BACKWARDS_USERID_PASS),
-          false,
-        },
-        {
-          this.backwardsRule,
-          new PasswordData(USERNAME, UPPERCASE_USERID_PASS),
+          createPasswordData(VALID_PASS, USER, null, null),
           true,
         },
         {
           this.backwardsRule,
-          new PasswordData(USERNAME, BACKWARDS_UPPERCASE_USERID_PASS),
+          createPasswordData(USERID_PASS, USER, null, null),
+          false,
+        },
+        {
+          this.backwardsRule,
+          createPasswordData(BACKWARDS_USERID_PASS, USER, null, null),
+          false,
+        },
+        {
+          this.backwardsRule,
+          createPasswordData(UPPERCASE_USERID_PASS, USER, null, null),
+          true,
+        },
+        {
+          this.backwardsRule,
+          createPasswordData(BACKWARDS_UPPERCASE_USERID_PASS, USER, null, null),
           true,
         },
 
-        {this.ignoreCaseRule, new PasswordData(USERNAME, VALID_PASS), true, },
-        {this.ignoreCaseRule, new PasswordData(USERNAME, USERID_PASS), false, },
         {
           this.ignoreCaseRule,
-          new PasswordData(USERNAME, BACKWARDS_USERID_PASS),
+          createPasswordData(VALID_PASS, USER, null, null),
           true,
         },
         {
           this.ignoreCaseRule,
-          new PasswordData(USERNAME, UPPERCASE_USERID_PASS),
+          createPasswordData(USERID_PASS, USER, null, null),
           false,
         },
         {
           this.ignoreCaseRule,
-          new PasswordData(USERNAME, BACKWARDS_UPPERCASE_USERID_PASS),
+          createPasswordData(BACKWARDS_USERID_PASS, USER, null, null),
+          true,
+        },
+        {
+          this.ignoreCaseRule,
+          createPasswordData(UPPERCASE_USERID_PASS, USER, null, null),
+          false,
+        },
+        {
+          this.ignoreCaseRule,
+          createPasswordData(BACKWARDS_UPPERCASE_USERID_PASS, USER, null, null),
           true,
         },
 
-        {this.allRule, new PasswordData(USERNAME, VALID_PASS), true, },
-        {this.allRule, new PasswordData(USERNAME, USERID_PASS), false, },
         {
           this.allRule,
-          new PasswordData(USERNAME, BACKWARDS_USERID_PASS),
+          createPasswordData(VALID_PASS, USER, null, null),
+          true,
+        },
+        {
+          this.allRule,
+          createPasswordData(USERID_PASS, USER, null, null),
           false,
         },
         {
           this.allRule,
-          new PasswordData(USERNAME, UPPERCASE_USERID_PASS),
+          createPasswordData(BACKWARDS_USERID_PASS, USER, null, null),
           false,
         },
         {
           this.allRule,
-          new PasswordData(USERNAME, BACKWARDS_UPPERCASE_USERID_PASS),
+          createPasswordData(UPPERCASE_USERID_PASS, USER, null, null),
+          false,
+        },
+        {
+          this.allRule,
+          createPasswordData(BACKWARDS_UPPERCASE_USERID_PASS, USER, null, null),
           false,
         },
       };

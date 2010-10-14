@@ -31,8 +31,8 @@ public class HistoryRule extends AbstractDigester implements Rule
   {
     final RuleResult result = new RuleResult(true);
 
-    if (!passwordData.getUsername().getPasswordHistory().isEmpty()) {
-      for (String p : passwordData.getUsername().getPasswordHistory()) {
+    if (!passwordData.getPasswordHistory().isEmpty()) {
+      for (String p : passwordData.getPasswordHistory()) {
         if (this.digest != null) {
           final String hash = this.digest.digest(
             passwordData.getPassword().getText().getBytes(),
@@ -42,7 +42,7 @@ public class HistoryRule extends AbstractDigester implements Rule
             result.getDetails().add(
               new RuleResultDetail(String.format(
                 "Password matches one of %s previous passwords",
-                passwordData.getUsername().getPasswordHistory().size())));
+                passwordData.getPasswordHistory().size())));
           }
         } else {
           if (p.equals(passwordData.getPassword().getText())) {
@@ -50,7 +50,7 @@ public class HistoryRule extends AbstractDigester implements Rule
             result.getDetails().add(
               new RuleResultDetail(String.format(
                 "Password matches one of %s previous passwords",
-                passwordData.getUsername().getPasswordHistory().size())));
+                passwordData.getPasswordHistory().size())));
           }
         }
       }

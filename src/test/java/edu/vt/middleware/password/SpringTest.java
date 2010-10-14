@@ -43,8 +43,9 @@ public class SpringTest
       });
     AssertJUnit.assertTrue(context.getBeanDefinitionCount() > 0);
 
-    final RuleList aggregateRule = (RuleList) context.getBean("ruleList");
-    aggregateRule.validate(
-      new PasswordData(new Username("springuser"), new Password("springtest")));
+    final RuleList ruleList = (RuleList) context.getBean("ruleList");
+    final PasswordData pd = new PasswordData(new Password("springtest"));
+    pd.setUsername("springuser");
+    ruleList.validate(pd);
   }
 }

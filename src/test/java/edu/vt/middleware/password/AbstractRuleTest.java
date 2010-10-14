@@ -13,6 +13,8 @@
 */
 package edu.vt.middleware.password;
 
+import java.util.List;
+import java.util.Map;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
@@ -48,5 +50,37 @@ public abstract class AbstractRuleTest
     } else {
       AssertJUnit.assertFalse(rule.validate(passwordData).isValid());
     }
+  }
+
+
+  /**
+   * Creates a new <code>PasswordData</code> with the supplied input.
+   *
+   * @param  password  <code>Password</code>
+   * @param username  <code>String</code>
+   * @param history  <code>List</code>
+   * @param sources  <code>Map</code>
+   * @return  <code>PasswordData</code>
+   */
+  protected static PasswordData createPasswordData(
+    final Password password,
+    final String username,
+    final List<String> history,
+    final Map<String, String> sources)
+  {
+    final PasswordData pd = new PasswordData();
+    if (password != null) {
+      pd.setPassword(password);
+    }
+    if (username != null) {
+      pd.setUsername(username);
+    }
+    if (history != null) {
+      pd.setPasswordHistory(history);
+    }
+    if (sources != null) {
+      pd.setPasswordSources(sources);
+    }
+    return pd;
   }
 }

@@ -33,7 +33,7 @@ public class PasswordValidatorTest
   private static final Password INVALID_PASS = new Password("aBcDeFgHiJk");
 
   /** For testing. */
-  private static final Username USERNAME = new Username("testuser");
+  private static final String USER = "testuser";
 
   /** For testing. */
   private RuleList ruleList = new RuleList();
@@ -84,11 +84,14 @@ public class PasswordValidatorTest
         "Should have thrown NullPointerException, threw " + e.getMessage());
     }
 
+    final PasswordData valid = new PasswordData(VALID_PASS);
+    valid.setUsername(USER);
     AssertJUnit.assertTrue(
-      PasswordValidator.validate(
-        this.ruleList, new PasswordData(USERNAME, VALID_PASS)).isValid());
+      PasswordValidator.validate(this.ruleList, valid).isValid());
+
+    final PasswordData invalid = new PasswordData(INVALID_PASS);
+    invalid.setUsername(USER);
     AssertJUnit.assertFalse(
-      PasswordValidator.validate(
-        this.ruleList, new PasswordData(USERNAME, INVALID_PASS)).isValid());
+      PasswordValidator.validate(this.ruleList, invalid).isValid());
   }
 }

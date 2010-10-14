@@ -14,6 +14,10 @@
 package edu.vt.middleware.password;
 
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import edu.vt.middleware.crypt.util.Base64Converter;
 import edu.vt.middleware.dictionary.ArrayWordList;
 import edu.vt.middleware.dictionary.Dictionary;
@@ -34,7 +38,13 @@ public class RuleListTest extends AbstractRuleTest
 {
 
   /** For testing. */
-  private Username user = new Username("testuser");
+  private static final String USER = "testuser";
+
+  /** For testing. */
+  private List<String> history = new ArrayList<String>();
+
+  /** For testing. */
+  private Map<String, String> sources = new HashMap<String, String>();
 
   /** Test checker. */
   private RuleList rule = new RuleList();
@@ -96,13 +106,13 @@ public class RuleListTest extends AbstractRuleTest
 
     final HistoryRule historyRule = new HistoryRule();
     historyRule.setDigest("SHA-1", new Base64Converter());
-    this.user.getPasswordHistory().add("safx/LW8+SsSy/o3PmCNy4VEm5s=");
-    this.user.getPasswordHistory().add("zurb9DyQ5nooY1la8h86Bh0n1iw=");
-    this.user.getPasswordHistory().add("bhqabXwE3S8E6xNJfX/d76MFOCs=");
+    this.history.add("safx/LW8+SsSy/o3PmCNy4VEm5s=");
+    this.history.add("zurb9DyQ5nooY1la8h86Bh0n1iw=");
+    this.history.add("bhqabXwE3S8E6xNJfX/d76MFOCs=");
 
     final SourceRule sourceRule = new SourceRule();
     sourceRule.setDigest("SHA-1", new Base64Converter());
-    this.user.addPasswordSource("System B", "CJGTDMQRP+rmHApkcijC80aDV0o=");
+    this.sources.put("System B", "CJGTDMQRP+rmHApkcijC80aDV0o=");
 
     this.rule.getRules().add(charRule);
     this.rule.getRules().add(whitespaceRule);
@@ -132,70 +142,80 @@ public class RuleListTest extends AbstractRuleTest
         /** all digits */
         {
           this.rule,
-          new PasswordData(this.user, new Password("4326789032")),
+          createPasswordData(
+            new Password("4326789032"), USER, this.history, this.sources),
           false,
         },
 
         /** all non-alphanumeric */
         {
           this.rule,
-          new PasswordData(this.user, new Password("$&!$#@*{{>")),
+          createPasswordData(
+            new Password("$&!$#@*{{>"), USER, this.history, this.sources),
           false,
         },
 
         /** all lowercase */
         {
           this.rule,
-          new PasswordData(this.user, new Password("aycdopezss")),
+          createPasswordData(
+            new Password("aycdopezss"), USER, this.history, this.sources),
           false,
         },
 
         /** all uppercase */
         {
           this.rule,
-          new PasswordData(this.user, new Password("AYCDOPEZSS")),
+          createPasswordData(
+            new Password("AYCDOPEZSS"), USER, this.history, this.sources),
           false,
         },
 
         /** digits and non-alphanumeric */
         {
           this.rule,
-          new PasswordData(this.user, new Password("@&3*(%5{}^")),
+          createPasswordData(
+            new Password("@&3*(%5{}^"), USER, this.history, this.sources),
           false,
         },
 
         /** digits and lowercase */
         {
           this.rule,
-          new PasswordData(this.user, new Password("ay3dop5zss")),
+          createPasswordData(
+            new Password("ay3dop5zss"), USER, this.history, this.sources),
           false,
         },
 
         /** digits and uppercase */
         {
           this.rule,
-          new PasswordData(this.user, new Password("AY3DOP5ZSS")),
+          createPasswordData(
+            new Password("AY3DOP5ZSS"), USER, this.history, this.sources),
           false,
         },
 
         /** non-alphanumeric and lowercase */
         {
           this.rule,
-          new PasswordData(this.user, new Password("a&c*o%ea}s")),
+          createPasswordData(
+            new Password("a&c*o%ea}s"), USER, this.history, this.sources),
           false,
         },
 
         /** non-alphanumeric and uppercase */
         {
           this.rule,
-          new PasswordData(this.user, new Password("A&C*O%EA}S")),
+          createPasswordData(
+            new Password("A&C*O%EA}S"), USER, this.history, this.sources),
           false,
         },
 
         /** uppercase and lowercase */
         {
           this.rule,
-          new PasswordData(this.user, new Password("AycDOPdsyz")),
+          createPasswordData(
+            new Password("AycDOPdsyz"), USER, this.history, this.sources),
           false,
         },
 
@@ -204,14 +224,16 @@ public class RuleListTest extends AbstractRuleTest
         /** contains a space */
         {
           this.rule,
-          new PasswordData(this.user, new Password("AycD Pdsyz")),
+          createPasswordData(
+            new Password("AycD Pdsyz"), USER, this.history, this.sources),
           false,
         },
 
         /** contains a tab */
         {
           this.rule,
-          new PasswordData(this.user, new Password("AycD    Psyz")),
+          createPasswordData(
+            new Password("AycD    Psyz"), USER, this.history, this.sources),
           false,
         },
 
@@ -220,14 +242,19 @@ public class RuleListTest extends AbstractRuleTest
         /** too short */
         {
           this.rule,
-          new PasswordData(this.user, new Password("p4T3t#")),
+          createPasswordData(
+            new Password("p4T3t#"), USER, this.history, this.sources),
           false,
         },
 
         /** too long */
         {
           this.rule,
-          new PasswordData(this.user, new Password("p4t3t#n6574632vbad#@!8")),
+          createPasswordData(
+            new Password("p4t3t#n6574632vbad#@!8"),
+            USER,
+            this.history,
+            this.sources),
           false,
         },
 
@@ -236,14 +263,16 @@ public class RuleListTest extends AbstractRuleTest
         /** matches dictionary word 'none' */
         {
           this.rule,
-          new PasswordData(this.user, new Password("p4t3t#none")),
+          createPasswordData(
+            new Password("p4t3t#none"), USER, this.history, this.sources),
           false,
         },
 
         /** matches dictionary word 'none' backwards */
         {
           this.rule,
-          new PasswordData(this.user, new Password("p4t3t#enon")),
+          createPasswordData(
+            new Password("p4t3t#enon"), USER, this.history, this.sources),
           false,
         },
 
@@ -252,21 +281,24 @@ public class RuleListTest extends AbstractRuleTest
         /** matches sequence 'zxcvb' */
         {
           this.rule,
-          new PasswordData(this.user, new Password("p4zxcvb#n65")),
+          createPasswordData(
+            new Password("p4zxcvb#n65"), USER, this.history, this.sources),
           false,
         },
 
         /** matches sequence 'werty' backwards */
         {
           this.rule,
-          new PasswordData(this.user, new Password("p4ytrew#n65")),
+          createPasswordData(
+            new Password("p4ytrew#n65"), USER, this.history, this.sources),
           false,
         },
 
         /** matches sequence 'iop[]' ignore case */
         {
           this.rule,
-          new PasswordData(this.user, new Password("p4iOP[]#n65")),
+          createPasswordData(
+            new Password("p4iOP[]#n65"), USER, this.history, this.sources),
           false,
         },
 
@@ -275,21 +307,24 @@ public class RuleListTest extends AbstractRuleTest
         /** contains userid 'testuser' */
         {
           this.rule,
-          new PasswordData(this.user, new Password("p4testuser#n65")),
+          createPasswordData(
+            new Password("p4testuser#n65"), USER, this.history, this.sources),
           false,
         },
 
         /** contains userid 'testuser' backwards */
         {
           this.rule,
-          new PasswordData(this.user, new Password("p4resutset#n65")),
+          createPasswordData(
+            new Password("p4resutset#n65"), USER, this.history, this.sources),
           false,
         },
 
         /** contains userid 'testuser' ignore case */
         {
           this.rule,
-          new PasswordData(this.user, new Password("p4TeStusEr#n65")),
+          createPasswordData(
+            new Password("p4TeStusEr#n65"), USER, this.history, this.sources),
           false,
         },
 
@@ -298,21 +333,24 @@ public class RuleListTest extends AbstractRuleTest
         /** contains history password */
         {
           this.rule,
-          new PasswordData(this.user, new Password("t3stUs3r02")),
+          createPasswordData(
+            new Password("t3stUs3r02"), USER, this.history, this.sources),
           false,
         },
 
         /** contains history password */
         {
           this.rule,
-          new PasswordData(this.user, new Password("t3stUs3r03")),
+          createPasswordData(
+            new Password("t3stUs3r03"), USER, this.history, this.sources),
           false,
         },
 
         /** contains source password */
         {
           this.rule,
-          new PasswordData(this.user, new Password("t3stUs3r04")),
+          createPasswordData(
+            new Password("t3stUs3r04"), USER, this.history, this.sources),
           false,
         },
 
@@ -321,35 +359,40 @@ public class RuleListTest extends AbstractRuleTest
         /** digits, non-alphanumeric, lowercase, uppercase */
         {
           this.rule,
-          new PasswordData(this.user, new Password("p4T3t#N65")),
+          createPasswordData(
+            new Password("p4T3t#N65"), USER, this.history, this.sources),
           true,
         },
 
         /** digits, non-alphanumeric, lowercase */
         {
           this.rule,
-          new PasswordData(this.user, new Password("p4t3t#n65")),
+          createPasswordData(
+            new Password("p4t3t#n65"), USER, this.history, this.sources),
           true,
         },
 
         /** digits, non-alphanumeric, uppercase */
         {
           this.rule,
-          new PasswordData(this.user, new Password("P4T3T#N65")),
+          createPasswordData(
+            new Password("P4T3T#N65"), USER, this.history, this.sources),
           true,
         },
 
         /** digits, uppercase, lowercase */
         {
           this.rule,
-          new PasswordData(this.user, new Password("p4t3tCn65")),
+          createPasswordData(
+            new Password("p4t3tCn65"), USER, this.history, this.sources),
           true,
         },
 
         /** non-alphanumeric, lowercase, uppercase */
         {
           this.rule,
-          new PasswordData(this.user, new Password("pxT%t#Nwq")),
+          createPasswordData(
+            new Password("pxT%t#Nwq"), USER, this.history, this.sources),
           true,
         },
       };

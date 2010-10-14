@@ -111,14 +111,12 @@ public final class PasswordValidator
         throw new ArrayIndexOutOfBoundsException();
       } else {
         RuleResult result = null;
+        final PasswordData pd = new PasswordData(new Password(password));
         if (username == null) {
-          result =
-            PasswordValidator.validate(
-              ruleList, new PasswordData(new Password(password)));
+          result = PasswordValidator.validate(ruleList, pd);
         } else {
-          result = PasswordValidator.validate(
-            ruleList,
-            new PasswordData(new Username(username), new Password(password)));
+          pd.setUsername(username);
+          result = PasswordValidator.validate(ruleList, pd);
         }
         if (result.isValid()) {
           System.out.println("Valid password");
