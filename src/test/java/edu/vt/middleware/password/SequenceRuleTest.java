@@ -32,16 +32,16 @@ public class SequenceRuleTest extends AbstractRuleTest
   private static final Password SEQ_PASS = new Password("p4zxcvb#n65");
 
   /** Test password. */
-  private static final Password BACKWARDS_SEQ_PASS =
-    new Password("p4ytrew#n65");
+  private static final Password BACKWARDS_SEQ_PASS = new Password(
+    "p4ytrew#n65");
 
   /** Test password. */
-  private static final Password UPPERCASE_SEQ_PASS =
-    new Password("p4RTyUI#n65");
+  private static final Password UPPERCASE_SEQ_PASS = new Password(
+    "p4RTyUI#n65");
 
   /** Test password. */
-  private static final Password BACKWARDS_UPPERCASE_SEQ_PASS =
-    new Password("p4][POi#n65");
+  private static final Password BACKWARDS_UPPERCASE_SEQ_PASS = new Password(
+    "p4][POi#n65");
 
   /** For testing. */
   private SequenceRule rule = new SequenceRule();

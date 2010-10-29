@@ -36,8 +36,8 @@ public class CharacterCharacteristicsRule implements Rule
 
 
   /**
-   * This will return the rules being used by this
-   * <code>CharacterCharacteristicsRule</code>.
+   * This will return the rules being used by this <code>
+   * CharacterCharacteristicsRule</code>.
    *
    * @return  <code>List</code> of rules
    */
@@ -48,8 +48,8 @@ public class CharacterCharacteristicsRule implements Rule
 
 
   /**
-   * This will set the rules to be used by this
-   * <code>CharacterCharacteristicsRule</code>.
+   * This will set the rules to be used by this <code>
+   * CharacterCharacteristicsRule</code>.
    *
    * @param  l  <code>List</code> of rules
    */
@@ -64,8 +64,8 @@ public class CharacterCharacteristicsRule implements Rule
    * for a password to meet the requirements of this rule. The default is one.
    * i.e. you may wish to enforce any three of five supplied character rules.
    *
-   * @param  n  <code>int</code> number of characteristics to enforce where
-   * n > 0
+   * @param  n  <code>int</code> number of characteristics to enforce where n >
+   * 0
    */
   public void setNumberOfCharacteristics(final int n)
   {
@@ -124,11 +124,11 @@ public class CharacterCharacteristicsRule implements Rule
   public String toString()
   {
     return
-    String.format(
-      "%s@%h::numberOfCharacteristics=%s,rules=%s",
-      this.getClass().getName(),
-      this.hashCode(),
-      this.numCharacteristics,
-      this.rules);
+      String.format(
+        "%s@%h::numberOfCharacteristics=%s,rules=%s",
+        this.getClass().getName(),
+        this.hashCode(),
+        this.numCharacteristics,
+        this.rules);
   }
 }

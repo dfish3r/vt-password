@@ -38,16 +38,16 @@ public class DictionarySubstringRuleTest extends AbstractRuleTest
   private static final Password DICT_PASS = new Password("p4tlancely5gew");
 
   /** Test password. */
-  private static final Password BACKWARDS_DICT_PASS =
-    new Password("p4tylecnal5gew");
+  private static final Password BACKWARDS_DICT_PASS = new Password(
+    "p4tylecnal5gew");
 
   /** Test password. */
-  private static final Password UPPERCASE_DICT_PASS =
-    new Password("p4tlAnCeLy5gew");
+  private static final Password UPPERCASE_DICT_PASS = new Password(
+    "p4tlAnCeLy5gew");
 
   /** Test password. */
-  private static final Password BACKWARDS_UPPERCASE_DICT_PASS =
-    new Password("p4tyLeCnAl5gew");
+  private static final Password BACKWARDS_UPPERCASE_DICT_PASS = new Password(
+    "p4tyLeCnAl5gew");
 
   /** For testing. */
   private DictionarySubstringRule rule = new DictionarySubstringRule();
@@ -67,6 +67,7 @@ public class DictionarySubstringRuleTest extends AbstractRuleTest
    * Initialize rules for this test.
    *
    * @param  dictFile  dictionary file to read
+   *
    * @throws  Exception  if dictionary files cannot be read
    */
   @Parameters({ "dictionaryFile" })
@@ -78,15 +79,15 @@ public class DictionarySubstringRuleTest extends AbstractRuleTest
       new FileReader[] {new FileReader(dictFile)},
       true,
       new ArraysSort());
-    final WordListDictionary caseSensitiveDict =
-      new WordListDictionary(caseSensitiveWordList);
+    final WordListDictionary caseSensitiveDict = new WordListDictionary(
+      caseSensitiveWordList);
 
     final ArrayWordList caseInsensitiveWordList = WordLists.createFromReader(
       new FileReader[] {new FileReader(dictFile)},
       false,
       new ArraysSort());
-    final WordListDictionary caseInsensitiveDict =
-      new WordListDictionary(caseInsensitiveWordList);
+    final WordListDictionary caseInsensitiveDict = new WordListDictionary(
+      caseInsensitiveWordList);
 
     this.rule.setDictionary(caseSensitiveDict);
 

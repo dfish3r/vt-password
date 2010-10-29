@@ -1,5 +1,5 @@
 /*
-  $Id: CharacterRule.java 1636 2010-10-04 15:12:15Z dfisher $
+  $Id$
 
   Copyright (C) 2003-2010 Virginia Tech.
   All rights reserved.
@@ -8,14 +8,14 @@
 
   Author:  Middleware Services
   Email:   middleware@vt.edu
-  Version: $Revision: 1636 $
-  Updated: $Date: 2010-10-04 11:12:15 -0400 (Mon, 04 Oct 2010) $
+  Version: $Revision$
+  Updated: $Date$
 */
 package edu.vt.middleware.password;
 
 /**
- * <code>AbstractCharacterRule</code> provides common implementation
- * for password character rules.
+ * <code>AbstractCharacterRule</code> provides common implementation for
+ * password character rules.
  *
  * @author  Middleware Services
  * @version  $Revision: 1636 $ $Date: 2010-10-04 11:12:15 -0400 (Mon, 04 Oct 2010) $
@@ -50,14 +50,15 @@ public abstract class AbstractCharacterRule implements CharacterRule
    * the implementing class.
    *
    * @param  password  <code>Password</code> to get character count from
+   *
    * @return  <code>int</code> number of characters
    */
   protected abstract int getNumberOfCharacterType(final Password password);
 
 
   /**
-   * Returns the detail message for the implementing class should this rule
-   * fail validation.
+   * Returns the detail message for the implementing class should this rule fail
+   * validation.
    *
    * @return  <code>String</code> detail message
    */
@@ -67,13 +68,15 @@ public abstract class AbstractCharacterRule implements CharacterRule
   /** {@inheritDoc} */
   public RuleResult validate(final PasswordData passwordData)
   {
-    if (this.getNumberOfCharacterType(
-        passwordData.getPassword()) >= this.numCharacters) {
+    if (
+      this.getNumberOfCharacterType(passwordData.getPassword()) >=
+        this.numCharacters) {
       return new RuleResult(true);
     } else {
-      return new RuleResult(
-        false,
-        new RuleResultDetail(this.getRuleResultDetailMessage()));
+      return
+        new RuleResult(
+          false,
+          new RuleResultDetail(this.getRuleResultDetailMessage()));
     }
   }
 
@@ -87,10 +90,10 @@ public abstract class AbstractCharacterRule implements CharacterRule
   public String toString()
   {
     return
-    String.format(
-      "%s@%h::numberOfCharacters=%s",
-      this.getClass().getName(),
-      this.hashCode(),
-      this.numCharacters);
+      String.format(
+        "%s@%h::numberOfCharacters=%s",
+        this.getClass().getName(),
+        this.hashCode(),
+        this.numCharacters);
   }
 }

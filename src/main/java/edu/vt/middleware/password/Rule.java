@@ -14,8 +14,8 @@
 package edu.vt.middleware.password;
 
 /**
- * <code>Rule</code> allows custom password rules to be created for
- * determining whether or not a password is strong.
+ * <code>Rule</code> allows custom password rules to be created for determining
+ * whether or not a password is strong.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$

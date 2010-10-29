@@ -81,7 +81,9 @@ public class PasswordGenerator
     if (rules != null) {
       for (CharacterRule rule : rules) {
         fillRandomCharacters(
-          rule.getValidCharacters(), rule.getNumberOfCharacters(), buffer);
+          rule.getValidCharacters(),
+          rule.getNumberOfCharacters(),
+          buffer);
         allChars.append(rule.getValidCharacters());
       }
     }

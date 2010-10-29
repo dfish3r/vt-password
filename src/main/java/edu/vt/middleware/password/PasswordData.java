@@ -1,5 +1,5 @@
 /*
-  $Id: Username.java 1643 2010-10-07 17:14:08Z dfisher $
+  $Id$
 
   Copyright (C) 2003-2010 Virginia Tech.
   All rights reserved.
@@ -8,8 +8,8 @@
 
   Author:  Middleware Services
   Email:   middleware@vt.edu
-  Version: $Revision: 1643 $
-  Updated: $Date: 2010-10-07 13:14:08 -0400 (Thu, 07 Oct 2010) $
+  Version: $Revision$
+  Updated: $Date$
 */
 package edu.vt.middleware.password;
 
@@ -41,9 +41,7 @@ public class PasswordData
   private Map<String, String> passwordSources = new HashMap<String, String>();
 
 
-  /**
-   * This will create a new <code>PasswordData</code>.
-   */
+  /** This will create a new <code>PasswordData</code>. */
   public PasswordData() {}
 
 
@@ -158,7 +156,8 @@ public class PasswordData
    *
    * @param  source  <code>String</code> label
    * @param  pass  <code>String</code> to add
-   * @throws  NullPointerException if source or password is null
+   *
+   * @throws  NullPointerException  if source or password is null
    */
   public void addPasswordSource(final String source, final String pass)
   {
@@ -181,13 +180,13 @@ public class PasswordData
   public String toString()
   {
     return
-    String.format(
-      "%s@%h::username=%s,password=%s,passwordHistory=%s,passwordSources=%s",
-      this.getClass().getName(),
-      this.hashCode(),
-      this.username,
-      this.password,
-      this.passwordHistory,
-      this.passwordSources);
+      String.format(
+        "%s@%h::username=%s,password=%s,passwordHistory=%s,passwordSources=%s",
+        this.getClass().getName(),
+        this.hashCode(),
+        this.username,
+        this.password,
+        this.passwordHistory,
+        this.passwordSources);
   }
 }

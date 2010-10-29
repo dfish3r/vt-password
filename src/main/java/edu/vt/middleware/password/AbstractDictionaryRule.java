@@ -96,21 +96,23 @@ public abstract class AbstractDictionaryRule implements Rule
     if (matchingWord != null) {
       result.setValid(false);
       result.getDetails().add(
-        new RuleResultDetail(String.format(
-          "Password contains the dictionary word '%s'",
-          matchingWord)));
+        new RuleResultDetail(
+          String.format(
+            "Password contains the dictionary word '%s'",
+            matchingWord)));
       result.setMatchingWord(matchingWord);
     }
     if (this.matchBackwards) {
-      text = new StringBuilder(
-        passwordData.getPassword().getText()).reverse().toString();
+      text = new StringBuilder(passwordData.getPassword().getText()).reverse()
+          .toString();
       matchingWord = doWordSearch(text);
       if (matchingWord != null) {
         result.setValid(false);
         result.getDetails().add(
-          new RuleResultDetail(String.format(
-            "Password contains the reversed dictionary word '%s'",
-            matchingWord)));
+          new RuleResultDetail(
+            String.format(
+              "Password contains the reversed dictionary word '%s'",
+              matchingWord)));
         result.setMatchingWord(matchingWord);
       }
     }
@@ -122,7 +124,8 @@ public abstract class AbstractDictionaryRule implements Rule
    * Searches the dictionary with the supplied text.
    *
    * @param  text  to search dictionary with
-   * @return  <code>String</code>  matching word
+   *
+   * @return  <code>String</code> matching word
    */
   protected abstract String doWordSearch(final String text);
 
@@ -136,11 +139,11 @@ public abstract class AbstractDictionaryRule implements Rule
   public String toString()
   {
     return
-    String.format(
-      "%s@%h::dictionary=%s,matchBackwards=%s",
-      this.getClass().getName(),
-      this.hashCode(),
-      this.dictionary,
-      this.matchBackwards);
+      String.format(
+        "%s@%h::dictionary=%s,matchBackwards=%s",
+        this.getClass().getName(),
+        this.hashCode(),
+        this.dictionary,
+        this.matchBackwards);
   }
 }

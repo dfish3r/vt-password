@@ -57,19 +57,18 @@ public class PasswordValidatorTest
   }
 
 
-  /**
-   * @throws  Exception  On test failure.
-   */
+  /** @throws  Exception  On test failure. */
   @Test(groups = {"passtest"})
   public void validate()
     throws Exception
   {
     AssertJUnit.assertTrue(
-      PasswordValidator.validate(
-        this.ruleList, new PasswordData(VALID_PASS)).isValid());
+      PasswordValidator.validate(this.ruleList, new PasswordData(VALID_PASS))
+          .isValid());
     AssertJUnit.assertFalse(
       PasswordValidator.validate(
-        this.ruleList, new PasswordData(INVALID_PASS)).isValid());
+        this.ruleList,
+        new PasswordData(INVALID_PASS)).isValid());
 
     this.ruleList.getRules().add(new UsernameRule(true, true));
 
@@ -77,8 +76,7 @@ public class PasswordValidatorTest
       PasswordValidator.validate(ruleList, new PasswordData(VALID_PASS));
       AssertJUnit.fail("Should have thrown NullPointerException");
     } catch (NullPointerException e) {
-      AssertJUnit.assertEquals(
-        e.getClass(), NullPointerException.class);
+      AssertJUnit.assertEquals(e.getClass(), NullPointerException.class);
     } catch (Exception e) {
       AssertJUnit.fail(
         "Should have thrown NullPointerException, threw " + e.getMessage());

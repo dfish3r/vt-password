@@ -112,9 +112,7 @@ public class SequenceRule implements Rule
   private boolean matchBackwards;
 
 
-  /**
-   * This creates a new <code>SequenceRule</code>.
-   */
+  /** This creates a new <code>SequenceRule</code>. */
   public SequenceRule() {}
 
 
@@ -190,9 +188,10 @@ public class SequenceRule implements Rule
       if (text.indexOf(SEQUENCES[i]) != -1) {
         result.setValid(false);
         result.getDetails().add(
-          new RuleResultDetail(String.format(
-            "Password contains the keyboard sequence '%s'",
-            SEQUENCES[i])));
+          new RuleResultDetail(
+            String.format(
+              "Password contains the keyboard sequence '%s'",
+              SEQUENCES[i])));
       }
     }
     if (this.matchBackwards) {
@@ -200,9 +199,10 @@ public class SequenceRule implements Rule
         if (text.indexOf(REVERSE_SEQUENCES[j]) != -1) {
           result.setValid(false);
           result.getDetails().add(
-            new RuleResultDetail(String.format(
-              "Password contains the keyboard sequence '%s'",
-              REVERSE_SEQUENCES[j])));
+            new RuleResultDetail(
+              String.format(
+                "Password contains the keyboard sequence '%s'",
+                REVERSE_SEQUENCES[j])));
         }
       }
     }
@@ -219,11 +219,11 @@ public class SequenceRule implements Rule
   public String toString()
   {
     return
-    String.format(
-      "%s@%h::ignoreCase=%s,matchBackwards=%s",
-      this.getClass().getName(),
-      this.hashCode(),
-      this.ignoreCase,
-      this.matchBackwards);
+      String.format(
+        "%s@%h::ignoreCase=%s,matchBackwards=%s",
+        this.getClass().getName(),
+        this.hashCode(),
+        this.ignoreCase,
+        this.matchBackwards);
   }
 }

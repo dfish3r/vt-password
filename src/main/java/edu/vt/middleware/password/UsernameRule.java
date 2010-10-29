@@ -14,8 +14,8 @@
 package edu.vt.middleware.password;
 
 /**
- * <code>UsernameRule</code> contains methods for determining if a
- * password contains the username associated with that password.
+ * <code>UsernameRule</code> contains methods for determining if a password
+ * contains the username associated with that password.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
@@ -30,9 +30,7 @@ public class UsernameRule implements Rule
   private boolean ignoreCase;
 
 
-  /**
-   * This creates a new <code>UsernameRule</code>.
-   */
+  /** This creates a new <code>UsernameRule</code>. */
   public UsernameRule() {}
 
 
@@ -117,8 +115,10 @@ public class UsernameRule implements Rule
     if (this.matchBackwards && text.indexOf(reverseUser) != -1) {
       result.setValid(false);
       result.getDetails().add(
-        new RuleResultDetail(String.format(
-          "Password contains the backwards user id '%s'", reverseUser)));
+        new RuleResultDetail(
+          String.format(
+            "Password contains the backwards user id '%s'",
+            reverseUser)));
     }
     return result;
   }
@@ -133,11 +133,11 @@ public class UsernameRule implements Rule
   public String toString()
   {
     return
-    String.format(
-      "%s@%h::ignoreCase=%s,matchBackwards=%s",
-      this.getClass().getName(),
-      this.hashCode(),
-      this.ignoreCase,
-      this.matchBackwards);
+      String.format(
+        "%s@%h::ignoreCase=%s,matchBackwards=%s",
+        this.getClass().getName(),
+        this.hashCode(),
+        this.ignoreCase,
+        this.matchBackwards);
   }
 }

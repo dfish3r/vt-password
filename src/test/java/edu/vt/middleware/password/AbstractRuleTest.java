@@ -57,9 +57,10 @@ public abstract class AbstractRuleTest
    * Creates a new <code>PasswordData</code> with the supplied input.
    *
    * @param  password  <code>Password</code>
-   * @param username  <code>String</code>
-   * @param history  <code>List</code>
-   * @param sources  <code>Map</code>
+   * @param  username  <code>String</code>
+   * @param  history  <code>List</code>
+   * @param  sources  <code>Map</code>
+   *
    * @return  <code>PasswordData</code>
    */
   protected static PasswordData createPasswordData(

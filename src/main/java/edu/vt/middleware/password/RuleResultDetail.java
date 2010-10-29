@@ -1,5 +1,5 @@
 /*
-  $Id: RuleResult.java 1614 2010-09-20 19:02:39Z dfisher $
+  $Id$
 
   Copyright (C) 2003-2010 Virginia Tech.
   All rights reserved.
@@ -8,8 +8,8 @@
 
   Author:  Middleware Services
   Email:   middleware@vt.edu
-  Version: $Revision: 1614 $
-  Updated: $Date: 2010-09-20 15:02:39 -0400 (Mon, 20 Sep 2010) $
+  Version: $Revision$
+  Updated: $Date$
 */
 package edu.vt.middleware.password;
 

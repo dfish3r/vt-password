@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <code>RuleList</code> contains methods for setting password rules and
- * then determining if a password meets the requirements of all the rules.
+ * <code>RuleList</code> contains methods for setting password rules and then
+ * determining if a password meets the requirements of all the rules.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
@@ -77,10 +77,10 @@ public class RuleList implements Rule
   public String toString()
   {
     return
-    String.format(
-      "%s@%h::rules=%s",
-      this.getClass().getName(),
-      this.hashCode(),
-      this.rules);
+      String.format(
+        "%s@%h::rules=%s",
+        this.getClass().getName(),
+        this.hashCode(),
+        this.rules);
   }
 }

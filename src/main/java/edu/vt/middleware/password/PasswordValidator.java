@@ -29,9 +29,7 @@ public final class PasswordValidator
 {
 
 
-  /**
-   * Default constructor.
-   */
+  /** Default constructor. */
   private PasswordValidator() {}
 
 
@@ -40,10 +38,12 @@ public final class PasswordValidator
    *
    * @param  rule  <code>Rule</code> to validate password with
    * @param  passwordData  <code>PasswordData</code> to validate
+   *
    * @return  <code>RuleResult</code>
    */
   public static RuleResult validate(
-    final Rule rule, final PasswordData passwordData)
+    final Rule rule,
+    final PasswordData passwordData)
   {
     return rule.validate(passwordData);
   }

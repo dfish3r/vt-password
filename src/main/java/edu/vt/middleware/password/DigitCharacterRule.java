@@ -1,5 +1,5 @@
 /*
-  $Id: CharacterRule.java 1636 2010-10-04 15:12:15Z dfisher $
+  $Id$
 
   Copyright (C) 2003-2010 Virginia Tech.
   All rights reserved.
@@ -8,8 +8,8 @@
 
   Author:  Middleware Services
   Email:   middleware@vt.edu
-  Version: $Revision: 1636 $
-  Updated: $Date: 2010-10-04 11:12:15 -0400 (Mon, 04 Oct 2010) $
+  Version: $Revision$
+  Updated: $Date$
 */
 package edu.vt.middleware.password;
 
@@ -23,15 +23,13 @@ package edu.vt.middleware.password;
 public class DigitCharacterRule extends AbstractCharacterRule
 {
 
-  /**
-   * Default constructor.
-   */
+  /** Default constructor. */
   public DigitCharacterRule() {}
 
 
   /**
-   * This will create a new <code>DigitCharacterRule</code> with the
-   * supplied number of digit characters to enforce.
+   * This will create a new <code>DigitCharacterRule</code> with the supplied
+   * number of digit characters to enforce.
    *
    * @param  num  <code>int</code>
    */
@@ -58,7 +56,9 @@ public class DigitCharacterRule extends AbstractCharacterRule
   /** {@inheritDoc} */
   protected String getRuleResultDetailMessage()
   {
-    return String.format(
-      "Password must contain at least %s digits", this.numCharacters);
+    return
+      String.format(
+        "Password must contain at least %s digits",
+        this.numCharacters);
   }
 }

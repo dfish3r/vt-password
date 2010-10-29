@@ -28,8 +28,8 @@ public class SpringTest
 
 
   /**
-   * Attempts to load all Spring application context XML files to
-   * verify proper wiring.
+   * Attempts to load all Spring application context XML files to verify proper
+   * wiring.
    *
    * @throws  Exception  On test failure.
    */
@@ -38,9 +38,10 @@ public class SpringTest
     throws Exception
   {
     final ClassPathXmlApplicationContext context =
-      new ClassPathXmlApplicationContext(new String[] {
-        "/spring-context.xml",
-      });
+      new ClassPathXmlApplicationContext(
+        new String[] {
+          "/spring-context.xml",
+        });
     AssertJUnit.assertTrue(context.getBeanDefinitionCount() > 0);
 
     final RuleList ruleList = (RuleList) context.getBean("ruleList");

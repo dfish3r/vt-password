@@ -14,8 +14,8 @@
 package edu.vt.middleware.password;
 
 /**
- * <code>DictionaryRuleResult</code> provides common implementation for
- * password dictionary rule result implementations.
+ * <code>DictionaryRuleResult</code> provides common implementation for password
+ * dictionary rule result implementations.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$

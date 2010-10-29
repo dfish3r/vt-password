@@ -30,9 +30,11 @@ public class WhitespaceRule implements Rule
     if (!passwordData.getPassword().containsWhitespace()) {
       return new RuleResult(true);
     } else {
-      return new RuleResult(
-        false,
-        new RuleResultDetail("Password cannot contain whitespace characters"));
+      return
+        new RuleResult(
+          false,
+          new RuleResultDetail(
+            "Password cannot contain whitespace characters"));
     }
   }
 }
