@@ -96,9 +96,19 @@ public class RuleListTest extends AbstractRuleTest
     dictRule.setWordLength(4);
     dictRule.setMatchBackwards(true);
 
-    final SequenceRule seqRule = new SequenceRule();
-    seqRule.setIgnoreCase(true);
-    seqRule.setMatchBackwards(true);
+    final QwertySequenceRule qwertySeqRule = new QwertySequenceRule();
+    qwertySeqRule.setIgnoreCase(true);
+    qwertySeqRule.setMatchBackwards(true);
+
+    final AlphabeticalSequenceRule alphaSeqRule =
+      new AlphabeticalSequenceRule();
+    alphaSeqRule.setIgnoreCase(true);
+    alphaSeqRule.setMatchBackwards(true);
+
+    final NumericalSequenceRule numSeqRule = new NumericalSequenceRule();
+    numSeqRule.setMatchBackwards(true);
+
+    final DuplicateSequenceRule dupSeqRule = new DuplicateSequenceRule();
 
     final UsernameRule userIDRule = new UsernameRule();
     userIDRule.setIgnoreCase(true);
@@ -118,7 +128,10 @@ public class RuleListTest extends AbstractRuleTest
     this.rule.getRules().add(whitespaceRule);
     this.rule.getRules().add(lengthRule);
     this.rule.getRules().add(dictRule);
-    this.rule.getRules().add(seqRule);
+    this.rule.getRules().add(qwertySeqRule);
+    this.rule.getRules().add(alphaSeqRule);
+    this.rule.getRules().add(numSeqRule);
+    this.rule.getRules().add(dupSeqRule);
     this.rule.getRules().add(userIDRule);
     this.rule.getRules().add(historyRule);
     this.rule.getRules().add(sourceRule);

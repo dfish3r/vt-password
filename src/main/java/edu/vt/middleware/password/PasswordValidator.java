@@ -98,8 +98,11 @@ public final class PasswordValidator
         } else if ("-u".equals(args[i])) {
           ruleList.getRules().add(new UsernameRule(true, true));
           username = args[++i];
-        } else if ("-k".equals(args[i])) {
-          ruleList.getRules().add(new SequenceRule(true, true));
+        } else if ("-s".equals(args[i])) {
+          ruleList.getRules().add(new QwertySequenceRule(true, true));
+          ruleList.getRules().add(new AlphabeticalSequenceRule(true, true));
+          ruleList.getRules().add(new NumericalSequenceRule(true));
+          ruleList.getRules().add(new DuplicateSequenceRule());
         } else if ("-h".equals(args[i])) {
           throw new ArrayIndexOutOfBoundsException();
         } else {
@@ -152,7 +155,7 @@ public final class PasswordValidator
         " words) \\");
       System.out.println("       -u (Test for a user id) \\");
       System.out.println("          <userid> \\");
-      System.out.println("       -k (Test for keyboard sequences) \\");
+      System.out.println("       -s (Test for sequences) \\");
       System.out.println("       -h (Print this message) \\");
       System.exit(1);
     }
