@@ -9,9 +9,9 @@ set JAVA=%JAVA_HOME%\bin\java
 set PASS_JAR=%VTPASS_HOME%\jars\vt-password-${project.version}.jar
 set LIBDIR=%VTPASS_HOME%\lib
 
-set CLASSPATH=%LIBDIR%\vt-dictionary-3.0.jar;%LIBDIR%\vt-crypt-2.1.1.jar;%LIBDIR%\commons-logging-1.1.1.jar;%PASS_JAR%
+set CLASSPATH=%LIBDIR%\vt-dictionary-3.0.jar;%LIBDIR%\vt-crypt-2.1.3.jar;%LIBDIR%\commons-logging-1.1.1.jar;%PASS_JAR%
 
-call "%JAVA%" -cp "%CLASSPATH%" edu.vt.middleware.password.PasswordValidator %*
+call "%JAVA%" -cp "%CLASSPATH%" edu.vt.middleware.password.PasswordCli %*
 goto end
 
 :no_vtpass_home
