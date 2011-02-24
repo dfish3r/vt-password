@@ -11,6 +11,7 @@
       <run>
         <include name="passtest" />
         <include name="passgentest" />
+        <include name="seqperftest" />
       </run>
     </groups>
     <packages>

@@ -39,16 +39,11 @@
   <bean id="lenRule" class="edu.vt.middleware.password.LengthRule"
     p:minimumLength="5"/>
 
-  <bean id="qwertySeqRule" class="edu.vt.middleware.password.QwertySequenceRule"
-    p:ignoreCase="true"
-    p:matchBackwards="true"/>
+  <bean id="qwertySeqRule" class="edu.vt.middleware.password.QwertySequenceRule"/>
 
-  <bean id="alphaSeqRule" class="edu.vt.middleware.password.AlphabeticalSequenceRule"
-    p:ignoreCase="true"
-    p:matchBackwards="true"/>
+  <bean id="alphaSeqRule" class="edu.vt.middleware.password.AlphabeticalSequenceRule"/>
 
-  <bean id="numSeqRule" class="edu.vt.middleware.password.NumericalSequenceRule"
-    p:matchBackwards="true"/>
+  <bean id="numSeqRule" class="edu.vt.middleware.password.NumericalSequenceRule"/>
 
   <bean id="dupSeqRule" class="edu.vt.middleware.password.DuplicateSequenceRule"/>
 

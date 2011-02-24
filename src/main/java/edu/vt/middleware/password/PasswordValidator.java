@@ -99,9 +99,9 @@ public final class PasswordValidator
           ruleList.getRules().add(new UsernameRule(true, true));
           username = args[++i];
         } else if ("-s".equals(args[i])) {
-          ruleList.getRules().add(new QwertySequenceRule(true, true));
-          ruleList.getRules().add(new AlphabeticalSequenceRule(true, true));
-          ruleList.getRules().add(new NumericalSequenceRule(true));
+          ruleList.getRules().add(new QwertySequenceRule());
+          ruleList.getRules().add(new AlphabeticalSequenceRule());
+          ruleList.getRules().add(new NumericalSequenceRule());
           ruleList.getRules().add(new DuplicateSequenceRule());
         } else if ("-h".equals(args[i])) {
           throw new ArrayIndexOutOfBoundsException();

@@ -97,16 +97,11 @@ public class RuleListTest extends AbstractRuleTest
     dictRule.setMatchBackwards(true);
 
     final QwertySequenceRule qwertySeqRule = new QwertySequenceRule();
-    qwertySeqRule.setIgnoreCase(true);
-    qwertySeqRule.setMatchBackwards(true);
 
     final AlphabeticalSequenceRule alphaSeqRule =
       new AlphabeticalSequenceRule();
-    alphaSeqRule.setIgnoreCase(true);
-    alphaSeqRule.setMatchBackwards(true);
 
     final NumericalSequenceRule numSeqRule = new NumericalSequenceRule();
-    numSeqRule.setMatchBackwards(true);
 
     final DuplicateSequenceRule dupSeqRule = new DuplicateSequenceRule();
 

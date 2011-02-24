@@ -53,9 +53,9 @@ public class PasswordValidatorTest
     ccRule.setNumberOfCharacteristics(3);
     this.ruleList.getRules().add(ccRule);
 
-    this.ruleList.getRules().add(new QwertySequenceRule(true, true));
-    this.ruleList.getRules().add(new AlphabeticalSequenceRule(true, true));
-    this.ruleList.getRules().add(new NumericalSequenceRule(true));
+    this.ruleList.getRules().add(new QwertySequenceRule());
+    this.ruleList.getRules().add(new AlphabeticalSequenceRule());
+    this.ruleList.getRules().add(new NumericalSequenceRule());
     this.ruleList.getRules().add(new DuplicateSequenceRule());
   }
 

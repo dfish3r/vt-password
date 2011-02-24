@@ -24,42 +24,6 @@ import org.testng.annotations.DataProvider;
 public class NumericalSequenceRuleTest extends AbstractRuleTest
 {
 
-  /** Test password. */
-  private static final Password VALID_PASS = new Password("p4zRcv8#n65");
-
-  /** Test password. */
-  private static final Password SEQ_PASS = new Password("p434567#n65");
-
-  /** Test password. */
-  private static final Password LONG_SEQ_PASS = new Password("p43456789#n65");
-
-  /** Test password. */
-  private static final Password BACKWARDS_SEQ_PASS = new Password(
-    "p476543#n65");
-
-  /** Test password. */
-  private static final Password CIRCULAR_SEQ_PASS = new Password("p478901#n65");
-
-  /** For testing. */
-  private NumericalSequenceRule rule = new NumericalSequenceRule(
-    5, false, false);
-
-  /** For testing. */
-  private NumericalSequenceRule longRule = new NumericalSequenceRule(
-    7, false, false);
-
-  /** For testing. */
-  private NumericalSequenceRule backwardsRule = new NumericalSequenceRule(
-    5, false, true);
-
-  /** For testing. */
-  private NumericalSequenceRule circularRule = new NumericalSequenceRule(
-    5, true, false);
-
-  /** For testing. */
-  private NumericalSequenceRule allRule = new NumericalSequenceRule(
-    5, true, true);
-
 
   /**
    * @return  Test data.
@@ -72,36 +36,48 @@ public class NumericalSequenceRuleTest extends AbstractRuleTest
   {
     return
       new Object[][] {
-
-        {this.rule, new PasswordData(VALID_PASS), true, },
-        {this.rule, new PasswordData(SEQ_PASS), false, },
-        {this.rule, new PasswordData(LONG_SEQ_PASS), false, },
-        {this.rule, new PasswordData(BACKWARDS_SEQ_PASS), true, },
-        {this.rule, new PasswordData(CIRCULAR_SEQ_PASS), true, },
-
-        {this.longRule, new PasswordData(VALID_PASS), true, },
-        {this.longRule, new PasswordData(SEQ_PASS), true, },
-        {this.longRule, new PasswordData(LONG_SEQ_PASS), false, },
-        {this.longRule, new PasswordData(BACKWARDS_SEQ_PASS), true, },
-        {this.longRule, new PasswordData(CIRCULAR_SEQ_PASS), true, },
-
-        {this.backwardsRule, new PasswordData(VALID_PASS), true, },
-        {this.backwardsRule, new PasswordData(SEQ_PASS), false, },
-        {this.backwardsRule, new PasswordData(LONG_SEQ_PASS), false, },
-        {this.backwardsRule, new PasswordData(BACKWARDS_SEQ_PASS), false, },
-        {this.backwardsRule, new PasswordData(CIRCULAR_SEQ_PASS), true, },
-
-        {this.circularRule, new PasswordData(VALID_PASS), true, },
-        {this.circularRule, new PasswordData(SEQ_PASS), false, },
-        {this.circularRule, new PasswordData(LONG_SEQ_PASS), false, },
-        {this.circularRule, new PasswordData(BACKWARDS_SEQ_PASS), true, },
-        {this.circularRule, new PasswordData(CIRCULAR_SEQ_PASS), false, },
-
-        {this.allRule, new PasswordData(VALID_PASS), true, },
-        {this.allRule, new PasswordData(SEQ_PASS), false, },
-        {this.allRule, new PasswordData(LONG_SEQ_PASS), false, },
-        {this.allRule, new PasswordData(BACKWARDS_SEQ_PASS), false, },
-        {this.allRule, new PasswordData(CIRCULAR_SEQ_PASS), false, },
+        // Test valid password
+        {
+          new NumericalSequenceRule(),
+          new PasswordData(new Password("p4zRcv8#n65")),
+          true,
+        },
+        // Has numerical sequence
+        {
+          new NumericalSequenceRule(4, false),
+          new PasswordData(new Password("p3456#n65")),
+          false,
+        },
+        // Has wrapping numerical sequence with wrap=false
+        {
+          new NumericalSequenceRule(7, false),
+          new PasswordData(new Password("p4zRcv2#n8901234")),
+          true,
+        },
+        // Has wrapping numerical sequence with wrap=true
+        {
+          new NumericalSequenceRule(7, true),
+          new PasswordData(new Password("p4zRcv2#n8901234")),
+          false,
+        },
+        // Has backward numerical sequence
+        {
+          new NumericalSequenceRule(),
+          new PasswordData(new Password("p54321#n65")),
+          false,
+        },
+        // Has backward wrapping numerical sequence with wrap=false
+        {
+          new NumericalSequenceRule(5, false),
+          new PasswordData(new Password("p987#n32109")),
+          true,
+        },
+        // Has backward wrapping numerical sequence with wrap=true
+        {
+          new NumericalSequenceRule(8, true),
+          new PasswordData(new Password("p54321098#n65")),
+          false,
+        },
       };
   }
 }

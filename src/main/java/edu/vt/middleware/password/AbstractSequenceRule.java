@@ -23,195 +23,321 @@ package edu.vt.middleware.password;
 public abstract class AbstractSequenceRule implements Rule
 {
 
-  /** default length of keyboard sequence, value is {@value}. */
+  /** Default length of keyboard sequence, value is {@value}. */
   public static final int DEFAULT_SEQUENCE_LENGTH = 5;
 
-  /** default keyboard sequences. */
-  protected String[] sequences;
+  /** Minimum length of keyboard sequence, value is {@value}. */
+  public static final int MINIMUM_SEQUENCE_LENGTH = 3;
 
-  /** reverse keyboard sequences. */
-  protected String[] reverseSequences;
+  /** Number of characters in sequence to match. */
+  protected int sequenceLength = DEFAULT_SEQUENCE_LENGTH;
 
-
-  /**
-   * Iterates over the supplied character arrays and creates an array of
-   * sequences for the supplied length. Boundary of the results does not extend
-   * past the last element in each array.
-   * <p>
-   * For arrays {a,b,c,d},{w,x,y,z} with length 2, produces:
-   * <ul>
-   *   <li>{a,b}</li>
-   *   <li>{b,c}</li>
-   *   <li>{c,d}</li>
-   *   <li>{w,x}</li>
-   *   <li>{x,y}</li>
-   *   <li>{y,z}</li>
-   * </ul>
-   * </p>
-   *
-   * @param  length  <code>int</code> of each sequence to create
-   * @param  characters  <code>char[]</code> to create sequence array from
-   * @return  <code>String[]</code> of sequences
-   */
-  protected static String[] initializeSequences(
-    final int length, final char[]... characters)
-  {
-    int seqLength = 0;
-    for (char[] ch : characters) {
-      seqLength += ch.length - length + 1;
-    }
-    final String[] sequences = new String[seqLength];
-    int index = 0;
-    for (char[] ch : characters) {
-      final String[] seqs = createSequenceArray(
-        ch, ch.length - length + 1, length);
-      System.arraycopy(seqs, 0, sequences, index, seqs.length);
-      index += seqs.length;
-    }
-    return sequences;
-  }
+  /** Whether or not to wrap a sequence when searching for matches. */
+  protected boolean wrapSequence;
 
 
-  /**
-   * Iterates over the supplied character arrays and creates an array of
-   * sequences for the supplied length. Boundary of the results wraps around to
-   * produce a circular sequence
-   * <p>
-   * For arrays {a,b,c,d},{w,x,y,z} with length 2, produces:
-   * <ul>
-   *   <li>{a,b}</li>
-   *   <li>{b,c}</li>
-   *   <li>{c,d}</li>
-   *   <li>{d,a}</li>
-   *   <li>{w,x}</li>
-   *   <li>{x,y}</li>
-   *   <li>{y,z}</li>
-   *   <li>{z,w}</li>
-   * </ul>
-   * </p>
-   *
-   * @param  length  <code>int</code> of each sequence to create
-   * @param  characters  <code>char[]</code> to create sequence array from
-   * @return  <code>String[]</code> of sequences
-   */
-  protected static String[] initializeCircularSequences(
-    final int length, final char[]... characters)
-  {
-    int seqLength = 0;
-    for (char[] ch : characters) {
-      seqLength += ch.length;
-    }
-    final String[] sequences = new String[seqLength];
-    int index = 0;
-    for (char[] ch : characters) {
-      final String[] seqs = createSequenceArray(ch, ch.length, length);
-      System.arraycopy(seqs, 0, sequences, index, seqs.length);
-      index += seqs.length;
-    }
-    return sequences;
-  }
-
-
-  /**
-   * Iterates over the supplied character array and returns a string array
-   * containing sequences from the character array of the supplied length and
-   * extending to the supplied sequence length.
-   *
-   * @param  src  <code>char[]</code> to create sequence strings from
-   * @param  srcLength  <code>int</code> to read from the src array
-   * @param  seqLength  <code>int</code> of sequence strings to create
-   * @return  <code>String[]</code> of sequence strings
-   */
-  private static String[] createSequenceArray(
-    final char[] src, final int srcLength, final int seqLength)
-  {
-    final String[] seqs = new String[srcLength];
-    for (int i = 0; i < srcLength; i++) {
-      final char[] c = new char[seqLength];
-      for (int j = 0; j < seqLength; j++) {
-        final int x = i + j < src.length ? i + j : i + j - src.length;
-        c[j] = src[x];
-      }
-      seqs[i] = String.valueOf(c);
-    }
-    return seqs;
-  }
-
-
-  /**
-   * Iterates over the supplied character array and returns a string array where
-   * each element is one of the characters repeated length number of times.
-   *
-   * @param  length  <code>int</code> of sequence to create
-   * @param  characters  <code>char[]</code> to create sequence array from
-   * @return  <code>String[]</code> of sequences
-   */
-  protected static String[] initializeDuplicateSequence(
-    final int length, final char[] characters)
-  {
-    final String[] seqs = new String[characters.length];
-    for (int i = 0; i < characters.length; i++) {
-      final char[] c = new char[length];
-      for (int j = 0; j < length; j++) {
-        c[j] = characters[i];
-      }
-      seqs[i] = String.valueOf(c);
-    }
-    return seqs;
-  }
-
-
-  /**
-   * Returns an array with each element reversed from the supplied array.
-   *
-   * @param  sequences  <code>String[]</code> to reverse
-   * @return  <code>String[]</code> reversed sequences
-   */
-  protected static String[] initializeReverseSequences(final String[] sequences)
-  {
-    final String[] revSeqs = new String[sequences.length];
-    for (int i = 0; i < revSeqs.length; i++) {
-      revSeqs[i] = new StringBuilder(sequences[i]).reverse().toString();
-    }
-    return revSeqs;
-  }
-
-
-  /**
-   * Validates the supplied text using the supplied sequences. If reverse
-   * sequences is null, it is ignored.
-   *
-   * @param  text  <code>String</code> to validate
-   * @param  seqs  <code>String[]</code>  to check text for
-   * @param  revSeqs  <code>String[]</code> to check text for
-   * @return  <code>RuleResult</code> for this rule
-   */
-  protected RuleResult validate(
-    final String text, final String[] seqs, final String[] revSeqs)
+  /** {@inheritDoc} */
+  public RuleResult validate(final PasswordData passwordData)
   {
     final RuleResult result = new RuleResult(true);
-    for (int i = 0; i < seqs.length; i++) {
-      if (text.indexOf(seqs[i]) != -1) {
-        result.setValid(false);
-        result.getDetails().add(
-          new RuleResultDetail(
-            String.format(
-              "Password contains the keyboard sequence '%s'",
-              seqs[i])));
-      }
-    }
-    if (revSeqs != null) {
-      for (int j = 0; j < revSeqs.length; j++) {
-        if (text.indexOf(revSeqs[j]) != -1) {
-          result.setValid(false);
-          result.getDetails().add(
-            new RuleResultDetail(
-              String.format(
-                "Password contains the keyboard sequence '%s'",
-                revSeqs[j])));
+    final String password = passwordData.getPassword().getText();
+    final int max = password.length() - sequenceLength + 1;
+    Sequence sequence;
+    int position;
+    char c;
+    for (int i = 0; i < getSequenceCount(); i++) {
+      for (int j = 0; j < max; j++) {
+        sequence = newSequence(getSequence(i), password.charAt(j));
+        if (sequence != null) {
+          position = j;
+          while (sequence.forward()) {
+            c = password.charAt(++position);
+            if (c == sequence.currentLower() || c == sequence.currentUpper()) {
+              sequence.addMatchCharacter(c);
+            } else {
+              break;
+            }
+          }
+          if (sequence.matchCount() == sequenceLength) {
+            recordFailure(result, sequence.matchString());
+          }
+          sequence.reset();
+          position = j;
+          while (sequence.backward()) {
+            c = password.charAt(++position);
+            if (c == sequence.currentLower() || c == sequence.currentUpper()) {
+              sequence.addMatchCharacter(c);
+            } else {
+              break;
+            }
+          }
+          if (sequence.matchCount() == sequenceLength) {
+            recordFailure(result, sequence.matchString());
+          }
         }
       }
     }
     return result;
+  }
+
+
+  /**
+   * This returns a string representation of this object.
+   *
+   * @return  <code>String</code>
+   */
+  @Override
+  public String toString()
+  {
+    return
+      String.format(
+        "%s@%h::length=%d,wrap=%s",
+        this.getClass().getName(),
+        this.hashCode(),
+        this.sequenceLength,
+        this.wrapSequence);
+  }
+
+
+  /**
+   * Sets the sequence length.
+   *
+   * @param  sl  <code>int</code> sequence length
+   */
+  protected void setSequenceLength(final int sl)
+  {
+    if (sl < MINIMUM_SEQUENCE_LENGTH) {
+      throw new IllegalArgumentException(
+        String.format(
+          "sequence length must be >= %s", MINIMUM_SEQUENCE_LENGTH));
+    }
+    this.sequenceLength = sl;
+  }
+
+
+  /**
+   * Get the sequence of character pairs for which to search.
+   *
+   * @param  n  <code>int</code> provides support for multiple character
+   * sequences that are indexed from 0 to n.
+   *
+   * @return  <code>char[][]</code> character sequence.
+   */
+  protected abstract char[][] getSequence(int n);
+
+
+  /**
+   * Get the number of character sequences used in this implementation.
+   *
+   * @return  <code>int</code> number of character sequences.
+   */
+  protected abstract int getSequenceCount();
+
+
+  /**
+   * Creates an iterator that iterates over a character sequence positioned
+   * at the first matching character, if any, in the given password.
+   *
+   * @param  chars  <code>char[][]</code> sequence of upper/lowercase character
+   * pairs.
+   * @param  first  <code>char</code> first character to match in character
+   * sequence.
+   *
+   * @return  <code>Sequence</code> forward sequence iterator.
+   */
+  private Sequence newSequence(final char[][] chars, final char first)
+  {
+    for (int i = 0; i < chars.length; i++) {
+      if (first == chars[i][0] || first == chars[i][1]) {
+        final Sequence s = new Sequence(chars, i, sequenceLength, wrapSequence);
+        s.addMatchCharacter(first);
+        return s;
+      }
+    }
+    return null;
+  }
+
+
+  /**
+   * Records a validation failure.
+   *
+   * @param  result  <code>RuleResult</code> rule result holding failure
+   * details.
+   * @param  match  <code>String</code> illegal string matched in the password
+   * that caused failure.
+   */
+  private void recordFailure(final RuleResult result, final String match)
+  {
+    result.setValid(false);
+    result.getDetails().add(
+      new RuleResultDetail(
+        String.format("Password contains illegal sequence '%s'", match)));
+  }
+
+
+  /**
+   * <code>Sequence</code> contains convenience methods for iterating over a
+   * sequence of upper/lowercase pairs of characters and stores matched
+   * characters.
+   *
+   * @author Middleware
+   * @version $Revision$
+   */
+  private class Sequence
+  {
+    /** Sequence of upper/lower character pairs. */
+    private final char[][] chars;
+
+    /** 0-based iterator start position. */
+    private int start;
+
+    /** Number of characters to iterate over. */
+    private int length;
+
+    /** Index upper bound. */
+    private int ubound;
+
+    /** Index lower bound. */
+    private int lbound;
+
+    /** Current 0-based iterator position. */
+    private int position;
+
+    /** Stores matched characters. */
+    private StringBuilder matches;
+
+
+    /**
+     * Creates a new instance with the given parameters.
+     *
+     * @param  characters  <code>char[][]</code> sequence of characters
+     * @param  startIndex  <code>int</code> in the characters array
+     * @param  count  <code>int</code> length of this sequence
+     * @param  wrap  <code>boolean</code> whether this sequence wraps
+     */
+    public Sequence(
+      final char[][] characters,
+      final int startIndex,
+      final int count,
+      final boolean wrap)
+    {
+      chars = characters;
+      start = startIndex;
+      length = count;
+      lbound = start - length;
+      ubound = start + length;
+      if (lbound < 0 && !wrap) {
+        lbound = 0;
+      }
+      if (ubound >= characters.length && !wrap) {
+        ubound = characters.length;
+      }
+      position = start;
+      matches = new StringBuilder(length);
+    }
+
+
+    /**
+     * Advances the iterator one unit in the forward direction.
+     *
+     * @return  <code>boolean</code> true if characters remain, false otherwise.
+     */
+    public boolean forward()
+    {
+      return ++position < ubound;
+    }
+
+
+    /**
+     * Advances the iterator one unit in the backward direction.
+     *
+     * @return  <code>boolean</code> true if characters remain, false otherwise.
+     */
+    public boolean backward()
+    {
+      return --position > lbound;
+    }
+
+
+    /**
+     * Resets the sequence to its original position and discards all but the
+     * initial match character.
+     */
+    public void reset()
+    {
+      position = start;
+      matches.delete(1, length);
+    }
+
+
+    /**
+     * Get the lowercase character at the current iterator position.
+     *
+     * @return  <code>char</code> lowercase character at current position.
+     */
+    public char currentLower()
+    {
+      final int i;
+      if (position < 0) {
+        i = chars.length + position;
+      } else if (position >= chars.length) {
+        i = position - chars.length;
+      } else {
+        i = position;
+      }
+      return chars[i][0];
+    }
+
+
+    /**
+     * Get the uppercase character at the current iterator position.
+     *
+     * @return  <code>char</code> uppercase character at current position.
+     */
+    public char currentUpper()
+    {
+      final int i;
+      if (position < 0) {
+        i = chars.length + position;
+      } else if (position >= chars.length) {
+        i = position - chars.length;
+      } else {
+        i = position;
+      }
+      return chars[i][1];
+    }
+
+
+    /**
+     * Adds the given character to the set of matched characters.
+     *
+     * @param  c  <code>char</code> match character.
+     */
+    public void addMatchCharacter(final char c)
+    {
+      matches.append(c);
+    }
+
+
+    /**
+     * Get the number of matched characters.
+     *
+     * @return  <code>int</code> matched character count.
+     */
+    public int matchCount()
+    {
+      return matches.length();
+    }
+
+
+    /**
+     * Get the string of matched characters.
+     *
+     * @return  <code>String</code> match string.
+     */
+    public String matchString()
+    {
+      return matches.toString();
+    }
   }
 }

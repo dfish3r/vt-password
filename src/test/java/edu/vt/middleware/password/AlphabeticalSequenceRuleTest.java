@@ -24,54 +24,6 @@ import org.testng.annotations.DataProvider;
 public class AlphabeticalSequenceRuleTest extends AbstractRuleTest
 {
 
-  /** Test password. */
-  private static final Password VALID_PASS = new Password("p4zRcv8#n65");
-
-  /** Test password. */
-  private static final Password SEQ_PASS = new Password("p4hijkl#n65");
-
-  /** Test password. */
-  private static final Password LONG_SEQ_PASS = new Password("p4lmnopqr#n65");
-
-  /** Test password. */
-  private static final Password BACKWARDS_SEQ_PASS = new Password(
-    "p4qponm#n65");
-
-  /** Test password. */
-  private static final Password UPPERCASE_SEQ_PASS = new Password(
-    "p4DefGH#n65");
-
-  /** Test password. */
-  private static final Password BACKWARDS_UPPERCASE_SEQ_PASS = new Password(
-    "p4ONmLk#n65");
-
-  /** Test password. */
-  private static final Password CIRCULAR_SEQ_PASS = new Password("p4xyzab#n65");
-
-  /** For testing. */
-  private AlphabeticalSequenceRule rule = new AlphabeticalSequenceRule(
-    5, false, false, false);
-
-  /** For testing. */
-  private AlphabeticalSequenceRule longRule = new AlphabeticalSequenceRule(
-    7, false, false, false);
-
-  /** For testing. */
-  private AlphabeticalSequenceRule backwardsRule = new AlphabeticalSequenceRule(
-    5, false, true, false);
-
-  /** For testing. */
-  private AlphabeticalSequenceRule ignoreCaseRule =
-    new AlphabeticalSequenceRule(5, false, false, true);
-
-  /** For testing. */
-  private AlphabeticalSequenceRule circularRule = new AlphabeticalSequenceRule(
-    5, true, false, false);
-
-  /** For testing. */
-  private AlphabeticalSequenceRule allRule = new AlphabeticalSequenceRule(
-    5, true, true, true);
-
 
   /**
    * @return  Test data.
@@ -84,66 +36,48 @@ public class AlphabeticalSequenceRuleTest extends AbstractRuleTest
   {
     return
       new Object[][] {
-
-        {this.rule, new PasswordData(VALID_PASS), true, },
-        {this.rule, new PasswordData(SEQ_PASS), false, },
-        {this.rule, new PasswordData(LONG_SEQ_PASS), false, },
-        {this.rule, new PasswordData(BACKWARDS_SEQ_PASS), true, },
-        {this.rule, new PasswordData(UPPERCASE_SEQ_PASS), true, },
-        {this.rule, new PasswordData(BACKWARDS_UPPERCASE_SEQ_PASS), true, },
-        {this.rule, new PasswordData(CIRCULAR_SEQ_PASS), true, },
-
-        {this.longRule, new PasswordData(VALID_PASS), true, },
-        {this.longRule, new PasswordData(SEQ_PASS), true, },
-        {this.longRule, new PasswordData(LONG_SEQ_PASS), false, },
-        {this.longRule, new PasswordData(BACKWARDS_SEQ_PASS), true, },
-        {this.longRule, new PasswordData(UPPERCASE_SEQ_PASS), true, },
-        {this.longRule, new PasswordData(BACKWARDS_UPPERCASE_SEQ_PASS), true, },
-        {this.longRule, new PasswordData(CIRCULAR_SEQ_PASS), true, },
-
-        {this.backwardsRule, new PasswordData(VALID_PASS), true, },
-        {this.backwardsRule, new PasswordData(SEQ_PASS), false, },
-        {this.backwardsRule, new PasswordData(LONG_SEQ_PASS), false, },
-        {this.backwardsRule, new PasswordData(BACKWARDS_SEQ_PASS), false, },
-        {this.backwardsRule, new PasswordData(UPPERCASE_SEQ_PASS), true, },
+        // Test valid password
         {
-          this.backwardsRule,
-          new PasswordData(BACKWARDS_UPPERCASE_SEQ_PASS),
+          new AlphabeticalSequenceRule(),
+          new PasswordData(new Password("p4zRcv8#n65")),
           true,
         },
-        {this.backwardsRule, new PasswordData(CIRCULAR_SEQ_PASS), true, },
-
-        {this.ignoreCaseRule, new PasswordData(VALID_PASS), true, },
-        {this.ignoreCaseRule, new PasswordData(SEQ_PASS), false, },
-        {this.ignoreCaseRule, new PasswordData(LONG_SEQ_PASS), false, },
-        {this.ignoreCaseRule, new PasswordData(BACKWARDS_SEQ_PASS), true, },
-        {this.ignoreCaseRule, new PasswordData(UPPERCASE_SEQ_PASS), false, },
+        // Has alphabetical sequence
         {
-          this.ignoreCaseRule,
-          new PasswordData(BACKWARDS_UPPERCASE_SEQ_PASS),
+          new AlphabeticalSequenceRule(7, false),
+          new PasswordData(new Password("phijklmn#n65")),
+          false,
+        },
+        // Has wrapping alphabetical sequence with wrap=false
+        {
+          new AlphabeticalSequenceRule(4, false),
+          new PasswordData(new Password("pXyza#n65")),
           true,
         },
-        {this.ignoreCaseRule, new PasswordData(CIRCULAR_SEQ_PASS), true, },
-
-        {this.circularRule, new PasswordData(VALID_PASS), true, },
-        {this.circularRule, new PasswordData(SEQ_PASS), false, },
-        {this.circularRule, new PasswordData(LONG_SEQ_PASS), false, },
-        {this.circularRule, new PasswordData(BACKWARDS_SEQ_PASS), true, },
-        {this.circularRule, new PasswordData(UPPERCASE_SEQ_PASS), true, },
+        // Has wrapping alphabetical sequence with wrap=true
         {
-          this.circularRule,
-          new PasswordData(BACKWARDS_UPPERCASE_SEQ_PASS),
+          new AlphabeticalSequenceRule(4, true),
+          new PasswordData(new Password("pxyzA#n65")),
+          false,
+        },
+        // Has backward alphabetical sequence
+        {
+          new AlphabeticalSequenceRule(),
+          new PasswordData(new Password("ptSrqp#n65")),
+          false,
+        },
+        // Has backward wrapping alphabetical sequence with wrap=false
+        {
+          new AlphabeticalSequenceRule(8, false),
+          new PasswordData(new Password("pcBazyXwv#n65")),
           true,
         },
-        {this.circularRule, new PasswordData(CIRCULAR_SEQ_PASS), false, },
-
-        {this.allRule, new PasswordData(VALID_PASS), true, },
-        {this.allRule, new PasswordData(SEQ_PASS), false, },
-        {this.allRule, new PasswordData(LONG_SEQ_PASS), false, },
-        {this.allRule, new PasswordData(BACKWARDS_SEQ_PASS), false, },
-        {this.allRule, new PasswordData(UPPERCASE_SEQ_PASS), false, },
-        {this.allRule, new PasswordData(BACKWARDS_UPPERCASE_SEQ_PASS), false, },
-        {this.allRule, new PasswordData(CIRCULAR_SEQ_PASS), false, },
+        // Has backward wrapping alphabetical sequence with wrap=true
+        {
+          new AlphabeticalSequenceRule(8, true),
+          new PasswordData(new Password("pcbazyxwv#n65")),
+          false,
+        },
       };
   }
 }
