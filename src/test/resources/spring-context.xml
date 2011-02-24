@@ -45,7 +45,7 @@
 
   <bean id="numSeqRule" class="edu.vt.middleware.password.NumericalSequenceRule"/>
 
-  <bean id="dupSeqRule" class="edu.vt.middleware.password.DuplicateSequenceRule"/>
+  <bean id="repeatRegexRule" class="edu.vt.middleware.password.RepeatCharacterRegexRule"/>
 
   <bean id="usernameRule" class="edu.vt.middleware.password.UsernameRule"
     p:ignoreCase="true"
@@ -62,7 +62,7 @@
         <ref bean="qwertySeqRule"/>
         <ref bean="alphaSeqRule"/>
         <ref bean="numSeqRule"/>
-        <ref bean="dupSeqRule"/>
+        <ref bean="repeatRegexRule"/>
         <ref bean="usernameRule"/>
         <ref bean="wsRule"/>
       </list>

@@ -103,7 +103,7 @@ public class RuleListTest extends AbstractRuleTest
 
     final NumericalSequenceRule numSeqRule = new NumericalSequenceRule();
 
-    final DuplicateSequenceRule dupSeqRule = new DuplicateSequenceRule();
+    final RepeatCharacterRegexRule dupSeqRule = new RepeatCharacterRegexRule();
 
     final UsernameRule userIDRule = new UsernameRule();
     userIDRule.setIgnoreCase(true);

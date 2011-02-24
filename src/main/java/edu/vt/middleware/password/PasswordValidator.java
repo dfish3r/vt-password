@@ -102,7 +102,7 @@ public final class PasswordValidator
           ruleList.getRules().add(new QwertySequenceRule());
           ruleList.getRules().add(new AlphabeticalSequenceRule());
           ruleList.getRules().add(new NumericalSequenceRule());
-          ruleList.getRules().add(new DuplicateSequenceRule());
+          ruleList.getRules().add(new RepeatCharacterRegexRule());
         } else if ("-h".equals(args[i])) {
           throw new ArrayIndexOutOfBoundsException();
         } else {

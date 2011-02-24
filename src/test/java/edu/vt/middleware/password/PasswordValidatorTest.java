@@ -56,7 +56,7 @@ public class PasswordValidatorTest
     this.ruleList.getRules().add(new QwertySequenceRule());
     this.ruleList.getRules().add(new AlphabeticalSequenceRule());
     this.ruleList.getRules().add(new NumericalSequenceRule());
-    this.ruleList.getRules().add(new DuplicateSequenceRule());
+    this.ruleList.getRules().add(new RepeatCharacterRegexRule());
   }
 
 
