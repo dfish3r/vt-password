@@ -116,7 +116,10 @@ public final class PasswordCli
 
     } catch (ArrayIndexOutOfBoundsException e) {
       System.out.println(
-        "Usage: java " + PasswordValidator.class.getName() + " <password> \\");
+        "Usage: java " + PasswordCli.class.getName() +
+        " <options> <password> \\");
+      System.out.println("");
+      System.out.println("where <options> includes:");
       System.out.println("       -l (Set the min & max password length) \\");
       System.out.println("          <min> \\");
       System.out.println("          <max> \\");
