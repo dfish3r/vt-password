@@ -17,8 +17,9 @@ import java.util.regex.Matcher;
 
 /**
  * <code>RepeatCharacterRegexRule</code> contains methods for determining if a
- * password contains a duplicate ASCII keyboard sequence. See {@link Pattern}
- * /p{ASCII}. The default sequence length is 5 characters.
+ * password contains a duplicate ASCII keyboard sequence. See
+ * {@link java.util.regex.Pattern} /p{ASCII}. The default sequence length is 5
+ * characters.
  *
  * <ul>
  *   <li>Sequences are of the form: 'bbbbb' or '#####'</li>
