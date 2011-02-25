@@ -1,12 +1,12 @@
 /*
   $Id$
 
-  Copyright (C) 2008-2009 Virginia Tech.
+  Copyright (C) 2003-2011 Virginia Tech.
   All rights reserved.
 
   SEE LICENSE FOR MORE INFORMATION
 
-  Author:  Middleware
+  Author:  Middleware Services
   Email:   middleware@vt.edu
   Version: $Revision$
   Updated: $Date$
@@ -14,7 +14,6 @@
 package edu.vt.middleware.password;
 
 import java.util.UUID;
-
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -22,9 +21,8 @@ import org.testng.annotations.Test;
  * Reports the time it takes to execute many password validations using sequence
  * rules.
  *
- * @author Middleware
- * @version $Revision$
- *
+ * @author  Middleware Services
+ * @version  $Revision$
  */
 public class SequenceRulesPerfTest
 {
@@ -39,16 +37,17 @@ public class SequenceRulesPerfTest
   @DataProvider(name = "perf-data")
   public Object[][] perfData()
   {
-    return new Object[][] {
-      new Object[] {
-        new Rule[] {
-          new AlphabeticalSequenceRule(),
-          new NumericalSequenceRule(),
-          new QwertySequenceRule(),
+    return
+      new Object[][] {
+        new Object[] {
+          new Rule[] {
+            new AlphabeticalSequenceRule(),
+            new NumericalSequenceRule(),
+            new QwertySequenceRule(),
+          },
+          5000,
         },
-        5000,
-      },
-    };
+      };
   }
 
 

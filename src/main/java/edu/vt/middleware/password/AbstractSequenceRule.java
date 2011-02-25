@@ -1,7 +1,7 @@
 /*
   $Id$
 
-  Copyright (C) 2003-2010 Virginia Tech.
+  Copyright (C) 2003-2011 Virginia Tech.
   All rights reserved.
 
   SEE LICENSE FOR MORE INFORMATION
@@ -109,7 +109,8 @@ public abstract class AbstractSequenceRule implements Rule
     if (sl < MINIMUM_SEQUENCE_LENGTH) {
       throw new IllegalArgumentException(
         String.format(
-          "sequence length must be >= %s", MINIMUM_SEQUENCE_LENGTH));
+          "sequence length must be >= %s",
+          MINIMUM_SEQUENCE_LENGTH));
     }
     this.sequenceLength = sl;
   }
@@ -135,8 +136,8 @@ public abstract class AbstractSequenceRule implements Rule
 
 
   /**
-   * Creates an iterator that iterates over a character sequence positioned
-   * at the first matching character, if any, in the given password.
+   * Creates an iterator that iterates over a character sequence positioned at
+   * the first matching character, if any, in the given password.
    *
    * @param  chars  <code>char[][]</code> sequence of upper/lowercase character
    * pairs.
@@ -180,11 +181,12 @@ public abstract class AbstractSequenceRule implements Rule
    * sequence of upper/lowercase pairs of characters and stores matched
    * characters.
    *
-   * @author Middleware
-   * @version $Revision$
+   * @author  Middleware Services
+   * @version  $Revision$
    */
   private class Sequence
   {
+
     /** Sequence of upper/lower character pairs. */
     private final char[][] chars;
 

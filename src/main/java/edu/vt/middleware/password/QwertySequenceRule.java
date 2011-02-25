@@ -1,7 +1,7 @@
 /*
   $Id$
 
-  Copyright (C) 2003-2010 Virginia Tech.
+  Copyright (C) 2003-2011 Virginia Tech.
   All rights reserved.
 
   SEE LICENSE FOR MORE INFORMATION
@@ -15,15 +15,14 @@ package edu.vt.middleware.password;
 
 /**
  * <code>QwertySequenceRule</code> contains methods for determining if a
- * password contains a QWERTY keyboard sequence. Both uppercase and
- * lowercase sequences are checked. The default sequence length is 5 characters.
- * <p>
+ * password contains a QWERTY keyboard sequence. Both uppercase and lowercase
+ * sequences are checked. The default sequence length is 5 characters.
+ *
  * <ul>
  *   <li>Sequences are of the form: 'yuiop' or '#$%^&'</li>
  *   <li>If wrap=true: './zxc' will match, note wrapping applies to each row of
- *   the keyboard</li>
+ *     the keyboard</li>
  * </ul>
- * </p>
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
@@ -96,7 +95,10 @@ public class QwertySequenceRule extends AbstractSequenceRule
 
   /** Array of all the characters in this sequence rule. */
   private static final char[][][] ALL_CHARS = new char[][][] {
-    ROW1, ROW2, ROW3, ROW4,
+    ROW1,
+    ROW2,
+    ROW3,
+    ROW4,
   };
 
 

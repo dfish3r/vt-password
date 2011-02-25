@@ -1,7 +1,7 @@
 /*
   $Id$
 
-  Copyright (C) 2003-2010 Virginia Tech.
+  Copyright (C) 2003-2011 Virginia Tech.
   All rights reserved.
 
   SEE LICENSE FOR MORE INFORMATION
@@ -17,12 +17,11 @@ package edu.vt.middleware.password;
  * <code>NumericalSequenceRule</code> contains methods for determining if a
  * password contains a numerical keyboard sequence. The default sequence length
  * is 5 characters.
- * <p>
+ *
  * <ul>
  *   <li>Sequences are of the form: '23456'</li>
  *   <li>If wrap=true: '90123' will match</li>
  * </ul>
- * </p>
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
@@ -66,7 +65,7 @@ public class NumericalSequenceRule extends AbstractSequenceRule
    *
    * @param  length  Length of sequence to search for.
    * @param  wrap  True to wrap sequences when searching for matches, false
-   * otherwise.  Default is false.
+   * otherwise. Default is false.
    */
   public NumericalSequenceRule(final int length, final boolean wrap)
   {

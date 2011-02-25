@@ -1,7 +1,7 @@
 /*
   $Id$
 
-  Copyright (C) 2003-2010 Virginia Tech.
+  Copyright (C) 2003-2011 Virginia Tech.
   All rights reserved.
 
   SEE LICENSE FOR MORE INFORMATION
@@ -25,6 +25,7 @@ import java.util.regex.Pattern;
  */
 public class RegexRule implements Rule
 {
+
   /** Regex pattern. */
   protected final Pattern pattern;
 
@@ -60,12 +61,15 @@ public class RegexRule implements Rule
    * Returns the message to set on the rule result detail.
    *
    * @param  m  <code>Matcher</code> that found a match
+   *
    * @return  <code>String</code> result detail
    */
   protected String getRuleResultDetail(final Matcher m)
   {
-    return String.format(
-      "Password contains the regular expression match '%s'", m.group());
+    return
+      String.format(
+        "Password contains the regular expression match '%s'",
+        m.group());
   }
 
 

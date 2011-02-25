@@ -1,7 +1,7 @@
 /*
   $Id$
 
-  Copyright (C) 2003-2010 Virginia Tech.
+  Copyright (C) 2003-2011 Virginia Tech.
   All rights reserved.
 
   SEE LICENSE FOR MORE INFORMATION
@@ -17,12 +17,11 @@ package edu.vt.middleware.password;
  * <code>AlphabeticalSequenceRule</code> contains methods for determining if a
  * password contains an alphabetical keyboard sequence. Both uppercase and
  * lowercase sequences are checked. The default sequence length is 5 characters.
- * <p>
+ *
  * <ul>
  *   <li>Sequences are of the form: 'stuvw' or 'KLMNO'</li>
  *   <li>If wrap=true: 'yzabc' will match</li>
  * </ul>
- * </p>
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$

@@ -1,7 +1,7 @@
 /*
   $Id$
 
-  Copyright (C) 2003-2010 Virginia Tech.
+  Copyright (C) 2003-2011 Virginia Tech.
   All rights reserved.
 
   SEE LICENSE FOR MORE INFORMATION
@@ -19,17 +19,17 @@ import java.util.regex.Matcher;
  * <code>RepeatCharacterRegexRule</code> contains methods for determining if a
  * password contains a duplicate ASCII keyboard sequence. See {@link Pattern}
  * /p{ASCII}. The default sequence length is 5 characters.
- * <p>
+ *
  * <ul>
  *   <li>Sequences are of the form: 'bbbbb' or '#####'</li>
  * </ul>
- * </p>
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
  */
 public class RepeatCharacterRegexRule extends RegexRule
 {
+
   /** Default length of sequence, value is {@value}. */
   public static final int DEFAULT_SEQUENCE_LENGTH = 5;
 
@@ -62,7 +62,8 @@ public class RepeatCharacterRegexRule extends RegexRule
     if (sl < MINIMUM_SEQUENCE_LENGTH) {
       throw new IllegalArgumentException(
         String.format(
-          "sequence length must be >= %s", MINIMUM_SEQUENCE_LENGTH));
+          "sequence length must be >= %s",
+          MINIMUM_SEQUENCE_LENGTH));
     }
   }
 
@@ -70,7 +71,7 @@ public class RepeatCharacterRegexRule extends RegexRule
   /** {@inheritDoc} */
   protected String getRuleResultDetail(final Matcher m)
   {
-    return String.format(
-      "Password contains the repeated character '%s'", m.group());
+    return
+      String.format("Password contains the repeated character '%s'", m.group());
   }
 }
