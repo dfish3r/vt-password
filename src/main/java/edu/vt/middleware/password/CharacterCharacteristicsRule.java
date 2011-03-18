@@ -92,6 +92,10 @@ public class CharacterCharacteristicsRule implements Rule
   /** {@inheritDoc} */
   public RuleResult validate(final PasswordData passwordData)
   {
+    if (this.numCharacteristics > this.rules.size()) {
+      throw new IllegalStateException(
+        "Number of characteristics must be <= to the number of rules");
+    }
     int successCount = 0;
     final RuleResult result = new RuleResult(true);
     for (CharacterRule rule : this.rules) {

@@ -13,8 +13,10 @@
 */
 package edu.vt.middleware.password;
 
+import junit.framework.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 /**
  * Unit test for {@link CharacterCharacteristicsRule}.
@@ -80,5 +82,22 @@ public class CharacterCharacteristicsRuleTest extends AbstractRuleTest
         {this.rule, new PasswordData(LOWERCASE_PASS), false, },
         {this.rule, new PasswordData(NONALPHA_PASS), false, },
       };
+  }
+
+
+  /**
+   * @throws  Exception  On test failure.
+   */
+  @Test(groups = {"passtest"})
+  public void checkConsistency()
+    throws Exception
+  {
+    final CharacterCharacteristicsRule ccr = new CharacterCharacteristicsRule();
+    try {
+      ccr.validate(new PasswordData(VALID_PASS));
+      Assert.fail("Should have thrown IllegalStateException");
+    } catch (Exception e) {
+      Assert.assertEquals(IllegalStateException.class, e.getClass());
+    }
   }
 }
