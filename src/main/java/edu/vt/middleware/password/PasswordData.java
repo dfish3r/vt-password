@@ -172,6 +172,40 @@ public class PasswordData
 
 
   /**
+   * Convenience method for creating a password data with all of it's
+   * properties. Properties are ignored if they are null or if collections are
+   * empty.
+   *
+   * @param  p  password
+   * @param  u  username
+   * @param  h  history
+   * @param  s  sources
+   * @return  password data
+   */
+  public static PasswordData newInstance(
+    final Password p,
+    final String u,
+    final List<String> h,
+    final Map<String, String> s)
+  {
+    final PasswordData pd = new PasswordData();
+    if (p != null) {
+      pd.setPassword(p);
+    }
+    if (u != null) {
+      pd.setUsername(u);
+    }
+    if (h != null && !h.isEmpty()) {
+      pd.setPasswordHistory(h);
+    }
+    if (s != null && !s.isEmpty()) {
+      pd.setPasswordSources(s);
+    }
+    return pd;
+  }
+
+
+  /**
    * This returns a string representation of this object.
    *
    * @return  <code>String</code>
