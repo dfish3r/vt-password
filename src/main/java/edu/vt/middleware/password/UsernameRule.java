@@ -23,6 +23,12 @@ package edu.vt.middleware.password;
 public class UsernameRule implements Rule
 {
 
+  /** Error code for matching username. */
+  public static final String ERROR_CODE = "ILLEGAL_USERNAME";
+
+  /** Error code for matching reversed dictionary word. */
+  public static final String ERROR_CODE_REVERSED = "ILLEGAL_USERNAME_REVERSED";
+
   /** whether to search for username backwards. */
   private boolean matchBackwards;
 
@@ -109,16 +115,12 @@ public class UsernameRule implements Rule
     if (text.indexOf(user) != -1) {
       result.setValid(false);
       result.getDetails().add(
-        new RuleResultDetail(
-          String.format("Password contains the user id '%s'", user)));
+        new RuleResultDetail(ERROR_CODE, new Object[]{user}));
     }
     if (this.matchBackwards && text.indexOf(reverseUser) != -1) {
       result.setValid(false);
       result.getDetails().add(
-        new RuleResultDetail(
-          String.format(
-            "Password contains the backwards user id '%s'",
-            reverseUser)));
+        new RuleResultDetail(ERROR_CODE_REVERSED, new Object[]{user}));
     }
     return result;
   }

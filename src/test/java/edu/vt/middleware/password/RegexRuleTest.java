@@ -13,7 +13,9 @@
 */
 package edu.vt.middleware.password;
 
+import org.testng.AssertJUnit;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 /**
  * Unit test for {@link RegexRule}.
@@ -55,5 +57,23 @@ public class RegexRuleTest extends AbstractRuleTest
           false,
         },
       };
+  }
+
+
+  /**
+   * @throws  Exception  On test failure.
+   */
+  @Test(groups = {"passtest"})
+  public void resolveMessage()
+    throws Exception
+  {
+    final Rule rule = new RegexRule("\\d\\d\\d\\d");
+    final RuleResult result = rule.validate(
+      new PasswordData(new Password("pwUiNh0248")));
+    for (RuleResultDetail detail : result.getDetails()) {
+      AssertJUnit.assertEquals(
+        String.format("Password matches the illegal sequence '%s'.", "0248"),
+        DEFAULT_RESOLVER.resolve(detail));
+    }
   }
 }

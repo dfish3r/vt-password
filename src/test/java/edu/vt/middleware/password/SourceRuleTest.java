@@ -16,8 +16,10 @@ package edu.vt.middleware.password;
 import java.util.HashMap;
 import java.util.Map;
 import edu.vt.middleware.crypt.util.Base64Converter;
+import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 /**
  * Unit test for {@link SourceRule}.
@@ -78,36 +80,54 @@ public class SourceRuleTest extends AbstractRuleTest
 
         {
           this.rule,
-          createPasswordData(VALID_PASS, USER, null, this.sources),
+          PasswordData.newInstance(VALID_PASS, USER, null, this.sources),
           true,
         },
         {
           this.rule,
-          createPasswordData(SOURCE_PASS, USER, null, this.sources),
+          PasswordData.newInstance(SOURCE_PASS, USER, null, this.sources),
           false,
         },
 
         {
           this.digestRule,
-          createPasswordData(VALID_PASS, USER, null, this.digestSources),
+          PasswordData.newInstance(VALID_PASS, USER, null, this.digestSources),
           true,
         },
         {
           this.digestRule,
-          createPasswordData(SOURCE_PASS, USER, null, this.digestSources),
+          PasswordData.newInstance(SOURCE_PASS, USER, null, this.digestSources),
           false,
         },
 
         {
           this.emptyRule,
-          createPasswordData(VALID_PASS, USER, null, null),
+          PasswordData.newInstance(VALID_PASS, USER, null, null),
           true,
         },
         {
           this.emptyRule,
-          createPasswordData(SOURCE_PASS, USER, null, null),
+          PasswordData.newInstance(SOURCE_PASS, USER, null, null),
           true,
         },
       };
+  }
+
+
+  /**
+   * @throws  Exception  On test failure.
+   */
+  @Test(groups = {"passtest"})
+  public void resolveMessage()
+    throws Exception
+  {
+    final RuleResult result = this.rule.validate(
+      PasswordData.newInstance(SOURCE_PASS, USER, null, this.sources));
+    for (RuleResultDetail detail : result.getDetails()) {
+      AssertJUnit.assertEquals(
+        String.format(
+          "Password cannot be the same as your %s password.", "System A"),
+        DEFAULT_RESOLVER.resolve(detail));
+    }
   }
 }

@@ -13,7 +13,9 @@
 */
 package edu.vt.middleware.password;
 
+import org.testng.AssertJUnit;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 /**
  * Unit test for {@link WhitespaceRule}.
@@ -60,5 +62,21 @@ public class WhitespaceRuleTest extends AbstractRuleTest
         {this.rule, new PasswordData(TAB_PASS), false, },
         {this.rule, new PasswordData(LINE_SEP_PASS), false, },
       };
+  }
+
+
+  /**
+   * @throws  Exception  On test failure.
+   */
+  @Test(groups = {"passtest"})
+  public void resolveMessage()
+    throws Exception
+  {
+    final RuleResult result = this.rule.validate(new PasswordData(SPACE_PASS));
+    for (RuleResultDetail detail : result.getDetails()) {
+      AssertJUnit.assertEquals(
+        "Password cannot contain whitespace characters.",
+        DEFAULT_RESOLVER.resolve(detail));
+    }
   }
 }

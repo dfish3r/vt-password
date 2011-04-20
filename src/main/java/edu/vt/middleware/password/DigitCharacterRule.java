@@ -23,6 +23,10 @@ package edu.vt.middleware.password;
 public class DigitCharacterRule extends AbstractCharacterRule
 {
 
+  /** Character type. */
+  private static final String CHARACTER_TYPE = "digit";
+
+
   /** Default constructor. */
   public DigitCharacterRule() {}
 
@@ -54,11 +58,8 @@ public class DigitCharacterRule extends AbstractCharacterRule
 
 
   /** {@inheritDoc} */
-  protected String getRuleResultDetailMessage()
+  protected String getCharacterType()
   {
-    return
-      String.format(
-        "Password must contain at least %s digits",
-        this.numCharacters);
+    return CHARACTER_TYPE;
   }
 }

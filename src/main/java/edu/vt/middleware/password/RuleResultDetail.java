@@ -13,9 +13,10 @@
 */
 package edu.vt.middleware.password;
 
+import java.util.Arrays;
+
 /**
- * <code>RuleResultDetail</code> provides common implementation for password
- * rule result detail implementations.
+ * Describes an exact cause of rule validation failure.
  *
  * @author  Middleware Services
  * @version  $Revision: 1614 $ $Date: 2010-09-20 15:02:39 -0400 (Mon, 20 Sep 2010) $
@@ -23,43 +24,64 @@ package edu.vt.middleware.password;
 public class RuleResultDetail
 {
 
-  /** message associated with a password rule result detail. */
-  protected String message;
+  /** Detail error code. */
+  protected final String errorCode;
 
-
-  /** Default constructor. */
-  public RuleResultDetail() {}
+  /**
+   * Additional parameters that provide information about validation failure.
+   */
+  protected final Object[] parameters;
 
 
   /**
-   * Creates a new <code>RuleResultDetail</code> with the supplied message.
+   * Creates a new instance with the supplied code.
    *
-   * @param  s  detail message
+   * @param  code  Error code.
+   * @param  params  Error details.
    */
-  public RuleResultDetail(final String s)
+  public RuleResultDetail(final String code, final Object[] params)
   {
-    this.message = s;
+    if (code == null || code.length() == 0) {
+      throw new IllegalArgumentException("Code cannot be null or empty.");
+    }
+    this.errorCode = code;
+    this.parameters = params;
   }
 
 
   /**
-   * Returns the message associated with this detail. May be null.
+   * Gets the error code.
    *
-   * @return  rule result detail message
+   * @return  Error code.
    */
-  public String getMessage()
+  public String getErrorCode()
   {
-    return this.message;
+    return this.errorCode;
   }
 
 
   /**
-   * Sets the message associated with this detail.
+   * Gets the parameters.
    *
-   * @param  s  detail message
+   * @return  Array of parameters or empty array if no parameters defined.
    */
-  public void setMessage(final String s)
+  public Object[] getParameters()
   {
-    this.message = s;
+    return this.parameters;
+  }
+
+
+  /**
+   * This returns a string representation of this object.
+   *
+   * @return  <code>String</code>
+   */
+  @Override
+  public String toString()
+  {
+    return String.format(
+      "%s:%s",
+      this.errorCode,
+      this.parameters != null ? Arrays.asList(this.parameters) : null);
   }
 }

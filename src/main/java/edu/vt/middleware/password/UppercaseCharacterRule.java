@@ -23,6 +23,10 @@ package edu.vt.middleware.password;
 public class UppercaseCharacterRule extends AbstractCharacterRule
 {
 
+  /** Character type. */
+  private static final String CHARACTER_TYPE = "uppercase";
+
+
   /** Default constructor. */
   public UppercaseCharacterRule() {}
 
@@ -54,11 +58,8 @@ public class UppercaseCharacterRule extends AbstractCharacterRule
 
 
   /** {@inheritDoc} */
-  protected String getRuleResultDetailMessage()
+  protected String getCharacterType()
   {
-    return
-      String.format(
-        "Password must contain at least %s uppercase characters",
-        this.numCharacters);
+    return CHARACTER_TYPE;
   }
 }

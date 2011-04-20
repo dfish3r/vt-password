@@ -23,6 +23,9 @@ package edu.vt.middleware.password;
 public abstract class AbstractSequenceRule implements Rule
 {
 
+  /** Error code for sequence validation failures. */
+  public static final String ERROR_CODE = "ILLEGAL_SEQUENCE";
+
   /** Default length of keyboard sequence, value is {@value}. */
   public static final int DEFAULT_SEQUENCE_LENGTH = 5;
 
@@ -171,8 +174,7 @@ public abstract class AbstractSequenceRule implements Rule
   {
     result.setValid(false);
     result.getDetails().add(
-      new RuleResultDetail(
-        String.format("Password contains illegal sequence '%s'", match)));
+      new RuleResultDetail(ERROR_CODE, new Object[]{match}));
   }
 
 

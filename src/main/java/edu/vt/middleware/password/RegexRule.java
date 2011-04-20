@@ -26,6 +26,9 @@ import java.util.regex.Pattern;
 public class RegexRule implements Rule
 {
 
+  /** Error code for regex validation failures. */
+  public static final String ERROR_CODE = "ILLEGAL_MATCH";
+
   /** Regex pattern. */
   protected final Pattern pattern;
 
@@ -51,25 +54,9 @@ public class RegexRule implements Rule
     if (m.find()) {
       result.setValid(false);
       result.getDetails().add(
-        new RuleResultDetail(this.getRuleResultDetail(m)));
+        new RuleResultDetail(ERROR_CODE, new Object[]{m.group()}));
     }
     return result;
-  }
-
-
-  /**
-   * Returns the message to set on the rule result detail.
-   *
-   * @param  m  <code>Matcher</code> that found a match
-   *
-   * @return  <code>String</code> result detail
-   */
-  protected String getRuleResultDetail(final Matcher m)
-  {
-    return
-      String.format(
-        "Password contains the regular expression match '%s'",
-        m.group());
   }
 
 

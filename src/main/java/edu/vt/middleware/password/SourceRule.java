@@ -13,8 +13,6 @@
 */
 package edu.vt.middleware.password;
 
-import java.util.Map;
-
 /**
  * <code>SourceRule</code> contains methods for determining if a password
  * matches a password from a different source. Useful for when separate systems
@@ -27,39 +25,24 @@ import java.util.Map;
 public class SourceRule extends AbstractDigester implements Rule
 {
 
+  /** Error code for regex validation failures. */
+  public static final String ERROR_CODE = "SOURCE_VIOLATION";
+
 
   /** {@inheritDoc} */
   public RuleResult validate(final PasswordData passwordData)
   {
     final RuleResult result = new RuleResult(true);
+    if (passwordData.getPasswordSources().isEmpty()) {
+      return result;
+    }
 
-    if (!passwordData.getPasswordSources().isEmpty()) {
-      for (
-        Map.Entry<String, String> entry :
-          passwordData.getPasswordSources().entrySet()) {
-        final String p = entry.getValue();
-        if (this.digest != null) {
-          final String hash = this.digest.digest(
-            passwordData.getPassword().getText().getBytes(),
-            this.converter);
-          if (p.equals(hash)) {
-            result.setValid(false);
-            result.getDetails().add(
-              new RuleResultDetail(
-                String.format(
-                  "Password can not be the same as your %s password",
-                  entry.getKey())));
-          }
-        } else {
-          if (p.equals(passwordData.getPassword().getText())) {
-            result.setValid(false);
-            result.getDetails().add(
-              new RuleResultDetail(
-                String.format(
-                  "Password can not be the same as your %s password",
-                  entry.getKey())));
-          }
-        }
+    final String cleartext = passwordData.getPassword().getText();
+    for (String source : passwordData.getPasswordSources().keySet()) {
+      if (matches(cleartext, passwordData.getPasswordSources().get(source))) {
+        result.setValid(false);
+        result.getDetails().add(
+          new RuleResultDetail(ERROR_CODE, new Object[]{source}));
       }
     }
     return result;

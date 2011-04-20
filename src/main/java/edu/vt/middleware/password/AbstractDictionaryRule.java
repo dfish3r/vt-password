@@ -25,6 +25,12 @@ import edu.vt.middleware.dictionary.Dictionary;
 public abstract class AbstractDictionaryRule implements Rule
 {
 
+  /** Error code for matching dictionary word. */
+  public static final String ERROR_CODE = "ILLEGAL_WORD";
+
+  /** Error code for matching reversed dictionary word. */
+  public static final String ERROR_CODE_REVERSED = "ILLEGAL_WORD_REVERSED";
+
   /** dictionary of words. */
   protected Dictionary dictionary;
 
@@ -83,24 +89,19 @@ public abstract class AbstractDictionaryRule implements Rule
    *
    * @param  passwordData  <code>PasswordData</code> to verify (not null).
    *
-   * @return  <code>DictionaryRuleResult</code> - details on password
-   * verification
+   * @return  Validation result.
    *
    * @throws  NullPointerException  if the password data is null.
    */
-  public DictionaryRuleResult validate(final PasswordData passwordData)
+  public RuleResult validate(final PasswordData passwordData)
   {
-    final DictionaryRuleResult result = new DictionaryRuleResult(true);
+    final RuleResult result = new RuleResult(true);
     String text = passwordData.getPassword().getText();
     String matchingWord = doWordSearch(text);
     if (matchingWord != null) {
       result.setValid(false);
       result.getDetails().add(
-        new RuleResultDetail(
-          String.format(
-            "Password contains the dictionary word '%s'",
-            matchingWord)));
-      result.setMatchingWord(matchingWord);
+        new RuleResultDetail(ERROR_CODE, new Object[]{matchingWord}));
     }
     if (this.matchBackwards) {
       text = new StringBuilder(passwordData.getPassword().getText()).reverse()
@@ -110,10 +111,7 @@ public abstract class AbstractDictionaryRule implements Rule
         result.setValid(false);
         result.getDetails().add(
           new RuleResultDetail(
-            String.format(
-              "Password contains the reversed dictionary word '%s'",
-              matchingWord)));
-        result.setMatchingWord(matchingWord);
+            ERROR_CODE_REVERSED, new Object[]{matchingWord}));
       }
     }
     return result;

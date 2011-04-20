@@ -18,9 +18,11 @@ import edu.vt.middleware.dictionary.ArrayWordList;
 import edu.vt.middleware.dictionary.WordListDictionary;
 import edu.vt.middleware.dictionary.WordLists;
 import edu.vt.middleware.dictionary.sort.ArraysSort;
+import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 
 /**
  * Unit test for {@link DictionaryRule}.
@@ -148,5 +150,30 @@ public class DictionaryRuleTest extends AbstractRuleTest
           false,
         },
       };
+  }
+
+
+  /**
+   * @throws  Exception  On test failure.
+   */
+  @Test(groups = {"passtest"})
+  public void resolveMessage()
+    throws Exception
+  {
+    RuleResult result = this.rule.validate(new PasswordData(DICT_PASS));
+    for (RuleResultDetail detail : result.getDetails()) {
+      AssertJUnit.assertEquals(
+        String.format(
+          "Password contains the dictionary word '%s'.", "Pullmanize"),
+        DEFAULT_RESOLVER.resolve(detail));
+    }
+
+    result = this.rule.validate(new PasswordData(BACKWARDS_DICT_PASS));
+    for (RuleResultDetail detail : result.getDetails()) {
+      AssertJUnit.assertEquals(
+        String.format(
+          "Password contains the reversed dictionary word '%s'.", "Pullmanize"),
+        DEFAULT_RESOLVER.resolve(detail));
+    }
   }
 }

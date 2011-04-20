@@ -13,7 +13,9 @@
 */
 package edu.vt.middleware.password;
 
+import org.testng.AssertJUnit;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 /**
  * Unit test for {@link RepeatCharacterRegexRule}.
@@ -74,5 +76,23 @@ public class RepeatCharacterRegexRuleTest extends AbstractRuleTest
           false,
         },
       };
+  }
+
+
+  /**
+   * @throws  Exception  On test failure.
+   */
+  @Test(groups = {"passtest"})
+  public void resolveMessage()
+    throws Exception
+  {
+    final Rule rule = new RepeatCharacterRegexRule();
+    final RuleResult result = rule.validate(
+      new PasswordData(new Password("p4&&&&&#n65")));
+    for (RuleResultDetail detail : result.getDetails()) {
+      AssertJUnit.assertEquals(
+        String.format("Password matches the illegal sequence '%s'.", "&&&&&"),
+        DEFAULT_RESOLVER.resolve(detail));
+    }
   }
 }

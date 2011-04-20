@@ -13,7 +13,7 @@
 */
 package edu.vt.middleware.password;
 
-import junit.framework.Assert;
+import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -95,9 +95,46 @@ public class CharacterCharacteristicsRuleTest extends AbstractRuleTest
     final CharacterCharacteristicsRule ccr = new CharacterCharacteristicsRule();
     try {
       ccr.validate(new PasswordData(VALID_PASS));
-      Assert.fail("Should have thrown IllegalStateException");
+      AssertJUnit.fail("Should have thrown IllegalStateException");
     } catch (Exception e) {
-      Assert.assertEquals(IllegalStateException.class, e.getClass());
+      AssertJUnit.assertEquals(IllegalStateException.class, e.getClass());
+    }
+  }
+
+
+  /**
+   * @throws  Exception  On test failure.
+   */
+  @Test(groups = {"passtest"})
+  public void resolveMessage()
+    throws Exception
+  {
+    final RuleResult result = this.rule.validate(
+      new PasswordData(new Password("r%scvEW2e3)")));
+    for (int i = 0; i < result.getDetails().size(); i++) {
+      final RuleResultDetail detail = result.getDetails().get(i);
+      switch (i) {
+      case 0:
+        AssertJUnit.assertEquals(
+          String.format(
+            "Password must contain at least %s %s characters.",
+            3,
+            "digit"),
+            DEFAULT_RESOLVER.resolve(detail));
+        break;
+      case 1:
+        AssertJUnit.assertEquals(
+          String.format(
+            "Password matches %s of %s character rules, but %s are required.",
+            4,
+            5,
+            5),
+            DEFAULT_RESOLVER.resolve(detail));
+        break;
+      default:
+        AssertJUnit.fail("Invalid index");
+        break;
+      }
     }
   }
 }

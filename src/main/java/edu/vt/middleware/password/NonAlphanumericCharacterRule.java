@@ -23,6 +23,10 @@ package edu.vt.middleware.password;
 public class NonAlphanumericCharacterRule extends AbstractCharacterRule
 {
 
+  /** Character type. */
+  private static final String CHARACTER_TYPE = "non-alphanumeric";
+
+
   /** Default constructor. */
   public NonAlphanumericCharacterRule() {}
 
@@ -54,11 +58,8 @@ public class NonAlphanumericCharacterRule extends AbstractCharacterRule
 
 
   /** {@inheritDoc} */
-  protected String getRuleResultDetailMessage()
+  protected String getCharacterType()
   {
-    return
-      String.format(
-        "Password must contain at least %s non-alphanumeric characters",
-        this.numCharacters);
+    return CHARACTER_TYPE;
   }
 }

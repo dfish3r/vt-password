@@ -16,8 +16,10 @@ package edu.vt.middleware.password;
 import java.util.ArrayList;
 import java.util.List;
 import edu.vt.middleware.crypt.util.Base64Converter;
+import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 /**
  * Unit test for {@link HistoryRule}.
@@ -88,66 +90,89 @@ public class HistoryRuleTest extends AbstractRuleTest
 
         {
           this.rule,
-          createPasswordData(VALID_PASS, USER, this.history, null),
+          PasswordData.newInstance(VALID_PASS, USER, this.history, null),
           true,
         },
         {
           this.rule,
-          createPasswordData(HISTORY_PASS1, USER, this.history, null),
+          PasswordData.newInstance(HISTORY_PASS1, USER, this.history, null),
           false,
         },
         {
           this.rule,
-          createPasswordData(HISTORY_PASS2, USER, this.history, null),
+          PasswordData.newInstance(HISTORY_PASS2, USER, this.history, null),
           false,
         },
         {
           this.rule,
-          createPasswordData(HISTORY_PASS3, USER, this.history, null),
+          PasswordData.newInstance(HISTORY_PASS3, USER, this.history, null),
           false,
         },
 
         {
           this.digestRule,
-          createPasswordData(VALID_PASS, USER, this.digestHistory, null),
+          PasswordData.newInstance(
+            VALID_PASS, USER, this.digestHistory, null),
           true,
         },
         {
           this.digestRule,
-          createPasswordData(HISTORY_PASS1, USER, this.digestHistory, null),
+          PasswordData.newInstance(
+            HISTORY_PASS1, USER, this.digestHistory, null),
           false,
         },
         {
           this.digestRule,
-          createPasswordData(HISTORY_PASS2, USER, this.digestHistory, null),
+          PasswordData.newInstance(
+            HISTORY_PASS2, USER, this.digestHistory, null),
           false,
         },
         {
           this.digestRule,
-          createPasswordData(HISTORY_PASS3, USER, this.digestHistory, null),
+          PasswordData.newInstance(
+            HISTORY_PASS3, USER, this.digestHistory, null),
           false,
         },
 
         {
           this.emptyRule,
-          createPasswordData(VALID_PASS, USER, null, null),
+          PasswordData.newInstance(VALID_PASS, USER, null, null),
           true,
         },
         {
           this.emptyRule,
-          createPasswordData(HISTORY_PASS1, USER, null, null),
+          PasswordData.newInstance(HISTORY_PASS1, USER, null, null),
           true,
         },
         {
           this.emptyRule,
-          createPasswordData(HISTORY_PASS2, USER, null, null),
+          PasswordData.newInstance(HISTORY_PASS2, USER, null, null),
           true,
         },
         {
           this.emptyRule,
-          createPasswordData(HISTORY_PASS3, USER, null, null),
+          PasswordData.newInstance(HISTORY_PASS3, USER, null, null),
           true,
         },
       };
+  }
+
+
+  /**
+   * @throws  Exception  On test failure.
+   */
+  @Test(groups = {"passtest"})
+  public void resolveMessage()
+    throws Exception
+  {
+    final RuleResult result = this.rule.validate(
+      PasswordData.newInstance(HISTORY_PASS1, USER, this.history, null));
+    for (RuleResultDetail detail : result.getDetails()) {
+      AssertJUnit.assertEquals(
+        String.format(
+          "Password matches one of %s previous passwords.",
+          this.history.size()),
+        DEFAULT_RESOLVER.resolve(detail));
+    }
   }
 }

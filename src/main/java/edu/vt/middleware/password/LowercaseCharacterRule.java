@@ -23,6 +23,10 @@ package edu.vt.middleware.password;
 public class LowercaseCharacterRule extends AbstractCharacterRule
 {
 
+  /** Character type. */
+  private static final String CHARACTER_TYPE = "lowercase";
+
+
   /** Default constructor. */
   public LowercaseCharacterRule() {}
 
@@ -54,11 +58,8 @@ public class LowercaseCharacterRule extends AbstractCharacterRule
 
 
   /** {@inheritDoc} */
-  protected String getRuleResultDetailMessage()
+  protected String getCharacterType()
   {
-    return
-      String.format(
-        "Password must contain at least %s lowercase characters",
-        this.numCharacters);
+    return CHARACTER_TYPE;
   }
 }

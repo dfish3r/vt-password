@@ -25,36 +25,25 @@ package edu.vt.middleware.password;
 public class HistoryRule extends AbstractDigester implements Rule
 {
 
+  /** Error code for regex validation failures. */
+  public static final String ERROR_CODE = "HISTORY_VIOLATION";
+
 
   /** {@inheritDoc} */
   public RuleResult validate(final PasswordData passwordData)
   {
     final RuleResult result = new RuleResult(true);
+    final int size = passwordData.getPasswordHistory().size();
+    if (size == 0) {
+      return result;
+    }
 
-    if (!passwordData.getPasswordHistory().isEmpty()) {
-      for (String p : passwordData.getPasswordHistory()) {
-        if (this.digest != null) {
-          final String hash = this.digest.digest(
-            passwordData.getPassword().getText().getBytes(),
-            this.converter);
-          if (p.equals(hash)) {
-            result.setValid(false);
-            result.getDetails().add(
-              new RuleResultDetail(
-                String.format(
-                  "Password matches one of %s previous passwords",
-                  passwordData.getPasswordHistory().size())));
-          }
-        } else {
-          if (p.equals(passwordData.getPassword().getText())) {
-            result.setValid(false);
-            result.getDetails().add(
-              new RuleResultDetail(
-                String.format(
-                  "Password matches one of %s previous passwords",
-                  passwordData.getPasswordHistory().size())));
-          }
-        }
+    final String cleartext = passwordData.getPassword().getText();
+    for (String previousPassword : passwordData.getPasswordHistory()) {
+      if (matches(cleartext, previousPassword)) {
+        result.setValid(false);
+        result.getDetails().add(
+          new RuleResultDetail(ERROR_CODE, new Object[]{size}));
       }
     }
     return result;

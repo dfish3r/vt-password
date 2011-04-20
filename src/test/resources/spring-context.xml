@@ -52,20 +52,5 @@
     p:matchBackwards="true"/>
 
   <bean id="wsRule" class="edu.vt.middleware.password.WhitespaceRule"/>
-
-  <bean id="ruleList" class="edu.vt.middleware.password.RuleList">
-    <property name="rules">
-      <list>
-        <ref bean="charRule"/>
-        <ref bean="dictRule"/>
-        <ref bean="lenRule"/>
-        <ref bean="qwertySeqRule"/>
-        <ref bean="alphaSeqRule"/>
-        <ref bean="numSeqRule"/>
-        <ref bean="repeatRegexRule"/>
-        <ref bean="usernameRule"/>
-        <ref bean="wsRule"/>
-      </list>
-    </property>
-  </bean>  
+ 
 </beans>

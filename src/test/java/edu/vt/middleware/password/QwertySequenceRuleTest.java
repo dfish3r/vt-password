@@ -13,7 +13,9 @@
 */
 package edu.vt.middleware.password;
 
+import org.testng.AssertJUnit;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 /**
  * Unit test for {@link QwertySequenceRule}.
@@ -79,5 +81,23 @@ public class QwertySequenceRuleTest extends AbstractRuleTest
           false,
         },
       };
+  }
+
+
+  /**
+   * @throws  Exception  On test failure.
+   */
+  @Test(groups = {"passtest"})
+  public void resolveMessage()
+    throws Exception
+  {
+    final Rule rule = new QwertySequenceRule();
+    final RuleResult result = rule.validate(
+      new PasswordData(new Password("pkl;'asd65")));
+    for (RuleResultDetail detail : result.getDetails()) {
+      AssertJUnit.assertEquals(
+        String.format("Password contains the illegal sequence '%s'.", ";'asd"),
+        DEFAULT_RESOLVER.resolve(detail));
+    }
   }
 }

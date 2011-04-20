@@ -28,6 +28,9 @@ import java.util.List;
 public class CharacterCharacteristicsRule implements Rule
 {
 
+  /** Error code for insufficient number of characteristics. */
+  public static final String ERROR_CODE = "INSUFFICIENT_CHARACTERISTICS";
+
   /** rules to apply when checking a password. */
   private List<CharacterRule> rules = new ArrayList<CharacterRule>();
 
@@ -109,11 +112,10 @@ public class CharacterCharacteristicsRule implements Rule
     if (successCount < this.numCharacteristics) {
       result.setValid(false);
       result.getDetails().add(
-        0,
         new RuleResultDetail(
-          String.format(
-            "Password did not meet %s required character characteristics",
-            this.numCharacteristics)));
+          ERROR_CODE,
+          new Object[]{
+            successCount, this.numCharacteristics, this.rules.size(), }));
     }
     return result;
   }

@@ -23,6 +23,9 @@ package edu.vt.middleware.password;
 public abstract class AbstractCharacterRule implements CharacterRule
 {
 
+  /** Error code for insufficient number of characters of particular class. */
+  public static final String ERROR_CODE = "INSUFFICIENT_CHARACTERS";
+
   /** number of characters to require. Default value is 1. */
   protected int numCharacters = 1;
 
@@ -57,12 +60,11 @@ public abstract class AbstractCharacterRule implements CharacterRule
 
 
   /**
-   * Returns the detail message for the implementing class should this rule fail
-   * validation.
+   * Gets the type of character managed by this rule.
    *
-   * @return  <code>String</code> detail message
+   * @return  Name of a character type, e.g. "digits."
    */
-  protected abstract String getRuleResultDetailMessage();
+  protected abstract String getCharacterType();
 
 
   /** {@inheritDoc} */
@@ -76,7 +78,9 @@ public abstract class AbstractCharacterRule implements CharacterRule
       return
         new RuleResult(
           false,
-          new RuleResultDetail(this.getRuleResultDetailMessage()));
+          new RuleResultDetail(
+            ERROR_CODE,
+            new Object[]{this.numCharacters, this.getCharacterType()}));
     }
   }
 

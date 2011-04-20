@@ -14,6 +14,8 @@
 package edu.vt.middleware.password;
 
 import java.io.RandomAccessFile;
+import java.util.ArrayList;
+import java.util.List;
 import edu.vt.middleware.dictionary.FileWordList;
 import edu.vt.middleware.dictionary.TernaryTreeDictionary;
 
@@ -43,7 +45,7 @@ public final class PasswordCli
   public static void main(final String[] args)
     throws Exception
   {
-    final RuleList ruleList = new RuleList();
+    final List<Rule> rules = new ArrayList<Rule>();
     String username = null;
     String password = null;
     try {
@@ -55,7 +57,7 @@ public final class PasswordCli
           final int min = Integer.parseInt(args[++i]);
           final int max = Integer.parseInt(args[++i]);
           final LengthRule rule = new LengthRule(min, max);
-          ruleList.getRules().add(rule);
+          rules.add(rule);
         } else if ("-c".equals(args[i])) {
           final CharacterCharacteristicsRule rule =
             new CharacterCharacteristicsRule();
@@ -70,7 +72,7 @@ public final class PasswordCli
           rule.getRules().add(
             new LowercaseCharacterRule(Integer.parseInt(args[++i])));
           rule.setNumberOfCharacteristics(Integer.parseInt(args[++i]));
-          ruleList.getRules().add(rule);
+          rules.add(rule);
         } else if ("-d".equals(args[i])) {
           final TernaryTreeDictionary dict = new TernaryTreeDictionary(
             new FileWordList(new RandomAccessFile(args[++i], "r"), false));
@@ -78,15 +80,15 @@ public final class PasswordCli
             dict);
           rule.setMatchBackwards(true);
           rule.setWordLength(Integer.parseInt(args[++i]));
-          ruleList.getRules().add(rule);
+          rules.add(rule);
         } else if ("-u".equals(args[i])) {
-          ruleList.getRules().add(new UsernameRule(true, true));
+          rules.add(new UsernameRule(true, true));
           username = args[++i];
         } else if ("-s".equals(args[i])) {
-          ruleList.getRules().add(new QwertySequenceRule());
-          ruleList.getRules().add(new AlphabeticalSequenceRule());
-          ruleList.getRules().add(new NumericalSequenceRule());
-          ruleList.getRules().add(new RepeatCharacterRegexRule());
+          rules.add(new QwertySequenceRule());
+          rules.add(new AlphabeticalSequenceRule());
+          rules.add(new NumericalSequenceRule());
+          rules.add(new RepeatCharacterRegexRule());
         } else if ("-h".equals(args[i])) {
           throw new ArrayIndexOutOfBoundsException();
         } else {
@@ -99,17 +101,16 @@ public final class PasswordCli
       } else {
         RuleResult result = null;
         final PasswordData pd = new PasswordData(new Password(password));
-        if (username == null) {
-          result = PasswordValidator.validate(ruleList, pd);
-        } else {
+        final PasswordValidator validator = new PasswordValidator(rules);
+        if (username != null) {
           pd.setUsername(username);
-          result = PasswordValidator.validate(ruleList, pd);
         }
+        result = validator.validate(pd);
         if (result.isValid()) {
           System.out.println("Valid password");
         } else {
-          for (RuleResultDetail rrd : result.getDetails()) {
-            System.out.println(rrd.getMessage());
+          for (String s : validator.getMessages(result)) {
+            System.out.println(s);
           }
         }
       }

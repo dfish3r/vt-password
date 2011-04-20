@@ -13,8 +13,10 @@
 */
 package edu.vt.middleware.password;
 
+import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 /**
  * Unit test for {@link UsernameRule}.
@@ -84,107 +86,136 @@ public class UsernameRuleTest extends AbstractRuleTest
 
         {
           this.rule,
-          createPasswordData(VALID_PASS, USER, null, null),
+          PasswordData.newInstance(VALID_PASS, USER, null, null),
           true,
         },
         {
           this.rule,
-          createPasswordData(USERID_PASS, USER, null, null),
+          PasswordData.newInstance(USERID_PASS, USER, null, null),
           false,
         },
         {
           this.rule,
-          createPasswordData(BACKWARDS_USERID_PASS, USER, null, null),
+          PasswordData.newInstance(BACKWARDS_USERID_PASS, USER, null, null),
           true,
         },
         {
           this.rule,
-          createPasswordData(UPPERCASE_USERID_PASS, USER, null, null),
+          PasswordData.newInstance(UPPERCASE_USERID_PASS, USER, null, null),
           true,
         },
         {
           this.rule,
-          createPasswordData(BACKWARDS_UPPERCASE_USERID_PASS, USER, null, null),
+          PasswordData.newInstance(
+            BACKWARDS_UPPERCASE_USERID_PASS, USER, null, null),
           true,
         },
 
         {
           this.backwardsRule,
-          createPasswordData(VALID_PASS, USER, null, null),
+          PasswordData.newInstance(VALID_PASS, USER, null, null),
           true,
         },
         {
           this.backwardsRule,
-          createPasswordData(USERID_PASS, USER, null, null),
+          PasswordData.newInstance(USERID_PASS, USER, null, null),
           false,
         },
         {
           this.backwardsRule,
-          createPasswordData(BACKWARDS_USERID_PASS, USER, null, null),
+          PasswordData.newInstance(BACKWARDS_USERID_PASS, USER, null, null),
           false,
         },
         {
           this.backwardsRule,
-          createPasswordData(UPPERCASE_USERID_PASS, USER, null, null),
+          PasswordData.newInstance(UPPERCASE_USERID_PASS, USER, null, null),
           true,
         },
         {
           this.backwardsRule,
-          createPasswordData(BACKWARDS_UPPERCASE_USERID_PASS, USER, null, null),
+          PasswordData.newInstance(
+            BACKWARDS_UPPERCASE_USERID_PASS, USER, null, null),
           true,
         },
 
         {
           this.ignoreCaseRule,
-          createPasswordData(VALID_PASS, USER, null, null),
+          PasswordData.newInstance(VALID_PASS, USER, null, null),
           true,
         },
         {
           this.ignoreCaseRule,
-          createPasswordData(USERID_PASS, USER, null, null),
+          PasswordData.newInstance(USERID_PASS, USER, null, null),
           false,
         },
         {
           this.ignoreCaseRule,
-          createPasswordData(BACKWARDS_USERID_PASS, USER, null, null),
+          PasswordData.newInstance(BACKWARDS_USERID_PASS, USER, null, null),
           true,
         },
         {
           this.ignoreCaseRule,
-          createPasswordData(UPPERCASE_USERID_PASS, USER, null, null),
+          PasswordData.newInstance(UPPERCASE_USERID_PASS, USER, null, null),
           false,
         },
         {
           this.ignoreCaseRule,
-          createPasswordData(BACKWARDS_UPPERCASE_USERID_PASS, USER, null, null),
+          PasswordData.newInstance(
+            BACKWARDS_UPPERCASE_USERID_PASS, USER, null, null),
           true,
         },
 
         {
           this.allRule,
-          createPasswordData(VALID_PASS, USER, null, null),
+          PasswordData.newInstance(VALID_PASS, USER, null, null),
           true,
         },
         {
           this.allRule,
-          createPasswordData(USERID_PASS, USER, null, null),
+          PasswordData.newInstance(USERID_PASS, USER, null, null),
           false,
         },
         {
           this.allRule,
-          createPasswordData(BACKWARDS_USERID_PASS, USER, null, null),
+          PasswordData.newInstance(BACKWARDS_USERID_PASS, USER, null, null),
           false,
         },
         {
           this.allRule,
-          createPasswordData(UPPERCASE_USERID_PASS, USER, null, null),
+          PasswordData.newInstance(UPPERCASE_USERID_PASS, USER, null, null),
           false,
         },
         {
           this.allRule,
-          createPasswordData(BACKWARDS_UPPERCASE_USERID_PASS, USER, null, null),
+          PasswordData.newInstance(
+            BACKWARDS_UPPERCASE_USERID_PASS, USER, null, null),
           false,
         },
       };
+  }
+
+
+  /**
+   * @throws  Exception  On test failure.
+   */
+  @Test(groups = {"passtest"})
+  public void resolveMessage()
+    throws Exception
+  {
+    RuleResult result = this.rule.validate(
+      PasswordData.newInstance(USERID_PASS, USER, null, null));
+    for (RuleResultDetail detail : result.getDetails()) {
+      AssertJUnit.assertEquals(
+        String.format("Password contains the user id '%s'.", USER),
+        DEFAULT_RESOLVER.resolve(detail));
+    }
+
+    result = this.rule.validate(
+      PasswordData.newInstance(BACKWARDS_USERID_PASS, USER, null, null));
+    for (RuleResultDetail detail : result.getDetails()) {
+      AssertJUnit.assertEquals(
+        String.format("Password contains the user id '%s' in reverse.", USER),
+        DEFAULT_RESOLVER.resolve(detail));
+    }
   }
 }

@@ -23,6 +23,10 @@ package edu.vt.middleware.password;
 public class AlphabeticalCharacterRule extends AbstractCharacterRule
 {
 
+  /** Character type. */
+  private static final String CHARACTER_TYPE = "alphabetical";
+
+
   /** Default constructor. */
   public AlphabeticalCharacterRule() {}
 
@@ -54,11 +58,8 @@ public class AlphabeticalCharacterRule extends AbstractCharacterRule
 
 
   /** {@inheritDoc} */
-  protected String getRuleResultDetailMessage()
+  protected String getCharacterType()
   {
-    return
-      String.format(
-        "Password must contain at least %s alphabetical characters",
-        this.numCharacters);
+    return CHARACTER_TYPE;
   }
 }

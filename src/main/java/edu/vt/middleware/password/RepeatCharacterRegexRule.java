@@ -13,8 +13,6 @@
 */
 package edu.vt.middleware.password;
 
-import java.util.regex.Matcher;
-
 /**
  * <code>RepeatCharacterRegexRule</code> contains methods for determining if a
  * password contains a duplicate ASCII keyboard sequence. See
@@ -66,13 +64,5 @@ public class RepeatCharacterRegexRule extends RegexRule
           "sequence length must be >= %s",
           MINIMUM_SEQUENCE_LENGTH));
     }
-  }
-
-
-  /** {@inheritDoc} */
-  protected String getRuleResultDetail(final Matcher m)
-  {
-    return
-      String.format("Password contains the repeated character '%s'", m.group());
   }
 }

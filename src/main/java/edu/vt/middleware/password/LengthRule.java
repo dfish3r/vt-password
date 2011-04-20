@@ -24,6 +24,12 @@ package edu.vt.middleware.password;
 public class LengthRule implements Rule
 {
 
+  /** Error code for password too short. */
+  public static final String ERROR_CODE_MIN = "TOO_SHORT";
+
+  /** Error code for password too long. */
+  public static final String ERROR_CODE_MAX = "TOO_LONG";
+
   /** Stores the minimum length of a password. */
   private int minimumLength;
 
@@ -112,33 +118,20 @@ public class LengthRule implements Rule
   public RuleResult validate(final PasswordData passwordData)
   {
     final RuleResult result = new RuleResult();
-    if (
-      passwordData.getPassword().length() >= this.minimumLength &&
-        passwordData.getPassword().length() <= this.maximumLength) {
+    final int length = passwordData.getPassword().length();
+    if (length >= this.minimumLength && length <= this.maximumLength) {
       result.setValid(true);
-    } else if (this.minimumLength == this.maximumLength) {
-      result.setValid(false);
-      result.getDetails().add(
-        new RuleResultDetail(
-          String.format(
-            "Password length must be %s characters",
-            this.minimumLength)));
-    } else if (this.maximumLength == Integer.MAX_VALUE) {
-      result.setValid(false);
-      result.getDetails().add(
-        new RuleResultDetail(
-          String.format(
-            "Password length must be greater than or equal to %s characters",
-            this.minimumLength)));
     } else {
       result.setValid(false);
-      result.getDetails().add(
-        new RuleResultDetail(
-          String.format(
-            "Password length must be greater than or equal to %s " +
-            "and less than or equal to %s characters",
-            this.minimumLength,
-            this.maximumLength)));
+      if (length < this.minimumLength) {
+        result.getDetails().add(
+          new RuleResultDetail(
+            ERROR_CODE_MIN, new Object[]{this.minimumLength}));
+      } else {
+        result.getDetails().add(
+          new RuleResultDetail(
+            ERROR_CODE_MAX, new Object[]{this.maximumLength}));
+      }
     }
     return result;
   }

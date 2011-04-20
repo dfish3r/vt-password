@@ -13,8 +13,6 @@
 */
 package edu.vt.middleware.password;
 
-import java.util.List;
-import java.util.Map;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
@@ -26,6 +24,10 @@ import org.testng.annotations.Test;
  */
 public abstract class AbstractRuleTest
 {
+
+  /** default message resolver.*/
+  protected static final MessageResolver DEFAULT_RESOLVER =
+    new MessageResolver();
 
 
   /**
@@ -46,42 +48,13 @@ public abstract class AbstractRuleTest
     throws Exception
   {
     if (valid) {
-      AssertJUnit.assertTrue(rule.validate(passwordData).isValid());
+      final RuleResult result = rule.validate(passwordData);
+      AssertJUnit.assertTrue(result.isValid());
+      AssertJUnit.assertTrue(result.getDetails().isEmpty());
     } else {
-      AssertJUnit.assertFalse(rule.validate(passwordData).isValid());
+      final RuleResult result = rule.validate(passwordData);
+      AssertJUnit.assertFalse(result.isValid());
+      AssertJUnit.assertTrue(!result.getDetails().isEmpty());
     }
-  }
-
-
-  /**
-   * Creates a new <code>PasswordData</code> with the supplied input.
-   *
-   * @param  password  <code>Password</code>
-   * @param  username  <code>String</code>
-   * @param  history  <code>List</code>
-   * @param  sources  <code>Map</code>
-   *
-   * @return  <code>PasswordData</code>
-   */
-  protected static PasswordData createPasswordData(
-    final Password password,
-    final String username,
-    final List<String> history,
-    final Map<String, String> sources)
-  {
-    final PasswordData pd = new PasswordData();
-    if (password != null) {
-      pd.setPassword(password);
-    }
-    if (username != null) {
-      pd.setUsername(username);
-    }
-    if (history != null) {
-      pd.setPasswordHistory(history);
-    }
-    if (sources != null) {
-      pd.setPasswordSources(sources);
-    }
-    return pd;
   }
 }

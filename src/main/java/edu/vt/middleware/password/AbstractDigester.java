@@ -46,4 +46,25 @@ public abstract class AbstractDigester
     this.digest = DigestAlgorithm.newInstance(algorithm);
     this.converter = conv;
   }
+
+
+  /**
+   * Determines whether an undigested password matches a (possibly digested)
+   * reference value.
+   *
+   * @param  undigested  Candidate cleartext password.
+   * @param  reference  Reference password (possibly digested).
+   *
+   * @return  True if passwords match, false otherwise.
+   */
+  protected boolean matches(final String undigested, final String reference)
+  {
+    final String compare;
+    if (this.digest != null) {
+      compare = this.digest.digest(undigested.getBytes(), this.converter);
+    } else {
+      compare = undigested;
+    }
+    return reference.equals(compare);
+  }
 }

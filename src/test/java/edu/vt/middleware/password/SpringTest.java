@@ -13,6 +13,7 @@
 */
 package edu.vt.middleware.password;
 
+import java.util.ArrayList;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
@@ -44,9 +45,12 @@ public class SpringTest
         });
     AssertJUnit.assertTrue(context.getBeanDefinitionCount() > 0);
 
-    final RuleList ruleList = (RuleList) context.getBean("ruleList");
+    final PasswordValidator validator = new PasswordValidator(
+      new ArrayList<Rule>(context.getBeansOfType(Rule.class).values()));
     final PasswordData pd = new PasswordData(new Password("springtest"));
     pd.setUsername("springuser");
-    ruleList.validate(pd);
+    final RuleResult result =
+      validator.validate(pd);
+    AssertJUnit.assertNotNull(result);
   }
 }
