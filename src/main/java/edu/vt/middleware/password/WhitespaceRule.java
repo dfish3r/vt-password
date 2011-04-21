@@ -14,8 +14,7 @@
 package edu.vt.middleware.password;
 
 /**
- * <code>WhitespaceRule</code> contains methods for determining if a password
- * contains whitespace characters.
+ * Rule for determining if a password contains whitespace characters.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$

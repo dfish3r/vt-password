@@ -16,8 +16,7 @@ package edu.vt.middleware.password;
 import edu.vt.middleware.dictionary.Dictionary;
 
 /**
- * <code>AbstractPasswordDictionaryRule</code> provides common implementation
- * for password dictionary rules.
+ * Provides common implementation for password dictionary rules.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
@@ -31,17 +30,17 @@ public abstract class AbstractDictionaryRule implements Rule
   /** Error code for matching reversed dictionary word. */
   public static final String ERROR_CODE_REVERSED = "ILLEGAL_WORD_REVERSED";
 
-  /** dictionary of words. */
+  /** Dictionary of words. */
   protected Dictionary dictionary;
 
-  /** whether to search for dictionary words backwards. */
+  /** Whether to search for dictionary words backwards. */
   protected boolean matchBackwards;
 
 
   /**
-   * This will set the <code>Dictionary</code> used to search for passwords.
+   * Sets the dictionary used to search for passwords.
    *
-   * @param  dict  <code>Dictionary</code> to use for searching
+   * @param  dict  to use for searching
    */
   public void setDictionary(final Dictionary dict)
   {
@@ -50,9 +49,9 @@ public abstract class AbstractDictionaryRule implements Rule
 
 
   /**
-   * This will return the <code>Dictionary</code> used to search for passwords.
+   * Returns the dictionary used to search for passwords.
    *
-   * @return  <code>Dictionary</code>
+   * @return  dictionary used for searching
    */
   public Dictionary getDictionary()
   {
@@ -64,7 +63,7 @@ public abstract class AbstractDictionaryRule implements Rule
    * This causes the verify method to search the password for dictionary words
    * spelled backwards as well as forwards.
    *
-   * @param  b  <code>boolean</code>
+   * @param  b  whether to match dictionary words backwards
    */
   public void setMatchBackwards(final boolean b)
   {
@@ -73,10 +72,10 @@ public abstract class AbstractDictionaryRule implements Rule
 
 
   /**
-   * Return true if the verify method will search the password for dictionary
+   * Returns true if the verify method will search the password for dictionary
    * words spelled backwards as well as forwards.
    *
-   * @return  <code>boolean</code>
+   * @return  whether to match dictionary words backwards
    */
   public boolean isMatchBackwards()
   {
@@ -84,15 +83,7 @@ public abstract class AbstractDictionaryRule implements Rule
   }
 
 
-  /**
-   * See {@link Rule#validate(PasswordData)}.
-   *
-   * @param  passwordData  <code>PasswordData</code> to verify (not null).
-   *
-   * @return  Validation result.
-   *
-   * @throws  NullPointerException  if the password data is null.
-   */
+  /** {@inheritDoc} */
   public RuleResult validate(final PasswordData passwordData)
   {
     final RuleResult result = new RuleResult(true);
@@ -123,15 +114,15 @@ public abstract class AbstractDictionaryRule implements Rule
    *
    * @param  text  to search dictionary with
    *
-   * @return  <code>String</code> matching word
+   * @return  matching word
    */
   protected abstract String doWordSearch(final String text);
 
 
   /**
-   * This returns a string representation of this object.
+   * Returns a string representation of this object.
    *
-   * @return  <code>String</code>
+   * @return  string representation
    */
   @Override
   public String toString()

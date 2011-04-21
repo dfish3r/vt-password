@@ -14,8 +14,8 @@
 package edu.vt.middleware.password;
 
 /**
- * <code>AlphabeticalCharacterRule</code> contains methods for determining if a
- * password contains the correct number of alphabetical characters.
+ * Rule for determining if a password contains the correct number of
+ * alphabetical characters.
  *
  * @author  Middleware Services
  * @version  $Revision: 1636 $ $Date: 2010-10-04 11:12:15 -0400 (Mon, 04 Oct 2010) $
@@ -32,10 +32,9 @@ public class AlphabeticalCharacterRule extends AbstractCharacterRule
 
 
   /**
-   * This will create a new <code>AlphabeticalCharacterRule</code> with the
-   * supplied number of alphabetical characters to enforce.
+   * Creates a new alphabetical character rule.
    *
-   * @param  num  <code>int</code>
+   * @param  num  of alphabetical characters to enforce
    */
   public AlphabeticalCharacterRule(final int num)
   {

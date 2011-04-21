@@ -14,8 +14,8 @@
 package edu.vt.middleware.password;
 
 /**
- * <code>DigitCharacterRule</code> contains methods for determining if a
- * password contains the correct number of digit characters.
+ * Rule for determining if a password contains the correct number of digit
+ * characters.
  *
  * @author  Middleware Services
  * @version  $Revision: 1636 $ $Date: 2010-10-04 11:12:15 -0400 (Mon, 04 Oct 2010) $
@@ -32,10 +32,9 @@ public class DigitCharacterRule extends AbstractCharacterRule
 
 
   /**
-   * This will create a new <code>DigitCharacterRule</code> with the supplied
-   * number of digit characters to enforce.
+   * Create a new digit character rule.
    *
-   * @param  num  <code>int</code>
+   * @param  num  of digit characters to enforce
    */
   public DigitCharacterRule(final int num)
   {

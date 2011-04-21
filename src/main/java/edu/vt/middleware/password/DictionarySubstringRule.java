@@ -16,9 +16,9 @@ package edu.vt.middleware.password;
 import edu.vt.middleware.dictionary.Dictionary;
 
 /**
- * <code>DictionarySubstringRule</code> determines if a password matches a
- * dictionary word, or if it contains a dictionary word of a given minimum
- * length or greater. The checker will optionally also check for reversed words.
+ * Rule for determining if a password matches a dictionary word, or if it
+ * contains a dictionary word of a given minimum length or greater. This rule
+ * will optionally also check for reversed words.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
@@ -26,30 +26,27 @@ import edu.vt.middleware.dictionary.Dictionary;
 public class DictionarySubstringRule extends AbstractDictionaryRule
 {
 
-  /** default word length. */
+  /** Default word length. */
   public static final int DEFAULT_WORD_LENGTH = 4;
 
   /**
-   * the minimum substring size to consider as a possible word within the
-   * password.
+   * Minimum substring size to consider as a possible word within the password.
    */
   private int wordLength = DEFAULT_WORD_LENGTH;
 
 
   /**
-   * This creates a new a new <code>DictionarySubstringRule</code> without
-   * supplying a dictionary. The dictionary should be set using the {@link
-   * #setDictionary(Dictionary)} method.
+   * Creates a new dictionary substring rule. The dictionary should be set using
+   * the {@link #setDictionary(Dictionary)} method.
    */
   public DictionarySubstringRule() {}
 
 
   /**
-   * This creates a new <code>DictionarySubstringRule</code> with the supplied
-   * dictionary. The dictionary should be ready to use when passed to this
-   * constructor.
+   * Creates a new dictionary substring rule. The dictionary should be ready to
+   * use when passed to this constructor.
    *
-   * @param  dict  <code>Dictionary</code> to use for searching
+   * @param  dict  to use for searching
    */
   public DictionarySubstringRule(final Dictionary dict)
   {
@@ -58,14 +55,11 @@ public class DictionarySubstringRule extends AbstractDictionaryRule
 
 
   /**
-   * This will create a new <code>DictionarySubstringRule</code> with the
-   * supplied dictionary and number of characters. The dictionary should be
-   * ready to use when passed to this constructor. See {@link
-   * #setWordLength(int)}.
+   * Create a new dictionary substring rule. The dictionary should be ready to
+   * use when passed to this constructor. See {@link #setWordLength(int)}.
    *
-   * @param  dict  <code>Dictionary</code> to use for searching
-   * @param  n  <code>int</code> number of characters to check in each
-   * dictionary word
+   * @param  dict  to use for searching
+   * @param  n  number of characters to check in each dictionary word
    */
   public DictionarySubstringRule(final Dictionary dict, final int n)
   {
@@ -75,13 +69,12 @@ public class DictionarySubstringRule extends AbstractDictionaryRule
 
 
   /**
-   * This sets the minimum number of characters that constitute a word in a
-   * password. So if n = 5 and the password contains 'test', then the password
-   * is valid. However if n = 4 then 'test' will be found in the dictionary. The
-   * default value is 4.
+   * Sets the minimum number of characters that constitute a word in a password.
+   * If n = 5 and the password contains 'test', then the password is valid.
+   * However if n = 4 then 'test' will be found in the dictionary. The default
+   * value is 4.
    *
-   * @param  n  <code>int</code> minimum number of characters to check in each
-   * dictionary word
+   * @param  n  minimum number of characters to check in each dictionary word
    */
   public void setWordLength(final int n)
   {
@@ -94,10 +87,9 @@ public class DictionarySubstringRule extends AbstractDictionaryRule
 
 
   /**
-   * This will return the number of characters that constitute a word in a
-   * password.
+   * Returns the number of characters that constitute a word in a password.
    *
-   * @return  <code>int</code>
+   * @return  minimum number of characters to check in each dictionary word
    */
   public int getWordLength()
   {

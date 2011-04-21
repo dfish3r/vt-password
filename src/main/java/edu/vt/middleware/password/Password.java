@@ -14,8 +14,8 @@
 package edu.vt.middleware.password;
 
 /**
- * <code>Password</code> contains functions for determining what type and what
- * quantity of characters a password contains.
+ * Class for determining what type and what quantity of characters a password
+ * contains.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
@@ -55,10 +55,9 @@ public class Password
 
 
   /**
-   * This will create a new <code>Password</code> with the supplied password
-   * text.
+   * Create a new password with the supplied password text.
    *
-   * @param  text  <code>String</code> password
+   * @param  text  password
    */
   public Password(final String text)
   {
@@ -102,9 +101,9 @@ public class Password
 
 
   /**
-   * This returns the text of this <code>Password</code>.
+   * Returns the text of this password.
    *
-   * @return  <code>String</code> - password
+   * @return  password
    */
   public String getText()
   {
@@ -113,9 +112,9 @@ public class Password
 
 
   /**
-   * This returns the length of this <code>Password</code>.
+   * Returns the length of this password.
    *
-   * @return  <code>int</code> - password length
+   * @return  password length
    */
   public int length()
   {
@@ -124,9 +123,9 @@ public class Password
 
 
   /**
-   * This returns whether or not this <code>Password</code> contains digits.
+   * Returns whether or not this password contains digits.
    *
-   * @return  <code>boolean</code> - whether or not the password contains digits
+   * @return  whether or not the password contains digits
    */
   public boolean containsDigits()
   {
@@ -135,9 +134,9 @@ public class Password
 
 
   /**
-   * This returns the number of digits in this <code>Password</code>.
+   * Returns the number of digits in this password.
    *
-   * @return  <code>int</code> - number of digits in the password
+   * @return  number of digits in the password
    */
   public int getNumberOfDigits()
   {
@@ -146,9 +145,9 @@ public class Password
 
 
   /**
-   * This returns the digits in this <code>Password</code>.
+   * Returns the digits in this password.
    *
-   * @return  <code>char[]</code> - digits in this password
+   * @return  digits in this password
    */
   public char[] getDigits()
   {
@@ -161,10 +160,9 @@ public class Password
 
 
   /**
-   * This returns whether or not this <code>Password</code> contains non-digits.
+   * Returns whether or not this password contains non-digits.
    *
-   * @return  <code>boolean</code> - whether or not the password contains
-   * non-digits
+   * @return  whether or not the password contains non-digits
    */
   public boolean containsNonDigits()
   {
@@ -173,9 +171,9 @@ public class Password
 
 
   /**
-   * This returns the number of non-digits in this <code>Password</code>.
+   * Returns the number of non-digits in this password.
    *
-   * @return  <code>int</code> - number of non-digits in this password
+   * @return  number of non-digits in this password
    */
   public int getNumberOfNonDigits()
   {
@@ -184,9 +182,9 @@ public class Password
 
 
   /**
-   * This returns the non-digits in this <code>Password</code>.
+   * Returns the non-digits in this password.
    *
-   * @return  <code>char[]</code> - non-digits in this password
+   * @return  non-digits in this password
    */
   public char[] getNonDigits()
   {
@@ -199,11 +197,9 @@ public class Password
 
 
   /**
-   * This returns whether or not this <code>Password</code> contains
-   * alphabetical characters.
+   * Returns whether or not this password contains alphabetical characters.
    *
-   * @return  <code>boolean</code> - whether or not the password contains
-   * alphabetical characters
+   * @return  whether or not the password contains alphabetical characters
    */
   public boolean containsAlphabetical()
   {
@@ -212,11 +208,9 @@ public class Password
 
 
   /**
-   * This returns the number of alphabetical characters in this <code>
-   * Password</code>.
+   * Returns the number of alphabetical characters in this password.
    *
-   * @return  <code>int</code> - number of alphabetical characters in this
-   * password
+   * @return  number of alphabetical characters in this password
    */
   public int getNumberOfAlphabetical()
   {
@@ -225,9 +219,9 @@ public class Password
 
 
   /**
-   * This returns the alphabetical characters in this <code>Password</code>.
+   * Returns the alphabetical characters in this password.
    *
-   * @return  <code>char[]</code> - alphabetical characters in this password
+   * @return  alphabetical characters in this password
    */
   public char[] getAlphabetical()
   {
@@ -240,11 +234,9 @@ public class Password
 
 
   /**
-   * This returns whether or not this <code>Password</code> contains
-   * non-alphabetical characters.
+   * Returns whether or not this password contains non-alphabetical characters.
    *
-   * @return  <code>boolean</code> - whether or not the password contains
-   * non-alphabetical characters
+   * @return  whether or not the password contains non-alphabetical characters
    */
   public boolean containsNonAlphabetical()
   {
@@ -253,11 +245,9 @@ public class Password
 
 
   /**
-   * This returns the number of non-alphabetical characters in this <code>
-   * Password</code>.
+   * Returns the number of non-alphabetical characters in this password.
    *
-   * @return  <code>int</code> - number of non-alphabetical characters in this
-   * password
+   * @return  number of non-alphabetical characters in this password
    */
   public int getNumberOfNonAlphabetical()
   {
@@ -266,9 +256,9 @@ public class Password
 
 
   /**
-   * This returns the non-alphabetical characters in this <code>Password</code>.
+   * Returns the non-alphabetical characters in this password.
    *
-   * @return  <code>char[]</code> - non-alphabetical characters in this password
+   * @return  non-alphabetical characters in this password
    */
   public char[] getNonAlphabetical()
   {
@@ -281,11 +271,9 @@ public class Password
 
 
   /**
-   * This returns whether or not this <code>Password</code> contains
-   * alphanumeric characters.
+   * Returns whether or not this password contains alphanumeric characters.
    *
-   * @return  <code>boolean</code> - whether or not the password contains
-   * alphanumeric characters
+   * @return  whether or not the password contains alphanumeric characters
    */
   public boolean containsAlphanumeric()
   {
@@ -294,11 +282,9 @@ public class Password
 
 
   /**
-   * This returns the number of alphanumeric characters in this <code>
-   * Password</code>.
+   * Returns the number of alphanumeric characters in this password.
    *
-   * @return  <code>int</code> - number of alphanumeric characters in this
-   * password
+   * @return  number of alphanumeric characters in this password
    */
   public int getNumberOfAlphanumeric()
   {
@@ -307,9 +293,9 @@ public class Password
 
 
   /**
-   * This returns the alphanumeric characters in this <code>Password</code>.
+   * Returns the alphanumeric characters in this password.
    *
-   * @return  <code>char[]</code> - alphanumeric characters in this password
+   * @return  alphanumeric characters in this password
    */
   public char[] getAlphanumeric()
   {
@@ -322,11 +308,9 @@ public class Password
 
 
   /**
-   * This returns whether or not this <code>Password</code> contains
-   * non-alphanumeric characters.
+   * Returns whether or not this password contains non-alphanumeric characters.
    *
-   * @return  <code>boolean</code> - whether or not the password contains
-   * non-alphanumeric characters
+   * @return  whether or not the password contains non-alphanumeric characters
    */
   public boolean containsNonAlphanumeric()
   {
@@ -335,11 +319,9 @@ public class Password
 
 
   /**
-   * This returns the number of non-alphanumeric characters in this <code>
-   * Password</code>.
+   * Returns the number of non-alphanumeric characters in this password.
    *
-   * @return  <code>int</code> - number of non-alphanumeric characters in this
-   * password
+   * @return  number of non-alphanumeric characters in this password
    */
   public int getNumberOfNonAlphanumeric()
   {
@@ -348,9 +330,9 @@ public class Password
 
 
   /**
-   * This returns the non-alphanumeric characters in this <code>Password</code>.
+   * Returns the non-alphanumeric characters in this password.
    *
-   * @return  <code>char[]</code> - non-alphanumeric characters in this password
+   * @return  non-alphanumeric characters in this password
    */
   public char[] getNonAlphanumeric()
   {
@@ -363,11 +345,9 @@ public class Password
 
 
   /**
-   * This returns whether or not this <code>Password</code> contains uppercase
-   * characters.
+   * Returns whether or not this password contains uppercase characters.
    *
-   * @return  <code>boolean</code> - whether or not the password contains
-   * uppercase characters
+   * @return  whether or not the password contains uppercase characters
    */
   public boolean containsUppercase()
   {
@@ -376,10 +356,9 @@ public class Password
 
 
   /**
-   * This returns the number of uppercase characters in this <code>
-   * Password</code>.
+   * Returns the number of uppercase characters in this password.
    *
-   * @return  <code>int</code> - number of uppercase characters in this password
+   * @return  number of uppercase characters in this password
    */
   public int getNumberOfUppercase()
   {
@@ -388,9 +367,9 @@ public class Password
 
 
   /**
-   * This returns the uppercase characters in this <code>Password</code>.
+   * Returns the uppercase characters in this password.
    *
-   * @return  <code>char[]</code> - uppercase characters in this password
+   * @return  uppercase characters in this password
    */
   public char[] getUppercase()
   {
@@ -403,11 +382,9 @@ public class Password
 
 
   /**
-   * This returns whether or not this <code>Password</code> contains lowercase
-   * characters.
+   * Returns whether or not this password contains lowercase characters.
    *
-   * @return  <code>boolean</code> - whether or not the password contains
-   * uppercase characters
+   * @return  whether or not the password contains uppercase characters
    */
   public boolean containsLowercase()
   {
@@ -416,10 +393,9 @@ public class Password
 
 
   /**
-   * This returns the number of lowercase characters in this <code>
-   * Password</code>.
+   * Returns the number of lowercase characters in this password.
    *
-   * @return  <code>int</code> - number of lowercase characters in this password
+   * @return  number of lowercase characters in this password
    */
   public int getNumberOfLowercase()
   {
@@ -428,9 +404,9 @@ public class Password
 
 
   /**
-   * This returns the lowercase characters in this <code>Password</code>.
+   * Returns the lowercase characters in this password.
    *
-   * @return  <code>char[]</code> - lowercase characters in this password
+   * @return  lowercase characters in this password
    */
   public char[] getLowercase()
   {
@@ -443,11 +419,9 @@ public class Password
 
 
   /**
-   * This returns whether or not this <code>Password</code> contains whitespace
-   * characters.
+   * Returns whether or not this Password contains whitespace characters.
    *
-   * @return  <code>boolean</code> - whether or not the password contains
-   * whitespace characters
+   * @return  whether or not the password contains whitespace characters
    */
   public boolean containsWhitespace()
   {
@@ -456,11 +430,9 @@ public class Password
 
 
   /**
-   * This returns the number of whitespace characters in this <code>
-   * Password</code>.
+   * Returns the number of whitespace characters in this password.
    *
-   * @return  <code>int</code> - number of whitespace characters in this
-   * password
+   * @return  number of whitespace characters in this password
    */
   public int getNumberOfWhitespace()
   {
@@ -469,9 +441,9 @@ public class Password
 
 
   /**
-   * This returns the whitespace characters in this <code>Password</code>.
+   * Returns the whitespace characters in this password.
    *
-   * @return  <code>char[]</code> - whitespace characters in this password
+   * @return  whitespace characters in this password
    */
   public char[] getWhitespace()
   {
@@ -484,9 +456,9 @@ public class Password
 
 
   /**
-   * This returns a string representation of this object.
+   * Returns a string representation of this object.
    *
-   * @return  <code>String</code>
+   * @return  string representation
    */
   @Override
   public String toString()

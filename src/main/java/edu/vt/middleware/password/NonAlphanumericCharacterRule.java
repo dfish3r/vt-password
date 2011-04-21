@@ -14,8 +14,8 @@
 package edu.vt.middleware.password;
 
 /**
- * <code>NonAlphanumericCharacterRule</code> contains methods for determining if
- * a password contains the correct number of non-alphanumeric characters.
+ * Rule for determining if a password contains the correct number of
+ * non-alphanumeric characters.
  *
  * @author  Middleware Services
  * @version  $Revision: 1636 $ $Date: 2010-10-04 11:12:15 -0400 (Mon, 04 Oct 2010) $
@@ -32,10 +32,9 @@ public class NonAlphanumericCharacterRule extends AbstractCharacterRule
 
 
   /**
-   * This will create a new <code>NonAlphanumericCharacterRule</code> with the
-   * supplied number of non-alphanumeric characters to enforce.
+   * Creates a new non alphanumeric character rule.
    *
-   * @param  num  <code>int</code>
+   * @param  num  number of non-alphanumeric characters to enforce
    */
   public NonAlphanumericCharacterRule(final int num)
   {

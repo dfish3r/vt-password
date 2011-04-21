@@ -14,9 +14,9 @@
 package edu.vt.middleware.password;
 
 /**
- * <code>QwertySequenceRule</code> contains methods for determining if a
- * password contains a QWERTY keyboard sequence. Both uppercase and lowercase
- * sequences are checked. The default sequence length is 5 characters.
+ * Rule for determining if a password contains a QWERTY keyboard sequence. Both
+ * uppercase and lowercase sequences are checked. The default sequence length is
+ * 5 characters.
  *
  * <ul>
  *   <li>Sequences are of the form: 'yuiop' or '#$%^&'</li>
@@ -103,8 +103,7 @@ public class QwertySequenceRule extends AbstractSequenceRule
 
 
   /**
-   * This creates a new <code>QwertySequenceRule</code> with the default
-   * sequence length.
+   * Creates a new qwerty sequence rule with the default sequence length.
    */
   public QwertySequenceRule()
   {
@@ -113,11 +112,10 @@ public class QwertySequenceRule extends AbstractSequenceRule
 
 
   /**
-   * This will create a new <code>QwertySequenceRule</code> with the supplied
-   * sequence length and wrap settings.
+   * Create a new qwerty sequence rule.
    *
-   * @param  sl  <code>int</code> sequence length
-   * @param  wrap  <code>boolean</code> whether to wrap sequences
+   * @param  sl  sequence length
+   * @param  wrap  whether to wrap sequences
    */
   public QwertySequenceRule(final int sl, final boolean wrap)
   {

@@ -14,8 +14,8 @@
 package edu.vt.middleware.password;
 
 /**
- * <code>LowercaseCharacterRule</code> contains methods for determining if a
- * password contains the correct number of lowercase characters.
+ * Rule for determining if a password contains the correct number of lowercase
+ * characters.
  *
  * @author  Middleware Services
  * @version  $Revision: 1636 $ $Date: 2010-10-04 11:12:15 -0400 (Mon, 04 Oct 2010) $
@@ -32,10 +32,9 @@ public class LowercaseCharacterRule extends AbstractCharacterRule
 
 
   /**
-   * This will create a new <code>LowercaseCharacterRule</code> with the
-   * supplied number of lowercase characters to enforce.
+   * Creates a new lowercase character rule.
    *
-   * @param  num  <code>int</code>
+   * @param  num  number of lowercase characters to enforce
    */
   public LowercaseCharacterRule(final int num)
   {

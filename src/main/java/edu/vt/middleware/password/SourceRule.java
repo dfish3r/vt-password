@@ -14,10 +14,10 @@
 package edu.vt.middleware.password;
 
 /**
- * <code>SourceRule</code> contains methods for determining if a password
- * matches a password from a different source. Useful for when separate systems
- * cannot have matching passwords. If no sources have been set or an empty
- * source has been set, then passwords will meet this rule.
+ * Rule for determining if a password matches a password from a different source.
+ * Useful for when separate systems cannot have matching passwords. If no
+ * sources have been set or an empty source has been set, then passwords will
+ * meet this rule.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$

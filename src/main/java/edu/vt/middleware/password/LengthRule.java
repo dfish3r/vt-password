@@ -14,9 +14,9 @@
 package edu.vt.middleware.password;
 
 /**
- * <code>LengthRule</code> contains methods for determining if a password is
- * within a desired length. The minimum and maximum lengths are used inclusively
- * to determine if a password meets this rule.
+ * Rule for determining if a password is within a desired length. The minimum
+ * and maximum lengths are used inclusively to determine if a password meets
+ * this rule.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
@@ -38,17 +38,17 @@ public class LengthRule implements Rule
 
 
   /**
-   * This will create a new <code>LengthRule</code> with lengths unset. The
-   * defaults are 0 and Integer.MAX_VALUE respectively.
+   * Creates a new length rule with lengths unset. The defaults are 0 and
+   * Integer.MAX_VALUE respectively.
    */
   public LengthRule() {}
 
 
   /**
-   * This will create a new <code>LengthRule</code> with the supplied length.
-   * Both the minimum and the maximum length will be set to this value.
+   * Creates a new length rule with the supplied length. Both the minimum and
+   * the maximum length will be set to this value.
    *
-   * @param  length  <code>int</code> length of password
+   * @param  length  length of password
    */
   public LengthRule(final int length)
   {
@@ -58,10 +58,10 @@ public class LengthRule implements Rule
 
 
   /**
-   * This will create a new <code>LengthRule</code> with the supplied lengths.
+   * Create a new length rule.
    *
-   * @param  minLength  <code>int</code> minimum length of a password
-   * @param  maxLength  <code>int</code> maximum length of a password
+   * @param  minLength  minimum length of a password
+   * @param  maxLength  maximum length of a password
    */
   public LengthRule(final int minLength, final int maxLength)
   {
@@ -71,9 +71,9 @@ public class LengthRule implements Rule
 
 
   /**
-   * Set the minimum password length.
+   * Sets the minimum password length.
    *
-   * @param  minLength  <code>int</code> minimum length of a password
+   * @param  minLength  minimum length of a password
    */
   public void setMinimumLength(final int minLength)
   {
@@ -82,9 +82,9 @@ public class LengthRule implements Rule
 
 
   /**
-   * Get the minimum password length.
+   * Returns the minimum password length.
    *
-   * @return  <code>int</code>
+   * @return  minimum password length
    */
   public int getMinimumLength()
   {
@@ -93,9 +93,9 @@ public class LengthRule implements Rule
 
 
   /**
-   * Set the maximum password length.
+   * Sets the maximum password length.
    *
-   * @param  maxLength  <code>int</code> maximum length of a password
+   * @param  maxLength  maximum length of a password
    */
   public void setMaximumLength(final int maxLength)
   {
@@ -104,9 +104,9 @@ public class LengthRule implements Rule
 
 
   /**
-   * Get the maximum password length.
+   * Returns the maximum password length.
    *
-   * @return  <code>int</code>
+   * @return  maximum length of a password
    */
   public int getMaximumLength()
   {
@@ -138,9 +138,9 @@ public class LengthRule implements Rule
 
 
   /**
-   * This returns a string representation of this object.
+   * Returns a string representation of this object.
    *
-   * @return  <code>String</code>
+   * @return  string representation
    */
   @Override
   public String toString()

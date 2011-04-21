@@ -18,7 +18,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * Resolves messages from key strings in order to provide a facility for
+ * Resolves messages from rule result details in order to provide a facility for
  * customizing messages such as password rule validation failures.
  *
  * @author Middleware
@@ -36,7 +36,7 @@ public class MessageResolver
 
 
   /**
-   * Creates a new instance with the default message map.
+   * Creates a new message resolver with the default message map.
    */
   public MessageResolver()
   {
@@ -45,9 +45,9 @@ public class MessageResolver
 
 
   /**
-   * Creates a new message resolver with the given message map.
+   * Creates a new message resolver with the supplied message map.
    *
-   * @param  properties  Map of keys to messages.
+   * @param  properties  map of keys to messages.
    */
   public MessageResolver(final Properties properties)
   {
@@ -62,8 +62,7 @@ public class MessageResolver
    * Resolves the message for the supplied rule result detail.
    *
    * @param  detail  rule result detail
-   *
-   * @return  Message for the detail error code in properties resource or detail
+   * @return  message for the detail error code in properties resource or detail
    * error code if no message is found.
    */
   public String resolve(final RuleResultDetail detail)
@@ -78,9 +77,9 @@ public class MessageResolver
 
 
   /**
-   * Gets the default mapping of message keys to message strings.
+   * Returns the default mapping of message keys to message strings.
    *
-   * @return  Default message mapping.
+   * @return  default message mapping.
    */
   private static Properties getDefaultProperties()
   {

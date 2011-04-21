@@ -16,7 +16,7 @@ package edu.vt.middleware.password;
 import java.util.Arrays;
 
 /**
- * Describes an exact cause of rule validation failure.
+ * Describes an exact cause of a rule validation failure.
  *
  * @author  Middleware Services
  * @version  $Revision: 1614 $ $Date: 2010-09-20 15:02:39 -0400 (Mon, 20 Sep 2010) $
@@ -34,10 +34,10 @@ public class RuleResultDetail
 
 
   /**
-   * Creates a new instance with the supplied code.
+   * Creates a new rule result detail.
    *
-   * @param  code  Error code.
-   * @param  params  Error details.
+   * @param  code  error code.
+   * @param  params  error details.
    */
   public RuleResultDetail(final String code, final Object[] params)
   {
@@ -50,9 +50,9 @@ public class RuleResultDetail
 
 
   /**
-   * Gets the error code.
+   * Returns the error code.
    *
-   * @return  Error code.
+   * @return  error code.
    */
   public String getErrorCode()
   {
@@ -61,9 +61,9 @@ public class RuleResultDetail
 
 
   /**
-   * Gets the parameters.
+   * Returns the parameters.
    *
-   * @return  Array of parameters or empty array if no parameters defined.
+   * @return  array of parameters or empty array if no parameters defined.
    */
   public Object[] getParameters()
   {
@@ -72,9 +72,9 @@ public class RuleResultDetail
 
 
   /**
-   * This returns a string representation of this object.
+   * Returns a string representation of this object.
    *
-   * @return  <code>String</code>
+   * @return  string representation
    */
   @Override
   public String toString()

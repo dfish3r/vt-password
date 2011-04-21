@@ -22,8 +22,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * <code>PasswordGenerator</code> creates passwords that meet password rule
- * criteria.
+ * Creates passwords that meet password character rule criteria.
  *
  * @author  Sean C. Sullivan
  * @author  Middleware Services
@@ -37,8 +36,7 @@ public class PasswordGenerator
 
 
   /**
-   * Default constructor. Instantiates a <code>SecureRandom</code> for password
-   * generation.
+   * Default constructor. Instantiates a secure random for password generation.
    */
   public PasswordGenerator()
   {
@@ -47,9 +45,9 @@ public class PasswordGenerator
 
 
   /**
-   * Creates a new <code>PasswordGenerator</code> with the supplied random.
+   * Creates a new password generator with the supplied random.
    *
-   * @param  r  <code>Random</code>
+   * @param  r  random
    */
   public PasswordGenerator(final Random r)
   {
@@ -62,10 +60,10 @@ public class PasswordGenerator
    * the supplied character rules. For length to be evaluated it must be greater
    * than the number of characters defined in the character rule.
    *
-   * @param  length  <code>int</code>
-   * @param  rules  <code>List</code> of rules to generate password from
+   * @param  length  of password to generate
+   * @param  rules  to generate compliant password from
    *
-   * @return  <code>String</code> - generated password
+   * @return  generated password
    */
   public String generatePassword(
     final int length,
@@ -97,10 +95,9 @@ public class PasswordGenerator
   /**
    * Fills the supplied target with count random characters from source.
    *
-   * @param  source  <code>CharSequence</code> of random characters.
-   * @param  count  <code>int</code> number of random characters.
-   * @param  target  <code>Appendable</code> character sequence that will hold
-   * characters.
+   * @param  source  of random characters.
+   * @param  count  number of random characters.
+   * @param  target  character sequence that will hold characters.
    */
   protected void fillRandomCharacters(
     final CharSequence source,
@@ -120,7 +117,7 @@ public class PasswordGenerator
   /**
    * Randomizes the contents of the given buffer.
    *
-   * @param  buffer  Character buffer whose contents will be randomized.
+   * @param  buffer  character buffer whose contents will be randomized.
    */
   protected void randomize(final CharBuffer buffer)
   {

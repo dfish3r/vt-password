@@ -19,8 +19,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * <code>PasswordData</code> contains the information used by rules to perform
- * password validation.
+ * Contains password related information used by rules to perform password
+ * validation.
  *
  * @author  Middleware Services
  * @version  $Revision: 1643 $ $Date: 2010-10-07 13:14:08 -0400 (Thu, 07 Oct 2010) $
@@ -34,22 +34,21 @@ public class PasswordData
   /** Stores the username. */
   private String username;
 
-  /** password history. */
+  /** Password history. */
   private List<String> passwordHistory = new ArrayList<String>();
 
-  /** password sources. */
+  /** Password sources. */
   private Map<String, String> passwordSources = new HashMap<String, String>();
 
 
-  /** This will create a new <code>PasswordData</code>. */
+  /** Default constructor. */
   public PasswordData() {}
 
 
   /**
-   * This will create a new <code>PasswordData</code> with the supplied
-   * password.
+   * Creates a new password data.
    *
-   * @param  p  <code>Password</code>
+   * @param  p  password
    */
   public PasswordData(final Password p)
   {
@@ -58,9 +57,9 @@ public class PasswordData
 
 
   /**
-   * Set the password.
+   * Sets the password.
    *
-   * @param  p  <code>Password</code>
+   * @param  p  password
    */
   public void setPassword(final Password p)
   {
@@ -72,9 +71,9 @@ public class PasswordData
 
 
   /**
-   * Get the password.
+   * Returns the password.
    *
-   * @return  <code>Password</code>
+   * @return  password
    */
   public Password getPassword()
   {
@@ -83,9 +82,9 @@ public class PasswordData
 
 
   /**
-   * Set the username.
+   * Sets the username.
    *
-   * @param  s  <code>String</code>
+   * @param  s  username
    */
   public void setUsername(final String s)
   {
@@ -97,9 +96,9 @@ public class PasswordData
 
 
   /**
-   * Get the username.
+   * Returns the username.
    *
-   * @return  <code>String</code>
+   * @return  username
    */
   public String getUsername()
   {
@@ -108,9 +107,9 @@ public class PasswordData
 
 
   /**
-   * This will return the password history.
+   * Returns the password history.
    *
-   * @return  <code>List</code> of password history
+   * @return  password history
    */
   public List<String> getPasswordHistory()
   {
@@ -119,9 +118,9 @@ public class PasswordData
 
 
   /**
-   * This will set the password history.
+   * Sets the password history.
    *
-   * @param  l  <code>List</code> of password history
+   * @param  l  password history
    */
   public void setPasswordHistory(final List<String> l)
   {
@@ -130,9 +129,9 @@ public class PasswordData
 
 
   /**
-   * This will return the password sources.
+   * Returns the password sources.
    *
-   * @return  <code>Map</code> of password sources
+   * @return  password sources
    */
   public Map<String, String> getPasswordSources()
   {
@@ -141,33 +140,13 @@ public class PasswordData
 
 
   /**
-   * This will set the password sources.
+   * Sets the password sources.
    *
-   * @param  m  <code>Map</code> of password sources
+   * @param  m  password sources
    */
   public void setPasswordSources(final Map<String, String> m)
   {
     this.passwordSources = m;
-  }
-
-
-  /**
-   * This will add the supplied password as a password source.
-   *
-   * @param  source  <code>String</code> label
-   * @param  pass  <code>String</code> to add
-   *
-   * @throws  NullPointerException  if source or password is null
-   */
-  public void addPasswordSource(final String source, final String pass)
-  {
-    if (source == null) {
-      throw new NullPointerException("Source cannot be null");
-    }
-    if (pass == null) {
-      throw new NullPointerException("Password cannot be null");
-    }
-    this.passwordSources.put(source, pass);
   }
 
 
@@ -206,9 +185,9 @@ public class PasswordData
 
 
   /**
-   * This returns a string representation of this object.
+   * Returns a string representation of this object.
    *
-   * @return  <code>String</code>
+   * @return  string representation
    */
   @Override
   public String toString()

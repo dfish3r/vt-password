@@ -14,8 +14,8 @@
 package edu.vt.middleware.password;
 
 /**
- * <code>UsernameRule</code> contains methods for determining if a password
- * contains the username associated with that password.
+ * Rule for determining if a password contains the username associated with that
+ * password.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
@@ -29,23 +29,22 @@ public class UsernameRule implements Rule
   /** Error code for matching reversed dictionary word. */
   public static final String ERROR_CODE_REVERSED = "ILLEGAL_USERNAME_REVERSED";
 
-  /** whether to search for username backwards. */
+  /** Whether to search for username backwards. */
   private boolean matchBackwards;
 
   /** Whether to ignore case when checking for usernames. */
   private boolean ignoreCase;
 
 
-  /** This creates a new <code>UsernameRule</code>. */
+  /** Default constructor. */
   public UsernameRule() {}
 
 
   /**
-   * This will create a new <code>UsernameRule</code> with the supplied
-   * matchBackwards and ignoreCase settings.
+   * Create a new username rule.
    *
-   * @param  mb  <code>boolean</code> whether to match backwards
-   * @param  ic  <code>boolean</code> whether to ignore case
+   * @param  mb  whether to match backwards
+   * @param  ic  whether to ignore case
    */
   public UsernameRule(final boolean mb, final boolean ic)
   {
@@ -55,10 +54,10 @@ public class UsernameRule implements Rule
 
 
   /**
-   * This causes the verify method to search the password for the username
+   * Sets whether the verify method will search the password for the username
    * spelled backwards as well as forwards.
    *
-   * @param  b  <code>boolean</code>
+   * @param  b  whether to match username backwards
    */
   public void setMatchBackwards(final boolean b)
   {
@@ -67,9 +66,9 @@ public class UsernameRule implements Rule
 
 
   /**
-   * Get the value of the matchBackwards property.
+   * Returns whether to match the username backwards.
    *
-   * @return  <code>boolean</code>
+   * @return  whether to match username backwards
    */
   public boolean isMatchBackwards()
   {
@@ -78,10 +77,10 @@ public class UsernameRule implements Rule
 
 
   /**
-   * This causes the verify method to ignore case when searching the for a
+   * Sets whether the verify method will ignore case when searching the for a
    * username.
    *
-   * @param  b  <code>boolean</code>
+   * @param  b  whether to ignore case
    */
   public void setIgnoreCase(final boolean b)
   {
@@ -90,9 +89,9 @@ public class UsernameRule implements Rule
 
 
   /**
-   * Get the value of the ignoreCase property.
+   * Returns whether to ignore the case of the username.
    *
-   * @return  <code>boolean</code>
+   * @return  whether to ignore case
    */
   public boolean isIgnoreCase()
   {
@@ -127,9 +126,9 @@ public class UsernameRule implements Rule
 
 
   /**
-   * This returns a string representation of this object.
+   * Returns a string representation of this object.
    *
-   * @return  <code>String</code>
+   * @return  string representation
    */
   @Override
   public String toString()

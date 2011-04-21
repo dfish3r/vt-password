@@ -14,8 +14,7 @@
 package edu.vt.middleware.password;
 
 /**
- * <code>AbstractSequenceRule</code> contains functionality common to keyboard
- * sequence rules.
+ * Provide common implementation for keyboard sequence rules.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
@@ -85,9 +84,9 @@ public abstract class AbstractSequenceRule implements Rule
 
 
   /**
-   * This returns a string representation of this object.
+   * Returns a string representation of this object.
    *
-   * @return  <code>String</code>
+   * @return  string representation
    */
   @Override
   public String toString()
@@ -105,7 +104,7 @@ public abstract class AbstractSequenceRule implements Rule
   /**
    * Sets the sequence length.
    *
-   * @param  sl  <code>int</code> sequence length
+   * @param  sl  sequence length
    */
   protected void setSequenceLength(final int sl)
   {
@@ -120,20 +119,20 @@ public abstract class AbstractSequenceRule implements Rule
 
 
   /**
-   * Get the sequence of character pairs for which to search.
+   * Returns the sequence of character pairs for which to search.
    *
-   * @param  n  <code>int</code> provides support for multiple character
+   * @param  n  provides support for multiple character
    * sequences that are indexed from 0 to n.
    *
-   * @return  <code>char[][]</code> character sequence.
+   * @return  character sequence.
    */
   protected abstract char[][] getSequence(int n);
 
 
   /**
-   * Get the number of character sequences used in this implementation.
+   * Returns the number of character sequences used in this implementation.
    *
-   * @return  <code>int</code> number of character sequences.
+   * @return  number of character sequences.
    */
   protected abstract int getSequenceCount();
 
@@ -142,12 +141,10 @@ public abstract class AbstractSequenceRule implements Rule
    * Creates an iterator that iterates over a character sequence positioned at
    * the first matching character, if any, in the given password.
    *
-   * @param  chars  <code>char[][]</code> sequence of upper/lowercase character
-   * pairs.
-   * @param  first  <code>char</code> first character to match in character
-   * sequence.
+   * @param  chars  sequence of upper/lowercase character pairs.
+   * @param  first  first character to match in character sequence.
    *
-   * @return  <code>Sequence</code> forward sequence iterator.
+   * @return  forward sequence iterator.
    */
   private Sequence newSequence(final char[][] chars, final char first)
   {
@@ -165,10 +162,8 @@ public abstract class AbstractSequenceRule implements Rule
   /**
    * Records a validation failure.
    *
-   * @param  result  <code>RuleResult</code> rule result holding failure
-   * details.
-   * @param  match  <code>String</code> illegal string matched in the password
-   * that caused failure.
+   * @param  result  rule result holding failure details.
+   * @param  match  illegal string matched in the password that caused failure.
    */
   private void recordFailure(final RuleResult result, final String match)
   {
@@ -179,9 +174,8 @@ public abstract class AbstractSequenceRule implements Rule
 
 
   /**
-   * <code>Sequence</code> contains convenience methods for iterating over a
-   * sequence of upper/lowercase pairs of characters and stores matched
-   * characters.
+   * Contains convenience methods for iterating over a sequence of
+   * upper/lowercase pairs of characters and stores matched characters.
    *
    * @author  Middleware Services
    * @version  $Revision$
@@ -212,12 +206,12 @@ public abstract class AbstractSequenceRule implements Rule
 
 
     /**
-     * Creates a new instance with the given parameters.
+     * Creates a new sequence.
      *
-     * @param  characters  <code>char[][]</code> sequence of characters
-     * @param  startIndex  <code>int</code> in the characters array
-     * @param  count  <code>int</code> length of this sequence
-     * @param  wrap  <code>boolean</code> whether this sequence wraps
+     * @param  characters  sequence of characters
+     * @param  startIndex  in the characters array
+     * @param  count  length of this sequence
+     * @param  wrap  whether this sequence wraps
      */
     public Sequence(
       final char[][] characters,
@@ -244,7 +238,7 @@ public abstract class AbstractSequenceRule implements Rule
     /**
      * Advances the iterator one unit in the forward direction.
      *
-     * @return  <code>boolean</code> true if characters remain, false otherwise.
+     * @return  true if characters remain, false otherwise.
      */
     public boolean forward()
     {
@@ -255,7 +249,7 @@ public abstract class AbstractSequenceRule implements Rule
     /**
      * Advances the iterator one unit in the backward direction.
      *
-     * @return  <code>boolean</code> true if characters remain, false otherwise.
+     * @return  true if characters remain, false otherwise.
      */
     public boolean backward()
     {
@@ -275,9 +269,9 @@ public abstract class AbstractSequenceRule implements Rule
 
 
     /**
-     * Get the lowercase character at the current iterator position.
+     * Returns the lowercase character at the current iterator position.
      *
-     * @return  <code>char</code> lowercase character at current position.
+     * @return  lowercase character at current position.
      */
     public char currentLower()
     {
@@ -294,9 +288,9 @@ public abstract class AbstractSequenceRule implements Rule
 
 
     /**
-     * Get the uppercase character at the current iterator position.
+     * Returns the uppercase character at the current iterator position.
      *
-     * @return  <code>char</code> uppercase character at current position.
+     * @return  uppercase character at current position.
      */
     public char currentUpper()
     {
@@ -315,7 +309,7 @@ public abstract class AbstractSequenceRule implements Rule
     /**
      * Adds the given character to the set of matched characters.
      *
-     * @param  c  <code>char</code> match character.
+     * @param  c  match character.
      */
     public void addMatchCharacter(final char c)
     {
@@ -324,9 +318,9 @@ public abstract class AbstractSequenceRule implements Rule
 
 
     /**
-     * Get the number of matched characters.
+     * Returns the number of matched characters.
      *
-     * @return  <code>int</code> matched character count.
+     * @return  matched character count.
      */
     public int matchCount()
     {
@@ -335,9 +329,9 @@ public abstract class AbstractSequenceRule implements Rule
 
 
     /**
-     * Get the string of matched characters.
+     * Returns the string of matched characters.
      *
-     * @return  <code>String</code> match string.
+     * @return  match string.
      */
     public String matchString()
     {

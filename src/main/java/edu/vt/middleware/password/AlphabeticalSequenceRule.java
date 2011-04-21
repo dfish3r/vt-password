@@ -14,9 +14,9 @@
 package edu.vt.middleware.password;
 
 /**
- * <code>AlphabeticalSequenceRule</code> contains methods for determining if a
- * password contains an alphabetical keyboard sequence. Both uppercase and
- * lowercase sequences are checked. The default sequence length is 5 characters.
+ * Rule for determining if a password contains an alphabetical keyboard sequence.
+ * Both uppercase and lowercase sequences are checked. The default sequence
+ * length is 5 characters.
  *
  * <ul>
  *   <li>Sequences are of the form: 'stuvw' or 'KLMNO'</li>
@@ -66,8 +66,7 @@ public class AlphabeticalSequenceRule extends AbstractSequenceRule
 
 
   /**
-   * This creates a new <code>AlphabeticalSequenceRule</code> with the default
-   * sequence length.
+   * Default constructor.
    */
   public AlphabeticalSequenceRule()
   {
@@ -76,11 +75,10 @@ public class AlphabeticalSequenceRule extends AbstractSequenceRule
 
 
   /**
-   * This will create a new <code>AlphabeticalSequenceRule</code> with the
-   * supplied sequence length and wrap settings.
+   * Creates a new alphabetical sequence rule.
    *
-   * @param  sl  <code>int</code> sequence length
-   * @param  wrap  <code>boolean</code> whether to wrap search sequences
+   * @param  sl  sequence length
+   * @param  wrap  whether to wrap search sequences
    */
   public AlphabeticalSequenceRule(final int sl, final boolean wrap)
   {

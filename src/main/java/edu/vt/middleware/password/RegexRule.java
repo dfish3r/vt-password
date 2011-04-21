@@ -17,8 +17,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * <code>RegexRule</code> contains methods for testing a regular expression to
- * determine if a password is valid.
+ * Rule for determining if a password matches a regular expression.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
@@ -34,10 +33,9 @@ public class RegexRule implements Rule
 
 
   /**
-   * This creates a new <code>RegexRule</code> with the supplied regular
-   * expression.
+   * Creates a new regex rule.
    *
-   * @param  regex  <code>String</code> regular expression
+   * @param  regex  regular expression
    */
   public RegexRule(final String regex)
   {
@@ -61,9 +59,9 @@ public class RegexRule implements Rule
 
 
   /**
-   * This returns a string representation of this object.
+   * Returns a string representation of this object.
    *
-   * @return  <code>String</code>
+   * @return  string representation
    */
   @Override
   public String toString()

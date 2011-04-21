@@ -20,8 +20,7 @@ import edu.vt.middleware.dictionary.FileWordList;
 import edu.vt.middleware.dictionary.TernaryTreeDictionary;
 
 /**
- * <code>PasswordCli</code> provides a simple command line interface to password
- * validation.
+ * Provides a simple command line interface to password validation.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
@@ -36,9 +35,9 @@ public final class PasswordCli
 
 
   /**
-   * This provides command line access to password rules.
+   * Provides command line access to password rules.
    *
-   * @param  args  <code>String[]</code>
+   * @param  args  from command line
    *
    * @throws  Exception  if an error occurs
    */

@@ -17,8 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <code>RuleResult</code> provides common implementation for password rule
- * result implementations.
+ * Result of a password rule validation.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
@@ -26,10 +25,10 @@ import java.util.List;
 public class RuleResult
 {
 
-  /** whether password rule was successful. */
+  /** Whether password rule was successful. */
   protected boolean valid;
 
-  /** details associated with a password rule result. */
+  /** Details associated with a password rule result. */
   protected List<RuleResultDetail> details = new ArrayList<RuleResultDetail>();
 
 
@@ -38,7 +37,7 @@ public class RuleResult
 
 
   /**
-   * Creates a new <code>RuleResult</code> with the supplied validity.
+   * Creates a new rule result.
    *
    * @param  b  result validity
    */
@@ -49,8 +48,7 @@ public class RuleResult
 
 
   /**
-   * Creates a new <code>RuleResult</code> with the supplied validity and
-   * details.
+   * Creates a new rule result.
    *
    * @param  b  result validity
    * @param  rrd  details associated with this result
@@ -85,7 +83,7 @@ public class RuleResult
 
 
   /**
-   * Returns any details associated with the rule verification. May be null.
+   * Returns any details associated with the rule verification.
    *
    * @return  rule result details
    */

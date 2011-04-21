@@ -16,8 +16,8 @@ package edu.vt.middleware.password;
 import edu.vt.middleware.dictionary.Dictionary;
 
 /**
- * <code>DictionaryRule</code> determines if a password matches a dictionary
- * word. The checker will optionally also check for reversed words.
+ * Rule for determining if a password matches a dictionary word. This rule will
+ * optionally also check for reversed words.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
@@ -26,19 +26,17 @@ public class DictionaryRule extends AbstractDictionaryRule
 {
 
   /**
-   * This creates a new a new <code>DictionaryRule</code> without supplying a
-   * dictionary. The dictionary should be set using the {@link
-   * #setDictionary(Dictionary)} method.
+   * Creates a new dictionary rule without supplying a dictionary. The
+   * dictionary should be set using {@link #setDictionary(Dictionary)}.
    */
   public DictionaryRule() {}
 
 
   /**
-   * This creates a new <code>DictionaryRule</code> with the supplied
-   * dictionary. The dictionary should be ready to use when passed to this
-   * constructor.
+   * Creates a new dictionary rule. The dictionary should be ready to use when
+   * passed to this constructor.
    *
-   * @param  dict  <code>Dictionary</code> to use for searching
+   * @param  dict  to use for searching
    */
   public DictionaryRule(final Dictionary dict)
   {

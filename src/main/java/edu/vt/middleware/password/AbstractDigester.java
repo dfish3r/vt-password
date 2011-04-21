@@ -17,8 +17,7 @@ import edu.vt.middleware.crypt.digest.DigestAlgorithm;
 import edu.vt.middleware.crypt.util.Converter;
 
 /**
- * <code>AbstractDigester</code> provides core methods for password rules that
- * use a digest.
+ * Provides common implementation for password rules that use a digest.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
@@ -26,10 +25,10 @@ import edu.vt.middleware.crypt.util.Converter;
 public abstract class AbstractDigester
 {
 
-  /** digest object to use if comparing hashed passwords. */
+  /** Digest object to use if comparing hashed passwords. */
   protected DigestAlgorithm digest;
 
-  /** converter to use in conjunction with the digest. */
+  /** Converter to use in conjunction with the digest. */
   protected Converter converter;
 
 
@@ -38,8 +37,8 @@ public abstract class AbstractDigester
    * comparison are made. Useful if you need to compare password which are in a
    * hashed form. See {@link edu.vt.middleware.crypt.digest.DigestAlgorithm}.
    *
-   * @param  algorithm  <code>String</code> to use for hashing
-   * @param  conv  <code>Converter</code> to convert bytes to string
+   * @param  algorithm  to use for hashing
+   * @param  conv  to convert bytes to string
    */
   public void setDigest(final String algorithm, final Converter conv)
   {
@@ -52,10 +51,10 @@ public abstract class AbstractDigester
    * Determines whether an undigested password matches a (possibly digested)
    * reference value.
    *
-   * @param  undigested  Candidate cleartext password.
-   * @param  reference  Reference password (possibly digested).
+   * @param  undigested  candidate clear text password.
+   * @param  reference  reference password (possibly digested).
    *
-   * @return  True if passwords match, false otherwise.
+   * @return  true if passwords match, false otherwise.
    */
   protected boolean matches(final String undigested, final String reference)
   {

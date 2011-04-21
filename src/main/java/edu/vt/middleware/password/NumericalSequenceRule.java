@@ -14,9 +14,8 @@
 package edu.vt.middleware.password;
 
 /**
- * <code>NumericalSequenceRule</code> contains methods for determining if a
- * password contains a numerical keyboard sequence. The default sequence length
- * is 5 characters.
+ * Rule for determining if a password contains a numerical keyboard sequence.
+ * The default sequence length is 5 characters.
  *
  * <ul>
  *   <li>Sequences are of the form: '23456'</li>
@@ -50,8 +49,7 @@ public class NumericalSequenceRule extends AbstractSequenceRule
 
 
   /**
-   * This creates a new <code>NumericalSequenceRule</code> with the default
-   * sequence length.
+   * Creates a new numerical sequence rule with the default sequence length.
    */
   public NumericalSequenceRule()
   {
@@ -60,12 +58,11 @@ public class NumericalSequenceRule extends AbstractSequenceRule
 
 
   /**
-   * This will create a new <code>NumericalSequenceRule</code> with the supplied
-   * sequence length and wrap settings.
+   * Creates a new numerical sequence rule.
    *
-   * @param  length  Length of sequence to search for.
-   * @param  wrap  True to wrap sequences when searching for matches, false
-   * otherwise. Default is false.
+   * @param  length  of sequence to search for.
+   * @param  wrap  true to wrap sequences when searching for matches, false
+   * otherwise.
    */
   public NumericalSequenceRule(final int length, final boolean wrap)
   {

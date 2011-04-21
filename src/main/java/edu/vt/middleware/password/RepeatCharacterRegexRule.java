@@ -14,10 +14,9 @@
 package edu.vt.middleware.password;
 
 /**
- * <code>RepeatCharacterRegexRule</code> contains methods for determining if a
- * password contains a duplicate ASCII keyboard sequence. See
- * {@link java.util.regex.Pattern} /p{ASCII}. The default sequence length is 5
- * characters.
+ * Rule for determining if a password contains a duplicate ASCII keyboard
+ * sequence. See {@link java.util.regex.Pattern} /p{ASCII}. The default sequence
+ * length is 5 characters.
  *
  * <ul>
  *   <li>Sequences are of the form: 'bbbbb' or '#####'</li>
@@ -40,8 +39,7 @@ public class RepeatCharacterRegexRule extends RegexRule
 
 
   /**
-   * This creates a new <code>RepeatCharacterRegexRule</code> with the default
-   * sequence length.
+   * Creates a new repeat character regex rule with the default sequence length.
    */
   public RepeatCharacterRegexRule()
   {
@@ -50,10 +48,9 @@ public class RepeatCharacterRegexRule extends RegexRule
 
 
   /**
-   * This creates a new <code>RepeatCharacterRegexRule</code> with the supplied
-   * sequence length setting.
+   * Creates a new repeat character regex rule.
    *
-   * @param  sl  <code>int</code> sequence length
+   * @param  sl  sequence length
    */
   public RepeatCharacterRegexRule(final int sl)
   {

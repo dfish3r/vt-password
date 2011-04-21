@@ -14,8 +14,7 @@
 package edu.vt.middleware.password;
 
 /**
- * <code>AbstractCharacterRule</code> provides common implementation for
- * password character rules.
+ * Provides common implementation for password character rules.
  *
  * @author  Middleware Services
  * @version  $Revision: 1636 $ $Date: 2010-10-04 11:12:15 -0400 (Mon, 04 Oct 2010) $
@@ -26,7 +25,7 @@ public abstract class AbstractCharacterRule implements CharacterRule
   /** Error code for insufficient number of characters of particular class. */
   public static final String ERROR_CODE = "INSUFFICIENT_CHARACTERS";
 
-  /** number of characters to require. Default value is 1. */
+  /** Number of characters to require. Default value is 1. */
   protected int numCharacters = 1;
 
 
@@ -52,17 +51,17 @@ public abstract class AbstractCharacterRule implements CharacterRule
    * Returns the number of the type of characters in the supplied password for
    * the implementing class.
    *
-   * @param  password  <code>Password</code> to get character count from
+   * @param  password  to get character count from
    *
-   * @return  <code>int</code> number of characters
+   * @return  number of characters
    */
   protected abstract int getNumberOfCharacterType(final Password password);
 
 
   /**
-   * Gets the type of character managed by this rule.
+   * Returns the type of character managed by this rule.
    *
-   * @return  Name of a character type, e.g. "digits."
+   * @return  name of a character type, e.g. "digits."
    */
   protected abstract String getCharacterType();
 
@@ -86,9 +85,9 @@ public abstract class AbstractCharacterRule implements CharacterRule
 
 
   /**
-   * This returns a string representation of this object.
+   * Returns a string representation of this object.
    *
-   * @return  <code>String</code>
+   * @return  string representation
    */
   @Override
   public String toString()

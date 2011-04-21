@@ -16,8 +16,7 @@ package edu.vt.middleware.password;
 import java.util.Arrays;
 
 /**
- * <code>IllegalCharacterRule</code> contains methods for determining if a
- * password contains an illegal character.
+ * Rule for determining if a password contains an illegal character.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
@@ -25,7 +24,7 @@ import java.util.Arrays;
 public class IllegalCharacterRule implements Rule
 {
 
-  /** Error code for regex validation failures. */
+  /** Error code for illegal character failures. */
   public static final String ERROR_CODE = "ILLEGAL_CHAR";
 
   /** Stores the characters that are not allowed. */
@@ -33,10 +32,9 @@ public class IllegalCharacterRule implements Rule
 
 
   /**
-   * This will create a new <code>IllegalCharacterRule</code> with the supplied
-   * character.
+   * Create a new illegal character rule.
    *
-   * @param  c  <code>char[]</code> illegal characters
+   * @param  c  illegal characters
    */
   public IllegalCharacterRule(final char[] c)
   {
@@ -60,9 +58,9 @@ public class IllegalCharacterRule implements Rule
 
 
   /**
-   * This returns a string representation of this object.
+   * Returns a string representation of this object.
    *
-   * @return  <code>String</code>
+   * @return  string representation
    */
   @Override
   public String toString()

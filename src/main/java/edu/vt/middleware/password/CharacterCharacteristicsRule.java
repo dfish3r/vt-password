@@ -17,10 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <code>CharacterCharacteristicsRule</code> contains methods for determining if
- * a password contains the desired mix of character types. In order to meet the
- * criteria of this rule, passwords must meet any number of supplied character
- * rules.
+ * Rule for determining if a password contains the desired mix of character
+ * types. In order to meet the criteria of this rule, passwords must meet any
+ * number of supplied character rules.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
@@ -31,18 +30,17 @@ public class CharacterCharacteristicsRule implements Rule
   /** Error code for insufficient number of characteristics. */
   public static final String ERROR_CODE = "INSUFFICIENT_CHARACTERISTICS";
 
-  /** rules to apply when checking a password. */
+  /** Rules to apply when checking a password. */
   private List<CharacterRule> rules = new ArrayList<CharacterRule>();
 
-  /** number of rules to enforce. Default value is 1. */
+  /** Number of rules to enforce. Default value is 1. */
   private int numCharacteristics = 1;
 
 
   /**
-   * This will return the rules being used by this <code>
-   * CharacterCharacteristicsRule</code>.
+   * Returns the character rules used by this rule.
    *
-   * @return  <code>List</code> of rules
+   * @return  list of character rules
    */
   public List<CharacterRule> getRules()
   {
@@ -51,10 +49,9 @@ public class CharacterCharacteristicsRule implements Rule
 
 
   /**
-   * This will set the rules to be used by this <code>
-   * CharacterCharacteristicsRule</code>.
+   * Sets the character rules used by this rule.
    *
-   * @param  l  <code>List</code> of rules
+   * @param  l  list of rules
    */
   public void setRules(final List<CharacterRule> l)
   {
@@ -63,12 +60,11 @@ public class CharacterCharacteristicsRule implements Rule
 
 
   /**
-   * This sets the number of characteristics which must be satisfied in order
+   * Sets the number of characteristics which must be satisfied in order
    * for a password to meet the requirements of this rule. The default is one.
    * i.e. you may wish to enforce any three of five supplied character rules.
    *
-   * @param  n  <code>int</code> number of characteristics to enforce where n >
-   * 0
+   * @param  n  number of characteristics to enforce, where n > 0
    */
   public void setNumberOfCharacteristics(final int n)
   {
@@ -81,10 +77,10 @@ public class CharacterCharacteristicsRule implements Rule
 
 
   /**
-   * This returns the number of characteristics which currently must be
+   * Returns the number of characteristics which currently must be
    * satisfied in order for a password to meet the requirements of this rule.
    *
-   * @return  <code>int</code> number of characteristics to enforce
+   * @return  number of characteristics to enforce
    */
   public int getNumberOfCharacteristics()
   {
@@ -122,9 +118,9 @@ public class CharacterCharacteristicsRule implements Rule
 
 
   /**
-   * This returns a string representation of this object.
+   * Returns a string representation of this object.
    *
-   * @return  <code>String</code>
+   * @return  string representation
    */
   @Override
   public String toString()

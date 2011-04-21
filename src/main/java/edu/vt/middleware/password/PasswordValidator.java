@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <code>PasswordValidator</code> is the central component for evaluating
- * multiple password validation rules against a candidate password.
+ * The central component for evaluating multiple password rules against a
+ * candidate password.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
@@ -35,8 +35,7 @@ public class PasswordValidator
 
 
   /**
-   * Creates a new instance with the default message resolver and the supplied
-   * rules.
+   * Creates a new password validator with the default message resolver.
    *
    * @param  rules  to validate
    */
@@ -47,9 +46,9 @@ public class PasswordValidator
 
 
   /**
-   * Creates a new validator with the given message resolver.
+   * Creates a new password validator.
    *
-   * @param  resolver  Message resolver.
+   * @param  resolver  message resolver.
    * @param  rules  to validate
    */
   public PasswordValidator(
@@ -61,11 +60,11 @@ public class PasswordValidator
 
 
   /**
-   * Validates the supplied password data against the supplied rule.
+   * Validates the supplied password data against the rules in this validator.
    *
-   * @param  passwordData  <code>PasswordData</code> to validate
+   * @param  passwordData  to validate
    *
-   * @return  <code>RuleResult</code>
+   * @return  rule result
    */
   public RuleResult validate(final PasswordData passwordData)
   {
@@ -82,12 +81,12 @@ public class PasswordValidator
 
 
   /**
-   * Gets a list of human-readable messages by iterating over the details of a
-   * failed rule result.
+   * Returns a list of human-readable messages by iterating over the details in
+   * a failed rule result.
    *
-   * @param  result  Failed rule result.
+   * @param  result  failed rule result.
    *
-   * @return  List of human-readable messages describing the reason(s) for
+   * @return  list of human-readable messages describing the reason(s) for
    * validation failure.
    */
   public List<String> getMessages(final RuleResult result)
@@ -101,16 +100,16 @@ public class PasswordValidator
 
 
   /**
-   * This returns a string representation of this object.
+   * Returns a string representation of this object.
    *
-   * @return  <code>String</code>
+   * @return  string representation
    */
   @Override
   public String toString()
   {
     return
       String.format(
-        "%s@%h::passwordRules=%s, messageResolver=%s",
+        "%s@%h::passwordRules=%s,messageResolver=%s",
         this.getClass().getName(),
         this.hashCode(),
         this.passwordRules,

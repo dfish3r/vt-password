@@ -14,10 +14,9 @@
 package edu.vt.middleware.password;
 
 /**
- * <code>HistoryRule</code> contains methods for determining if a password
- * matches one of any previous password a user has chosen. If no password
- * history has been set or an empty history has been set, then passwords will
- * meet this rule.
+ * Rule for determining if a password matches one of any previous password a
+ * user has chosen. If no password history has been set or an empty history has
+ * been set, then passwords will meet this rule.
  *
  * @author  Middleware Services
  * @version  $Revision$ $Date$
@@ -25,7 +24,7 @@ package edu.vt.middleware.password;
 public class HistoryRule extends AbstractDigester implements Rule
 {
 
-  /** Error code for regex validation failures. */
+  /** Error code for history violation. */
   public static final String ERROR_CODE = "HISTORY_VIOLATION";
 
 
