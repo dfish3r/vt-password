@@ -126,11 +126,13 @@ public class LengthRule implements Rule
       if (length < this.minimumLength) {
         result.getDetails().add(
           new RuleResultDetail(
-            ERROR_CODE_MIN, new Object[]{this.minimumLength}));
+            ERROR_CODE_MIN,
+            new Object[]{this.minimumLength, this.maximumLength}));
       } else {
         result.getDetails().add(
           new RuleResultDetail(
-            ERROR_CODE_MAX, new Object[]{this.maximumLength}));
+            ERROR_CODE_MAX,
+            new Object[]{this.minimumLength, this.maximumLength}));
       }
     }
     return result;

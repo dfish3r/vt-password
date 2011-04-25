@@ -79,7 +79,11 @@ public abstract class AbstractCharacterRule implements CharacterRule
           false,
           new RuleResultDetail(
             ERROR_CODE,
-            new Object[]{this.numCharacters, this.getCharacterType()}));
+            new Object[]{
+              this.numCharacters,
+              this.getCharacterType(),
+              this.getNumberOfCharacterType(passwordData.getPassword()),
+              this.getValidCharacters()}));
     }
   }
 

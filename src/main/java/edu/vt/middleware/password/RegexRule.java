@@ -52,7 +52,8 @@ public class RegexRule implements Rule
     if (m.find()) {
       result.setValid(false);
       result.getDetails().add(
-        new RuleResultDetail(ERROR_CODE, new Object[]{m.group()}));
+        new RuleResultDetail(
+          ERROR_CODE, new Object[]{m.group(), this.pattern}));
     }
     return result;
   }
