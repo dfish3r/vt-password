@@ -44,8 +44,8 @@ public class RuleResultDetail
     if (code == null || code.length() == 0) {
       throw new IllegalArgumentException("Code cannot be null or empty.");
     }
-    this.errorCode = code;
-    this.parameters = params;
+    errorCode = code;
+    parameters = params;
   }
 
 
@@ -56,7 +56,7 @@ public class RuleResultDetail
    */
   public String getErrorCode()
   {
-    return this.errorCode;
+    return errorCode;
   }
 
 
@@ -67,7 +67,7 @@ public class RuleResultDetail
    */
   public Object[] getParameters()
   {
-    return this.parameters;
+    return parameters;
   }
 
 
@@ -81,7 +81,7 @@ public class RuleResultDetail
   {
     return String.format(
       "%s:%s",
-      this.errorCode,
-      this.parameters != null ? Arrays.asList(this.parameters) : null);
+      errorCode,
+      parameters != null ? Arrays.asList(parameters) : null);
   }
 }

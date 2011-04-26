@@ -51,7 +51,7 @@ public class PasswordGenerator
    */
   public PasswordGenerator(final Random r)
   {
-    this.random = r;
+    random = r;
   }
 
 
@@ -66,8 +66,7 @@ public class PasswordGenerator
    * @return  generated password
    */
   public String generatePassword(
-    final int length,
-    final List<CharacterRule> rules)
+    final int length, final List<CharacterRule> rules)
   {
     if (length <= 0) {
       throw new IllegalArgumentException("length must be greater than 0");
@@ -100,13 +99,11 @@ public class PasswordGenerator
    * @param  target  character sequence that will hold characters.
    */
   protected void fillRandomCharacters(
-    final CharSequence source,
-    final int count,
-    final Appendable target)
+    final CharSequence source, final int count, final Appendable target)
   {
     for (int i = 0; i < count; i++) {
       try {
-        target.append(source.charAt(this.random.nextInt(source.length())));
+        target.append(source.charAt(random.nextInt(source.length())));
       } catch (IOException e) {
         throw new RuntimeException("Error appending characters.", e);
       }
@@ -124,7 +121,7 @@ public class PasswordGenerator
     char c;
     int n;
     for (int i = buffer.position(); i < buffer.limit(); i++) {
-      n = this.random.nextInt(buffer.length());
+      n = random.nextInt(buffer.length());
       c = buffer.get(n);
       buffer.put(n, buffer.get(i));
       buffer.put(i, c);

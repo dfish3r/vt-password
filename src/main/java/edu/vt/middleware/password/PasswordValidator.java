@@ -54,8 +54,8 @@ public class PasswordValidator
   public PasswordValidator(
     final MessageResolver resolver, final List<Rule> rules)
   {
-    this.messageResolver = resolver;
-    this.passwordRules = rules;
+    messageResolver = resolver;
+    passwordRules = rules;
   }
 
 
@@ -69,7 +69,7 @@ public class PasswordValidator
   public RuleResult validate(final PasswordData passwordData)
   {
     final RuleResult result = new RuleResult(true);
-    for (Rule rule : this.passwordRules) {
+    for (Rule rule : passwordRules) {
       final RuleResult rr = rule.validate(passwordData);
       if (!rr.isValid()) {
         result.setValid(false);
@@ -93,7 +93,7 @@ public class PasswordValidator
   {
     final List<String> messages = new ArrayList<String>();
     for (RuleResultDetail detail : result.getDetails()) {
-      messages.add(this.messageResolver.resolve(detail));
+      messages.add(messageResolver.resolve(detail));
     }
     return messages;
   }
@@ -110,9 +110,9 @@ public class PasswordValidator
     return
       String.format(
         "%s@%h::passwordRules=%s,messageResolver=%s",
-        this.getClass().getName(),
-        this.hashCode(),
-        this.passwordRules,
-        this.messageResolver);
+        getClass().getName(),
+        hashCode(),
+        passwordRules,
+        messageResolver);
   }
 }

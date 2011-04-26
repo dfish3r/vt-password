@@ -38,11 +38,12 @@ public class UppercaseCharacterRule extends AbstractCharacterRule
    */
   public UppercaseCharacterRule(final int num)
   {
-    this.setNumberOfCharacters(num);
+    setNumberOfCharacters(num);
   }
 
 
   /** {@inheritDoc} */
+  @Override
   public String getValidCharacters()
   {
     return "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -50,6 +51,7 @@ public class UppercaseCharacterRule extends AbstractCharacterRule
 
 
   /** {@inheritDoc} */
+  @Override
   protected int getNumberOfCharacterType(final Password password)
   {
     return password.getNumberOfUppercase();
@@ -57,6 +59,7 @@ public class UppercaseCharacterRule extends AbstractCharacterRule
 
 
   /** {@inheritDoc} */
+  @Override
   protected String getCharacterType()
   {
     return CHARACTER_TYPE;

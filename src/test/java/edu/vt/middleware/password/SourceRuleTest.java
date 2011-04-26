@@ -59,10 +59,10 @@ public class SourceRuleTest extends AbstractRuleTest
   @BeforeClass(groups = {"passtest"})
   public void createRules()
   {
-    this.sources.put("System A", "t3stUs3r04");
+    sources.put("System A", "t3stUs3r04");
 
-    this.digestRule.setDigest("SHA-1", new Base64Converter());
-    this.digestSources.put("System B", "CJGTDMQRP+rmHApkcijC80aDV0o=");
+    digestRule.setDigest("SHA-1", new Base64Converter());
+    digestSources.put("System B", "CJGTDMQRP+rmHApkcijC80aDV0o=");
   }
 
 
@@ -79,34 +79,34 @@ public class SourceRuleTest extends AbstractRuleTest
       new Object[][] {
 
         {
-          this.rule,
-          PasswordData.newInstance(VALID_PASS, USER, null, this.sources),
+          rule,
+          PasswordData.newInstance(VALID_PASS, USER, null, sources),
           true,
         },
         {
-          this.rule,
-          PasswordData.newInstance(SOURCE_PASS, USER, null, this.sources),
+          rule,
+          PasswordData.newInstance(SOURCE_PASS, USER, null, sources),
           false,
         },
 
         {
-          this.digestRule,
-          PasswordData.newInstance(VALID_PASS, USER, null, this.digestSources),
+          digestRule,
+          PasswordData.newInstance(VALID_PASS, USER, null, digestSources),
           true,
         },
         {
-          this.digestRule,
-          PasswordData.newInstance(SOURCE_PASS, USER, null, this.digestSources),
+          digestRule,
+          PasswordData.newInstance(SOURCE_PASS, USER, null, digestSources),
           false,
         },
 
         {
-          this.emptyRule,
+          emptyRule,
           PasswordData.newInstance(VALID_PASS, USER, null, null),
           true,
         },
         {
-          this.emptyRule,
+          emptyRule,
           PasswordData.newInstance(SOURCE_PASS, USER, null, null),
           true,
         },
@@ -121,8 +121,8 @@ public class SourceRuleTest extends AbstractRuleTest
   public void resolveMessage()
     throws Exception
   {
-    final RuleResult result = this.rule.validate(
-      PasswordData.newInstance(SOURCE_PASS, USER, null, this.sources));
+    final RuleResult result = rule.validate(
+      PasswordData.newInstance(SOURCE_PASS, USER, null, sources));
     for (RuleResultDetail detail : result.getDetails()) {
       AssertJUnit.assertEquals(
         String.format(

@@ -38,11 +38,12 @@ public class LowercaseCharacterRule extends AbstractCharacterRule
    */
   public LowercaseCharacterRule(final int num)
   {
-    this.setNumberOfCharacters(num);
+    setNumberOfCharacters(num);
   }
 
 
   /** {@inheritDoc} */
+  @Override
   public String getValidCharacters()
   {
     return "abcdefghijklmnopqrstuvwxyz";
@@ -50,6 +51,7 @@ public class LowercaseCharacterRule extends AbstractCharacterRule
 
 
   /** {@inheritDoc} */
+  @Override
   protected int getNumberOfCharacterType(final Password password)
   {
     return password.getNumberOfLowercase();
@@ -57,6 +59,7 @@ public class LowercaseCharacterRule extends AbstractCharacterRule
 
 
   /** {@inheritDoc} */
+  @Override
   protected String getCharacterType()
   {
     return CHARACTER_TYPE;

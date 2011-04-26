@@ -67,11 +67,12 @@ public class NumericalSequenceRule extends AbstractSequenceRule
   public NumericalSequenceRule(final int length, final boolean wrap)
   {
     setSequenceLength(length);
-    this.wrapSequence = wrap;
+    wrapSequence = wrap;
   }
 
 
   /** {@inheritDoc} */
+  @Override
   protected char[][] getSequence(final int n)
   {
     return ALL_CHARS[n];
@@ -79,6 +80,7 @@ public class NumericalSequenceRule extends AbstractSequenceRule
 
 
   /** {@inheritDoc} */
+  @Override
   protected int getSequenceCount()
   {
     return ALL_CHARS.length;

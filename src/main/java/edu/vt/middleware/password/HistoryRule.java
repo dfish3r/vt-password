@@ -29,6 +29,7 @@ public class HistoryRule extends AbstractDigester implements Rule
 
 
   /** {@inheritDoc} */
+  @Override
   public RuleResult validate(final PasswordData passwordData)
   {
     final RuleResult result = new RuleResult(true);

@@ -38,15 +38,16 @@ public class IllegalCharacterRule implements Rule
    */
   public IllegalCharacterRule(final char[] c)
   {
-    this.illegalChar = c;
+    illegalChar = c;
   }
 
 
   /** {@inheritDoc} */
+  @Override
   public RuleResult validate(final PasswordData passwordData)
   {
     final RuleResult result = new RuleResult(true);
-    for (char c : this.illegalChar) {
+    for (char c : illegalChar) {
       if (passwordData.getPassword().getText().indexOf(c) != -1) {
         result.setValid(false);
         result.getDetails().add(
@@ -68,8 +69,8 @@ public class IllegalCharacterRule implements Rule
     return
       String.format(
         "%s@%h::illegalChar=%s",
-        this.getClass().getName(),
-        this.hashCode(),
-        this.illegalChar != null ? Arrays.asList(this.illegalChar) : null);
+        getClass().getName(),
+        hashCode(),
+        illegalChar != null ? Arrays.asList(illegalChar) : null);
   }
 }

@@ -44,7 +44,7 @@ public abstract class AbstractDictionaryRule implements Rule
    */
   public void setDictionary(final Dictionary dict)
   {
-    this.dictionary = dict;
+    dictionary = dict;
   }
 
 
@@ -55,7 +55,7 @@ public abstract class AbstractDictionaryRule implements Rule
    */
   public Dictionary getDictionary()
   {
-    return this.dictionary;
+    return dictionary;
   }
 
 
@@ -67,7 +67,7 @@ public abstract class AbstractDictionaryRule implements Rule
    */
   public void setMatchBackwards(final boolean b)
   {
-    this.matchBackwards = b;
+    matchBackwards = b;
   }
 
 
@@ -79,11 +79,12 @@ public abstract class AbstractDictionaryRule implements Rule
    */
   public boolean isMatchBackwards()
   {
-    return this.matchBackwards;
+    return matchBackwards;
   }
 
 
   /** {@inheritDoc} */
+  @Override
   public RuleResult validate(final PasswordData passwordData)
   {
     final RuleResult result = new RuleResult(true);
@@ -94,7 +95,7 @@ public abstract class AbstractDictionaryRule implements Rule
       result.getDetails().add(
         new RuleResultDetail(ERROR_CODE, new Object[]{matchingWord}));
     }
-    if (this.matchBackwards) {
+    if (matchBackwards) {
       text = new StringBuilder(passwordData.getPassword().getText()).reverse()
           .toString();
       matchingWord = doWordSearch(text);
@@ -130,9 +131,9 @@ public abstract class AbstractDictionaryRule implements Rule
     return
       String.format(
         "%s@%h::dictionary=%s,matchBackwards=%s",
-        this.getClass().getName(),
-        this.hashCode(),
-        this.dictionary,
-        this.matchBackwards);
+        getClass().getName(),
+        hashCode(),
+        dictionary,
+        matchBackwards);
   }
 }

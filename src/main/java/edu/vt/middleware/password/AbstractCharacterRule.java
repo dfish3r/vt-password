@@ -30,10 +30,11 @@ public abstract class AbstractCharacterRule implements CharacterRule
 
 
   /** {@inheritDoc} */
+  @Override
   public void setNumberOfCharacters(final int n)
   {
     if (n > 0) {
-      this.numCharacters = n;
+      numCharacters = n;
     } else {
       throw new IllegalArgumentException("argument must be greater than zero");
     }
@@ -41,9 +42,10 @@ public abstract class AbstractCharacterRule implements CharacterRule
 
 
   /** {@inheritDoc} */
+  @Override
   public int getNumberOfCharacters()
   {
-    return this.numCharacters;
+    return numCharacters;
   }
 
 
@@ -67,11 +69,12 @@ public abstract class AbstractCharacterRule implements CharacterRule
 
 
   /** {@inheritDoc} */
+  @Override
   public RuleResult validate(final PasswordData passwordData)
   {
     if (
-      this.getNumberOfCharacterType(passwordData.getPassword()) >=
-        this.numCharacters) {
+      getNumberOfCharacterType(passwordData.getPassword()) >=
+        numCharacters) {
       return new RuleResult(true);
     } else {
       return
@@ -80,10 +83,10 @@ public abstract class AbstractCharacterRule implements CharacterRule
           new RuleResultDetail(
             ERROR_CODE,
             new Object[]{
-              this.numCharacters,
-              this.getCharacterType(),
-              this.getNumberOfCharacterType(passwordData.getPassword()),
-              this.getValidCharacters()}));
+              numCharacters,
+              getCharacterType(),
+              getNumberOfCharacterType(passwordData.getPassword()),
+              getValidCharacters(), }));
     }
   }
 
@@ -99,8 +102,8 @@ public abstract class AbstractCharacterRule implements CharacterRule
     return
       String.format(
         "%s@%h::numberOfCharacters=%s",
-        this.getClass().getName(),
-        this.hashCode(),
-        this.numCharacters);
+        getClass().getName(),
+        hashCode(),
+        numCharacters);
   }
 }

@@ -44,7 +44,7 @@ public class CharacterCharacteristicsRule implements Rule
    */
   public List<CharacterRule> getRules()
   {
-    return this.rules;
+    return rules;
   }
 
 
@@ -55,7 +55,7 @@ public class CharacterCharacteristicsRule implements Rule
    */
   public void setRules(final List<CharacterRule> l)
   {
-    this.rules = l;
+    rules = l;
   }
 
 
@@ -69,7 +69,7 @@ public class CharacterCharacteristicsRule implements Rule
   public void setNumberOfCharacteristics(final int n)
   {
     if (n > 0) {
-      this.numCharacteristics = n;
+      numCharacteristics = n;
     } else {
       throw new IllegalArgumentException("argument must be greater than zero");
     }
@@ -84,20 +84,21 @@ public class CharacterCharacteristicsRule implements Rule
    */
   public int getNumberOfCharacteristics()
   {
-    return this.numCharacteristics;
+    return numCharacteristics;
   }
 
 
   /** {@inheritDoc} */
+  @Override
   public RuleResult validate(final PasswordData passwordData)
   {
-    if (this.numCharacteristics > this.rules.size()) {
+    if (numCharacteristics > rules.size()) {
       throw new IllegalStateException(
         "Number of characteristics must be <= to the number of rules");
     }
     int successCount = 0;
     final RuleResult result = new RuleResult(true);
-    for (CharacterRule rule : this.rules) {
+    for (CharacterRule rule : rules) {
       final RuleResult rr = rule.validate(passwordData);
       if (!rr.isValid()) {
         result.getDetails().addAll(rr.getDetails());
@@ -105,13 +106,13 @@ public class CharacterCharacteristicsRule implements Rule
         successCount++;
       }
     }
-    if (successCount < this.numCharacteristics) {
+    if (successCount < numCharacteristics) {
       result.setValid(false);
       result.getDetails().add(
         new RuleResultDetail(
           ERROR_CODE,
           new Object[]{
-            successCount, this.numCharacteristics, this.rules.size(), }));
+            successCount, numCharacteristics, rules.size(), }));
     }
     return result;
   }
@@ -128,9 +129,9 @@ public class CharacterCharacteristicsRule implements Rule
     return
       String.format(
         "%s@%h::numberOfCharacteristics=%s,rules=%s",
-        this.getClass().getName(),
-        this.hashCode(),
-        this.numCharacteristics,
-        this.rules);
+        getClass().getName(),
+        hashCode(),
+        numCharacteristics,
+        rules);
   }
 }

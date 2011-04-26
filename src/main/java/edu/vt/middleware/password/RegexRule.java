@@ -39,21 +39,22 @@ public class RegexRule implements Rule
    */
   public RegexRule(final String regex)
   {
-    this.pattern = Pattern.compile(regex);
+    pattern = Pattern.compile(regex);
   }
 
 
   /** {@inheritDoc} */
+  @Override
   public RuleResult validate(final PasswordData passwordData)
   {
     final RuleResult result = new RuleResult(true);
-    final Matcher m = this.pattern.matcher(
+    final Matcher m = pattern.matcher(
       passwordData.getPassword().getText());
     if (m.find()) {
       result.setValid(false);
       result.getDetails().add(
         new RuleResultDetail(
-          ERROR_CODE, new Object[]{m.group(), this.pattern}));
+          ERROR_CODE, new Object[]{m.group(), pattern}));
     }
     return result;
   }
@@ -70,8 +71,8 @@ public class RegexRule implements Rule
     return
       String.format(
         "%s@%h::pattern=%s",
-        this.getClass().getName(),
-        this.hashCode(),
-        this.pattern);
+        getClass().getName(),
+        hashCode(),
+        pattern);
   }
 }

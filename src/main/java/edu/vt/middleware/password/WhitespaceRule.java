@@ -24,6 +24,7 @@ public class WhitespaceRule implements Rule
 
 
   /** {@inheritDoc} */
+  @Override
   public RuleResult validate(final PasswordData passwordData)
   {
     if (!passwordData.getPassword().containsWhitespace()) {

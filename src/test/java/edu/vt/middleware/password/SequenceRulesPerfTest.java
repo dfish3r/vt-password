@@ -79,7 +79,7 @@ public class SequenceRulesPerfTest
     System.out.println(
       String.format(
         "%s:: execution completed in %s ms",
-        this.getClass().getName(),
+        getClass().getName(),
         System.currentTimeMillis() - t));
   }
 }

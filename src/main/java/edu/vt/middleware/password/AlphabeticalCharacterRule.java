@@ -38,11 +38,12 @@ public class AlphabeticalCharacterRule extends AbstractCharacterRule
    */
   public AlphabeticalCharacterRule(final int num)
   {
-    this.setNumberOfCharacters(num);
+    setNumberOfCharacters(num);
   }
 
 
   /** {@inheritDoc} */
+  @Override
   public String getValidCharacters()
   {
     return "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -50,6 +51,7 @@ public class AlphabeticalCharacterRule extends AbstractCharacterRule
 
 
   /** {@inheritDoc} */
+  @Override
   protected int getNumberOfCharacterType(final Password password)
   {
     return password.getNumberOfAlphabetical();
@@ -57,6 +59,7 @@ public class AlphabeticalCharacterRule extends AbstractCharacterRule
 
 
   /** {@inheritDoc} */
+  @Override
   protected String getCharacterType()
   {
     return CHARACTER_TYPE;

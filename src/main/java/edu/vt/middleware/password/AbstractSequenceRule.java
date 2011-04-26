@@ -39,6 +39,7 @@ public abstract class AbstractSequenceRule implements Rule
 
 
   /** {@inheritDoc} */
+  @Override
   public RuleResult validate(final PasswordData passwordData)
   {
     final RuleResult result = new RuleResult(true);
@@ -94,10 +95,10 @@ public abstract class AbstractSequenceRule implements Rule
     return
       String.format(
         "%s@%h::length=%d,wrap=%s",
-        this.getClass().getName(),
-        this.hashCode(),
-        this.sequenceLength,
-        this.wrapSequence);
+        getClass().getName(),
+        hashCode(),
+        sequenceLength,
+        wrapSequence);
   }
 
 
@@ -114,7 +115,7 @@ public abstract class AbstractSequenceRule implements Rule
           "sequence length must be >= %s",
           MINIMUM_SEQUENCE_LENGTH));
     }
-    this.sequenceLength = sl;
+    sequenceLength = sl;
   }
 
 
@@ -126,7 +127,7 @@ public abstract class AbstractSequenceRule implements Rule
    *
    * @return  character sequence.
    */
-  protected abstract char[][] getSequence(int n);
+  protected abstract char[][] getSequence(final int n);
 
 
   /**

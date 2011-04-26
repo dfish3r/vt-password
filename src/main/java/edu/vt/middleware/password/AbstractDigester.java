@@ -42,8 +42,8 @@ public abstract class AbstractDigester
    */
   public void setDigest(final String algorithm, final Converter conv)
   {
-    this.digest = DigestAlgorithm.newInstance(algorithm);
-    this.converter = conv;
+    digest = DigestAlgorithm.newInstance(algorithm);
+    converter = conv;
   }
 
 
@@ -59,8 +59,8 @@ public abstract class AbstractDigester
   protected boolean matches(final String undigested, final String reference)
   {
     final String compare;
-    if (this.digest != null) {
-      compare = this.digest.digest(undigested.getBytes(), this.converter);
+    if (digest != null) {
+      compare = digest.digest(undigested.getBytes(), converter);
     } else {
       compare = undigested;
     }

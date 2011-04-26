@@ -14,9 +14,9 @@
 package edu.vt.middleware.password;
 
 /**
- * Rule for determining if a password matches a password from a different source.
- * Useful for when separate systems cannot have matching passwords. If no
- * sources have been set or an empty source has been set, then passwords will
+ * Rule for determining if a password matches a password from a different
+ * source. Useful for when separate systems cannot have matching passwords. If
+ * no sources have been set or an empty source has been set, then passwords will
  * meet this rule.
  *
  * @author  Middleware Services
@@ -30,6 +30,7 @@ public class SourceRule extends AbstractDigester implements Rule
 
 
   /** {@inheritDoc} */
+  @Override
   public RuleResult validate(final PasswordData passwordData)
   {
     final RuleResult result = new RuleResult(true);

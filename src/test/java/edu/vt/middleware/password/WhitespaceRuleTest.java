@@ -57,10 +57,10 @@ public class WhitespaceRuleTest extends AbstractRuleTest
     return
       new Object[][] {
 
-        {this.rule, new PasswordData(VALID_PASS), true, },
-        {this.rule, new PasswordData(SPACE_PASS), false, },
-        {this.rule, new PasswordData(TAB_PASS), false, },
-        {this.rule, new PasswordData(LINE_SEP_PASS), false, },
+        {rule, new PasswordData(VALID_PASS), true, },
+        {rule, new PasswordData(SPACE_PASS), false, },
+        {rule, new PasswordData(TAB_PASS), false, },
+        {rule, new PasswordData(LINE_SEP_PASS), false, },
       };
   }
 
@@ -72,7 +72,7 @@ public class WhitespaceRuleTest extends AbstractRuleTest
   public void resolveMessage()
     throws Exception
   {
-    final RuleResult result = this.rule.validate(new PasswordData(SPACE_PASS));
+    final RuleResult result = rule.validate(new PasswordData(SPACE_PASS));
     for (RuleResultDetail detail : result.getDetails()) {
       AssertJUnit.assertEquals(
         "Password cannot contain whitespace characters.",

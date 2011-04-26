@@ -65,14 +65,14 @@ public class HistoryRuleTest extends AbstractRuleTest
   @BeforeClass(groups = {"passtest"})
   public void createRules()
   {
-    this.history.add(HISTORY_PASS1.getText());
-    this.history.add(HISTORY_PASS2.getText());
-    this.history.add(HISTORY_PASS3.getText());
+    history.add(HISTORY_PASS1.getText());
+    history.add(HISTORY_PASS2.getText());
+    history.add(HISTORY_PASS3.getText());
 
-    this.digestRule.setDigest("SHA-1", new Base64Converter());
-    this.digestHistory.add("safx/LW8+SsSy/o3PmCNy4VEm5s=");
-    this.digestHistory.add("zurb9DyQ5nooY1la8h86Bh0n1iw=");
-    this.digestHistory.add("bhqabXwE3S8E6xNJfX/d76MFOCs=");
+    digestRule.setDigest("SHA-1", new Base64Converter());
+    digestHistory.add("safx/LW8+SsSy/o3PmCNy4VEm5s=");
+    digestHistory.add("zurb9DyQ5nooY1la8h86Bh0n1iw=");
+    digestHistory.add("bhqabXwE3S8E6xNJfX/d76MFOCs=");
   }
 
 
@@ -89,68 +89,68 @@ public class HistoryRuleTest extends AbstractRuleTest
       new Object[][] {
 
         {
-          this.rule,
-          PasswordData.newInstance(VALID_PASS, USER, this.history, null),
+          rule,
+          PasswordData.newInstance(VALID_PASS, USER, history, null),
           true,
         },
         {
-          this.rule,
-          PasswordData.newInstance(HISTORY_PASS1, USER, this.history, null),
+          rule,
+          PasswordData.newInstance(HISTORY_PASS1, USER, history, null),
           false,
         },
         {
-          this.rule,
-          PasswordData.newInstance(HISTORY_PASS2, USER, this.history, null),
+          rule,
+          PasswordData.newInstance(HISTORY_PASS2, USER, history, null),
           false,
         },
         {
-          this.rule,
-          PasswordData.newInstance(HISTORY_PASS3, USER, this.history, null),
+          rule,
+          PasswordData.newInstance(HISTORY_PASS3, USER, history, null),
           false,
         },
 
         {
-          this.digestRule,
+          digestRule,
           PasswordData.newInstance(
-            VALID_PASS, USER, this.digestHistory, null),
+            VALID_PASS, USER, digestHistory, null),
           true,
         },
         {
-          this.digestRule,
+          digestRule,
           PasswordData.newInstance(
-            HISTORY_PASS1, USER, this.digestHistory, null),
+            HISTORY_PASS1, USER, digestHistory, null),
           false,
         },
         {
-          this.digestRule,
+          digestRule,
           PasswordData.newInstance(
-            HISTORY_PASS2, USER, this.digestHistory, null),
+            HISTORY_PASS2, USER, digestHistory, null),
           false,
         },
         {
-          this.digestRule,
+          digestRule,
           PasswordData.newInstance(
-            HISTORY_PASS3, USER, this.digestHistory, null),
+            HISTORY_PASS3, USER, digestHistory, null),
           false,
         },
 
         {
-          this.emptyRule,
+          emptyRule,
           PasswordData.newInstance(VALID_PASS, USER, null, null),
           true,
         },
         {
-          this.emptyRule,
+          emptyRule,
           PasswordData.newInstance(HISTORY_PASS1, USER, null, null),
           true,
         },
         {
-          this.emptyRule,
+          emptyRule,
           PasswordData.newInstance(HISTORY_PASS2, USER, null, null),
           true,
         },
         {
-          this.emptyRule,
+          emptyRule,
           PasswordData.newInstance(HISTORY_PASS3, USER, null, null),
           true,
         },
@@ -165,13 +165,13 @@ public class HistoryRuleTest extends AbstractRuleTest
   public void resolveMessage()
     throws Exception
   {
-    final RuleResult result = this.rule.validate(
-      PasswordData.newInstance(HISTORY_PASS1, USER, this.history, null));
+    final RuleResult result = rule.validate(
+      PasswordData.newInstance(HISTORY_PASS1, USER, history, null));
     for (RuleResultDetail detail : result.getDetails()) {
       AssertJUnit.assertEquals(
         String.format(
           "Password matches one of %s previous passwords.",
-          this.history.size()),
+          history.size()),
         DEFAULT_RESOLVER.resolve(detail));
     }
   }

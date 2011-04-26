@@ -38,11 +38,12 @@ public class DigitCharacterRule extends AbstractCharacterRule
    */
   public DigitCharacterRule(final int num)
   {
-    this.setNumberOfCharacters(num);
+    setNumberOfCharacters(num);
   }
 
 
   /** {@inheritDoc} */
+  @Override
   public String getValidCharacters()
   {
     return "0123456789";
@@ -50,6 +51,7 @@ public class DigitCharacterRule extends AbstractCharacterRule
 
 
   /** {@inheritDoc} */
+  @Override
   protected int getNumberOfCharacterType(final Password password)
   {
     return password.getNumberOfDigits();
@@ -57,6 +59,7 @@ public class DigitCharacterRule extends AbstractCharacterRule
 
 
   /** {@inheritDoc} */
+  @Override
   protected String getCharacterType()
   {
     return CHARACTER_TYPE;

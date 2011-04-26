@@ -40,14 +40,15 @@ public class DictionaryRule extends AbstractDictionaryRule
    */
   public DictionaryRule(final Dictionary dict)
   {
-    this.dictionary = dict;
+    dictionary = dict;
   }
 
 
   /** {@inheritDoc} */
+  @Override
   protected String doWordSearch(final String text)
   {
-    if (this.dictionary.search(text)) {
+    if (dictionary.search(text)) {
       return text;
     }
     return null;

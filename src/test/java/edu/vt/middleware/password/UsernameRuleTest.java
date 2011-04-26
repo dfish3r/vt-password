@@ -65,10 +65,10 @@ public class UsernameRuleTest extends AbstractRuleTest
   @BeforeClass(groups = {"passtest"})
   public void createRules()
   {
-    this.backwardsRule.setMatchBackwards(true);
-    this.ignoreCaseRule.setIgnoreCase(true);
-    this.allRule.setMatchBackwards(true);
-    this.allRule.setIgnoreCase(true);
+    backwardsRule.setMatchBackwards(true);
+    ignoreCaseRule.setIgnoreCase(true);
+    allRule.setMatchBackwards(true);
+    allRule.setIgnoreCase(true);
   }
 
 
@@ -85,108 +85,108 @@ public class UsernameRuleTest extends AbstractRuleTest
       new Object[][] {
 
         {
-          this.rule,
+          rule,
           PasswordData.newInstance(VALID_PASS, USER, null, null),
           true,
         },
         {
-          this.rule,
+          rule,
           PasswordData.newInstance(USERID_PASS, USER, null, null),
           false,
         },
         {
-          this.rule,
+          rule,
           PasswordData.newInstance(BACKWARDS_USERID_PASS, USER, null, null),
           true,
         },
         {
-          this.rule,
+          rule,
           PasswordData.newInstance(UPPERCASE_USERID_PASS, USER, null, null),
           true,
         },
         {
-          this.rule,
+          rule,
           PasswordData.newInstance(
             BACKWARDS_UPPERCASE_USERID_PASS, USER, null, null),
           true,
         },
 
         {
-          this.backwardsRule,
+          backwardsRule,
           PasswordData.newInstance(VALID_PASS, USER, null, null),
           true,
         },
         {
-          this.backwardsRule,
+          backwardsRule,
           PasswordData.newInstance(USERID_PASS, USER, null, null),
           false,
         },
         {
-          this.backwardsRule,
+          backwardsRule,
           PasswordData.newInstance(BACKWARDS_USERID_PASS, USER, null, null),
           false,
         },
         {
-          this.backwardsRule,
+          backwardsRule,
           PasswordData.newInstance(UPPERCASE_USERID_PASS, USER, null, null),
           true,
         },
         {
-          this.backwardsRule,
+          backwardsRule,
           PasswordData.newInstance(
             BACKWARDS_UPPERCASE_USERID_PASS, USER, null, null),
           true,
         },
 
         {
-          this.ignoreCaseRule,
+          ignoreCaseRule,
           PasswordData.newInstance(VALID_PASS, USER, null, null),
           true,
         },
         {
-          this.ignoreCaseRule,
+          ignoreCaseRule,
           PasswordData.newInstance(USERID_PASS, USER, null, null),
           false,
         },
         {
-          this.ignoreCaseRule,
+          ignoreCaseRule,
           PasswordData.newInstance(BACKWARDS_USERID_PASS, USER, null, null),
           true,
         },
         {
-          this.ignoreCaseRule,
+          ignoreCaseRule,
           PasswordData.newInstance(UPPERCASE_USERID_PASS, USER, null, null),
           false,
         },
         {
-          this.ignoreCaseRule,
+          ignoreCaseRule,
           PasswordData.newInstance(
             BACKWARDS_UPPERCASE_USERID_PASS, USER, null, null),
           true,
         },
 
         {
-          this.allRule,
+          allRule,
           PasswordData.newInstance(VALID_PASS, USER, null, null),
           true,
         },
         {
-          this.allRule,
+          allRule,
           PasswordData.newInstance(USERID_PASS, USER, null, null),
           false,
         },
         {
-          this.allRule,
+          allRule,
           PasswordData.newInstance(BACKWARDS_USERID_PASS, USER, null, null),
           false,
         },
         {
-          this.allRule,
+          allRule,
           PasswordData.newInstance(UPPERCASE_USERID_PASS, USER, null, null),
           false,
         },
         {
-          this.allRule,
+          allRule,
           PasswordData.newInstance(
             BACKWARDS_UPPERCASE_USERID_PASS, USER, null, null),
           false,
@@ -202,7 +202,7 @@ public class UsernameRuleTest extends AbstractRuleTest
   public void resolveMessage()
     throws Exception
   {
-    RuleResult result = this.rule.validate(
+    RuleResult result = rule.validate(
       PasswordData.newInstance(USERID_PASS, USER, null, null));
     for (RuleResultDetail detail : result.getDetails()) {
       AssertJUnit.assertEquals(
@@ -210,7 +210,7 @@ public class UsernameRuleTest extends AbstractRuleTest
         DEFAULT_RESOLVER.resolve(detail));
     }
 
-    result = this.rule.validate(
+    result = rule.validate(
       PasswordData.newInstance(BACKWARDS_USERID_PASS, USER, null, null));
     for (RuleResultDetail detail : result.getDetails()) {
       AssertJUnit.assertEquals(

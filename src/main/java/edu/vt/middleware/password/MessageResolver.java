@@ -54,7 +54,7 @@ public class MessageResolver
     if (properties == null) {
       throw new IllegalArgumentException("Properties cannot be null.");
     }
-    this.messageProperties = properties;
+    messageProperties = properties;
   }
 
 
@@ -68,7 +68,7 @@ public class MessageResolver
   public String resolve(final RuleResultDetail detail)
   {
     final String key = detail.getErrorCode();
-    final String message = this.messageProperties.getProperty(key);
+    final String message = messageProperties.getProperty(key);
     if (message != null) {
       return String.format(message, detail.getParameters());
     }

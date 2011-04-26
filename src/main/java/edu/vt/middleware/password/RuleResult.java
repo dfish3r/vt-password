@@ -43,7 +43,7 @@ public class RuleResult
    */
   public RuleResult(final boolean b)
   {
-    this.setValid(b);
+    setValid(b);
   }
 
 
@@ -55,8 +55,8 @@ public class RuleResult
    */
   public RuleResult(final boolean b, final RuleResultDetail rrd)
   {
-    this.setValid(b);
-    this.details.add(rrd);
+    setValid(b);
+    details.add(rrd);
   }
 
 
@@ -67,7 +67,7 @@ public class RuleResult
    */
   public boolean isValid()
   {
-    return this.valid;
+    return valid;
   }
 
 
@@ -78,7 +78,7 @@ public class RuleResult
    */
   public void setValid(final boolean b)
   {
-    this.valid = b;
+    valid = b;
   }
 
 
@@ -89,7 +89,7 @@ public class RuleResult
    */
   public List<RuleResultDetail> getDetails()
   {
-    return this.details;
+    return details;
   }
 
 
@@ -100,6 +100,6 @@ public class RuleResult
    */
   public void setDetails(final List<RuleResultDetail> rrd)
   {
-    this.details = rrd;
+    details = rrd;
   }
 }

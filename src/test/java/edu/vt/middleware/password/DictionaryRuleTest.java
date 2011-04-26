@@ -71,7 +71,7 @@ public class DictionaryRuleTest extends AbstractRuleTest
    *
    * @throws  Exception  if dictionary files cannot be read
    */
-  @Parameters({ "dictionaryFile" })
+  @Parameters("dictionaryFile")
   @BeforeClass(groups = {"passtest"})
   public void createRules(final String dictFile)
     throws Exception
@@ -90,15 +90,15 @@ public class DictionaryRuleTest extends AbstractRuleTest
     final WordListDictionary caseInsensitiveDict = new WordListDictionary(
       caseInsensitiveWordList);
 
-    this.rule.setDictionary(caseSensitiveDict);
+    rule.setDictionary(caseSensitiveDict);
 
-    this.backwardsRule.setDictionary(caseSensitiveDict);
-    this.backwardsRule.setMatchBackwards(true);
+    backwardsRule.setDictionary(caseSensitiveDict);
+    backwardsRule.setMatchBackwards(true);
 
-    this.ignoreCaseRule.setDictionary(caseInsensitiveDict);
+    ignoreCaseRule.setDictionary(caseInsensitiveDict);
 
-    this.allRule.setDictionary(caseInsensitiveDict);
-    this.allRule.setMatchBackwards(true);
+    allRule.setDictionary(caseInsensitiveDict);
+    allRule.setMatchBackwards(true);
   }
 
 
@@ -114,38 +114,38 @@ public class DictionaryRuleTest extends AbstractRuleTest
     return
       new Object[][] {
 
-        {this.rule, new PasswordData(VALID_PASS), true, },
-        {this.rule, new PasswordData(DICT_PASS), false, },
-        {this.rule, new PasswordData(BACKWARDS_DICT_PASS), true, },
-        {this.rule, new PasswordData(UPPERCASE_DICT_PASS), true, },
-        {this.rule, new PasswordData(BACKWARDS_UPPERCASE_DICT_PASS), true, },
+        {rule, new PasswordData(VALID_PASS), true, },
+        {rule, new PasswordData(DICT_PASS), false, },
+        {rule, new PasswordData(BACKWARDS_DICT_PASS), true, },
+        {rule, new PasswordData(UPPERCASE_DICT_PASS), true, },
+        {rule, new PasswordData(BACKWARDS_UPPERCASE_DICT_PASS), true, },
 
-        {this.backwardsRule, new PasswordData(VALID_PASS), true, },
-        {this.backwardsRule, new PasswordData(DICT_PASS), false, },
-        {this.backwardsRule, new PasswordData(BACKWARDS_DICT_PASS), false, },
-        {this.backwardsRule, new PasswordData(UPPERCASE_DICT_PASS), true, },
+        {backwardsRule, new PasswordData(VALID_PASS), true, },
+        {backwardsRule, new PasswordData(DICT_PASS), false, },
+        {backwardsRule, new PasswordData(BACKWARDS_DICT_PASS), false, },
+        {backwardsRule, new PasswordData(UPPERCASE_DICT_PASS), true, },
         {
-          this.backwardsRule,
+          backwardsRule,
           new PasswordData(BACKWARDS_UPPERCASE_DICT_PASS),
           true,
         },
 
-        {this.ignoreCaseRule, new PasswordData(VALID_PASS), true, },
-        {this.ignoreCaseRule, new PasswordData(DICT_PASS), false, },
-        {this.ignoreCaseRule, new PasswordData(BACKWARDS_DICT_PASS), true, },
-        {this.ignoreCaseRule, new PasswordData(UPPERCASE_DICT_PASS), false, },
+        {ignoreCaseRule, new PasswordData(VALID_PASS), true, },
+        {ignoreCaseRule, new PasswordData(DICT_PASS), false, },
+        {ignoreCaseRule, new PasswordData(BACKWARDS_DICT_PASS), true, },
+        {ignoreCaseRule, new PasswordData(UPPERCASE_DICT_PASS), false, },
         {
-          this.ignoreCaseRule,
+          ignoreCaseRule,
           new PasswordData(BACKWARDS_UPPERCASE_DICT_PASS),
           true,
         },
 
-        {this.allRule, new PasswordData(VALID_PASS), true, },
-        {this.allRule, new PasswordData(DICT_PASS), false, },
-        {this.allRule, new PasswordData(BACKWARDS_DICT_PASS), false, },
-        {this.allRule, new PasswordData(UPPERCASE_DICT_PASS), false, },
+        {allRule, new PasswordData(VALID_PASS), true, },
+        {allRule, new PasswordData(DICT_PASS), false, },
+        {allRule, new PasswordData(BACKWARDS_DICT_PASS), false, },
+        {allRule, new PasswordData(UPPERCASE_DICT_PASS), false, },
         {
-          this.allRule,
+          allRule,
           new PasswordData(BACKWARDS_UPPERCASE_DICT_PASS),
           false,
         },
@@ -160,7 +160,7 @@ public class DictionaryRuleTest extends AbstractRuleTest
   public void resolveMessage()
     throws Exception
   {
-    RuleResult result = this.rule.validate(new PasswordData(DICT_PASS));
+    RuleResult result = rule.validate(new PasswordData(DICT_PASS));
     for (RuleResultDetail detail : result.getDetails()) {
       AssertJUnit.assertEquals(
         String.format(
@@ -168,7 +168,7 @@ public class DictionaryRuleTest extends AbstractRuleTest
         DEFAULT_RESOLVER.resolve(detail));
     }
 
-    result = this.rule.validate(new PasswordData(BACKWARDS_DICT_PASS));
+    result = rule.validate(new PasswordData(BACKWARDS_DICT_PASS));
     for (RuleResultDetail detail : result.getDetails()) {
       AssertJUnit.assertEquals(
         String.format(

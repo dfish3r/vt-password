@@ -48,8 +48,8 @@ public class IllegalCharacterRuleTest extends AbstractRuleTest
     return
       new Object[][] {
 
-        {this.rule, new PasswordData(VALID_PASS), true, },
-        {this.rule, new PasswordData(INVALID_PASS), false, },
+        {rule, new PasswordData(VALID_PASS), true, },
+        {rule, new PasswordData(INVALID_PASS), false, },
       };
   }
 
@@ -61,7 +61,7 @@ public class IllegalCharacterRuleTest extends AbstractRuleTest
   public void resolveMessage()
     throws Exception
   {
-    final RuleResult result = this.rule.validate(
+    final RuleResult result = rule.validate(
       new PasswordData(INVALID_PASS));
     for (RuleResultDetail detail : result.getDetails()) {
       AssertJUnit.assertEquals(

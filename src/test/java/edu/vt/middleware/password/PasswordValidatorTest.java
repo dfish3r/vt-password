@@ -69,7 +69,7 @@ public class PasswordValidatorTest
    *
    * @throws  Exception  On test failure.
    */
-  @Parameters({ "dictionaryFile" })
+  @Parameters("dictionaryFile")
   @BeforeClass(groups = {"passtest"})
   public void createDictionary(final String dictFile)
     throws Exception
@@ -78,8 +78,8 @@ public class PasswordValidatorTest
       new FileReader[] {new FileReader(dictFile)},
       false,
       new ArraysSort());
-    this.dict = new WordListDictionary(awl);
-    this.validator = new PasswordValidator(this.rules);
+    dict = new WordListDictionary(awl);
+    validator = new PasswordValidator(rules);
   }
 
 
@@ -104,7 +104,7 @@ public class PasswordValidatorTest
     final LengthRule lengthRule = new LengthRule(8, 16);
 
     final DictionarySubstringRule dictRule = new DictionarySubstringRule(
-      this.dict);
+      dict);
     dictRule.setWordLength(4);
     dictRule.setMatchBackwards(true);
 
@@ -123,25 +123,25 @@ public class PasswordValidatorTest
 
     final HistoryRule historyRule = new HistoryRule();
     historyRule.setDigest("SHA-1", new Base64Converter());
-    this.history.add("safx/LW8+SsSy/o3PmCNy4VEm5s=");
-    this.history.add("zurb9DyQ5nooY1la8h86Bh0n1iw=");
-    this.history.add("bhqabXwE3S8E6xNJfX/d76MFOCs=");
+    history.add("safx/LW8+SsSy/o3PmCNy4VEm5s=");
+    history.add("zurb9DyQ5nooY1la8h86Bh0n1iw=");
+    history.add("bhqabXwE3S8E6xNJfX/d76MFOCs=");
 
     final SourceRule sourceRule = new SourceRule();
     sourceRule.setDigest("SHA-1", new Base64Converter());
-    this.sources.put("System B", "CJGTDMQRP+rmHApkcijC80aDV0o=");
+    sources.put("System B", "CJGTDMQRP+rmHApkcijC80aDV0o=");
 
-    this.rules.add(charRule);
-    this.rules.add(whitespaceRule);
-    this.rules.add(lengthRule);
-    this.rules.add(dictRule);
-    this.rules.add(qwertySeqRule);
-    this.rules.add(alphaSeqRule);
-    this.rules.add(numSeqRule);
-    this.rules.add(dupSeqRule);
-    this.rules.add(userIDRule);
-    this.rules.add(historyRule);
-    this.rules.add(sourceRule);
+    rules.add(charRule);
+    rules.add(whitespaceRule);
+    rules.add(lengthRule);
+    rules.add(dictRule);
+    rules.add(qwertySeqRule);
+    rules.add(alphaSeqRule);
+    rules.add(numSeqRule);
+    rules.add(dupSeqRule);
+    rules.add(userIDRule);
+    rules.add(historyRule);
+    rules.add(sourceRule);
   }
 
 
@@ -216,70 +216,70 @@ public class PasswordValidatorTest
         /** all digits */
         {
           PasswordData.newInstance(
-            new Password("4326789032"), USER, this.history, this.sources),
+            new Password("4326789032"), USER, history, sources),
           false,
         },
 
         /** all non-alphanumeric */
         {
           PasswordData.newInstance(
-            new Password("$&!$#@*{{>"), USER, this.history, this.sources),
+            new Password("$&!$#@*{{>"), USER, history, sources),
           false,
         },
 
         /** all lowercase */
         {
           PasswordData.newInstance(
-            new Password("aycdopezss"), USER, this.history, this.sources),
+            new Password("aycdopezss"), USER, history, sources),
           false,
         },
 
         /** all uppercase */
         {
           PasswordData.newInstance(
-            new Password("AYCDOPEZSS"), USER, this.history, this.sources),
+            new Password("AYCDOPEZSS"), USER, history, sources),
           false,
         },
 
         /** digits and non-alphanumeric */
         {
           PasswordData.newInstance(
-            new Password("@&3*(%5{}^"), USER, this.history, this.sources),
+            new Password("@&3*(%5{}^"), USER, history, sources),
           false,
         },
 
         /** digits and lowercase */
         {
           PasswordData.newInstance(
-            new Password("ay3dop5zss"), USER, this.history, this.sources),
+            new Password("ay3dop5zss"), USER, history, sources),
           false,
         },
 
         /** digits and uppercase */
         {
           PasswordData.newInstance(
-            new Password("AY3DOP5ZSS"), USER, this.history, this.sources),
+            new Password("AY3DOP5ZSS"), USER, history, sources),
           false,
         },
 
         /** non-alphanumeric and lowercase */
         {
           PasswordData.newInstance(
-            new Password("a&c*o%ea}s"), USER, this.history, this.sources),
+            new Password("a&c*o%ea}s"), USER, history, sources),
           false,
         },
 
         /** non-alphanumeric and uppercase */
         {
           PasswordData.newInstance(
-            new Password("A&C*O%EA}S"), USER, this.history, this.sources),
+            new Password("A&C*O%EA}S"), USER, history, sources),
           false,
         },
 
         /** uppercase and lowercase */
         {
           PasswordData.newInstance(
-            new Password("AycDOPdsyz"), USER, this.history, this.sources),
+            new Password("AycDOPdsyz"), USER, history, sources),
           false,
         },
 
@@ -288,14 +288,14 @@ public class PasswordValidatorTest
         /** contains a space */
         {
           PasswordData.newInstance(
-            new Password("AycD Pdsyz"), USER, this.history, this.sources),
+            new Password("AycD Pdsyz"), USER, history, sources),
           false,
         },
 
         /** contains a tab */
         {
           PasswordData.newInstance(
-            new Password("AycD    Psyz"), USER, this.history, this.sources),
+            new Password("AycD    Psyz"), USER, history, sources),
           false,
         },
 
@@ -304,7 +304,7 @@ public class PasswordValidatorTest
         /** too short */
         {
           PasswordData.newInstance(
-            new Password("p4T3t#"), USER, this.history, this.sources),
+            new Password("p4T3t#"), USER, history, sources),
           false,
         },
 
@@ -313,8 +313,8 @@ public class PasswordValidatorTest
           PasswordData.newInstance(
             new Password("p4t3t#n6574632vbad#@!8"),
             USER,
-            this.history,
-            this.sources),
+            history,
+            sources),
           false,
         },
 
@@ -323,14 +323,14 @@ public class PasswordValidatorTest
         /** matches dictionary word 'none' */
         {
           PasswordData.newInstance(
-            new Password("p4t3t#none"), USER, this.history, this.sources),
+            new Password("p4t3t#none"), USER, history, sources),
           false,
         },
 
         /** matches dictionary word 'none' backwards */
         {
           PasswordData.newInstance(
-            new Password("p4t3t#enon"), USER, this.history, this.sources),
+            new Password("p4t3t#enon"), USER, history, sources),
           false,
         },
 
@@ -339,21 +339,21 @@ public class PasswordValidatorTest
         /** matches sequence 'zxcvb' */
         {
           PasswordData.newInstance(
-            new Password("p4zxcvb#n65"), USER, this.history, this.sources),
+            new Password("p4zxcvb#n65"), USER, history, sources),
           false,
         },
 
         /** matches sequence 'werty' backwards */
         {
           PasswordData.newInstance(
-            new Password("p4ytrew#n65"), USER, this.history, this.sources),
+            new Password("p4ytrew#n65"), USER, history, sources),
           false,
         },
 
         /** matches sequence 'iop[]' ignore case */
         {
           PasswordData.newInstance(
-            new Password("p4iOP[]#n65"), USER, this.history, this.sources),
+            new Password("p4iOP[]#n65"), USER, history, sources),
           false,
         },
 
@@ -362,21 +362,21 @@ public class PasswordValidatorTest
         /** contains userid 'testuser' */
         {
           PasswordData.newInstance(
-            new Password("p4testuser#n65"), USER, this.history, this.sources),
+            new Password("p4testuser#n65"), USER, history, sources),
           false,
         },
 
         /** contains userid 'testuser' backwards */
         {
           PasswordData.newInstance(
-            new Password("p4resutset#n65"), USER, this.history, this.sources),
+            new Password("p4resutset#n65"), USER, history, sources),
           false,
         },
 
         /** contains userid 'testuser' ignore case */
         {
           PasswordData.newInstance(
-            new Password("p4TeStusEr#n65"), USER, this.history, this.sources),
+            new Password("p4TeStusEr#n65"), USER, history, sources),
           false,
         },
 
@@ -385,21 +385,21 @@ public class PasswordValidatorTest
         /** contains history password */
         {
           PasswordData.newInstance(
-            new Password("t3stUs3r02"), USER, this.history, this.sources),
+            new Password("t3stUs3r02"), USER, history, sources),
           false,
         },
 
         /** contains history password */
         {
           PasswordData.newInstance(
-            new Password("t3stUs3r03"), USER, this.history, this.sources),
+            new Password("t3stUs3r03"), USER, history, sources),
           false,
         },
 
         /** contains source password */
         {
           PasswordData.newInstance(
-            new Password("t3stUs3r04"), USER, this.history, this.sources),
+            new Password("t3stUs3r04"), USER, history, sources),
           false,
         },
 
@@ -408,35 +408,35 @@ public class PasswordValidatorTest
         /** digits, non-alphanumeric, lowercase, uppercase */
         {
           PasswordData.newInstance(
-            new Password("p4T3t#N65"), USER, this.history, this.sources),
+            new Password("p4T3t#N65"), USER, history, sources),
           true,
         },
 
         /** digits, non-alphanumeric, lowercase */
         {
           PasswordData.newInstance(
-            new Password("p4t3t#n65"), USER, this.history, this.sources),
+            new Password("p4t3t#n65"), USER, history, sources),
           true,
         },
 
         /** digits, non-alphanumeric, uppercase */
         {
           PasswordData.newInstance(
-            new Password("P4T3T#N65"), USER, this.history, this.sources),
+            new Password("P4T3T#N65"), USER, history, sources),
           true,
         },
 
         /** digits, uppercase, lowercase */
         {
           PasswordData.newInstance(
-            new Password("p4t3tCn65"), USER, this.history, this.sources),
+            new Password("p4t3tCn65"), USER, history, sources),
           true,
         },
 
         /** non-alphanumeric, lowercase, uppercase */
         {
           PasswordData.newInstance(
-            new Password("pxT%t#Nwq"), USER, this.history, this.sources),
+            new Password("pxT%t#Nwq"), USER, history, sources),
           true,
         },
       };
@@ -459,11 +459,11 @@ public class PasswordValidatorTest
     throws Exception
   {
     if (valid) {
-      final RuleResult result = this.validator.validate(passwordData);
+      final RuleResult result = validator.validate(passwordData);
       AssertJUnit.assertTrue(result.isValid());
       AssertJUnit.assertTrue(result.getDetails().isEmpty());
     } else {
-      final RuleResult result = this.validator.validate(passwordData);
+      final RuleResult result = validator.validate(passwordData);
       AssertJUnit.assertFalse(result.isValid());
       AssertJUnit.assertTrue(!result.getDetails().isEmpty());
     }

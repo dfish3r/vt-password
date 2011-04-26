@@ -52,8 +52,8 @@ public class LengthRule implements Rule
    */
   public LengthRule(final int length)
   {
-    this.minimumLength = length;
-    this.maximumLength = length;
+    minimumLength = length;
+    maximumLength = length;
   }
 
 
@@ -65,8 +65,8 @@ public class LengthRule implements Rule
    */
   public LengthRule(final int minLength, final int maxLength)
   {
-    this.minimumLength = minLength;
-    this.maximumLength = maxLength;
+    minimumLength = minLength;
+    maximumLength = maxLength;
   }
 
 
@@ -77,7 +77,7 @@ public class LengthRule implements Rule
    */
   public void setMinimumLength(final int minLength)
   {
-    this.minimumLength = minLength;
+    minimumLength = minLength;
   }
 
 
@@ -99,7 +99,7 @@ public class LengthRule implements Rule
    */
   public void setMaximumLength(final int maxLength)
   {
-    this.maximumLength = maxLength;
+    maximumLength = maxLength;
   }
 
 
@@ -115,24 +115,25 @@ public class LengthRule implements Rule
 
 
   /** {@inheritDoc} */
+  @Override
   public RuleResult validate(final PasswordData passwordData)
   {
     final RuleResult result = new RuleResult();
     final int length = passwordData.getPassword().length();
-    if (length >= this.minimumLength && length <= this.maximumLength) {
+    if (length >= minimumLength && length <= maximumLength) {
       result.setValid(true);
     } else {
       result.setValid(false);
-      if (length < this.minimumLength) {
+      if (length < minimumLength) {
         result.getDetails().add(
           new RuleResultDetail(
             ERROR_CODE_MIN,
-            new Object[]{this.minimumLength, this.maximumLength}));
+            new Object[]{minimumLength, maximumLength}));
       } else {
         result.getDetails().add(
           new RuleResultDetail(
             ERROR_CODE_MAX,
-            new Object[]{this.minimumLength, this.maximumLength}));
+            new Object[]{minimumLength, maximumLength}));
       }
     }
     return result;
@@ -150,9 +151,9 @@ public class LengthRule implements Rule
     return
       String.format(
         "%s@%h::minimumLength=%s,maximumLength=%s",
-        this.getClass().getName(),
-        this.hashCode(),
-        this.minimumLength,
-        this.maximumLength);
+        getClass().getName(),
+        hashCode(),
+        minimumLength,
+        maximumLength);
   }
 }

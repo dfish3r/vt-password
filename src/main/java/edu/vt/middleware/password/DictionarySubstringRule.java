@@ -50,7 +50,7 @@ public class DictionarySubstringRule extends AbstractDictionaryRule
    */
   public DictionarySubstringRule(final Dictionary dict)
   {
-    this.dictionary = dict;
+    dictionary = dict;
   }
 
 
@@ -63,8 +63,8 @@ public class DictionarySubstringRule extends AbstractDictionaryRule
    */
   public DictionarySubstringRule(final Dictionary dict, final int n)
   {
-    this.setDictionary(dict);
-    this.setWordLength(n);
+    setDictionary(dict);
+    setWordLength(n);
   }
 
 
@@ -79,7 +79,7 @@ public class DictionarySubstringRule extends AbstractDictionaryRule
   public void setWordLength(final int n)
   {
     if (n >= 1) {
-      this.wordLength = n;
+      wordLength = n;
     } else {
       throw new IllegalArgumentException("wordLength must be >= 1");
     }
@@ -93,17 +93,18 @@ public class DictionarySubstringRule extends AbstractDictionaryRule
    */
   public int getWordLength()
   {
-    return this.wordLength;
+    return wordLength;
   }
 
 
   /** {@inheritDoc} */
+  @Override
   protected String doWordSearch(final String text)
   {
-    for (int i = this.wordLength; i <= text.length(); i++) {
+    for (int i = wordLength; i <= text.length(); i++) {
       for (int j = 0; j + i <= text.length(); j++) {
         final String s = text.substring(j, j + i);
-        if (this.dictionary.search(s)) {
+        if (dictionary.search(s)) {
           return s;
         }
       }

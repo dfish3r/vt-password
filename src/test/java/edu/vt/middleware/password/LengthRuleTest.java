@@ -59,8 +59,8 @@ public class LengthRuleTest extends AbstractRuleTest
   @BeforeClass(groups = {"passtest"})
   public void createRules()
   {
-    this.noMinRule.setMaximumLength(10);
-    this.noMaxRule.setMinimumLength(8);
+    noMinRule.setMaximumLength(10);
+    noMaxRule.setMinimumLength(8);
   }
 
 
@@ -76,29 +76,29 @@ public class LengthRuleTest extends AbstractRuleTest
     return
       new Object[][] {
 
-        {this.rule, new PasswordData(MIN_VALID_PASS), true, },
-        {this.rule, new PasswordData(MID_VALID_PASS), true, },
-        {this.rule, new PasswordData(MAX_VALID_PASS), true, },
-        {this.rule, new PasswordData(SHORT_PASS), false, },
-        {this.rule, new PasswordData(LONG_PASS), false, },
+        {rule, new PasswordData(MIN_VALID_PASS), true, },
+        {rule, new PasswordData(MID_VALID_PASS), true, },
+        {rule, new PasswordData(MAX_VALID_PASS), true, },
+        {rule, new PasswordData(SHORT_PASS), false, },
+        {rule, new PasswordData(LONG_PASS), false, },
 
-        {this.minRule, new PasswordData(MIN_VALID_PASS), true, },
-        {this.minRule, new PasswordData(MID_VALID_PASS), false, },
-        {this.minRule, new PasswordData(MAX_VALID_PASS), false, },
-        {this.minRule, new PasswordData(SHORT_PASS), false, },
-        {this.minRule, new PasswordData(LONG_PASS), false, },
+        {minRule, new PasswordData(MIN_VALID_PASS), true, },
+        {minRule, new PasswordData(MID_VALID_PASS), false, },
+        {minRule, new PasswordData(MAX_VALID_PASS), false, },
+        {minRule, new PasswordData(SHORT_PASS), false, },
+        {minRule, new PasswordData(LONG_PASS), false, },
 
-        {this.noMinRule, new PasswordData(MIN_VALID_PASS), true, },
-        {this.noMinRule, new PasswordData(MID_VALID_PASS), true, },
-        {this.noMinRule, new PasswordData(MAX_VALID_PASS), true, },
-        {this.noMinRule, new PasswordData(SHORT_PASS), true, },
-        {this.noMinRule, new PasswordData(LONG_PASS), false, },
+        {noMinRule, new PasswordData(MIN_VALID_PASS), true, },
+        {noMinRule, new PasswordData(MID_VALID_PASS), true, },
+        {noMinRule, new PasswordData(MAX_VALID_PASS), true, },
+        {noMinRule, new PasswordData(SHORT_PASS), true, },
+        {noMinRule, new PasswordData(LONG_PASS), false, },
 
-        {this.noMaxRule, new PasswordData(MIN_VALID_PASS), true, },
-        {this.noMaxRule, new PasswordData(MID_VALID_PASS), true, },
-        {this.noMaxRule, new PasswordData(MAX_VALID_PASS), true, },
-        {this.noMaxRule, new PasswordData(SHORT_PASS), false, },
-        {this.noMaxRule, new PasswordData(LONG_PASS), true, },
+        {noMaxRule, new PasswordData(MIN_VALID_PASS), true, },
+        {noMaxRule, new PasswordData(MID_VALID_PASS), true, },
+        {noMaxRule, new PasswordData(MAX_VALID_PASS), true, },
+        {noMaxRule, new PasswordData(SHORT_PASS), false, },
+        {noMaxRule, new PasswordData(LONG_PASS), true, },
       };
   }
 
@@ -110,21 +110,21 @@ public class LengthRuleTest extends AbstractRuleTest
   public void resolveMessage()
     throws Exception
   {
-    RuleResult result = this.rule.validate(new PasswordData(LONG_PASS));
+    RuleResult result = rule.validate(new PasswordData(LONG_PASS));
     for (RuleResultDetail detail : result.getDetails()) {
       AssertJUnit.assertEquals(
         String.format(
           "Password must be no more than %s characters in length.",
-          this.rule.getMaximumLength()),
+          rule.getMaximumLength()),
         DEFAULT_RESOLVER.resolve(detail));
     }
 
-    result = this.rule.validate(new PasswordData(SHORT_PASS));
+    result = rule.validate(new PasswordData(SHORT_PASS));
     for (RuleResultDetail detail : result.getDetails()) {
       AssertJUnit.assertEquals(
         String.format(
           "Password must at least %s characters in length.",
-          this.rule.getMinimumLength()),
+          rule.getMinimumLength()),
         DEFAULT_RESOLVER.resolve(detail));
     }
   }

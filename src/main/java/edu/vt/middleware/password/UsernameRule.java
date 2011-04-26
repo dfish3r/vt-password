@@ -48,8 +48,8 @@ public class UsernameRule implements Rule
    */
   public UsernameRule(final boolean mb, final boolean ic)
   {
-    this.setMatchBackwards(mb);
-    this.setIgnoreCase(ic);
+    setMatchBackwards(mb);
+    setIgnoreCase(ic);
   }
 
 
@@ -61,7 +61,7 @@ public class UsernameRule implements Rule
    */
   public void setMatchBackwards(final boolean b)
   {
-    this.matchBackwards = b;
+    matchBackwards = b;
   }
 
 
@@ -72,7 +72,7 @@ public class UsernameRule implements Rule
    */
   public boolean isMatchBackwards()
   {
-    return this.matchBackwards;
+    return matchBackwards;
   }
 
 
@@ -84,7 +84,7 @@ public class UsernameRule implements Rule
    */
   public void setIgnoreCase(final boolean b)
   {
-    this.ignoreCase = b;
+    ignoreCase = b;
   }
 
 
@@ -100,13 +100,14 @@ public class UsernameRule implements Rule
 
 
   /** {@inheritDoc} */
+  @Override
   public RuleResult validate(final PasswordData passwordData)
   {
     final RuleResult result = new RuleResult(true);
     String text = passwordData.getPassword().getText();
     String user = passwordData.getUsername();
     String reverseUser = new StringBuilder(user).reverse().toString();
-    if (this.ignoreCase) {
+    if (ignoreCase) {
       text = text.toLowerCase();
       user = user.toLowerCase();
       reverseUser = reverseUser.toLowerCase();
@@ -116,7 +117,7 @@ public class UsernameRule implements Rule
       result.getDetails().add(
         new RuleResultDetail(ERROR_CODE, new Object[]{user}));
     }
-    if (this.matchBackwards && text.indexOf(reverseUser) != -1) {
+    if (matchBackwards && text.indexOf(reverseUser) != -1) {
       result.setValid(false);
       result.getDetails().add(
         new RuleResultDetail(ERROR_CODE_REVERSED, new Object[]{user}));
@@ -136,9 +137,9 @@ public class UsernameRule implements Rule
     return
       String.format(
         "%s@%h::ignoreCase=%s,matchBackwards=%s",
-        this.getClass().getName(),
-        this.hashCode(),
-        this.ignoreCase,
-        this.matchBackwards);
+        getClass().getName(),
+        hashCode(),
+        ignoreCase,
+        matchBackwards);
   }
 }

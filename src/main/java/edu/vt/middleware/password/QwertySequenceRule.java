@@ -120,11 +120,12 @@ public class QwertySequenceRule extends AbstractSequenceRule
   public QwertySequenceRule(final int sl, final boolean wrap)
   {
     setSequenceLength(sl);
-    this.wrapSequence = wrap;
+    wrapSequence = wrap;
   }
 
 
   /** {@inheritDoc} */
+  @Override
   protected char[][] getSequence(final int n)
   {
     return ALL_CHARS[n];
@@ -132,6 +133,7 @@ public class QwertySequenceRule extends AbstractSequenceRule
 
 
   /** {@inheritDoc} */
+  @Override
   protected int getSequenceCount()
   {
     return ALL_CHARS.length;

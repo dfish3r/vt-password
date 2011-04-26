@@ -59,24 +59,24 @@ public class PasswordGeneratorTest
   public void initializeRules()
     throws Exception
   {
-    this.rules.add(new DigitCharacterRule(2));
-    this.rules.add(new NonAlphanumericCharacterRule(2));
-    this.rules.add(new UppercaseCharacterRule(1));
-    this.rules.add(new LowercaseCharacterRule(1));
+    rules.add(new DigitCharacterRule(2));
+    rules.add(new NonAlphanumericCharacterRule(2));
+    rules.add(new UppercaseCharacterRule(1));
+    rules.add(new LowercaseCharacterRule(1));
 
-    this.genCharRule.getRules().addAll(this.rules);
-    this.genCharRule.setNumberOfCharacteristics(3);
+    genCharRule.getRules().addAll(rules);
+    genCharRule.setNumberOfCharacteristics(3);
 
-    this.verifyCharRule.getRules().addAll(this.rules);
-    this.verifyCharRule.setNumberOfCharacteristics(3);
+    verifyCharRule.getRules().addAll(rules);
+    verifyCharRule.setNumberOfCharacteristics(3);
 
-    this.failRules.add(new DigitCharacterRule(3));
-    this.failRules.add(new NonAlphanumericCharacterRule(3));
-    this.failRules.add(new UppercaseCharacterRule(3));
-    this.failRules.add(new LowercaseCharacterRule(3));
+    failRules.add(new DigitCharacterRule(3));
+    failRules.add(new NonAlphanumericCharacterRule(3));
+    failRules.add(new UppercaseCharacterRule(3));
+    failRules.add(new LowercaseCharacterRule(3));
 
-    this.failCharRule.getRules().addAll(this.failRules);
-    this.failCharRule.setNumberOfCharacteristics(4);
+    failCharRule.getRules().addAll(failRules);
+    failCharRule.setNumberOfCharacteristics(4);
   }
 
 
@@ -92,9 +92,9 @@ public class PasswordGeneratorTest
     final Object[][] passwords = new Object[100][1];
     final int length = 10;
     for (int i = 0; i < 100; i++) {
-      final String password = this.generator.generatePassword(
+      final String password = generator.generatePassword(
         length,
-        this.rules);
+        rules);
       AssertJUnit.assertNotNull(password);
       AssertJUnit.assertTrue(password.length() >= length);
       passwords[i] = new Object[] {new Password(password)};
@@ -116,8 +116,8 @@ public class PasswordGeneratorTest
     throws Exception
   {
     AssertJUnit.assertFalse(
-      this.failCharRule.validate(new PasswordData(pass)).isValid());
+      failCharRule.validate(new PasswordData(pass)).isValid());
     AssertJUnit.assertTrue(
-      this.verifyCharRule.validate(new PasswordData(pass)).isValid());
+      verifyCharRule.validate(new PasswordData(pass)).isValid());
   }
 }

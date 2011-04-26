@@ -52,7 +52,7 @@ public class PasswordData
    */
   public PasswordData(final Password p)
   {
-    this.setPassword(p);
+    setPassword(p);
   }
 
 
@@ -66,7 +66,7 @@ public class PasswordData
     if (p == null) {
       throw new NullPointerException("Password cannot be null");
     }
-    this.password = p;
+    password = p;
   }
 
 
@@ -77,7 +77,7 @@ public class PasswordData
    */
   public Password getPassword()
   {
-    return this.password;
+    return password;
   }
 
 
@@ -91,7 +91,7 @@ public class PasswordData
     if (s == null) {
       throw new NullPointerException("Username cannot be null");
     }
-    this.username = s;
+    username = s;
   }
 
 
@@ -102,7 +102,7 @@ public class PasswordData
    */
   public String getUsername()
   {
-    return this.username;
+    return username;
   }
 
 
@@ -113,7 +113,7 @@ public class PasswordData
    */
   public List<String> getPasswordHistory()
   {
-    return this.passwordHistory;
+    return passwordHistory;
   }
 
 
@@ -124,7 +124,7 @@ public class PasswordData
    */
   public void setPasswordHistory(final List<String> l)
   {
-    this.passwordHistory = l;
+    passwordHistory = l;
   }
 
 
@@ -135,7 +135,7 @@ public class PasswordData
    */
   public Map<String, String> getPasswordSources()
   {
-    return this.passwordSources;
+    return passwordSources;
   }
 
 
@@ -146,7 +146,7 @@ public class PasswordData
    */
   public void setPasswordSources(final Map<String, String> m)
   {
-    this.passwordSources = m;
+    passwordSources = m;
   }
 
 
@@ -195,11 +195,11 @@ public class PasswordData
     return
       String.format(
         "%s@%h::username=%s,password=%s,passwordHistory=%s,passwordSources=%s",
-        this.getClass().getName(),
-        this.hashCode(),
-        this.username,
-        this.password,
-        this.passwordHistory,
-        this.passwordSources);
+        getClass().getName(),
+        hashCode(),
+        username,
+        password,
+        passwordHistory,
+        passwordSources);
   }
 }

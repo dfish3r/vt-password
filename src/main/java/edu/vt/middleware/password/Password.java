@@ -61,40 +61,40 @@ public class Password
    */
   public Password(final String text)
   {
-    this.password = text;
+    password = text;
 
-    this.digits = new StringBuilder(this.password.length());
-    this.nonDigits = new StringBuilder(this.password.length());
-    this.alphabetical = new StringBuilder(this.password.length());
-    this.nonAlphabetical = new StringBuilder(this.password.length());
-    this.alphanumeric = new StringBuilder(this.password.length());
-    this.nonAlphanumeric = new StringBuilder(this.password.length());
-    this.uppercase = new StringBuilder(this.password.length());
-    this.lowercase = new StringBuilder(this.password.length());
-    this.whitespace = new StringBuilder(this.password.length());
+    digits = new StringBuilder(password.length());
+    nonDigits = new StringBuilder(password.length());
+    alphabetical = new StringBuilder(password.length());
+    nonAlphabetical = new StringBuilder(password.length());
+    alphanumeric = new StringBuilder(password.length());
+    nonAlphanumeric = new StringBuilder(password.length());
+    uppercase = new StringBuilder(password.length());
+    lowercase = new StringBuilder(password.length());
+    whitespace = new StringBuilder(password.length());
 
-    for (int i = 0; i < this.password.length(); i++) {
-      final char c = this.password.charAt(i);
+    for (int i = 0; i < password.length(); i++) {
+      final char c = password.charAt(i);
       if (Character.isDigit(c)) {
-        this.digits.append(c);
-        this.alphanumeric.append(c);
-        this.nonAlphabetical.append(c);
+        digits.append(c);
+        alphanumeric.append(c);
+        nonAlphabetical.append(c);
       } else if (Character.isLetter(c)) {
-        this.nonDigits.append(c);
-        this.alphanumeric.append(c);
-        this.alphabetical.append(c);
+        nonDigits.append(c);
+        alphanumeric.append(c);
+        alphabetical.append(c);
         if (Character.isUpperCase(c)) {
-          this.uppercase.append(c);
+          uppercase.append(c);
         } else if (Character.isLowerCase(c)) {
-          this.lowercase.append(c);
+          lowercase.append(c);
         }
       } else {
         if (Character.isWhitespace(c)) {
-          this.whitespace.append(c);
+          whitespace.append(c);
         }
-        this.nonDigits.append(c);
-        this.nonAlphanumeric.append(c);
-        this.nonAlphabetical.append(c);
+        nonDigits.append(c);
+        nonAlphanumeric.append(c);
+        nonAlphabetical.append(c);
       }
     }
   }
@@ -107,7 +107,7 @@ public class Password
    */
   public String getText()
   {
-    return this.password;
+    return password;
   }
 
 
@@ -118,7 +118,7 @@ public class Password
    */
   public int length()
   {
-    return this.password.length();
+    return password.length();
   }
 
 
@@ -129,7 +129,7 @@ public class Password
    */
   public boolean containsDigits()
   {
-    return this.digits.length() > 0;
+    return digits.length() > 0;
   }
 
 
@@ -140,7 +140,7 @@ public class Password
    */
   public int getNumberOfDigits()
   {
-    return this.digits.length();
+    return digits.length();
   }
 
 
@@ -152,8 +152,8 @@ public class Password
   public char[] getDigits()
   {
     char[] array = null;
-    if (this.digits != null && this.digits.length() > 0) {
-      array = this.digits.toString().toCharArray();
+    if (digits != null && digits.length() > 0) {
+      array = digits.toString().toCharArray();
     }
     return array;
   }
@@ -166,7 +166,7 @@ public class Password
    */
   public boolean containsNonDigits()
   {
-    return this.nonDigits.length() > 0;
+    return nonDigits.length() > 0;
   }
 
 
@@ -177,7 +177,7 @@ public class Password
    */
   public int getNumberOfNonDigits()
   {
-    return this.nonDigits.length();
+    return nonDigits.length();
   }
 
 
@@ -189,8 +189,8 @@ public class Password
   public char[] getNonDigits()
   {
     char[] array = null;
-    if (this.nonDigits != null && this.nonDigits.length() > 0) {
-      array = this.nonDigits.toString().toCharArray();
+    if (nonDigits != null && nonDigits.length() > 0) {
+      array = nonDigits.toString().toCharArray();
     }
     return array;
   }
@@ -203,7 +203,7 @@ public class Password
    */
   public boolean containsAlphabetical()
   {
-    return this.alphabetical.length() > 0;
+    return alphabetical.length() > 0;
   }
 
 
@@ -214,7 +214,7 @@ public class Password
    */
   public int getNumberOfAlphabetical()
   {
-    return this.alphabetical.length();
+    return alphabetical.length();
   }
 
 
@@ -226,8 +226,8 @@ public class Password
   public char[] getAlphabetical()
   {
     char[] array = null;
-    if (this.alphabetical != null && this.alphabetical.length() > 0) {
-      array = this.alphabetical.toString().toCharArray();
+    if (alphabetical != null && alphabetical.length() > 0) {
+      array = alphabetical.toString().toCharArray();
     }
     return array;
   }
@@ -240,7 +240,7 @@ public class Password
    */
   public boolean containsNonAlphabetical()
   {
-    return this.nonAlphabetical.length() > 0;
+    return nonAlphabetical.length() > 0;
   }
 
 
@@ -251,7 +251,7 @@ public class Password
    */
   public int getNumberOfNonAlphabetical()
   {
-    return this.nonAlphabetical.length();
+    return nonAlphabetical.length();
   }
 
 
@@ -263,8 +263,8 @@ public class Password
   public char[] getNonAlphabetical()
   {
     char[] array = null;
-    if (this.nonAlphabetical != null && this.nonAlphabetical.length() > 0) {
-      array = this.nonAlphabetical.toString().toCharArray();
+    if (nonAlphabetical != null && nonAlphabetical.length() > 0) {
+      array = nonAlphabetical.toString().toCharArray();
     }
     return array;
   }
@@ -277,7 +277,7 @@ public class Password
    */
   public boolean containsAlphanumeric()
   {
-    return this.alphanumeric.length() > 0;
+    return alphanumeric.length() > 0;
   }
 
 
@@ -288,7 +288,7 @@ public class Password
    */
   public int getNumberOfAlphanumeric()
   {
-    return this.alphanumeric.length();
+    return alphanumeric.length();
   }
 
 
@@ -300,8 +300,8 @@ public class Password
   public char[] getAlphanumeric()
   {
     char[] array = null;
-    if (this.alphanumeric != null && this.alphanumeric.length() > 0) {
-      array = this.alphanumeric.toString().toCharArray();
+    if (alphanumeric != null && alphanumeric.length() > 0) {
+      array = alphanumeric.toString().toCharArray();
     }
     return array;
   }
@@ -314,7 +314,7 @@ public class Password
    */
   public boolean containsNonAlphanumeric()
   {
-    return this.nonAlphanumeric.length() > 0;
+    return nonAlphanumeric.length() > 0;
   }
 
 
@@ -325,7 +325,7 @@ public class Password
    */
   public int getNumberOfNonAlphanumeric()
   {
-    return this.nonAlphanumeric.length();
+    return nonAlphanumeric.length();
   }
 
 
@@ -337,8 +337,8 @@ public class Password
   public char[] getNonAlphanumeric()
   {
     char[] array = null;
-    if (this.nonAlphanumeric != null && this.nonAlphanumeric.length() > 0) {
-      array = this.nonAlphanumeric.toString().toCharArray();
+    if (nonAlphanumeric != null && nonAlphanumeric.length() > 0) {
+      array = nonAlphanumeric.toString().toCharArray();
     }
     return array;
   }
@@ -351,7 +351,7 @@ public class Password
    */
   public boolean containsUppercase()
   {
-    return this.uppercase.length() > 0;
+    return uppercase.length() > 0;
   }
 
 
@@ -362,7 +362,7 @@ public class Password
    */
   public int getNumberOfUppercase()
   {
-    return this.uppercase.length();
+    return uppercase.length();
   }
 
 
@@ -374,8 +374,8 @@ public class Password
   public char[] getUppercase()
   {
     char[] array = null;
-    if (this.uppercase != null && this.uppercase.length() > 0) {
-      array = this.uppercase.toString().toCharArray();
+    if (uppercase != null && uppercase.length() > 0) {
+      array = uppercase.toString().toCharArray();
     }
     return array;
   }
@@ -388,7 +388,7 @@ public class Password
    */
   public boolean containsLowercase()
   {
-    return this.lowercase.length() > 0;
+    return lowercase.length() > 0;
   }
 
 
@@ -399,7 +399,7 @@ public class Password
    */
   public int getNumberOfLowercase()
   {
-    return this.lowercase.length();
+    return lowercase.length();
   }
 
 
@@ -411,8 +411,8 @@ public class Password
   public char[] getLowercase()
   {
     char[] array = null;
-    if (this.lowercase != null && this.lowercase.length() > 0) {
-      array = this.lowercase.toString().toCharArray();
+    if (lowercase != null && lowercase.length() > 0) {
+      array = lowercase.toString().toCharArray();
     }
     return array;
   }
@@ -425,7 +425,7 @@ public class Password
    */
   public boolean containsWhitespace()
   {
-    return this.whitespace.length() > 0;
+    return whitespace.length() > 0;
   }
 
 
@@ -436,7 +436,7 @@ public class Password
    */
   public int getNumberOfWhitespace()
   {
-    return this.whitespace.length();
+    return whitespace.length();
   }
 
 
@@ -448,8 +448,8 @@ public class Password
   public char[] getWhitespace()
   {
     char[] array = null;
-    if (this.whitespace != null && this.whitespace.length() > 0) {
-      array = this.whitespace.toString().toCharArray();
+    if (whitespace != null && whitespace.length() > 0) {
+      array = whitespace.toString().toCharArray();
     }
     return array;
   }
@@ -463,6 +463,6 @@ public class Password
   @Override
   public String toString()
   {
-    return this.password;
+    return password;
   }
 }

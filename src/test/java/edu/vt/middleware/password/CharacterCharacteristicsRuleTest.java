@@ -54,12 +54,12 @@ public class CharacterCharacteristicsRuleTest extends AbstractRuleTest
   @BeforeClass(groups = {"passtest"})
   public void createRules()
   {
-    this.rule.getRules().add(new AlphabeticalCharacterRule(4));
-    this.rule.getRules().add(new DigitCharacterRule(3));
-    this.rule.getRules().add(new UppercaseCharacterRule(2));
-    this.rule.getRules().add(new LowercaseCharacterRule(2));
-    this.rule.getRules().add(new NonAlphanumericCharacterRule(1));
-    this.rule.setNumberOfCharacteristics(5);
+    rule.getRules().add(new AlphabeticalCharacterRule(4));
+    rule.getRules().add(new DigitCharacterRule(3));
+    rule.getRules().add(new UppercaseCharacterRule(2));
+    rule.getRules().add(new LowercaseCharacterRule(2));
+    rule.getRules().add(new NonAlphanumericCharacterRule(1));
+    rule.setNumberOfCharacteristics(5);
   }
 
 
@@ -75,12 +75,12 @@ public class CharacterCharacteristicsRuleTest extends AbstractRuleTest
     return
       new Object[][] {
 
-        {this.rule, new PasswordData(VALID_PASS), true, },
-        {this.rule, new PasswordData(ALPHA_PASS), false, },
-        {this.rule, new PasswordData(DIGIT_PASS), false, },
-        {this.rule, new PasswordData(UPPERCASE_PASS), false, },
-        {this.rule, new PasswordData(LOWERCASE_PASS), false, },
-        {this.rule, new PasswordData(NONALPHA_PASS), false, },
+        {rule, new PasswordData(VALID_PASS), true, },
+        {rule, new PasswordData(ALPHA_PASS), false, },
+        {rule, new PasswordData(DIGIT_PASS), false, },
+        {rule, new PasswordData(UPPERCASE_PASS), false, },
+        {rule, new PasswordData(LOWERCASE_PASS), false, },
+        {rule, new PasswordData(NONALPHA_PASS), false, },
       };
   }
 
@@ -109,7 +109,7 @@ public class CharacterCharacteristicsRuleTest extends AbstractRuleTest
   public void resolveMessage()
     throws Exception
   {
-    final RuleResult result = this.rule.validate(
+    final RuleResult result = rule.validate(
       new PasswordData(new Password("r%scvEW2e3)")));
     for (int i = 0; i < result.getDetails().size(); i++) {
       final RuleResultDetail detail = result.getDetails().get(i);

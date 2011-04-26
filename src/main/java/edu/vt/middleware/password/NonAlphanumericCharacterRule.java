@@ -38,11 +38,12 @@ public class NonAlphanumericCharacterRule extends AbstractCharacterRule
    */
   public NonAlphanumericCharacterRule(final int num)
   {
-    this.setNumberOfCharacters(num);
+    setNumberOfCharacters(num);
   }
 
 
   /** {@inheritDoc} */
+  @Override
   public String getValidCharacters()
   {
     return "`~!@#$%^&*()-_=+[{]}\\|;:'\"<,>./?";
@@ -50,6 +51,7 @@ public class NonAlphanumericCharacterRule extends AbstractCharacterRule
 
 
   /** {@inheritDoc} */
+  @Override
   protected int getNumberOfCharacterType(final Password password)
   {
     return password.getNumberOfNonAlphanumeric();
@@ -57,6 +59,7 @@ public class NonAlphanumericCharacterRule extends AbstractCharacterRule
 
 
   /** {@inheritDoc} */
+  @Override
   protected String getCharacterType()
   {
     return CHARACTER_TYPE;
