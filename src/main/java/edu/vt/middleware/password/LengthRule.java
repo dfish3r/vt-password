@@ -128,12 +128,12 @@ public class LengthRule implements Rule
         result.getDetails().add(
           new RuleResultDetail(
             ERROR_CODE_MIN,
-            new Object[]{minimumLength, maximumLength}));
+            new Object[] {minimumLength, maximumLength}));
       } else {
         result.getDetails().add(
           new RuleResultDetail(
             ERROR_CODE_MAX,
-            new Object[]{minimumLength, maximumLength}));
+            new Object[] {minimumLength, maximumLength}));
       }
     }
     return result;

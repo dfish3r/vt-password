@@ -60,9 +60,9 @@ public class CharacterCharacteristicsRule implements Rule
 
 
   /**
-   * Sets the number of characteristics which must be satisfied in order
-   * for a password to meet the requirements of this rule. The default is one.
-   * i.e. you may wish to enforce any three of five supplied character rules.
+   * Sets the number of characteristics which must be satisfied in order for a
+   * password to meet the requirements of this rule. The default is one. i.e.
+   * you may wish to enforce any three of five supplied character rules.
    *
    * @param  n  number of characteristics to enforce, where n > 0
    */
@@ -77,8 +77,8 @@ public class CharacterCharacteristicsRule implements Rule
 
 
   /**
-   * Returns the number of characteristics which currently must be
-   * satisfied in order for a password to meet the requirements of this rule.
+   * Returns the number of characteristics which currently must be satisfied in
+   * order for a password to meet the requirements of this rule.
    *
    * @return  number of characteristics to enforce
    */
@@ -96,6 +96,7 @@ public class CharacterCharacteristicsRule implements Rule
       throw new IllegalStateException(
         "Number of characteristics must be <= to the number of rules");
     }
+
     int successCount = 0;
     final RuleResult result = new RuleResult(true);
     for (CharacterRule rule : rules) {
@@ -111,8 +112,7 @@ public class CharacterCharacteristicsRule implements Rule
       result.getDetails().add(
         new RuleResultDetail(
           ERROR_CODE,
-          new Object[]{
-            successCount, numCharacteristics, rules.size(), }));
+          new Object[] {successCount, numCharacteristics, rules.size(), }));
     }
     return result;
   }

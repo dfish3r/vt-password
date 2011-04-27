@@ -1,12 +1,12 @@
 /*
   $Id$
 
-  Copyright (C) 2008-2009 Virginia Tech.
+  Copyright (C) 2003-2011 Virginia Tech.
   All rights reserved.
 
   SEE LICENSE FOR MORE INFORMATION
 
-  Author:  Middleware
+  Author:  Middleware Services
   Email:   middleware@vt.edu
   Version: $Revision$
   Updated: $Date$
@@ -21,9 +21,8 @@ import java.util.Properties;
  * Resolves messages from rule result details in order to provide a facility for
  * customizing messages such as password rule validation failures.
  *
- * @author Middleware
- * @version $Revision$
- *
+ * @author  Middleware Services
+ * @version  $Revision$
  */
 public class MessageResolver
 {
@@ -35,9 +34,7 @@ public class MessageResolver
   private final Properties messageProperties;
 
 
-  /**
-   * Creates a new message resolver with the default message map.
-   */
+  /** Creates a new message resolver with the default message map. */
   public MessageResolver()
   {
     this(getDefaultProperties());
@@ -62,6 +59,7 @@ public class MessageResolver
    * Resolves the message for the supplied rule result detail.
    *
    * @param  detail  rule result detail
+   *
    * @return  message for the detail error code in properties resource or detail
    * error code if no message is found.
    */

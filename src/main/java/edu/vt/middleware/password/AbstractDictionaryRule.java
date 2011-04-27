@@ -93,7 +93,7 @@ public abstract class AbstractDictionaryRule implements Rule
     if (matchingWord != null) {
       result.setValid(false);
       result.getDetails().add(
-        new RuleResultDetail(ERROR_CODE, new Object[]{matchingWord}));
+        new RuleResultDetail(ERROR_CODE, new Object[] {matchingWord}));
     }
     if (matchBackwards) {
       text = new StringBuilder(passwordData.getPassword().getText()).reverse()
@@ -103,7 +103,8 @@ public abstract class AbstractDictionaryRule implements Rule
         result.setValid(false);
         result.getDetails().add(
           new RuleResultDetail(
-            ERROR_CODE_REVERSED, new Object[]{matchingWord}));
+            ERROR_CODE_REVERSED,
+            new Object[] {matchingWord}));
       }
     }
     return result;

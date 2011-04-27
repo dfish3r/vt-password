@@ -43,7 +43,7 @@ public class HistoryRule extends AbstractDigester implements Rule
       if (matches(cleartext, previousPassword)) {
         result.setValid(false);
         result.getDetails().add(
-          new RuleResultDetail(ERROR_CODE, new Object[]{size}));
+          new RuleResultDetail(ERROR_CODE, new Object[] {size}));
       }
     }
     return result;

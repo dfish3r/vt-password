@@ -159,6 +159,7 @@ public class PasswordData
    * @param  u  username
    * @param  h  history
    * @param  s  sources
+   *
    * @return  password data
    */
   public static PasswordData newInstance(

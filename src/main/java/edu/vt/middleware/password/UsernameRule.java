@@ -115,12 +115,12 @@ public class UsernameRule implements Rule
     if (text.indexOf(user) != -1) {
       result.setValid(false);
       result.getDetails().add(
-        new RuleResultDetail(ERROR_CODE, new Object[]{user}));
+        new RuleResultDetail(ERROR_CODE, new Object[] {user}));
     }
     if (matchBackwards && text.indexOf(reverseUser) != -1) {
       result.setValid(false);
       result.getDetails().add(
-        new RuleResultDetail(ERROR_CODE_REVERSED, new Object[]{user}));
+        new RuleResultDetail(ERROR_CODE_REVERSED, new Object[] {user}));
     }
     return result;
   }

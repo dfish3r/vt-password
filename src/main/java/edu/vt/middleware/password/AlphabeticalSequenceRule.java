@@ -60,14 +60,10 @@ public class AlphabeticalSequenceRule extends AbstractSequenceRule
   };
 
   /** Array of all the characters in this sequence rule. */
-  private static final char[][][] ALL_CHARS = new char[][][] {
-    LETTERS,
-  };
+  private static final char[][][] ALL_CHARS = new char[][][] {LETTERS, };
 
 
-  /**
-   * Default constructor.
-   */
+  /** Default constructor. */
   public AlphabeticalSequenceRule()
   {
     this(DEFAULT_SEQUENCE_LENGTH, false);

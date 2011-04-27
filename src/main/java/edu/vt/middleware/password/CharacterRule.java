@@ -32,8 +32,8 @@ public interface CharacterRule extends Rule
 
 
   /**
-   * Returns the number of characters which must exist in order for a
-   * password to meet the requirements of this rule.
+   * Returns the number of characters which must exist in order for a password
+   * to meet the requirements of this rule.
    *
    * @return  number of characters to require
    */

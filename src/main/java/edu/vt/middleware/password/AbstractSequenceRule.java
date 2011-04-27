@@ -122,8 +122,8 @@ public abstract class AbstractSequenceRule implements Rule
   /**
    * Returns the sequence of character pairs for which to search.
    *
-   * @param  n  provides support for multiple character
-   * sequences that are indexed from 0 to n.
+   * @param  n  provides support for multiple character sequences that are
+   * indexed from 0 to n.
    *
    * @return  character sequence.
    */
@@ -170,7 +170,7 @@ public abstract class AbstractSequenceRule implements Rule
   {
     result.setValid(false);
     result.getDetails().add(
-      new RuleResultDetail(ERROR_CODE, new Object[]{match}));
+      new RuleResultDetail(ERROR_CODE, new Object[] {match}));
   }
 
 

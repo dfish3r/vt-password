@@ -48,13 +48,11 @@ public class RegexRule implements Rule
   public RuleResult validate(final PasswordData passwordData)
   {
     final RuleResult result = new RuleResult(true);
-    final Matcher m = pattern.matcher(
-      passwordData.getPassword().getText());
+    final Matcher m = pattern.matcher(passwordData.getPassword().getText());
     if (m.find()) {
       result.setValid(false);
       result.getDetails().add(
-        new RuleResultDetail(
-          ERROR_CODE, new Object[]{m.group(), pattern}));
+        new RuleResultDetail(ERROR_CODE, new Object[] {m.group(), pattern}));
     }
     return result;
   }

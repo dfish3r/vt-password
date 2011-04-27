@@ -102,9 +102,7 @@ public class QwertySequenceRule extends AbstractSequenceRule
   };
 
 
-  /**
-   * Creates a new qwerty sequence rule with the default sequence length.
-   */
+  /** Creates a new qwerty sequence rule with the default sequence length. */
   public QwertySequenceRule()
   {
     this(DEFAULT_SEQUENCE_LENGTH, false);

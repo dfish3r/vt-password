@@ -79,9 +79,10 @@ public class RuleResultDetail
   @Override
   public String toString()
   {
-    return String.format(
-      "%s:%s",
-      errorCode,
-      parameters != null ? Arrays.asList(parameters) : null);
+    return
+      String.format(
+        "%s:%s",
+        errorCode,
+        parameters != null ? Arrays.asList(parameters) : null);
   }
 }

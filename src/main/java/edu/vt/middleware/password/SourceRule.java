@@ -43,7 +43,7 @@ public class SourceRule extends AbstractDigester implements Rule
       if (matches(cleartext, passwordData.getPasswordSources().get(source))) {
         result.setValid(false);
         result.getDetails().add(
-          new RuleResultDetail(ERROR_CODE, new Object[]{source}));
+          new RuleResultDetail(ERROR_CODE, new Object[] {source}));
       }
     }
     return result;

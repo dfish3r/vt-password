@@ -51,7 +51,7 @@ public class IllegalCharacterRule implements Rule
       if (passwordData.getPassword().getText().indexOf(c) != -1) {
         result.setValid(false);
         result.getDetails().add(
-          new RuleResultDetail(ERROR_CODE, new Object[]{c}));
+          new RuleResultDetail(ERROR_CODE, new Object[] {c}));
       }
     }
     return result;

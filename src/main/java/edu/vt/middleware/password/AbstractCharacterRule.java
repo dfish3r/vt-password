@@ -72,9 +72,7 @@ public abstract class AbstractCharacterRule implements CharacterRule
   @Override
   public RuleResult validate(final PasswordData passwordData)
   {
-    if (
-      getNumberOfCharacterType(passwordData.getPassword()) >=
-        numCharacters) {
+    if (getNumberOfCharacterType(passwordData.getPassword()) >= numCharacters) {
       return new RuleResult(true);
     } else {
       return
@@ -82,11 +80,12 @@ public abstract class AbstractCharacterRule implements CharacterRule
           false,
           new RuleResultDetail(
             ERROR_CODE,
-            new Object[]{
+            new Object[] {
               numCharacters,
               getCharacterType(),
               getNumberOfCharacterType(passwordData.getPassword()),
-              getValidCharacters(), }));
+              getValidCharacters(),
+            }));
     }
   }
 

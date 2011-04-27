@@ -30,8 +30,10 @@ public class WhitespaceRule implements Rule
     if (!passwordData.getPassword().containsWhitespace()) {
       return new RuleResult(true);
     } else {
-      return new RuleResult(
-        false, new RuleResultDetail("ILLEGAL_WHITESPACE", new Object[]{}));
+      return
+        new RuleResult(
+          false,
+          new RuleResultDetail("ILLEGAL_WHITESPACE", new Object[] {}));
     }
   }
 }

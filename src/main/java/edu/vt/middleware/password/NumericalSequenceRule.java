@@ -43,14 +43,10 @@ public class NumericalSequenceRule extends AbstractSequenceRule
   };
 
   /** Array of all the characters in this sequence rule. */
-  private static final char[][][] ALL_CHARS = new char[][][] {
-    DIGITS,
-  };
+  private static final char[][][] ALL_CHARS = new char[][][] {DIGITS, };
 
 
-  /**
-   * Creates a new numerical sequence rule with the default sequence length.
-   */
+  /** Creates a new numerical sequence rule with the default sequence length. */
   public NumericalSequenceRule()
   {
     this(DEFAULT_SEQUENCE_LENGTH, false);
