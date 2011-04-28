@@ -68,9 +68,13 @@ public class MessageResolver
     final String key = detail.getErrorCode();
     final String message = messageProperties.getProperty(key);
     if (message != null) {
-      return String.format(message, detail.getParameters());
+      return String.format(message, detail.getValues());
     }
-    return key;
+    if (detail.getParameters().isEmpty()) {
+      return String.format("%s", key);
+    } else {
+      return String.format("%s:%s", key, detail.getParameters());
+    }
   }
 
 

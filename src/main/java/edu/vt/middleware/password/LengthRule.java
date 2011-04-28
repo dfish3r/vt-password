@@ -13,6 +13,9 @@
 */
 package edu.vt.middleware.password;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 /**
  * Rule for determining if a password is within a desired length. The minimum
  * and maximum lengths are used inclusively to determine if a password meets
@@ -127,16 +130,28 @@ public class LengthRule implements Rule
       if (length < minimumLength) {
         result.getDetails().add(
           new RuleResultDetail(
-            ERROR_CODE_MIN,
-            new Object[] {minimumLength, maximumLength}));
+            ERROR_CODE_MIN, createRuleResultDetailParameters()));
       } else {
         result.getDetails().add(
           new RuleResultDetail(
-            ERROR_CODE_MAX,
-            new Object[] {minimumLength, maximumLength}));
+            ERROR_CODE_MAX, createRuleResultDetailParameters()));
       }
     }
     return result;
+  }
+
+
+  /**
+   * Creates the parameter data for the rule result detail.
+   *
+   * @return  map of parameter name to value
+   */
+  protected Map<String, ?> createRuleResultDetailParameters()
+  {
+    final Map<String, Object> m = new LinkedHashMap<String, Object>();
+    m.put("minimumLength", minimumLength);
+    m.put("maximumLength", maximumLength);
+    return m;
   }
 
 

@@ -13,6 +13,9 @@
 */
 package edu.vt.middleware.password;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 /**
  * Provides common implementation for password character rules.
  *
@@ -75,18 +78,30 @@ public abstract class AbstractCharacterRule implements CharacterRule
     if (getNumberOfCharacterType(passwordData.getPassword()) >= numCharacters) {
       return new RuleResult(true);
     } else {
-      return
-        new RuleResult(
-          false,
-          new RuleResultDetail(
-            ERROR_CODE,
-            new Object[] {
-              numCharacters,
-              getCharacterType(),
-              getNumberOfCharacterType(passwordData.getPassword()),
-              getValidCharacters(),
-            }));
+      return new RuleResult(
+        false,
+        new RuleResultDetail(
+          ERROR_CODE,
+          createRuleResultDetailParameters(passwordData.getPassword())));
     }
+  }
+
+
+  /**
+   * Creates the parameter data for the rule result detail.
+   *
+   * @param  p  password
+   *
+   * @return  map of parameter name to value
+   */
+  protected Map<String, ?> createRuleResultDetailParameters(final Password p)
+  {
+    final Map<String, Object> m = new LinkedHashMap<String, Object>();
+    m.put("minimumRequired", numCharacters);
+    m.put("characterType", getCharacterType());
+    m.put("validCharacterCount", getNumberOfCharacterType(p));
+    m.put("validCharacters", getValidCharacters());
+    return m;
   }
 
 

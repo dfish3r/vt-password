@@ -13,7 +13,8 @@
 */
 package edu.vt.middleware.password;
 
-import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * Describes an exact cause of a rule validation failure.
@@ -30,7 +31,7 @@ public class RuleResultDetail
   /**
    * Additional parameters that provide information about validation failure.
    */
-  protected final Object[] parameters;
+  protected final Map<String, ?> parameters;
 
 
   /**
@@ -39,13 +40,17 @@ public class RuleResultDetail
    * @param  code  error code.
    * @param  params  error details.
    */
-  public RuleResultDetail(final String code, final Object[] params)
+  public RuleResultDetail(final String code, final Map<String, ?> params)
   {
     if (code == null || code.length() == 0) {
       throw new IllegalArgumentException("Code cannot be null or empty.");
     }
     errorCode = code;
-    parameters = params;
+    if (params == null) {
+      parameters = new LinkedHashMap<String, Object>();
+    } else {
+      parameters = new LinkedHashMap<String, Object>(params);
+    }
   }
 
 
@@ -63,11 +68,22 @@ public class RuleResultDetail
   /**
    * Returns the parameters.
    *
-   * @return  array of parameters or empty array if no parameters defined.
+   * @return  map of parameter name to value.
    */
-  public Object[] getParameters()
+  public Map<String, ?> getParameters()
   {
     return parameters;
+  }
+
+
+  /**
+   * Returns the parameter values.
+   *
+   * @return  array of parameters or empty array if no parameters defined.
+   */
+  public Object[] getValues()
+  {
+    return parameters.values().toArray(new Object[parameters.size()]);
   }
 
 
@@ -83,6 +99,6 @@ public class RuleResultDetail
       String.format(
         "%s:%s",
         errorCode,
-        parameters != null ? Arrays.asList(parameters) : null);
+        parameters);
   }
 }

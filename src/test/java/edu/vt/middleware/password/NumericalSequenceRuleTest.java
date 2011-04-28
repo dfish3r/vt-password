@@ -98,6 +98,7 @@ public class NumericalSequenceRuleTest extends AbstractRuleTest
       AssertJUnit.assertEquals(
         String.format("Password contains the illegal sequence '%s'.", "34567"),
         DEFAULT_RESOLVER.resolve(detail));
+      AssertJUnit.assertNotNull(EMPTY_RESOLVER.resolve(detail));
     }
   }
 }

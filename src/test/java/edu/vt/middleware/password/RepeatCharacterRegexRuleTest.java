@@ -93,6 +93,7 @@ public class RepeatCharacterRegexRuleTest extends AbstractRuleTest
       AssertJUnit.assertEquals(
         String.format("Password matches the illegal sequence '%s'.", "&&&&&"),
         DEFAULT_RESOLVER.resolve(detail));
+      AssertJUnit.assertNotNull(EMPTY_RESOLVER.resolve(detail));
     }
   }
 }

@@ -13,6 +13,8 @@
 */
 package edu.vt.middleware.password;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -52,9 +54,26 @@ public class RegexRule implements Rule
     if (m.find()) {
       result.setValid(false);
       result.getDetails().add(
-        new RuleResultDetail(ERROR_CODE, new Object[] {m.group(), pattern}));
+        new RuleResultDetail(
+          ERROR_CODE, createRuleResultDetailParameters(m.group())));
     }
     return result;
+  }
+
+
+  /**
+   * Creates the parameter data for the rule result detail.
+   *
+   * @param  match  matching regex
+   *
+   * @return  map of parameter name to value
+   */
+  protected Map<String, ?> createRuleResultDetailParameters(final String match)
+  {
+    final Map<String, Object> m = new LinkedHashMap<String, Object>();
+    m.put("match", match);
+    m.put("pattern", pattern);
+    return m;
   }
 
 

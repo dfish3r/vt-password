@@ -13,6 +13,8 @@
 */
 package edu.vt.middleware.password;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import edu.vt.middleware.dictionary.Dictionary;
 
 /**
@@ -93,7 +95,8 @@ public abstract class AbstractDictionaryRule implements Rule
     if (matchingWord != null) {
       result.setValid(false);
       result.getDetails().add(
-        new RuleResultDetail(ERROR_CODE, new Object[] {matchingWord}));
+        new RuleResultDetail(
+          ERROR_CODE, createRuleResultDetailParameters(matchingWord)));
     }
     if (matchBackwards) {
       text = new StringBuilder(passwordData.getPassword().getText()).reverse()
@@ -104,10 +107,25 @@ public abstract class AbstractDictionaryRule implements Rule
         result.getDetails().add(
           new RuleResultDetail(
             ERROR_CODE_REVERSED,
-            new Object[] {matchingWord}));
+            createRuleResultDetailParameters(matchingWord)));
       }
     }
     return result;
+  }
+
+
+  /**
+   * Creates the parameter data for the rule result detail.
+   *
+   * @param  word  matching word
+   *
+   * @return  map of parameter name to value
+   */
+  protected Map<String, ?> createRuleResultDetailParameters(final String word)
+  {
+    final Map<String, Object> m = new LinkedHashMap<String, Object>();
+    m.put("matchingWord", word);
+    return m;
   }
 
 

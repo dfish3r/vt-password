@@ -13,6 +13,7 @@
 */
 package edu.vt.middleware.password;
 
+import java.util.Properties;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
@@ -28,6 +29,10 @@ public abstract class AbstractRuleTest
   /** default message resolver.*/
   protected static final MessageResolver DEFAULT_RESOLVER =
     new MessageResolver();
+
+  /** empty message resolver.*/
+  protected static final MessageResolver EMPTY_RESOLVER =
+    new MessageResolver(new Properties());
 
 
   /**

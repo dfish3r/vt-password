@@ -13,6 +13,9 @@
 */
 package edu.vt.middleware.password;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 /**
  * Provide common implementation for keyboard sequence rules.
  *
@@ -168,9 +171,10 @@ public abstract class AbstractSequenceRule implements Rule
    */
   private void recordFailure(final RuleResult result, final String match)
   {
+    final Map<String, Object> m = new LinkedHashMap<String, Object>();
+    m.put("sequence", match);
     result.setValid(false);
-    result.getDetails().add(
-      new RuleResultDetail(ERROR_CODE, new Object[] {match}));
+    result.getDetails().add(new RuleResultDetail(ERROR_CODE, m));
   }
 
 

@@ -166,6 +166,7 @@ public class DictionarySubstringRuleTest extends AbstractRuleTest
       AssertJUnit.assertEquals(
         String.format("Password contains the dictionary word '%s'.", "lance"),
         DEFAULT_RESOLVER.resolve(detail));
+      AssertJUnit.assertNotNull(EMPTY_RESOLVER.resolve(detail));
     }
 
     result = rule.validate(new PasswordData(BACKWARDS_DICT_PASS));
@@ -174,6 +175,7 @@ public class DictionarySubstringRuleTest extends AbstractRuleTest
         String.format(
           "Password contains the reversed dictionary word '%s'.", "lance"),
         DEFAULT_RESOLVER.resolve(detail));
+      AssertJUnit.assertNotNull(EMPTY_RESOLVER.resolve(detail));
     }
   }
 }

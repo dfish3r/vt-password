@@ -13,6 +13,9 @@
 */
 package edu.vt.middleware.password;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 /**
  * Rule for determining if a password matches one of any previous password a
  * user has chosen. If no password history has been set or an empty history has
@@ -43,9 +46,25 @@ public class HistoryRule extends AbstractDigester implements Rule
       if (matches(cleartext, previousPassword)) {
         result.setValid(false);
         result.getDetails().add(
-          new RuleResultDetail(ERROR_CODE, new Object[] {size}));
+          new RuleResultDetail(
+            ERROR_CODE, createRuleResultDetailParameters(size)));
       }
     }
     return result;
+  }
+
+
+  /**
+   * Creates the parameter data for the rule result detail.
+   *
+   * @param  size  of the history list
+   *
+   * @return  map of parameter name to value
+   */
+  protected Map<String, ?> createRuleResultDetailParameters(final int size)
+  {
+    final Map<String, Object> m = new LinkedHashMap<String, Object>();
+    m.put("historySize", size);
+    return m;
   }
 }

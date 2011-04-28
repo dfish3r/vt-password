@@ -135,6 +135,7 @@ public class CharacterCharacteristicsRuleTest extends AbstractRuleTest
         AssertJUnit.fail("Invalid index");
         break;
       }
+      AssertJUnit.assertNotNull(EMPTY_RESOLVER.resolve(detail));
     }
   }
 }

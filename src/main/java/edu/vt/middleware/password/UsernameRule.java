@@ -13,6 +13,9 @@
 */
 package edu.vt.middleware.password;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 /**
  * Rule for determining if a password contains the username associated with that
  * password.
@@ -115,14 +118,32 @@ public class UsernameRule implements Rule
     if (text.indexOf(user) != -1) {
       result.setValid(false);
       result.getDetails().add(
-        new RuleResultDetail(ERROR_CODE, new Object[] {user}));
+        new RuleResultDetail(
+          ERROR_CODE, createRuleResultDetailParameters(user)));
     }
     if (matchBackwards && text.indexOf(reverseUser) != -1) {
       result.setValid(false);
       result.getDetails().add(
-        new RuleResultDetail(ERROR_CODE_REVERSED, new Object[] {user}));
+        new RuleResultDetail(
+          ERROR_CODE_REVERSED, createRuleResultDetailParameters(user)));
     }
     return result;
+  }
+
+
+  /**
+   * Creates the parameter data for the rule result detail.
+   *
+   * @param  username  matching username
+   *
+   * @return  map of parameter name to value
+   */
+  protected Map<String, ?> createRuleResultDetailParameters(
+    final String username)
+  {
+    final Map<String, Object> m = new LinkedHashMap<String, Object>();
+    m.put("username", username);
+    return m;
   }
 
 

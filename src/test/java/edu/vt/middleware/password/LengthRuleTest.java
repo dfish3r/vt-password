@@ -117,6 +117,7 @@ public class LengthRuleTest extends AbstractRuleTest
           "Password must be no more than %s characters in length.",
           rule.getMaximumLength()),
         DEFAULT_RESOLVER.resolve(detail));
+      AssertJUnit.assertNotNull(EMPTY_RESOLVER.resolve(detail));
     }
 
     result = rule.validate(new PasswordData(SHORT_PASS));
@@ -126,6 +127,7 @@ public class LengthRuleTest extends AbstractRuleTest
           "Password must at least %s characters in length.",
           rule.getMinimumLength()),
         DEFAULT_RESOLVER.resolve(detail));
+      AssertJUnit.assertNotNull(EMPTY_RESOLVER.resolve(detail));
     }
   }
 }

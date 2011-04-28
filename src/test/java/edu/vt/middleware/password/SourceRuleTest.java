@@ -128,6 +128,7 @@ public class SourceRuleTest extends AbstractRuleTest
         String.format(
           "Password cannot be the same as your %s password.", "System A"),
         DEFAULT_RESOLVER.resolve(detail));
+      AssertJUnit.assertNotNull(EMPTY_RESOLVER.resolve(detail));
     }
   }
 }

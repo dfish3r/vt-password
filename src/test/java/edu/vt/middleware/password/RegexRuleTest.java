@@ -74,6 +74,7 @@ public class RegexRuleTest extends AbstractRuleTest
       AssertJUnit.assertEquals(
         String.format("Password matches the illegal sequence '%s'.", "0248"),
         DEFAULT_RESOLVER.resolve(detail));
+      AssertJUnit.assertNotNull(EMPTY_RESOLVER.resolve(detail));
     }
   }
 }

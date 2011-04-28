@@ -14,6 +14,8 @@
 package edu.vt.middleware.password;
 
 import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * Rule for determining if a password contains an illegal character.
@@ -51,10 +53,26 @@ public class IllegalCharacterRule implements Rule
       if (passwordData.getPassword().getText().indexOf(c) != -1) {
         result.setValid(false);
         result.getDetails().add(
-          new RuleResultDetail(ERROR_CODE, new Object[] {c}));
+          new RuleResultDetail(
+            ERROR_CODE, createRuleResultDetailParameters(c)));
       }
     }
     return result;
+  }
+
+
+  /**
+   * Creates the parameter data for the rule result detail.
+   *
+   * @param  c  illegal character
+   *
+   * @return  map of parameter name to value
+   */
+  protected Map<String, ?> createRuleResultDetailParameters(final char c)
+  {
+    final Map<String, Object> m = new LinkedHashMap<String, Object>();
+    m.put("illegalCharacter", c);
+    return m;
   }
 
 

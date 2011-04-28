@@ -77,6 +77,7 @@ public class WhitespaceRuleTest extends AbstractRuleTest
       AssertJUnit.assertEquals(
         "Password cannot contain whitespace characters.",
         DEFAULT_RESOLVER.resolve(detail));
+      AssertJUnit.assertNotNull(EMPTY_RESOLVER.resolve(detail));
     }
   }
 }

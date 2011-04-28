@@ -14,7 +14,9 @@
 package edu.vt.middleware.password;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Rule for determining if a password contains the desired mix of character
@@ -111,10 +113,26 @@ public class CharacterCharacteristicsRule implements Rule
       result.setValid(false);
       result.getDetails().add(
         new RuleResultDetail(
-          ERROR_CODE,
-          new Object[] {successCount, numCharacteristics, rules.size(), }));
+          ERROR_CODE, createRuleResultDetailParameters(successCount)));
     }
     return result;
+  }
+
+
+  /**
+   * Creates the parameter data for the rule result detail.
+   *
+   * @param  success  number of successful rules
+   *
+   * @return  map of parameter name to value
+   */
+  protected Map<String, ?> createRuleResultDetailParameters(final int success)
+  {
+    final Map<String, Object> m = new LinkedHashMap<String, Object>();
+    m.put("successCount", success);
+    m.put("minimumRequired", numCharacteristics);
+    m.put("ruleCount", rules.size());
+    return m;
   }
 
 

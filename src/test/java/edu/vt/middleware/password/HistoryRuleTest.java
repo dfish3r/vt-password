@@ -173,6 +173,7 @@ public class HistoryRuleTest extends AbstractRuleTest
           "Password matches one of %s previous passwords.",
           history.size()),
         DEFAULT_RESOLVER.resolve(detail));
+      AssertJUnit.assertNotNull(EMPTY_RESOLVER.resolve(detail));
     }
   }
 }

@@ -13,6 +13,9 @@
 */
 package edu.vt.middleware.password;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 /**
  * Rule for determining if a password matches a password from a different
  * source. Useful for when separate systems cannot have matching passwords. If
@@ -43,9 +46,25 @@ public class SourceRule extends AbstractDigester implements Rule
       if (matches(cleartext, passwordData.getPasswordSources().get(source))) {
         result.setValid(false);
         result.getDetails().add(
-          new RuleResultDetail(ERROR_CODE, new Object[] {source}));
+          new RuleResultDetail(
+            ERROR_CODE, createRuleResultDetailParameters(source)));
       }
     }
     return result;
+  }
+
+
+  /**
+   * Creates the parameter data for the rule result detail.
+   *
+   * @param  source  matching source
+   *
+   * @return  map of parameter name to value
+   */
+  protected Map<String, ?> createRuleResultDetailParameters(final String source)
+  {
+    final Map<String, Object> m = new LinkedHashMap<String, Object>();
+    m.put("source", source);
+    return m;
   }
 }

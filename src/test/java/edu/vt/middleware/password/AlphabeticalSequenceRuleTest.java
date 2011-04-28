@@ -99,6 +99,7 @@ public class AlphabeticalSequenceRuleTest extends AbstractRuleTest
         String.format(
           "Password contains the illegal sequence '%s'.", "hijkl"),
         DEFAULT_RESOLVER.resolve(detail));
+      AssertJUnit.assertNotNull(EMPTY_RESOLVER.resolve(detail));
     }
   }
 }

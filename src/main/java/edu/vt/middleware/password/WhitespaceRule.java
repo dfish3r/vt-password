@@ -33,7 +33,7 @@ public class WhitespaceRule implements Rule
       return
         new RuleResult(
           false,
-          new RuleResultDetail("ILLEGAL_WHITESPACE", new Object[] {}));
+          new RuleResultDetail("ILLEGAL_WHITESPACE", null));
     }
   }
 }

@@ -67,6 +67,7 @@ public class IllegalCharacterRuleTest extends AbstractRuleTest
       AssertJUnit.assertEquals(
         String.format("Password contains the illegal character '%s'.", "@"),
         DEFAULT_RESOLVER.resolve(detail));
+      AssertJUnit.assertNotNull(EMPTY_RESOLVER.resolve(detail));
     }
   }
 }

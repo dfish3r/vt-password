@@ -208,6 +208,7 @@ public class UsernameRuleTest extends AbstractRuleTest
       AssertJUnit.assertEquals(
         String.format("Password contains the user id '%s'.", USER),
         DEFAULT_RESOLVER.resolve(detail));
+      AssertJUnit.assertNotNull(EMPTY_RESOLVER.resolve(detail));
     }
 
     result = rule.validate(
@@ -216,6 +217,7 @@ public class UsernameRuleTest extends AbstractRuleTest
       AssertJUnit.assertEquals(
         String.format("Password contains the user id '%s' in reverse.", USER),
         DEFAULT_RESOLVER.resolve(detail));
+      AssertJUnit.assertNotNull(EMPTY_RESOLVER.resolve(detail));
     }
   }
 }
