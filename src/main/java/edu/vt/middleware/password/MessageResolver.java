@@ -67,14 +67,17 @@ public class MessageResolver
   {
     final String key = detail.getErrorCode();
     final String message = messageProperties.getProperty(key);
+    String format = null;
     if (message != null) {
-      return String.format(message, detail.getValues());
-    }
-    if (detail.getParameters().isEmpty()) {
-      return String.format("%s", key);
+      format = String.format(message, detail.getValues());
     } else {
-      return String.format("%s:%s", key, detail.getParameters());
+      if (!detail.getParameters().isEmpty()) {
+        format = String.format("%s:%s", key, detail.getParameters());
+      } else {
+        format = String.format("%s", key);
+      }
     }
+    return format;
   }
 
 
