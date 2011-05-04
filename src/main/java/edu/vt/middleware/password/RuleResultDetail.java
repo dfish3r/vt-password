@@ -83,7 +83,7 @@ public class RuleResultDetail
    */
   public Object[] getValues()
   {
-    return parameters.values().toArray(new Object[parameters.size()]);
+    return parameters.values().toArray();
   }
 
 
