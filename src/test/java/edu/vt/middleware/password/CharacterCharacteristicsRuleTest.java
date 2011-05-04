@@ -85,9 +85,7 @@ public class CharacterCharacteristicsRuleTest extends AbstractRuleTest
   }
 
 
-  /**
-   * @throws  Exception  On test failure.
-   */
+  /** @throws  Exception  On test failure. */
   @Test(groups = {"passtest"})
   public void checkConsistency()
     throws Exception
@@ -102,9 +100,7 @@ public class CharacterCharacteristicsRuleTest extends AbstractRuleTest
   }
 
 
-  /**
-   * @throws  Exception  On test failure.
-   */
+  /** @throws  Exception  On test failure. */
   @Test(groups = {"passtest"})
   public void resolveMessage()
     throws Exception
@@ -114,14 +110,16 @@ public class CharacterCharacteristicsRuleTest extends AbstractRuleTest
     for (int i = 0; i < result.getDetails().size(); i++) {
       final RuleResultDetail detail = result.getDetails().get(i);
       switch (i) {
+
       case 0:
         AssertJUnit.assertEquals(
           String.format(
             "Password must contain at least %s %s characters.",
             3,
             "digit"),
-            DEFAULT_RESOLVER.resolve(detail));
+          DEFAULT_RESOLVER.resolve(detail));
         break;
+
       case 1:
         AssertJUnit.assertEquals(
           String.format(
@@ -129,8 +127,9 @@ public class CharacterCharacteristicsRuleTest extends AbstractRuleTest
             4,
             5,
             5),
-            DEFAULT_RESOLVER.resolve(detail));
+          DEFAULT_RESOLVER.resolve(detail));
         break;
+
       default:
         AssertJUnit.fail("Invalid index");
         break;

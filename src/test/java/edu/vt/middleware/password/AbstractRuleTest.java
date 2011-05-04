@@ -26,13 +26,13 @@ import org.testng.annotations.Test;
 public abstract class AbstractRuleTest
 {
 
-  /** default message resolver.*/
+  /** default message resolver. */
   protected static final MessageResolver DEFAULT_RESOLVER =
     new MessageResolver();
 
-  /** empty message resolver.*/
-  protected static final MessageResolver EMPTY_RESOLVER =
-    new MessageResolver(new Properties());
+  /** empty message resolver. */
+  protected static final MessageResolver EMPTY_RESOLVER = new MessageResolver(
+    new Properties());
 
 
   /**

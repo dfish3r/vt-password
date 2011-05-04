@@ -103,8 +103,7 @@ public class PasswordValidatorTest
 
     final LengthRule lengthRule = new LengthRule(8, 16);
 
-    final DictionarySubstringRule dictRule = new DictionarySubstringRule(
-      dict);
+    final DictionarySubstringRule dictRule = new DictionarySubstringRule(dict);
     dictRule.setWordLength(4);
     dictRule.setMatchBackwards(true);
 

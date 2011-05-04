@@ -84,14 +84,12 @@ public class NumericalSequenceRuleTest extends AbstractRuleTest
   }
 
 
-  /**
-   * @throws  Exception  On test failure.
-   */
+  /**  @throws  Exception  On test failure. */
   @Test(groups = {"passtest"})
   public void resolveMessage()
     throws Exception
   {
-    final Rule rule =  new NumericalSequenceRule();
+    final Rule rule = new NumericalSequenceRule();
     final RuleResult result = rule.validate(
       new PasswordData(new Password("p34567n65")));
     for (RuleResultDetail detail : result.getDetails()) {

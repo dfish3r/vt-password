@@ -103,9 +103,7 @@ public class LengthRuleTest extends AbstractRuleTest
   }
 
 
-  /**
-   * @throws  Exception  On test failure.
-   */
+  /** @throws  Exception  On test failure. */
   @Test(groups = {"passtest"})
   public void resolveMessage()
     throws Exception

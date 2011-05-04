@@ -92,9 +92,7 @@ public class PasswordGeneratorTest
     final Object[][] passwords = new Object[100][1];
     final int length = 10;
     for (int i = 0; i < 100; i++) {
-      final String password = generator.generatePassword(
-        length,
-        rules);
+      final String password = generator.generatePassword(length, rules);
       AssertJUnit.assertNotNull(password);
       AssertJUnit.assertTrue(password.length() >= length);
       passwords[i] = new Object[] {new Password(password)};

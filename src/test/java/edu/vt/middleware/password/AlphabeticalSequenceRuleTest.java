@@ -84,20 +84,17 @@ public class AlphabeticalSequenceRuleTest extends AbstractRuleTest
   }
 
 
-  /**
-   * @throws  Exception  On test failure.
-   */
+  /** @throws  Exception  On test failure. */
   @Test(groups = {"passtest"})
   public void resolveMessage()
     throws Exception
   {
-    final Rule rule =  new AlphabeticalSequenceRule();
+    final Rule rule = new AlphabeticalSequenceRule();
     final RuleResult result = rule.validate(
       new PasswordData(new Password("phijkl#n65")));
     for (RuleResultDetail detail : result.getDetails()) {
       AssertJUnit.assertEquals(
-        String.format(
-          "Password contains the illegal sequence '%s'.", "hijkl"),
+        String.format("Password contains the illegal sequence '%s'.", "hijkl"),
         DEFAULT_RESOLVER.resolve(detail));
       AssertJUnit.assertNotNull(EMPTY_RESOLVER.resolve(detail));
     }

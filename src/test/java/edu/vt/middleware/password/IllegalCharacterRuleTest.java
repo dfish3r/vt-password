@@ -54,15 +54,12 @@ public class IllegalCharacterRuleTest extends AbstractRuleTest
   }
 
 
-  /**
-   * @throws  Exception  On test failure.
-   */
+  /** @throws  Exception  On test failure. */
   @Test(groups = {"passtest"})
   public void resolveMessage()
     throws Exception
   {
-    final RuleResult result = rule.validate(
-      new PasswordData(INVALID_PASS));
+    final RuleResult result = rule.validate(new PasswordData(INVALID_PASS));
     for (RuleResultDetail detail : result.getDetails()) {
       AssertJUnit.assertEquals(
         String.format("Password contains the illegal character '%s'.", "@"),

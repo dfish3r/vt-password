@@ -40,17 +40,14 @@ public class SpringTest
   {
     final ClassPathXmlApplicationContext context =
       new ClassPathXmlApplicationContext(
-        new String[] {
-          "/spring-context.xml",
-        });
+        new String[] {"/spring-context.xml", });
     AssertJUnit.assertTrue(context.getBeanDefinitionCount() > 0);
 
     final PasswordValidator validator = new PasswordValidator(
       new ArrayList<Rule>(context.getBeansOfType(Rule.class).values()));
     final PasswordData pd = new PasswordData(new Password("springtest"));
     pd.setUsername("springuser");
-    final RuleResult result =
-      validator.validate(pd);
+    final RuleResult result = validator.validate(pd);
     AssertJUnit.assertNotNull(result);
   }
 }

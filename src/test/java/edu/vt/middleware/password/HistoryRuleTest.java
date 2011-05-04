@@ -111,26 +111,22 @@ public class HistoryRuleTest extends AbstractRuleTest
 
         {
           digestRule,
-          PasswordData.newInstance(
-            VALID_PASS, USER, digestHistory, null),
+          PasswordData.newInstance(VALID_PASS, USER, digestHistory, null),
           true,
         },
         {
           digestRule,
-          PasswordData.newInstance(
-            HISTORY_PASS1, USER, digestHistory, null),
+          PasswordData.newInstance(HISTORY_PASS1, USER, digestHistory, null),
           false,
         },
         {
           digestRule,
-          PasswordData.newInstance(
-            HISTORY_PASS2, USER, digestHistory, null),
+          PasswordData.newInstance(HISTORY_PASS2, USER, digestHistory, null),
           false,
         },
         {
           digestRule,
-          PasswordData.newInstance(
-            HISTORY_PASS3, USER, digestHistory, null),
+          PasswordData.newInstance(HISTORY_PASS3, USER, digestHistory, null),
           false,
         },
 
@@ -158,9 +154,7 @@ public class HistoryRuleTest extends AbstractRuleTest
   }
 
 
-  /**
-   * @throws  Exception  On test failure.
-   */
+  /** @throws  Exception  On test failure. */
   @Test(groups = {"passtest"})
   public void resolveMessage()
     throws Exception
