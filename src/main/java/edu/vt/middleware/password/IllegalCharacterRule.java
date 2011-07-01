@@ -55,6 +55,7 @@ public class IllegalCharacterRule implements Rule
         result.getDetails().add(
           new RuleResultDetail(
             ERROR_CODE, createRuleResultDetailParameters(c)));
+        break;
       }
     }
     return result;
