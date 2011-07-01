@@ -6,7 +6,7 @@
   <groupId>edu.vt.middleware</groupId>
   <artifactId>vt-password</artifactId>
   <packaging>jar</packaging>
-  <version>3.1</version>
+  <version>3.1.1-SNAPSHOT</version>
   <name>VT Password Libraries</name>
   <description>Library for checking that a password complies with a custom set of rules</description>
   <url>http://code.google.com/p/vt-middleware/wiki/vtpassword</url>
@@ -94,32 +94,8 @@
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
-      <version>5.14.10</version>
+      <version>6.1</version>
       <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <version>1.2.16</version>
-      <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>com.sun.jmx</groupId>
-          <artifactId>jmxri</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>com.sun.jdmk</groupId>
-          <artifactId>jmxtools</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>javax.jms</groupId>
-          <artifactId>jms</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>javax.mail</groupId>
-          <artifactId>mail</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
@@ -231,12 +207,6 @@
           <suiteXmlFiles>
             <suiteXmlFile>${testng.dir}/testng.xml</suiteXmlFile>
           </suiteXmlFiles>
-          <systemProperties>
-            <property>
-              <name>log4j.configuration</name>
-              <value>log4j.xml</value>
-            </property>
-          </systemProperties>
         </configuration>
       </plugin>
       <plugin>
