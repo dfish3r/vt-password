@@ -91,64 +91,64 @@ public class HistoryRuleTest extends AbstractRuleTest
         {
           rule,
           PasswordData.newInstance(VALID_PASS, USER, history, null),
-          true,
+          null,
         },
         {
           rule,
           PasswordData.newInstance(HISTORY_PASS1, USER, history, null),
-          false,
+          codes(HistoryRule.ERROR_CODE),
         },
         {
           rule,
           PasswordData.newInstance(HISTORY_PASS2, USER, history, null),
-          false,
+          codes(HistoryRule.ERROR_CODE),
         },
         {
           rule,
           PasswordData.newInstance(HISTORY_PASS3, USER, history, null),
-          false,
+          codes(HistoryRule.ERROR_CODE),
         },
 
         {
           digestRule,
           PasswordData.newInstance(VALID_PASS, USER, digestHistory, null),
-          true,
+          null,
         },
         {
           digestRule,
           PasswordData.newInstance(HISTORY_PASS1, USER, digestHistory, null),
-          false,
+          codes(HistoryRule.ERROR_CODE),
         },
         {
           digestRule,
           PasswordData.newInstance(HISTORY_PASS2, USER, digestHistory, null),
-          false,
+          codes(HistoryRule.ERROR_CODE),
         },
         {
           digestRule,
           PasswordData.newInstance(HISTORY_PASS3, USER, digestHistory, null),
-          false,
+          codes(HistoryRule.ERROR_CODE),
         },
 
         {
           emptyRule,
           PasswordData.newInstance(VALID_PASS, USER, null, null),
-          true,
+          null,
         },
         {
           emptyRule,
           PasswordData.newInstance(HISTORY_PASS1, USER, null, null),
-          true,
+          null,
         },
         {
           emptyRule,
           PasswordData.newInstance(HISTORY_PASS2, USER, null, null),
-          true,
+          null,
         },
         {
           emptyRule,
           PasswordData.newInstance(HISTORY_PASS3, USER, null, null),
-          true,
+          null,
         },
       };
   }

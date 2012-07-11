@@ -42,38 +42,38 @@ public class RepeatCharacterRegexRuleTest extends AbstractRuleTest
         {
           new RepeatCharacterRegexRule(),
           new PasswordData(new Password("p4zRcv8#n65")),
-          true,
+          null,
         },
         // test repeating character
         {
           new RepeatCharacterRegexRule(),
           new PasswordData(new Password("p4&&&&&#n65")),
-          false,
+          codes(RepeatCharacterRegexRule.ERROR_CODE),
         },
         // test longer repeating character
         {
           new RepeatCharacterRegexRule(),
           new PasswordData(new Password("p4vvvvvvv#n65")),
-          false,
+          codes(RepeatCharacterRegexRule.ERROR_CODE),
         },
 
         // test valid password for long regex
         {
           new RepeatCharacterRegexRule(7),
           new PasswordData(new Password("p4zRcv8#n65")),
-          true,
+          null,
         },
         // test long regex with short repeat
         {
           new RepeatCharacterRegexRule(7),
           new PasswordData(new Password("p4&&&&&#n65")),
-          true,
+          null,
         },
         // test long regex with long repeat
         {
           new RepeatCharacterRegexRule(7),
           new PasswordData(new Password("p4vvvvvvv#n65")),
-          false,
+          codes(RepeatCharacterRegexRule.ERROR_CODE),
         },
       };
   }

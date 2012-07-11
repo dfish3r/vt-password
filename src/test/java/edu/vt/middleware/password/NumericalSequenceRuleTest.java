@@ -42,43 +42,43 @@ public class NumericalSequenceRuleTest extends AbstractRuleTest
         {
           new NumericalSequenceRule(),
           new PasswordData(new Password("p4zRcv8#n65")),
-          true,
+          null,
         },
         // Has numerical sequence
         {
           new NumericalSequenceRule(4, false),
           new PasswordData(new Password("p3456#n65")),
-          false,
+          codes(NumericalSequenceRule.ERROR_CODE),
         },
         // Has wrapping numerical sequence with wrap=false
         {
           new NumericalSequenceRule(7, false),
           new PasswordData(new Password("p4zRcv2#n8901234")),
-          true,
+          null,
         },
         // Has wrapping numerical sequence with wrap=true
         {
           new NumericalSequenceRule(7, true),
           new PasswordData(new Password("p4zRcv2#n8901234")),
-          false,
+          codes(NumericalSequenceRule.ERROR_CODE),
         },
         // Has backward numerical sequence
         {
           new NumericalSequenceRule(),
           new PasswordData(new Password("p54321#n65")),
-          false,
+          codes(NumericalSequenceRule.ERROR_CODE),
         },
         // Has backward wrapping numerical sequence with wrap=false
         {
           new NumericalSequenceRule(5, false),
           new PasswordData(new Password("p987#n32109")),
-          true,
+          null,
         },
         // Has backward wrapping numerical sequence with wrap=true
         {
           new NumericalSequenceRule(8, true),
           new PasswordData(new Password("p54321098#n65")),
-          false,
+          codes(NumericalSequenceRule.ERROR_CODE),
         },
       };
   }
@@ -92,7 +92,9 @@ public class NumericalSequenceRuleTest extends AbstractRuleTest
     final Rule rule = new NumericalSequenceRule();
     final RuleResult result = rule.validate(
       new PasswordData(new Password("p34567n65")));
+    AssertJUnit.assertEquals(1, result.getDetails().size());
     for (RuleResultDetail detail : result.getDetails()) {
+      AssertJUnit.assertFalse(result.isValid());
       AssertJUnit.assertEquals(
         String.format("Password contains the illegal sequence '%s'.", "34567"),
         DEFAULT_RESOLVER.resolve(detail));

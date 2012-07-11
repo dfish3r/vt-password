@@ -42,19 +42,19 @@ public class RegexRuleTest extends AbstractRuleTest
         {
           new RegexRule("\\d\\d\\d\\d"),
           new PasswordData(new Password("p4zRcv8#n65")),
-          true,
+          null,
         },
         // test entire password
         {
           new RegexRule("^[\\p{Alpha}]+\\d\\d\\d\\d$"),
           new PasswordData(new Password("pwUiNh0248")),
-          false,
+          codes(RegexRule.ERROR_CODE),
         },
         // test find password
         {
           new RegexRule("\\d\\d\\d\\d"),
           new PasswordData(new Password("pwUi0248xwK")),
-          false,
+          codes(RegexRule.ERROR_CODE),
         },
       };
   }

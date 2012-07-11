@@ -75,12 +75,43 @@ public class CharacterCharacteristicsRuleTest extends AbstractRuleTest
     return
       new Object[][] {
 
-        {rule, new PasswordData(VALID_PASS), true, },
-        {rule, new PasswordData(ALPHA_PASS), false, },
-        {rule, new PasswordData(DIGIT_PASS), false, },
-        {rule, new PasswordData(UPPERCASE_PASS), false, },
-        {rule, new PasswordData(LOWERCASE_PASS), false, },
-        {rule, new PasswordData(NONALPHA_PASS), false, },
+        {rule, new PasswordData(VALID_PASS), null, },
+        {
+          rule,
+          new PasswordData(ALPHA_PASS),
+          codes(
+            CharacterCharacteristicsRule.ERROR_CODE,
+            AlphabeticalCharacterRule.ERROR_CODE,
+            LowercaseCharacterRule.ERROR_CODE),
+        },
+        {
+          rule,
+          new PasswordData(DIGIT_PASS),
+          codes(
+            CharacterCharacteristicsRule.ERROR_CODE,
+            DigitCharacterRule.ERROR_CODE),
+        },
+        {
+          rule,
+          new PasswordData(UPPERCASE_PASS),
+          codes(
+            CharacterCharacteristicsRule.ERROR_CODE,
+            UppercaseCharacterRule.ERROR_CODE),
+        },
+        {
+          rule,
+          new PasswordData(LOWERCASE_PASS),
+          codes(
+            CharacterCharacteristicsRule.ERROR_CODE,
+            LowercaseCharacterRule.ERROR_CODE),
+        },
+        {
+          rule,
+          new PasswordData(NONALPHA_PASS),
+          codes(
+            CharacterCharacteristicsRule.ERROR_CODE,
+            NonAlphanumericCharacterRule.ERROR_CODE),
+        },
       };
   }
 

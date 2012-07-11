@@ -50,8 +50,12 @@ public class AllowedCharacterRuleTest extends AbstractRuleTest
     return
       new Object[][] {
 
-        {rule, new PasswordData(VALID_PASS), true, },
-        {rule, new PasswordData(INVALID_PASS), false, },
+        {rule, new PasswordData(VALID_PASS), null, },
+        {
+          rule,
+          new PasswordData(INVALID_PASS),
+          codes(AllowedCharacterRule.ERROR_CODE),
+        },
       };
   }
 

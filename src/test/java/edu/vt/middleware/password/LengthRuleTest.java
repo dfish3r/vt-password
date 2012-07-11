@@ -76,29 +76,61 @@ public class LengthRuleTest extends AbstractRuleTest
     return
       new Object[][] {
 
-        {rule, new PasswordData(MIN_VALID_PASS), true, },
-        {rule, new PasswordData(MID_VALID_PASS), true, },
-        {rule, new PasswordData(MAX_VALID_PASS), true, },
-        {rule, new PasswordData(SHORT_PASS), false, },
-        {rule, new PasswordData(LONG_PASS), false, },
+        {rule, new PasswordData(MIN_VALID_PASS), null, },
+        {rule, new PasswordData(MID_VALID_PASS), null, },
+        {rule, new PasswordData(MAX_VALID_PASS), null, },
+        {
+          rule,
+          new PasswordData(SHORT_PASS),
+          codes(LengthRule.ERROR_CODE_MIN),
+        },
+        {
+          rule,
+          new PasswordData(LONG_PASS),
+          codes(LengthRule.ERROR_CODE_MAX),
+        },
 
-        {minRule, new PasswordData(MIN_VALID_PASS), true, },
-        {minRule, new PasswordData(MID_VALID_PASS), false, },
-        {minRule, new PasswordData(MAX_VALID_PASS), false, },
-        {minRule, new PasswordData(SHORT_PASS), false, },
-        {minRule, new PasswordData(LONG_PASS), false, },
+        {minRule, new PasswordData(MIN_VALID_PASS), null, },
+        {
+          minRule,
+          new PasswordData(MID_VALID_PASS),
+          codes(LengthRule.ERROR_CODE_MAX),
+        },
+        {
+          minRule,
+          new PasswordData(MAX_VALID_PASS),
+          codes(LengthRule.ERROR_CODE_MAX),
+        },
+        {
+          minRule,
+          new PasswordData(SHORT_PASS),
+          codes(LengthRule.ERROR_CODE_MIN),
+        },
+        {
+          minRule,
+          new PasswordData(LONG_PASS),
+          codes(LengthRule.ERROR_CODE_MAX),
+        },
 
-        {noMinRule, new PasswordData(MIN_VALID_PASS), true, },
-        {noMinRule, new PasswordData(MID_VALID_PASS), true, },
-        {noMinRule, new PasswordData(MAX_VALID_PASS), true, },
-        {noMinRule, new PasswordData(SHORT_PASS), true, },
-        {noMinRule, new PasswordData(LONG_PASS), false, },
+        {noMinRule, new PasswordData(MIN_VALID_PASS), null, },
+        {noMinRule, new PasswordData(MID_VALID_PASS), null, },
+        {noMinRule, new PasswordData(MAX_VALID_PASS), null, },
+        {noMinRule, new PasswordData(SHORT_PASS), null, },
+        {
+          noMinRule,
+          new PasswordData(LONG_PASS),
+          codes(LengthRule.ERROR_CODE_MAX),
+        },
 
-        {noMaxRule, new PasswordData(MIN_VALID_PASS), true, },
-        {noMaxRule, new PasswordData(MID_VALID_PASS), true, },
-        {noMaxRule, new PasswordData(MAX_VALID_PASS), true, },
-        {noMaxRule, new PasswordData(SHORT_PASS), false, },
-        {noMaxRule, new PasswordData(LONG_PASS), true, },
+        {noMaxRule, new PasswordData(MIN_VALID_PASS), null, },
+        {noMaxRule, new PasswordData(MID_VALID_PASS), null, },
+        {noMaxRule, new PasswordData(MAX_VALID_PASS), null, },
+        {
+          noMaxRule,
+          new PasswordData(SHORT_PASS),
+          codes(LengthRule.ERROR_CODE_MIN),
+        },
+        {noMaxRule, new PasswordData(LONG_PASS), null, },
       };
   }
 

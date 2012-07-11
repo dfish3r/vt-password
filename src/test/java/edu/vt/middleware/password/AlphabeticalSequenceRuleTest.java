@@ -42,43 +42,43 @@ public class AlphabeticalSequenceRuleTest extends AbstractRuleTest
         {
           new AlphabeticalSequenceRule(),
           new PasswordData(new Password("p4zRcv8#n65")),
-          true,
+          null,
         },
         // Has alphabetical sequence
         {
           new AlphabeticalSequenceRule(7, false),
           new PasswordData(new Password("phijklmn#n65")),
-          false,
+          codes(AlphabeticalSequenceRule.ERROR_CODE),
         },
         // Has wrapping alphabetical sequence with wrap=false
         {
           new AlphabeticalSequenceRule(4, false),
           new PasswordData(new Password("pXyza#n65")),
-          true,
+          null,
         },
         // Has wrapping alphabetical sequence with wrap=true
         {
           new AlphabeticalSequenceRule(4, true),
           new PasswordData(new Password("pxyzA#n65")),
-          false,
+          codes(AlphabeticalSequenceRule.ERROR_CODE),
         },
         // Has backward alphabetical sequence
         {
           new AlphabeticalSequenceRule(),
           new PasswordData(new Password("ptSrqp#n65")),
-          false,
+          codes(AlphabeticalSequenceRule.ERROR_CODE),
         },
         // Has backward wrapping alphabetical sequence with wrap=false
         {
           new AlphabeticalSequenceRule(8, false),
           new PasswordData(new Password("pcBazyXwv#n65")),
-          true,
+          null,
         },
         // Has backward wrapping alphabetical sequence with wrap=true
         {
           new AlphabeticalSequenceRule(8, true),
           new PasswordData(new Password("pcbazyxwv#n65")),
-          false,
+          codes(AlphabeticalSequenceRule.ERROR_CODE),
         },
       };
   }

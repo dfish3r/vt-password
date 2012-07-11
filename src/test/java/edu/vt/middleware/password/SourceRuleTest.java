@@ -81,34 +81,34 @@ public class SourceRuleTest extends AbstractRuleTest
         {
           rule,
           PasswordData.newInstance(VALID_PASS, USER, null, sources),
-          true,
+          null,
         },
         {
           rule,
           PasswordData.newInstance(SOURCE_PASS, USER, null, sources),
-          false,
+          codes(SourceRule.ERROR_CODE),
         },
 
         {
           digestRule,
           PasswordData.newInstance(VALID_PASS, USER, null, digestSources),
-          true,
+          null,
         },
         {
           digestRule,
           PasswordData.newInstance(SOURCE_PASS, USER, null, digestSources),
-          false,
+          codes(SourceRule.ERROR_CODE),
         },
 
         {
           emptyRule,
           PasswordData.newInstance(VALID_PASS, USER, null, null),
-          true,
+          null,
         },
         {
           emptyRule,
           PasswordData.newInstance(SOURCE_PASS, USER, null, null),
-          true,
+          null,
         },
       };
   }

@@ -42,43 +42,43 @@ public class QwertySequenceRuleTest extends AbstractRuleTest
         {
           new QwertySequenceRule(),
           new PasswordData(new Password("p4zRcv8#n65")),
-          true,
+          null,
         },
         // Has qwerty sequence
         {
           new QwertySequenceRule(6, false),
           new PasswordData(new Password("pqwerty#n65")),
-          false,
+          codes(QwertySequenceRule.ERROR_CODE),
         },
         // Has wrapping qwerty sequence with wrap=false
         {
           new QwertySequenceRule(),
           new PasswordData(new Password("pkl;'a#n65")),
-          true,
+          null,
         },
         // Has wrapping qwerty sequence with wrap=true
         {
           new QwertySequenceRule(8, true),
           new PasswordData(new Password("piop{}|qw#n65")),
-          false,
+          codes(QwertySequenceRule.ERROR_CODE),
         },
         // Has backward qwerty sequence
         {
           new QwertySequenceRule(4, false),
           new PasswordData(new Password("p7^54#n65")),
-          false,
+          codes(QwertySequenceRule.ERROR_CODE, QwertySequenceRule.ERROR_CODE),
         },
         // Has backward wrapping qwerty sequence with wrap=false
         {
           new QwertySequenceRule(8, false),
           new PasswordData(new Password("phgfdsa\";#n65")),
-          true,
+          null,
         },
         // Has backward wrapping qwerty sequence with wrap=true
         {
           new QwertySequenceRule(6, true),
           new PasswordData(new Password("p@1`+_0#n65")),
-          false,
+          codes(QwertySequenceRule.ERROR_CODE),
         },
       };
   }

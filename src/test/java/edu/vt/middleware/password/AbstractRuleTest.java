@@ -38,7 +38,9 @@ public abstract class AbstractRuleTest
   /**
    * @param  rule  to check password with
    * @param  passwordData  to check
-   * @param  valid  whether the supplied rule data should pass the check
+   * @param  errorCodes  Array of error codes to be produced on a failed
+   *                     password validation attempt.  A null value indicates
+   *                     that password validation should succeed.
    *
    * @throws  Exception  On test failure.
    */
@@ -49,17 +51,52 @@ public abstract class AbstractRuleTest
   public void checkPassword(
     final Rule rule,
     final PasswordData passwordData,
-    final boolean valid)
+    final String[] errorCodes)
     throws Exception
   {
-    if (valid) {
-      final RuleResult result = rule.validate(passwordData);
-      AssertJUnit.assertTrue(result.isValid());
-      AssertJUnit.assertTrue(result.getDetails().isEmpty());
-    } else {
-      final RuleResult result = rule.validate(passwordData);
+    final RuleResult result = rule.validate(passwordData);
+    if (errorCodes != null) {
       AssertJUnit.assertFalse(result.isValid());
-      AssertJUnit.assertTrue(!result.getDetails().isEmpty());
+      AssertJUnit.assertEquals(errorCodes.length, result.getDetails().size());
+      for (String code : errorCodes) {
+        AssertJUnit.assertTrue(hasErrorCode(code, result));
+      }
+    } else {
+      AssertJUnit.assertTrue(result.isValid());
     }
+  }
+
+
+  /**
+   * Converts one or more error codes to a string array.
+   *
+   * @param  codes  One or more error codes.
+   *
+   * @return  Array of error codes.
+   */
+  protected static String[] codes(final String ... codes)
+  {
+    return codes;
+  }
+
+
+  /**
+   * Determines whether the given error code is found among the details of
+   * the give rule validation result.
+   *
+   * @param  code  to search for in result details.
+   * @param  result  to search for given code.
+   *
+   * @return  True if code is found among result details, false otherwise.
+   */
+  protected static boolean hasErrorCode(
+    final String code, final RuleResult result)
+  {
+    for (RuleResultDetail detail : result.getDetails()) {
+      if (code.equals(detail.getErrorCode())) {
+        return true;
+      }
+    }
+    return false;
   }
 }

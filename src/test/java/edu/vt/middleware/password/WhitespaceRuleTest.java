@@ -57,10 +57,10 @@ public class WhitespaceRuleTest extends AbstractRuleTest
     return
       new Object[][] {
 
-        {rule, new PasswordData(VALID_PASS), true, },
-        {rule, new PasswordData(SPACE_PASS), false, },
-        {rule, new PasswordData(TAB_PASS), false, },
-        {rule, new PasswordData(LINE_SEP_PASS), false, },
+        {rule, new PasswordData(VALID_PASS), null, },
+        {rule, new PasswordData(SPACE_PASS), codes("ILLEGAL_WHITESPACE"), },
+        {rule, new PasswordData(TAB_PASS), codes("ILLEGAL_WHITESPACE"), },
+        {rule, new PasswordData(LINE_SEP_PASS), codes("ILLEGAL_WHITESPACE"), },
       };
   }
 

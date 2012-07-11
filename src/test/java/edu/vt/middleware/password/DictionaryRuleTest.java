@@ -114,40 +114,72 @@ public class DictionaryRuleTest extends AbstractRuleTest
     return
       new Object[][] {
 
-        {rule, new PasswordData(VALID_PASS), true, },
-        {rule, new PasswordData(DICT_PASS), false, },
-        {rule, new PasswordData(BACKWARDS_DICT_PASS), true, },
-        {rule, new PasswordData(UPPERCASE_DICT_PASS), true, },
-        {rule, new PasswordData(BACKWARDS_UPPERCASE_DICT_PASS), true, },
+        {rule, new PasswordData(VALID_PASS), null, },
+        {
+          rule,
+          new PasswordData(DICT_PASS),
+          codes(DictionaryRule.ERROR_CODE),
+        },
+        {rule, new PasswordData(BACKWARDS_DICT_PASS), null, },
+        {rule, new PasswordData(UPPERCASE_DICT_PASS), null, },
+        {rule, new PasswordData(BACKWARDS_UPPERCASE_DICT_PASS), null, },
 
-        {backwardsRule, new PasswordData(VALID_PASS), true, },
-        {backwardsRule, new PasswordData(DICT_PASS), false, },
-        {backwardsRule, new PasswordData(BACKWARDS_DICT_PASS), false, },
-        {backwardsRule, new PasswordData(UPPERCASE_DICT_PASS), true, },
+        {backwardsRule, new PasswordData(VALID_PASS), null, },
+        {
+          backwardsRule,
+          new PasswordData(DICT_PASS),
+          codes(DictionaryRule.ERROR_CODE),
+        },
+        {
+          backwardsRule,
+          new PasswordData(BACKWARDS_DICT_PASS),
+          codes(DictionaryRule.ERROR_CODE_REVERSED),
+        },
+        {backwardsRule, new PasswordData(UPPERCASE_DICT_PASS), null, },
         {
           backwardsRule,
           new PasswordData(BACKWARDS_UPPERCASE_DICT_PASS),
-          true,
+          null,
         },
 
-        {ignoreCaseRule, new PasswordData(VALID_PASS), true, },
-        {ignoreCaseRule, new PasswordData(DICT_PASS), false, },
-        {ignoreCaseRule, new PasswordData(BACKWARDS_DICT_PASS), true, },
-        {ignoreCaseRule, new PasswordData(UPPERCASE_DICT_PASS), false, },
+        {ignoreCaseRule, new PasswordData(VALID_PASS), null, },
+        {
+          ignoreCaseRule,
+          new PasswordData(DICT_PASS),
+          codes(DictionaryRule.ERROR_CODE),
+        },
+        {ignoreCaseRule, new PasswordData(BACKWARDS_DICT_PASS), null, },
+        {
+          ignoreCaseRule,
+          new PasswordData(UPPERCASE_DICT_PASS),
+          codes(DictionaryRule.ERROR_CODE),
+        },
         {
           ignoreCaseRule,
           new PasswordData(BACKWARDS_UPPERCASE_DICT_PASS),
-          true,
+          null,
         },
 
-        {allRule, new PasswordData(VALID_PASS), true, },
-        {allRule, new PasswordData(DICT_PASS), false, },
-        {allRule, new PasswordData(BACKWARDS_DICT_PASS), false, },
-        {allRule, new PasswordData(UPPERCASE_DICT_PASS), false, },
+        {allRule, new PasswordData(VALID_PASS), null, },
+        {
+          allRule,
+          new PasswordData(DICT_PASS),
+          codes(DictionaryRule.ERROR_CODE),
+        },
+        {
+          allRule,
+          new PasswordData(BACKWARDS_DICT_PASS),
+          codes(DictionaryRule.ERROR_CODE_REVERSED),
+        },
+        {
+          allRule,
+          new PasswordData(UPPERCASE_DICT_PASS),
+          codes(DictionaryRule.ERROR_CODE),
+        },
         {
           allRule,
           new PasswordData(BACKWARDS_UPPERCASE_DICT_PASS),
-          false,
+          codes(DictionaryRule.ERROR_CODE_REVERSED),
         },
       };
   }
