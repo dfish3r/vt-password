@@ -80,6 +80,15 @@ public class NumericalSequenceRuleTest extends AbstractRuleTest
           new PasswordData(new Password("p54321098#n65")),
           codes(NumericalSequenceRule.ERROR_CODE),
         },
+        // Issue 135
+        {
+          new NumericalSequenceRule(5, true),
+          new PasswordData(new Password("1234567")),
+          codes(
+            NumericalSequenceRule.ERROR_CODE,
+            NumericalSequenceRule.ERROR_CODE,
+            NumericalSequenceRule.ERROR_CODE),
+        },
       };
   }
 

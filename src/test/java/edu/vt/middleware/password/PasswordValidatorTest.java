@@ -531,6 +531,26 @@ public class PasswordValidatorTest extends AbstractRuleTest
             new Password("pxT%t#Nwq"), USER, history, sources),
           null,
         },
+
+        // Issue 135
+        {
+          validator,
+          PasswordData.newInstance(
+            new Password("1234567"), USER, history, sources),
+          codes(
+            CharacterCharacteristicsRule.ERROR_CODE,
+            NonAlphanumericCharacterRule.ERROR_CODE,
+            LowercaseCharacterRule.ERROR_CODE,
+            UppercaseCharacterRule.ERROR_CODE,
+            NumericalSequenceRule.ERROR_CODE,
+            NumericalSequenceRule.ERROR_CODE,
+            NumericalSequenceRule.ERROR_CODE,
+            QwertySequenceRule.ERROR_CODE,
+            QwertySequenceRule.ERROR_CODE,
+            QwertySequenceRule.ERROR_CODE,
+            LengthRule.ERROR_CODE_MIN
+          ),
+        },
       };
   }
 }
