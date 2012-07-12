@@ -21,7 +21,8 @@ package edu.vt.middleware.password;
  */
 public class WhitespaceRule implements Rule
 {
-
+  /** Error code for whitespace rule violation. */
+  public static final String ERROR_CODE = "ILLEGAL_WHITESPACE";
 
   /** {@inheritDoc} */
   @Override
@@ -33,7 +34,7 @@ public class WhitespaceRule implements Rule
       return
         new RuleResult(
           false,
-          new RuleResultDetail("ILLEGAL_WHITESPACE", null));
+          new RuleResultDetail(ERROR_CODE, null));
     }
   }
 }

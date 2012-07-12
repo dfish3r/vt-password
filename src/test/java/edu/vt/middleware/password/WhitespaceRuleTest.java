@@ -58,9 +58,21 @@ public class WhitespaceRuleTest extends AbstractRuleTest
       new Object[][] {
 
         {rule, new PasswordData(VALID_PASS), null, },
-        {rule, new PasswordData(SPACE_PASS), codes("ILLEGAL_WHITESPACE"), },
-        {rule, new PasswordData(TAB_PASS), codes("ILLEGAL_WHITESPACE"), },
-        {rule, new PasswordData(LINE_SEP_PASS), codes("ILLEGAL_WHITESPACE"), },
+        {
+          rule,
+          new PasswordData(SPACE_PASS),
+          codes(WhitespaceRule.ERROR_CODE),
+        },
+        {
+          rule,
+          new PasswordData(TAB_PASS),
+          codes(WhitespaceRule.ERROR_CODE),
+        },
+        {
+          rule,
+          new PasswordData(LINE_SEP_PASS),
+          codes(WhitespaceRule.ERROR_CODE),
+        },
       };
   }
 

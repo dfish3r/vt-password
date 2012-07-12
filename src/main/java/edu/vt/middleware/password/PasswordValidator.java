@@ -24,7 +24,7 @@ import java.util.List;
  * @version  $Revision$ $Date$
  */
 
-public class PasswordValidator
+public class PasswordValidator implements Rule
 {
 
   /** Password rules. */
