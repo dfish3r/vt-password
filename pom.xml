@@ -6,7 +6,7 @@
   <groupId>edu.vt.middleware</groupId>
   <artifactId>vt-password</artifactId>
   <packaging>jar</packaging>
-  <version>3.1.1</version>
+  <version>3.1.2-SNAPSHOT</version>
   <name>VT Password Libraries</name>
   <description>Library for checking that a password complies with a custom set of rules</description>
   <url>http://code.google.com/p/vt-middleware/wiki/vtpassword</url>
