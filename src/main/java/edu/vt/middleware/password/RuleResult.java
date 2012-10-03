@@ -102,4 +102,18 @@ public class RuleResult
   {
     details = rrd;
   }
+
+
+  /** {@inheritDoc} */
+  @Override
+  public String toString()
+  {
+    return
+      String.format(
+        "%s@%h::valid=%s,details=%s",
+        getClass().getName(),
+        hashCode(),
+        valid,
+        details);
+  }
 }

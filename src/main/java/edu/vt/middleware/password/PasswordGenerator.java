@@ -32,7 +32,7 @@ public class PasswordGenerator
 {
 
   /** Source of random data. */
-  private Random random;
+  private final Random random;
 
 
   /**

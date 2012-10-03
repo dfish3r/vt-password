@@ -30,7 +30,7 @@ public class IllegalCharacterRule implements Rule
   public static final String ERROR_CODE = "ILLEGAL_CHAR";
 
   /** Stores the characters that are not allowed. */
-  private char[] illegalChar;
+  private final char[] illegalChar;
 
 
   /**
@@ -77,11 +77,7 @@ public class IllegalCharacterRule implements Rule
   }
 
 
-  /**
-   * Returns a string representation of this object.
-   *
-   * @return  string representation
-   */
+  /** {@inheritDoc} */
   @Override
   public String toString()
   {
@@ -90,6 +86,6 @@ public class IllegalCharacterRule implements Rule
         "%s@%h::illegalChar=%s",
         getClass().getName(),
         hashCode(),
-        illegalChar != null ? Arrays.asList(illegalChar) : null);
+        illegalChar != null ? Arrays.toString(illegalChar) : null);
   }
 }

@@ -30,7 +30,7 @@ public class AllowedCharacterRule implements Rule
   public static final String ERROR_CODE = "ALLOWED_CHAR";
 
   /** Stores the characters that are allowed. */
-  private char[] allowedChar;
+  private final char[] allowedChar;
 
 
   /**
@@ -79,11 +79,7 @@ public class AllowedCharacterRule implements Rule
   }
 
 
-  /**
-   * Returns a string representation of this object.
-   *
-   * @return  string representation
-   */
+  /** {@inheritDoc} */
   @Override
   public String toString()
   {
@@ -92,6 +88,6 @@ public class AllowedCharacterRule implements Rule
         "%s@%h::allowedChar=%s",
         getClass().getName(),
         hashCode(),
-        allowedChar != null ? Arrays.asList(allowedChar) : null);
+        allowedChar != null ? Arrays.toString(allowedChar) : null);
   }
 }

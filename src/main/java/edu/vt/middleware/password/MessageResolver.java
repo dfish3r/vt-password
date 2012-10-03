@@ -67,7 +67,7 @@ public class MessageResolver
   {
     final String key = detail.getErrorCode();
     final String message = messageProperties.getProperty(key);
-    String format = null;
+    String format;
     if (message != null) {
       format = String.format(message, detail.getValues());
     } else {

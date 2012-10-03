@@ -115,13 +115,13 @@ public class UsernameRule implements Rule
       user = user.toLowerCase();
       reverseUser = reverseUser.toLowerCase();
     }
-    if (text.indexOf(user) != -1) {
+    if (text.contains(user)) {
       result.setValid(false);
       result.getDetails().add(
         new RuleResultDetail(
           ERROR_CODE, createRuleResultDetailParameters(user)));
     }
-    if (matchBackwards && text.indexOf(reverseUser) != -1) {
+    if (matchBackwards && text.contains(reverseUser)) {
       result.setValid(false);
       result.getDetails().add(
         new RuleResultDetail(
@@ -147,11 +147,7 @@ public class UsernameRule implements Rule
   }
 
 
-  /**
-   * Returns a string representation of this object.
-   *
-   * @return  string representation
-   */
+  /** {@inheritDoc} */
   @Override
   public String toString()
   {

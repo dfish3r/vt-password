@@ -87,11 +87,7 @@ public abstract class AbstractSequenceRule implements Rule
   }
 
 
-  /**
-   * Returns a string representation of this object.
-   *
-   * @return  string representation
-   */
+  /** {@inheritDoc} */
   @Override
   public String toString()
   {
@@ -192,10 +188,10 @@ public abstract class AbstractSequenceRule implements Rule
     private final char[][] chars;
 
     /** 0-based iterator start position. */
-    private int start;
+    private final int start;
 
     /** Number of characters to iterate over. */
-    private int length;
+    private final int length;
 
     /** Index upper bound. */
     private int ubound;
@@ -207,7 +203,7 @@ public abstract class AbstractSequenceRule implements Rule
     private int position;
 
     /** Stores matched characters. */
-    private StringBuilder matches;
+    private final StringBuilder matches;
 
 
     /**

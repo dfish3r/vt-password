@@ -136,11 +136,7 @@ public class CharacterCharacteristicsRule implements Rule
   }
 
 
-  /**
-   * Returns a string representation of this object.
-   *
-   * @return  string representation
-   */
+  /** {@inheritDoc} */
   @Override
   public String toString()
   {

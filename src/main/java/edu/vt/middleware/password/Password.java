@@ -24,34 +24,34 @@ public class Password
 {
 
   /** Stores the password. */
-  private String password;
+  private final String password;
 
   /** Digits in the password [0-9]. */
-  private StringBuilder digits;
+  private final StringBuilder digits;
 
   /** Non-Digits in the password ![0-9]. */
-  private StringBuilder nonDigits;
+  private final StringBuilder nonDigits;
 
   /** Alphabetical characters in the password [a-zA-Z]. */
-  private StringBuilder alphabetical;
+  private final StringBuilder alphabetical;
 
   /** Non-Alphabetical characters in the password ![a-zA-Z]. */
-  private StringBuilder nonAlphabetical;
+  private final StringBuilder nonAlphabetical;
 
   /** Alphanumeric characters in the password [a-zA-Z0-9]. */
-  private StringBuilder alphanumeric;
+  private final StringBuilder alphanumeric;
 
   /** Non-Alphanumeric characters in the password ![a-zA-Z0-9]. */
-  private StringBuilder nonAlphanumeric;
+  private final StringBuilder nonAlphanumeric;
 
   /** Uppercase characters in the password [A-Z]. */
-  private StringBuilder uppercase;
+  private final StringBuilder uppercase;
 
   /** Lowercase characters in the password [a-z]. */
-  private StringBuilder lowercase;
+  private final StringBuilder lowercase;
 
   /** Whitespace characters in the password [\s]. */
-  private StringBuilder whitespace;
+  private final StringBuilder whitespace;
 
 
   /**
@@ -455,11 +455,7 @@ public class Password
   }
 
 
-  /**
-   * Returns a string representation of this object.
-   *
-   * @return  string representation
-   */
+  /** {@inheritDoc} */
   @Override
   public String toString()
   {

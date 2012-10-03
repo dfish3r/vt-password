@@ -31,7 +31,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 /**
- * Unit test for {@link RuleList}.
+ * Unit test for {@link PasswordValidator}.
  *
  * @author  Middleware Services
  * @version  $Revision$
