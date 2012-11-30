@@ -154,7 +154,7 @@ public class LengthRuleTest extends AbstractRuleTest
     for (RuleResultDetail detail : result.getDetails()) {
       AssertJUnit.assertEquals(
         String.format(
-          "Password must at least %s characters in length.",
+          "Password must be at least %s characters in length.",
           rule.getMinimumLength()),
         DEFAULT_RESOLVER.resolve(detail));
       AssertJUnit.assertNotNull(EMPTY_RESOLVER.resolve(detail));
