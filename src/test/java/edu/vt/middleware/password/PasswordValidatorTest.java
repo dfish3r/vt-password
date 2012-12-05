@@ -203,6 +203,7 @@ public class PasswordValidatorTest extends AbstractRuleTest
    *
    * @throws  Exception  On test data generation failure.
    */
+  // CheckStyle:MethodLengthCheck OFF
   @DataProvider(name = "passwords")
   public Object[][] passwords()
     throws Exception
@@ -553,4 +554,5 @@ public class PasswordValidatorTest extends AbstractRuleTest
         },
       };
   }
+  // CheckStyle:MethodLengthCheck ON
 }

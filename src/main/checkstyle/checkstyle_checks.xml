@@ -13,9 +13,16 @@
   <!-- forbid tab characters in source files -->
   <module name="FileTabCharacter"/>
 
+  <module name="SuppressionCommentFilter">
+    <property name="offCommentFormat" value="CheckStyle\:([\w\|]+) OFF"/>
+    <property name="onCommentFormat" value="CheckStyle\:([\w\|]+) ON"/>
+    <property name="checkFormat" value="$1"/>
+  </module>
   <module name="NewlineAtEndOfFile"/>
   <module name="TreeWalker">
     <property name="tabWidth" value="2"/>
+
+    <module name="FileContentsHolder"/>
 
     <!--  annotations -->
     <module name="AnnotationUseStyle"/>
