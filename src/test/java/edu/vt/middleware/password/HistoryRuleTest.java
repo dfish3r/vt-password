@@ -52,10 +52,16 @@ public class HistoryRuleTest extends AbstractRuleTest
   private List<String> digestHistory = new ArrayList<String>();
 
   /** For testing. */
+  private List<String> saltedDigestHistory = new ArrayList<String>();
+
+  /** For testing. */
   private HistoryRule rule = new HistoryRule();
 
   /** For testing. */
   private HistoryRule digestRule = new HistoryRule();
+
+  /** For testing. */
+  private HistoryRule saltedDigestRule = new HistoryRule();
 
   /** For testing. */
   private HistoryRule emptyRule = new HistoryRule();
@@ -73,6 +79,11 @@ public class HistoryRuleTest extends AbstractRuleTest
     digestHistory.add("safx/LW8+SsSy/o3PmCNy4VEm5s=");
     digestHistory.add("zurb9DyQ5nooY1la8h86Bh0n1iw=");
     digestHistory.add("bhqabXwE3S8E6xNJfX/d76MFOCs=");
+
+    saltedDigestRule.setDigest("SHA-1", new Base64Converter());
+    saltedDigestHistory.add("2DSZvOzGiMnm/Mbxt1M3zNAh7P1GebLG");
+    saltedDigestHistory.add("rv1mF2DuarrF//LPP9+AFJal8bMc9G5z");
+    saltedDigestHistory.add("3lABdWxtWhfGKtXBx4MfiWZ1737KnFuG");
   }
 
 
@@ -127,6 +138,30 @@ public class HistoryRuleTest extends AbstractRuleTest
         {
           digestRule,
           PasswordData.newInstance(HISTORY_PASS3, USER, digestHistory, null),
+          codes(HistoryRule.ERROR_CODE),
+        },
+
+        {
+          saltedDigestRule,
+          PasswordData.newInstance(VALID_PASS, USER, saltedDigestHistory, null),
+          null,
+        },
+        {
+          saltedDigestRule,
+          PasswordData.newInstance(
+            HISTORY_PASS1, USER, saltedDigestHistory, null),
+          codes(HistoryRule.ERROR_CODE),
+        },
+        {
+          saltedDigestRule,
+          PasswordData.newInstance(
+            HISTORY_PASS2, USER, saltedDigestHistory, null),
+          codes(HistoryRule.ERROR_CODE),
+        },
+        {
+          saltedDigestRule,
+          PasswordData.newInstance(
+            HISTORY_PASS3, USER, saltedDigestHistory, null),
           codes(HistoryRule.ERROR_CODE),
         },
 
