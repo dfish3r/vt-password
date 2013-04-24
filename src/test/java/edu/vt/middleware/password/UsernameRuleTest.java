@@ -49,16 +49,16 @@ public class UsernameRuleTest extends AbstractRuleTest
   private static final String USER = "testuser";
 
   /** For testing. */
-  private UsernameRule rule = new UsernameRule();
+  private final UsernameRule rule = new UsernameRule();
 
   /** For testing. */
-  private UsernameRule backwardsRule = new UsernameRule();
+  private final UsernameRule backwardsRule = new UsernameRule();
 
   /** For testing. */
-  private UsernameRule ignoreCaseRule = new UsernameRule();
+  private final UsernameRule ignoreCaseRule = new UsernameRule();
 
   /** For testing. */
-  private UsernameRule allRule = new UsernameRule();
+  private final UsernameRule allRule = new UsernameRule();
 
 
   /** Initialize rules for this test. */

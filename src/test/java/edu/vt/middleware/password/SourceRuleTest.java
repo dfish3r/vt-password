@@ -40,19 +40,20 @@ public class SourceRuleTest extends AbstractRuleTest
   private static final String USER = "testuser";
 
   /** For testing. */
-  private Map<String, String> sources = new HashMap<String, String>();
+  private final Map<String, String> sources = new HashMap<String, String>();
 
   /** For testing. */
-  private Map<String, String> digestSources = new HashMap<String, String>();
+  private final Map<String, String> digestSources =
+    new HashMap<String, String>();
 
   /** For testing. */
-  private SourceRule rule = new SourceRule();
+  private final SourceRule rule = new SourceRule();
 
   /** For testing. */
-  private SourceRule digestRule = new SourceRule();
+  private final SourceRule digestRule = new SourceRule();
 
   /** For testing. */
-  private SourceRule emptyRule = new SourceRule();
+  private final SourceRule emptyRule = new SourceRule();
 
 
   /** Initialize rules for this test. */

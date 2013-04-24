@@ -49,13 +49,13 @@ public class PasswordValidatorTest extends AbstractRuleTest
   private static final String USER = "testuser";
 
   /** For testing. */
-  private List<String> history = new ArrayList<String>();
+  private final List<String> history = new ArrayList<String>();
 
   /** For testing. */
-  private Map<String, String> sources = new HashMap<String, String>();
+  private final Map<String, String> sources = new HashMap<String, String>();
 
   /** Test checker. */
-  private List<Rule> rules = new ArrayList<Rule>();
+  private final List<Rule> rules = new ArrayList<Rule>();
 
   /** Word list. */
   private Dictionary dict;

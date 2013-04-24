@@ -42,7 +42,7 @@ public class WhitespaceRuleTest extends AbstractRuleTest
     "AycDPs" + System.getProperty("line.separator") + "yz");
 
   /** For testing. */
-  private WhitespaceRule rule = new WhitespaceRule();
+  private final WhitespaceRule rule = new WhitespaceRule();
 
 
   /**

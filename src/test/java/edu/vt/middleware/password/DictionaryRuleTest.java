@@ -52,16 +52,16 @@ public class DictionaryRuleTest extends AbstractRuleTest
     "EZInamLLuP");
 
   /** For testing. */
-  private DictionaryRule rule = new DictionaryRule();
+  private final DictionaryRule rule = new DictionaryRule();
 
   /** For testing. */
-  private DictionaryRule backwardsRule = new DictionaryRule();
+  private final DictionaryRule backwardsRule = new DictionaryRule();
 
   /** For testing. */
-  private DictionaryRule ignoreCaseRule = new DictionaryRule();
+  private final DictionaryRule ignoreCaseRule = new DictionaryRule();
 
   /** For testing. */
-  private DictionaryRule allRule = new DictionaryRule();
+  private final DictionaryRule allRule = new DictionaryRule();
 
 
   /**

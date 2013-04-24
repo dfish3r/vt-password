@@ -10,8 +10,8 @@
       <bean class="edu.vt.middleware.dictionary.FileWordList">
         <constructor-arg>
           <bean class="java.io.RandomAccessFile">
-            <constructor-arg><value>src/test/resources/web2.sort</value></constructor-arg>
-            <constructor-arg><value>r</value></constructor-arg>
+            <constructor-arg value="src/test/resources/web2.sort"/>
+            <constructor-arg value="r"/>
           </bean>
         </constructor-arg>
       </bean>

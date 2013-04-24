@@ -33,7 +33,7 @@ public class AllowedCharacterRuleTest extends AbstractRuleTest
   private static final Password INVALID_PASS = new Password("gbwersco4kk");
 
   /** For testing. */
-  private AllowedCharacterRule rule = new AllowedCharacterRule(
+  private final AllowedCharacterRule rule = new AllowedCharacterRule(
     new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
       'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', });
 

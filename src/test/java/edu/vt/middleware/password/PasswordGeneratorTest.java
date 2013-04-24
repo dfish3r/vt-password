@@ -33,25 +33,25 @@ public class PasswordGeneratorTest
 {
 
   /** To generate passwords with. */
-  private PasswordGenerator generator = new PasswordGenerator();
+  private final PasswordGenerator generator = new PasswordGenerator();
 
   /** Rule to generate passwords with. */
-  private CharacterCharacteristicsRule genCharRule =
+  private final CharacterCharacteristicsRule genCharRule =
     new CharacterCharacteristicsRule();
 
   /** Rule to verify passwords with. */
-  private CharacterCharacteristicsRule verifyCharRule =
+  private final CharacterCharacteristicsRule verifyCharRule =
     new CharacterCharacteristicsRule();
 
   /** Rule to verify passwords with that should fail. */
-  private CharacterCharacteristicsRule failCharRule =
+  private final CharacterCharacteristicsRule failCharRule =
     new CharacterCharacteristicsRule();
 
   /** Rules to test. */
-  private List<CharacterRule> rules = new ArrayList<CharacterRule>();
+  private final List<CharacterRule> rules = new ArrayList<CharacterRule>();
 
   /** Rules to test. */
-  private List<CharacterRule> failRules = new ArrayList<CharacterRule>();
+  private final List<CharacterRule> failRules = new ArrayList<CharacterRule>();
 
 
   /** @throws  Exception  On test failure. */

@@ -33,7 +33,8 @@ public class IllegalCharacterRuleTest extends AbstractRuleTest
   private static final Password INVALID_PASS = new Password("AycD@Pdsyz");
 
   /** For testing. */
-  private IllegalCharacterRule rule = new IllegalCharacterRule(new char[]{'@'});
+  private final IllegalCharacterRule rule =
+    new IllegalCharacterRule(new char[]{'@'});
 
 
   /**

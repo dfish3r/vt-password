@@ -46,25 +46,25 @@ public class HistoryRuleTest extends AbstractRuleTest
   private static final String USER = "testuser";
 
   /** For testing. */
-  private List<String> history = new ArrayList<String>();
+  private final List<String> history = new ArrayList<String>();
 
   /** For testing. */
-  private List<String> digestHistory = new ArrayList<String>();
+  private final List<String> digestHistory = new ArrayList<String>();
 
   /** For testing. */
-  private List<String> saltedDigestHistory = new ArrayList<String>();
+  private final List<String> saltedDigestHistory = new ArrayList<String>();
 
   /** For testing. */
-  private HistoryRule rule = new HistoryRule();
+  private final HistoryRule rule = new HistoryRule();
 
   /** For testing. */
-  private HistoryRule digestRule = new HistoryRule();
+  private final HistoryRule digestRule = new HistoryRule();
 
   /** For testing. */
-  private HistoryRule saltedDigestRule = new HistoryRule();
+  private final HistoryRule saltedDigestRule = new HistoryRule();
 
   /** For testing. */
-  private HistoryRule emptyRule = new HistoryRule();
+  private final HistoryRule emptyRule = new HistoryRule();
 
 
   /** Initialize rules for this test. */

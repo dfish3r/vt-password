@@ -52,17 +52,18 @@ public class DictionarySubstringRuleTest extends AbstractRuleTest
     "p4tyLeCnAl5gew");
 
   /** For testing. */
-  private DictionarySubstringRule rule = new DictionarySubstringRule();
+  private final DictionarySubstringRule rule = new DictionarySubstringRule();
 
   /** For testing. */
-  private DictionarySubstringRule backwardsRule = new DictionarySubstringRule();
-
-  /** For testing. */
-  private DictionarySubstringRule ignoreCaseRule =
+  private final DictionarySubstringRule backwardsRule =
     new DictionarySubstringRule();
 
   /** For testing. */
-  private DictionarySubstringRule allRule = new DictionarySubstringRule();
+  private final DictionarySubstringRule ignoreCaseRule =
+    new DictionarySubstringRule();
+
+  /** For testing. */
+  private final DictionarySubstringRule allRule = new DictionarySubstringRule();
 
 
   /**

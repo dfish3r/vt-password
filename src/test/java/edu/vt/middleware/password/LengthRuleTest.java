@@ -43,16 +43,16 @@ public class LengthRuleTest extends AbstractRuleTest
   private static final Password LONG_PASS = new Password("p4T3j76rE@#");
 
   /** For testing. */
-  private LengthRule rule = new LengthRule(8, 10);
+  private final LengthRule rule = new LengthRule(8, 10);
 
   /** For testing. */
-  private LengthRule minRule = new LengthRule(8);
+  private final LengthRule minRule = new LengthRule(8);
 
   /** For testing. */
-  private LengthRule noMinRule = new LengthRule();
+  private final LengthRule noMinRule = new LengthRule();
 
   /** For testing. */
-  private LengthRule noMaxRule = new LengthRule();
+  private final LengthRule noMaxRule = new LengthRule();
 
 
   /** Initialize rules for this test. */

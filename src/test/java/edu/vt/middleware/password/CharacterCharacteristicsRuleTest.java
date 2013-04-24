@@ -46,11 +46,11 @@ public class CharacterCharacteristicsRuleTest extends AbstractRuleTest
   private static final Password NONALPHA_PASS = new Password("r5scvEW2e9b");
 
   /** For testing. */
-  private CharacterCharacteristicsRule rule1 =
+  private final CharacterCharacteristicsRule rule1 =
     new CharacterCharacteristicsRule();
 
   /** For testing. */
-  private CharacterCharacteristicsRule rule2 =
+  private final CharacterCharacteristicsRule rule2 =
     new CharacterCharacteristicsRule();
 
 
