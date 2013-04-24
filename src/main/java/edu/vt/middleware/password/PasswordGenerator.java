@@ -1,7 +1,7 @@
 /*
   $Id$
 
-  Copyright (C) 2003-2011 Virginia Tech.
+  Copyright (C) 2003-2013 Virginia Tech.
   All rights reserved.
 
   SEE LICENSE FOR MORE INFORMATION
@@ -66,7 +66,8 @@ public class PasswordGenerator
    * @return  generated password
    */
   public String generatePassword(
-    final int length, final List<CharacterRule> rules)
+    final int length,
+    final List<CharacterRule> rules)
   {
     if (length <= 0) {
       throw new IllegalArgumentException("length must be greater than 0");
@@ -99,7 +100,9 @@ public class PasswordGenerator
    * @param  target  character sequence that will hold characters.
    */
   protected void fillRandomCharacters(
-    final CharSequence source, final int count, final Appendable target)
+    final CharSequence source,
+    final int count,
+    final Appendable target)
   {
     for (int i = 0; i < count; i++) {
       try {

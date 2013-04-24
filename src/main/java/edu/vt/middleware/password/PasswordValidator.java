@@ -1,7 +1,7 @@
 /*
   $Id$
 
-  Copyright (C) 2003-2011 Virginia Tech.
+  Copyright (C) 2003-2013 Virginia Tech.
   All rights reserved.
 
   SEE LICENSE FOR MORE INFORMATION
@@ -52,7 +52,8 @@ public class PasswordValidator implements Rule
    * @param  rules  to validate
    */
   public PasswordValidator(
-    final MessageResolver resolver, final List<Rule> rules)
+    final MessageResolver resolver,
+    final List<Rule> rules)
   {
     messageResolver = resolver;
     passwordRules = rules;

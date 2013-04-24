@@ -1,7 +1,7 @@
 /*
   $Id$
 
-  Copyright (C) 2003-2011 Virginia Tech.
+  Copyright (C) 2003-2013 Virginia Tech.
   All rights reserved.
 
   SEE LICENSE FOR MORE INFORMATION
@@ -95,7 +95,8 @@ public class MessageResolver
       props.load(in);
     } catch (Exception e) {
       throw new IllegalStateException(
-        "Error loading default message properties.", e);
+        "Error loading default message properties.",
+        e);
     } finally {
       try {
         if (in != null) {

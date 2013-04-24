@@ -1,7 +1,7 @@
 /*
   $Id$
 
-  Copyright (C) 2003-2011 Virginia Tech.
+  Copyright (C) 2003-2013 Virginia Tech.
   All rights reserved.
 
   SEE LICENSE FOR MORE INFORMATION
@@ -119,13 +119,15 @@ public class UsernameRule implements Rule
       result.setValid(false);
       result.getDetails().add(
         new RuleResultDetail(
-          ERROR_CODE, createRuleResultDetailParameters(user)));
+          ERROR_CODE,
+          createRuleResultDetailParameters(user)));
     }
     if (matchBackwards && text.contains(reverseUser)) {
       result.setValid(false);
       result.getDetails().add(
         new RuleResultDetail(
-          ERROR_CODE_REVERSED, createRuleResultDetailParameters(user)));
+          ERROR_CODE_REVERSED,
+          createRuleResultDetailParameters(user)));
     }
     return result;
   }

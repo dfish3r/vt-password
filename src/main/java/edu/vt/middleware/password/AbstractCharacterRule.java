@@ -1,7 +1,7 @@
 /*
   $Id$
 
-  Copyright (C) 2003-2011 Virginia Tech.
+  Copyright (C) 2003-2013 Virginia Tech.
   All rights reserved.
 
   SEE LICENSE FOR MORE INFORMATION
@@ -78,11 +78,12 @@ public abstract class AbstractCharacterRule implements CharacterRule
     if (getNumberOfCharacterType(passwordData.getPassword()) >= numCharacters) {
       return new RuleResult(true);
     } else {
-      return new RuleResult(
-        false,
-        new RuleResultDetail(
-          ERROR_CODE,
-          createRuleResultDetailParameters(passwordData.getPassword())));
+      return
+        new RuleResult(
+          false,
+          new RuleResultDetail(
+            ERROR_CODE,
+            createRuleResultDetailParameters(passwordData.getPassword())));
     }
   }
 

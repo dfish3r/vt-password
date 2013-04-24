@@ -1,7 +1,7 @@
 /*
   $Id$
 
-  Copyright (C) 2003-2011 Virginia Tech.
+  Copyright (C) 2003-2013 Virginia Tech.
   All rights reserved.
 
   SEE LICENSE FOR MORE INFORMATION
@@ -91,10 +91,6 @@ public class RuleResultDetail
   @Override
   public String toString()
   {
-    return
-      String.format(
-        "%s:%s",
-        errorCode,
-        parameters);
+    return String.format("%s:%s", errorCode, parameters);
   }
 }

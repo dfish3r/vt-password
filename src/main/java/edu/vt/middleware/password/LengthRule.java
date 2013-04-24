@@ -1,7 +1,7 @@
 /*
   $Id$
 
-  Copyright (C) 2003-2011 Virginia Tech.
+  Copyright (C) 2003-2013 Virginia Tech.
   All rights reserved.
 
   SEE LICENSE FOR MORE INFORMATION
@@ -130,11 +130,13 @@ public class LengthRule implements Rule
       if (length < minimumLength) {
         result.getDetails().add(
           new RuleResultDetail(
-            ERROR_CODE_MIN, createRuleResultDetailParameters()));
+            ERROR_CODE_MIN,
+            createRuleResultDetailParameters()));
       } else {
         result.getDetails().add(
           new RuleResultDetail(
-            ERROR_CODE_MAX, createRuleResultDetailParameters()));
+            ERROR_CODE_MAX,
+            createRuleResultDetailParameters()));
       }
     }
     return result;

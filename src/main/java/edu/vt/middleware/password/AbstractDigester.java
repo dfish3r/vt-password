@@ -1,7 +1,7 @@
 /*
   $Id$
 
-  Copyright (C) 2003-2011 Virginia Tech.
+  Copyright (C) 2003-2013 Virginia Tech.
   All rights reserved.
 
   SEE LICENSE FOR MORE INFORMATION
@@ -68,7 +68,8 @@ public abstract class AbstractDigester
         final byte[] salt = extractSalt(hash, saltLength);
         // concatenate the salt to both the digest and the resulting output
         final byte[] saltedHash = addSalt(
-          digest.digest(addSalt(undigested.getBytes(), salt)), salt);
+          digest.digest(addSalt(undigested.getBytes(), salt)),
+          salt);
         compare = converter.fromBytes(saltedHash);
       } else {
         compare = digest.digest(undigested.getBytes(), converter);
