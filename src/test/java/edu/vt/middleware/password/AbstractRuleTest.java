@@ -1,7 +1,7 @@
 /*
   $Id$
 
-  Copyright (C) 2003-2011 Virginia Tech.
+  Copyright (C) 2003-2013 Virginia Tech.
   All rights reserved.
 
   SEE LICENSE FOR MORE INFORMATION
@@ -39,8 +39,8 @@ public abstract class AbstractRuleTest
    * @param  rule  to check password with
    * @param  passwordData  to check
    * @param  errorCodes  Array of error codes to be produced on a failed
-   *                     password validation attempt.  A null value indicates
-   *                     that password validation should succeed.
+   * password validation attempt. A null value indicates that password
+   * validation should succeed.
    *
    * @throws  Exception  On test failure.
    */
@@ -74,15 +74,15 @@ public abstract class AbstractRuleTest
    *
    * @return  Array of error codes.
    */
-  protected static String[] codes(final String ... codes)
+  protected static String[] codes(final String... codes)
   {
     return codes;
   }
 
 
   /**
-   * Determines whether the given error code is found among the details of
-   * the give rule validation result.
+   * Determines whether the given error code is found among the details of the
+   * give rule validation result.
    *
    * @param  code  to search for in result details.
    * @param  result  to search for given code.
@@ -90,7 +90,8 @@ public abstract class AbstractRuleTest
    * @return  True if code is found among result details, false otherwise.
    */
   protected static boolean hasErrorCode(
-    final String code, final RuleResult result)
+    final String code,
+    final RuleResult result)
   {
     for (RuleResultDetail detail : result.getDetails()) {
       if (code.equals(detail.getErrorCode())) {

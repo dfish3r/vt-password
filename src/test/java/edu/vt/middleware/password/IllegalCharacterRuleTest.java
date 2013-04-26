@@ -1,7 +1,7 @@
 /*
   $Id$
 
-  Copyright (C) 2003-2011 Virginia Tech.
+  Copyright (C) 2003-2013 Virginia Tech.
   All rights reserved.
 
   SEE LICENSE FOR MORE INFORMATION
@@ -33,8 +33,8 @@ public class IllegalCharacterRuleTest extends AbstractRuleTest
   private static final Password INVALID_PASS = new Password("AycD@Pdsyz");
 
   /** For testing. */
-  private final IllegalCharacterRule rule =
-    new IllegalCharacterRule(new char[]{'@'});
+  private final IllegalCharacterRule rule = new IllegalCharacterRule(
+    new char[] {'@'});
 
 
   /**

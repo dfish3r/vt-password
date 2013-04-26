@@ -1,7 +1,7 @@
 /*
   $Id$
 
-  Copyright (C) 2003-2011 Virginia Tech.
+  Copyright (C) 2003-2013 Virginia Tech.
   All rights reserved.
 
   SEE LICENSE FOR MORE INFORMATION
@@ -194,7 +194,8 @@ public class DictionaryRuleTest extends AbstractRuleTest
     for (RuleResultDetail detail : result.getDetails()) {
       AssertJUnit.assertEquals(
         String.format(
-          "Password contains the dictionary word '%s'.", "Pullmanize"),
+          "Password contains the dictionary word '%s'.",
+          "Pullmanize"),
         DEFAULT_RESOLVER.resolve(detail));
       AssertJUnit.assertNotNull(EMPTY_RESOLVER.resolve(detail));
     }
@@ -203,7 +204,8 @@ public class DictionaryRuleTest extends AbstractRuleTest
     for (RuleResultDetail detail : result.getDetails()) {
       AssertJUnit.assertEquals(
         String.format(
-          "Password contains the reversed dictionary word '%s'.", "Pullmanize"),
+          "Password contains the reversed dictionary word '%s'.",
+          "Pullmanize"),
         DEFAULT_RESOLVER.resolve(detail));
       AssertJUnit.assertNotNull(EMPTY_RESOLVER.resolve(detail));
     }

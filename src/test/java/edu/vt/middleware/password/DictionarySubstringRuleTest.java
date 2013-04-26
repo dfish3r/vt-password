@@ -1,7 +1,7 @@
 /*
   $Id$
 
-  Copyright (C) 2003-2011 Virginia Tech.
+  Copyright (C) 2003-2013 Virginia Tech.
   All rights reserved.
 
   SEE LICENSE FOR MORE INFORMATION
@@ -128,7 +128,8 @@ public class DictionarySubstringRuleTest extends AbstractRuleTest
 
         {backwardsRule, new PasswordData(VALID_PASS), null, },
         {
-          backwardsRule, new PasswordData(DICT_PASS),
+          backwardsRule,
+          new PasswordData(DICT_PASS),
           codes(DictionarySubstringRule.ERROR_CODE),
         },
         {
@@ -186,9 +187,7 @@ public class DictionarySubstringRuleTest extends AbstractRuleTest
   }
 
 
-  /**
-   * @throws  Exception  On test failure.
-   */
+  /** @throws  Exception  On test failure. */
   @Test(groups = {"passtest"})
   public void resolveMessage()
     throws Exception
@@ -205,7 +204,8 @@ public class DictionarySubstringRuleTest extends AbstractRuleTest
     for (RuleResultDetail detail : result.getDetails()) {
       AssertJUnit.assertEquals(
         String.format(
-          "Password contains the reversed dictionary word '%s'.", "lance"),
+          "Password contains the reversed dictionary word '%s'.",
+          "lance"),
         DEFAULT_RESOLVER.resolve(detail));
       AssertJUnit.assertNotNull(EMPTY_RESOLVER.resolve(detail));
     }

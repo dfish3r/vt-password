@@ -1,7 +1,7 @@
 /*
   $Id$
 
-  Copyright (C) 2003-2011 Virginia Tech.
+  Copyright (C) 2003-2013 Virginia Tech.
   All rights reserved.
 
   SEE LICENSE FOR MORE INFORMATION
@@ -47,6 +47,7 @@ public class SpringTest
       new ArrayList<Rule>(context.getBeansOfType(Rule.class).values()));
     final PasswordData pd = new PasswordData(new Password("springtest"));
     pd.setUsername("springuser");
+
     final RuleResult result = validator.validate(pd);
     AssertJUnit.assertNotNull(result);
   }
