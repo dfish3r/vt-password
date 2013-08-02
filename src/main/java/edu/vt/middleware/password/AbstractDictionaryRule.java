@@ -99,7 +99,7 @@ public abstract class AbstractDictionaryRule implements Rule
           ERROR_CODE,
           createRuleResultDetailParameters(matchingWord)));
     }
-    if (matchBackwards) {
+    if (matchBackwards && text.length() > 1) {
       text = new StringBuilder(passwordData.getPassword().getText()).reverse()
         .toString();
       matchingWord = doWordSearch(text);
