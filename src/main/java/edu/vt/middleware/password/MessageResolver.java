@@ -86,7 +86,7 @@ public class MessageResolver
    *
    * @return  default message mapping.
    */
-  private static Properties getDefaultProperties()
+  public static Properties getDefaultProperties()
   {
     final Properties props = new Properties();
     InputStream in = null;
