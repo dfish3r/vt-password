@@ -225,8 +225,8 @@ public abstract class AbstractSequenceRule implements Rule
       length = count;
       lbound = start - length;
       ubound = start + length;
-      if (lbound < 0 && !wrap) {
-        lbound = 0;
+      if (lbound < -1 && !wrap) {
+        lbound = -1;
       }
       if (ubound >= characters.length && !wrap) {
         ubound = characters.length;
